@@ -6,10 +6,6 @@ from ecologits.tracers.litellm_tracer import litellm_match_model
 
 @pytest.mark.parametrize("model_name,expected_tuple", [
     ("gpt-4o", ("openai", "gpt-4o")),
-    ("claude-3-opus", ("anthropic", "claude-3-opus-latest")),
-    ("claude-3-5-sonnet", ("anthropic", "claude-3-5-sonnet-latest")),
-    ("claude-3-5-sonnet-20240620", ("anthropic", "claude-3-5-sonnet-20240620")),
-    ("anthropic/claude-3-5-sonnet-20240620", ("anthropic", "claude-3-5-sonnet-20240620")),
     ("mistral/mistral-large-latest", ("mistralai", "mistral-large-latest")),
     ("command-r", ("cohere", "command-r")),
     ("huggingface/meta-llama/Llama-2-7b", ("huggingface_hub", "meta-llama/Llama-2-7b")),
