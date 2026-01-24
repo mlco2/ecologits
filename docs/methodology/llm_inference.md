@@ -344,7 +344,7 @@ We aim at covering the largest scope possible when assessing the environmental i
 
 ## :material-bookshelf: Citation
 
-Please cite **GenAI Impact** non-profit organization and **link to this documentation page**. 
+Please cite **EcoLogits** and **link to this documentation page**. 
 
 ```bibtex
 @article{ecologits, 

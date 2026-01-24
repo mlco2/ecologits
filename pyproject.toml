@@ -7,7 +7,8 @@ name = "ecologits"
 version = "0.9.1"
 description = "EcoLogits tracks and estimates the energy consumption and environmental impacts of using generative AI models through APIs."
 authors = [
-    {name = "GenAI Impact"}
+    {name = "Samuel Rincé", email = "hello@sento.re"},
+    {name = "Adrien Banse"},
 ]
 license = "MPL-2.0"
 readme = "README.md"
