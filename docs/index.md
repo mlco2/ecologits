@@ -11,7 +11,6 @@ hide:
   ![EcoLogits](assets/logo_dark.png#only-dark){ width="500" }
   <figcaption>
     <p class="hero-logo__tagline">Estimate and track the environmental footprint of GenAI models at inference.</p>
-    <p class="hero-logo__team">Made with 💚 by <a href="https://genai-impact.org/">GenAI Impact</a> non-profit.</p>
   </figcaption>
 </figure>
 
@@ -107,20 +106,6 @@ hide:
 <div style="text-align: center;" markdown>
   [Become a sponsor :octicons-heart-fill-24:{ .heart }](https://tally.so/r/wvLePd){ .md-button }
 </div>
-
-
-## About GenAI Impact
-
-<div style="display: flex; align-items: center; gap: 40px; flex-wrap: wrap;">
-  <div style="flex: 1; min-width: 400px;">
-    <p><b><a href="https://genai-impact.org" target="_blank">GenAI Impact</a> is a non-profit</b> dedicated to creating digital commons for sustainable AI.</p>
-    <p>We are building open-source methodologies and tools to better assess and limit the environmental footprint of generative AI. </p>
-  </div>
-  <div style="flex-shrink: 0; min-width: 200px;">
-    <img style="width: 200px; display: block; margin: 0 auto;" src="https://github.com/genai-impact/.github/blob/main/profile/assets/logo.png?raw=true" alt="GenAI Impact" width="200">
-  </div>
-</div>
-
 
 ## Acknowledgements
 

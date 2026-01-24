@@ -55,4 +55,4 @@ All the methodologies are **licensed under [CC BY-SA 4.0](https://creativecommon
 <img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt="">
 <img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt="">
 
-Please ensure that you adhere to the license terms and properly cite the authors and the GenAI Impact non-profit organization when utilizing this work. Each methodology has an associated paper with specific citation requirements.
+Please ensure that you adhere to the license terms and properly cite EcoLogits and its authors when using this work. Each methodology has an associated paper with specific citation requirements.

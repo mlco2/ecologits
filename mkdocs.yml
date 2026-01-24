@@ -66,10 +66,10 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/genai-impact
-      name: GenAI Impact GitHub organization
+      name: GitHub organization
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/company/genai-impact/
-      name: GenAI Impact LinkedIn
+      name: EcoLogits LinkedIn
 
 extra_css:
   - css/extra.css

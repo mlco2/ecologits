@@ -13,9 +13,9 @@
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1VxrpJ5xuWZKQLsSN12kdqUqkppHRct3G?usp=sharing)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15601289.svg)](https://doi.org/10.5281/zenodo.15601289)
 
-EcoLogits was created and is actively maintained by the **[GenAI Impact](https://genai-impact.org/) non-profit**. 
-
 Read the full **documentation on [ecologits.ai](https://ecologits.ai/)**.
+
+EcoLogits is part of the **[CodeCarbon](https://codecarbon.io/) non-profit**.
 
 
 ## ⚙️ Installation
