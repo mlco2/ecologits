@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [project]
 name = "ecologits"
-version = "0.9.1"
+version = "0.9.2"
 description = "EcoLogits tracks and estimates the energy consumption and environmental impacts of using generative AI models through APIs."
 authors = [
     {name = "Samuel Rincé", email = "hello@sento.re"},
