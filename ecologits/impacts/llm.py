@@ -41,6 +41,7 @@ def gpu_energy(
         gpu_energy_alpha: float,
         gpu_energy_beta: float,
         gpu_energy_gamma: float,
+        cache_token_count: float = 0,
 ) -> ValueOrRange:
     """
     Compute energy consumption of a single GPU.
@@ -52,6 +53,7 @@ def gpu_energy(
         gpu_energy_alpha: Alpha coefficient of the energy regression.
         gpu_energy_beta: Beta coefficient of the energy regression.
         gpu_energy_gamma: Beta coefficient of the energy regression.
+        cache_toke_count: Number of tokens read from KV cache.
 
     Returns:
         The energy consumption of a single GPU in kWh.
@@ -59,7 +61,7 @@ def gpu_energy(
     gpu_energy_per_token = gpu_energy_alpha * math.exp(gpu_energy_beta * batch_size) * model_active_parameter_count + \
         gpu_energy_gamma
     gpu_energy_per_token /= 1000    # convert to kWh
-    return output_token_count * gpu_energy_per_token
+    return (output_token_count + cache_token_count / 6) * gpu_energy_per_token
 
 
 @dag.asset
@@ -70,7 +72,8 @@ def generation_latency(
         latency_alpha: float,
         latency_beta: float,
         latency_gamma: float,
-        request_latency: float
+        request_latency: float,
+        cache_token_count: float = 0,
 ) -> ValueOrRange:
     """
     Compute the token generation latency in seconds.
@@ -82,12 +85,13 @@ def generation_latency(
         latency_alpha: Alpha coefficient of the latency regression.
         latency_beta: Beta coefficient of the latency regression.
         latency_gamma: Gamma coefficient of the latency regression.
+        cache_toke_count: Number of tokens read from KV cache.
 
     Returns:
         The token generation latency in seconds.
     """
     latency_per_token = latency_alpha * model_active_parameter_count + latency_beta * batch_size + latency_gamma
-    gpu_latency = output_token_count * latency_per_token
+    gpu_latency = (output_token_count + cache_token_count / 6) * latency_per_token
     if request_latency < gpu_latency:
         return request_latency
     return gpu_latency
@@ -394,6 +398,7 @@ def compute_llm_impacts_dag(
         if_electricity_mix_wue: float,
         datacenter_pue: ValueOrRange,
         datacenter_wue: ValueOrRange,
+        cache_token_count: float = 0,
         model_quantization_bits: Optional[int] = MODEL_QUANTIZATION_BITS,
         gpu_energy_alpha: Optional[float] = GPU_ENERGY_ALPHA,
         gpu_energy_beta: Optional[float] = GPU_ENERGY_BETA,
@@ -427,6 +432,7 @@ def compute_llm_impacts_dag(
         if_electricity_mix_wue: WCF impact factor of electricity consumption in L / kWh.
         datacenter_wue: Water Usage Effectiveness of the data center in L/kWh.
         datacenter_pue: Power Usage Effectiveness of the data center.
+        cache_toke_count: Number of tokens read from KV cache.
         model_quantization_bits: Number of bits used to represent the model weights.
         gpu_energy_alpha: Alpha coefficient of the "GPU energy" regression.
         gpu_energy_beta: Beta coefficient of the "GPU energy" regression.
@@ -453,6 +459,7 @@ def compute_llm_impacts_dag(
         model_total_parameter_count=model_total_parameter_count,
         model_quantization_bits=model_quantization_bits,
         output_token_count=output_token_count,
+        cache_token_count=cache_token_count,
         request_latency=request_latency,
         if_electricity_mix_gwp=if_electricity_mix_gwp,
         if_electricity_mix_adpe=if_electricity_mix_adpe,
@@ -491,6 +498,7 @@ def compute_llm_impacts(
         if_electricity_mix_wue: float,
         datacenter_pue: ValueOrRange,
         datacenter_wue: ValueOrRange,
+        cache_token_count: float = 0,
         request_latency: Optional[float] = None,
         **kwargs: Any
 ) -> Impacts:
@@ -507,6 +515,7 @@ def compute_llm_impacts(
         if_electricity_mix_wue: WCF impact factor of electricity consumption in L / kWh.
         datacenter_wue: Water Usage Effectiveness of the data center in L/kWh.
         datacenter_pue: Power Usage Effectiveness of the data center.
+        cache_toke_count: Number of tokens read from KV cache.
         request_latency: Measured request latency in seconds.
         **kwargs: Any other optional parameter.
     Returns:
@@ -543,6 +552,7 @@ def compute_llm_impacts(
             if_electricity_mix_wue=if_electricity_mix_wue,
             datacenter_pue=datacenter_pue,
             datacenter_wue=datacenter_wue,
+            cache_token_count=cache_token_count,
             **kwargs
         )
         for field in fields:
