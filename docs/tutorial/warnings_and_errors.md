@@ -46,7 +46,7 @@ List of all the errors that EcoLogits can report.
 
 ### `model-not-registered`
 
-This error is reported when the selected model is not registered. This can happen when the model has been released recently or if you are using a custom model (such as fine-tuned models). In the first case you can try updating EcoLogits to the latest version, if the error persists, you can [open up an issue :octicons-link-external-16:](https://github.com/genai-impact/ecologits/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml).
+This error is reported when the selected model is not registered. This can happen when the model has been released recently or if you are using a custom model (such as fine-tuned models). In the first case you can try updating EcoLogits to the latest version, if the error persists, you can [open up an issue :octicons-link-external-16:](https://github.com/mlco2/ecologits/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml).
 
 ### `zone-not-registered`
 

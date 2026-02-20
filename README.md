@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/genai-impact/ecologits/main/docs/assets/logo_dark.png">
-    <img alt="EcoLogits" src="https://raw.githubusercontent.com/genai-impact/ecologits/main/docs/assets/logo_light.png">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/mlco2/ecologits/main/docs/assets/logo_dark.png">
+    <img alt="EcoLogits" src="https://raw.githubusercontent.com/mlco2/ecologits/main/docs/assets/logo_light.png">
   </picture>
 </p>
 
@@ -56,23 +56,23 @@ See package documentation on [EcoLogits](https://ecologits.ai/)
 ## 💚 Sponsors & benefactors
 
 <a href="https://resilio-solutions.com/" target="_blank">
-<img src="https://raw.githubusercontent.com/genai-impact/ecologits/main/docs/assets/sponsors/resilio.png" alt="Resilio" height="100" width="250">
+<img src="https://raw.githubusercontent.com/mlco2/ecologits/main/docs/assets/sponsors/resilio.png" alt="Resilio" height="100" width="250">
 </a>
 
 <a href="https://www.terra-cognita.ai/" target="_blank">
-<img src="https://raw.githubusercontent.com/genai-impact/ecologits/main/docs/assets/sponsors/terra_cognita.png" alt="Terra Cognita" height="100" width="250">
+<img src="https://raw.githubusercontent.com/mlco2/ecologits/main/docs/assets/sponsors/terra_cognita.png" alt="Terra Cognita" height="100" width="250">
 </a>
 
 <a href="https://sopht.com/" target="_blank">
-<img src="https://raw.githubusercontent.com/genai-impact/ecologits/main/docs/assets/sponsors/sopht.png" alt="Sopht" height="100" width="250">
+<img src="https://raw.githubusercontent.com/mlco2/ecologits/main/docs/assets/sponsors/sopht.png" alt="Sopht" height="100" width="250">
 </a>
 
 <a href="https://www.avanade.com/" target="_blank">
-<img src="https://raw.githubusercontent.com/genai-impact/ecologits/main/docs/assets/sponsors/avanade.png" alt="Avanade" height="100" width="250">
+<img src="https://raw.githubusercontent.com/mlco2/ecologits/main/docs/assets/sponsors/avanade.png" alt="Avanade" height="100" width="250">
 </a>
 
 <a href="https://www.culture.gouv.fr/" target="_blank">
-<img src="https://raw.githubusercontent.com/genai-impact/ecologits/main/docs/assets/sponsors/ministere_culture.png" alt="Ministère de la Culture" height="100" width="132">
+<img src="https://raw.githubusercontent.com/mlco2/ecologits/main/docs/assets/sponsors/ministere_culture.png" alt="Ministère de la Culture" height="100" width="132">
 </a>
 
 

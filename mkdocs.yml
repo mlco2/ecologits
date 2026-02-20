@@ -1,7 +1,7 @@
 site_name: EcoLogits
 site_url: https://ecologits.ai/
-repo_name: genai-impact/ecologits
-repo_url: https://github.com/genai-impact/ecologits
+repo_name: mlco2/ecologits
+repo_url: https://github.com/mlco2/ecologits
 
 nav:
   - 'Home': index.md
@@ -65,10 +65,10 @@ extra:
     provider: mike
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/genai-impact
+      link: https://github.com/mlco2
       name: GitHub organization
     - icon: fontawesome/brands/linkedin
-      link: https://www.linkedin.com/company/genai-impact/
+      link: https://www.linkedin.com/company/ecologits/
       name: EcoLogits LinkedIn
 
 extra_css:

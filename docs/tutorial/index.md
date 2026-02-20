@@ -56,14 +56,14 @@ EcoLogits.init(providers=["openai", "anthropic"])
 
 ??? warning "Disabling a provider at runtime is not supported"
 
-    **It is currently not possible to dynamically activate and deactivate a provider at runtime.** Each time that `EcoLogits` is re-initialized with another providers, the latter will be added to the list of already initialized providers. If you think that un-initializing a provider could be necessary for your use case, please [open an issue :octicons-link-external-16:](https://github.com/genai-impact/ecologits/issues/new/choose)."
+    **It is currently not possible to dynamically activate and deactivate a provider at runtime.** Each time that `EcoLogits` is re-initialized with another providers, the latter will be added to the list of already initialized providers. If you think that un-initializing a provider could be necessary for your use case, please [open an issue :octicons-link-external-16:](https://github.com/mlco2/ecologits/issues/new/choose)."
 
 
 ### Configure electricity mix
 
 You can change the [electricity mix :octicons-link-external-16:](https://ourworldindata.org/electricity-mix) for server-side computation depending on a specific location. EcoLogits will automatically change the default impact factors for electricity consumption according to the selected zone. 
 
-Available zones are listed in the [electricity_mixes.csv :octicons-link-external-16:](https://github.com/genai-impact/ecologits/blob/main/ecologits/data/electricity_mixes.csv) file and are based on the [ISO 3166-1 alpha-3 :octicons-link-external-16:](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) convention with some extras like `WOR` for World or `EEE` for Europe. 
+Available zones are listed in the [electricity_mixes.csv :octicons-link-external-16:](https://github.com/mlco2/ecologits/blob/main/ecologits/data/electricity_mixes.csv) file and are based on the [ISO 3166-1 alpha-3 :octicons-link-external-16:](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) convention with some extras like `WOR` for World or `EEE` for Europe. 
 
 Electricity mixes for each geographic zone are sourced from the [ADEME Base Empreinte® :octicons-link-external-16:](https://base-empreinte.ademe.fr/) database and are based on yearly averages.
 
