@@ -38,7 +38,7 @@ When OpenAI released GPT-4-Turbo we considered the model to be a distilled versi
 
 To maintain transparency, we publish an [**additional document** :octicons-link-external-16:](https://docs.google.com/spreadsheets/d/1XkPTkrGxpwWpIVIxpVvgRJuInSZsqbndTQbFGcHhdd0/edit?usp=sharing) detailing our estimations for model architectures. This document is regularly updated to stay in sync with new releases of EcoLogits.
 
-The full list of supported models is also available [on GitHub :octicons-link-external-16:](https://github.com/genai-impact/ecologits/blob/main/ecologits/data/models.json).
+The full list of supported models is also available [on GitHub :octicons-link-external-16:](https://github.com/mlco2/ecologits/blob/main/ecologits/data/models.json).
 
 
 [^1]: Tweet from Yam Peleg ([https://archive.ph/2RQ8X](https://archive.ph/2RQ8X))

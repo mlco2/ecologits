@@ -30,4 +30,4 @@ See the list of supported providers and more code snippets in the [tutorial sect
 
 ## Have more questions?
 
-Feel free to ask question in our [GitHub discussions](https://github.com/genai-impact/ecologits/discussions/categories/q-a) forum!
+Feel free to ask question in our [GitHub discussions](https://github.com/mlco2/ecologits/discussions/categories/q-a) forum!

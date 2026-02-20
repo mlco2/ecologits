@@ -7,7 +7,7 @@ Even though the training impacts of generative AI models are substantial, we cur
 
 For example, looking at Llama 3 70B, the estimated training greenhouse gas emissions are $1,900\ tCO2eq$. This is significant for an AI model but comparing it to running inference on that model for say 100 billion requests annually makes the share of impacts induced by training the model becomes very small. E.g., $\frac{1,900\ \text{tCO2eq}}{100\ \text{billion requests}} = 1.9e-8\ \text{tCO2eq per request}$ or $0.019\ \text{gCO2eq per request}$. This, compared to running a simple request to Llama 3 70B that would yield $1\ \text{to}\ 5\ \text{gCO2}$ (calculated with our methodology).
 
-It does not mean that we do not plan to integrate training impacts, it is just not a priority right now due to the difference in order of magnitude. It is also worth mentioning that estimating the number of requests that will be ever made in the lifespan of a model is very difficult, both for open-source and proprietary models. You can join the discussion on [GitHub #70 :octicons-link-external-16:](https://github.com/genai-impact/ecologits/discussions/70).
+It does not mean that we do not plan to integrate training impacts, it is just not a priority right now due to the difference in order of magnitude. It is also worth mentioning that estimating the number of requests that will be ever made in the lifespan of a model is very difficult, both for open-source and proprietary models. You can join the discussion on [GitHub #70 :octicons-link-external-16:](https://github.com/mlco2/ecologits/discussions/70).
 
 
 ## What's the difference with CodeCarbon?
