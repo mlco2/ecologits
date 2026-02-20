@@ -1,15 +1,15 @@
 
 .PHONY: install
 install:
-	poetry install --all-extras --with dev,docs
+	uv sync --all-extras --all-groups
 
 .PHONY: test
 test:
-	poetry run pytest
+	uv run pytest
 
 .PHONY: test-record
 test-record:
-	poetry run pytest --record-mode=once
+	uv run pytest --record-mode=once
 
 .PHONY: pre-commit
 pre-commit:
@@ -17,8 +17,8 @@ pre-commit:
 
 .PHONY: docs
 docs:
-	poetry run mkdocs build
+	uv run mkdocs build
 
 .PHONY: serve-docs
 serve-docs:
-	poetry run mkdocs serve
+	uv run mkdocs serve

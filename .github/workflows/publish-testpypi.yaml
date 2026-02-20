@@ -9,33 +9,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # check-out repo and set-up python
       - name: Check out repository
         uses: actions/checkout@v4
-      - name: Set up python
-        id: setup-python
-        uses: actions/setup-python@v5
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v7
         with:
-          python-version: "3.10"
-
-      # install & configure poetry
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
-        with:
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-          installer-parallel: true
-
-      # configure credentials
-      - name: Configure credentials
-        run: |
-          poetry config repositories.testpypi https://test.pypi.org/legacy/
-          poetry config pypi-token.testpypi ${{ secrets.TEST_PYPI_API_KEY }}
-
-      # build package
+          python-version: '3.13'
       - name: Build package
-        run: poetry build
-
-      # publish package
-      - name: Publish package
-        run: poetry publish --repository testpypi
+        run: uv build
+      - name: Publish to TestPyPI
+        run: uv publish --publish-url https://test.pypi.org/legacy/
+        env:
+          UV_PUBLISH_TOKEN: ${{ secrets.TEST_PYPI_API_KEY }}

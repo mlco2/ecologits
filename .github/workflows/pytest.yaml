@@ -9,41 +9,14 @@ jobs:
   pytest:
     runs-on: ubuntu-latest
     steps:
-      #----------------------------------------------
-      #       check-out repo and set-up python
-      #----------------------------------------------
       - name: Check out repository
         uses: actions/checkout@v4
-      - name: Set up python
-        id: setup-python
-        uses: actions/setup-python@v5
-      #----------------------------------------------
-      #  -----  install & configure poetry  -----
-      #----------------------------------------------
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v7
         with:
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-          installer-parallel: true
-
-      #----------------------------------------------
-      #       load cached venv if cache exists
-      #----------------------------------------------
-      - name: Load cached venv
-        id: cached-poetry-dependencies
-        uses: actions/cache@v3
-        with:
-          path: .venv
-          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
-      #----------------------------------------------
-      # install dependencies if cache does not exist
-      #----------------------------------------------
+          python-version: '3.13'
+          enable-cache: true
       - name: Install dependencies
-        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-        run: poetry install --no-interaction --all-extras --with dev
-      #----------------------------------------------
-      #              run test suite
-      #----------------------------------------------
+        run: uv sync --locked --all-extras --group dev
       - name: Run tests
-        run: poetry run pytest tests/
+        run: uv run pytest tests/

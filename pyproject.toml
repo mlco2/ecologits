@@ -1,6 +1,6 @@
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "ecologits"
@@ -38,65 +38,55 @@ classifiers = [
 ]
 requires-python = ">=3.10,<4"
 dependencies = [
-    "wrapt (>=1.14.1,<2.0.0)",
-    "pydantic >=1.9.0,<3",
-    "packaging (>=24.2,<25.0)"
+    "wrapt>=1.14.1,<2.0.0",
+    "pydantic>=1.9.0,<3",
+    "packaging>=24.2,<25.0",
 ]
 
 [project.optional-dependencies]
-openai = ["openai (>=1.61.1,<2.0.0)"]
-mistralai = ["mistralai (>=1.5.0,<2.0.0)"]
-anthropic = ["anthropic (>=0.45.2,<0.46.0)"]
-cohere = ["cohere (>=5.13.12,<6.0.0)"]
+openai = ["openai>=1.61.1,<2.0.0"]
+mistralai = ["mistralai>=1.5.0,<2.0.0"]
+anthropic = ["anthropic>=0.45.2,<0.46.0"]
+cohere = ["cohere>=5.13.12,<6.0.0"]
 huggingface-hub = [
-    "huggingface-hub (>=0.28.1,<0.29.0)",
-    "tiktoken (>=0.8.0,<0.10.0)",
-    "aiohttp (>=3.11.12,<4.0.0)",
-    "minijinja (>=2.7.0,<3.0.0)"
+    "huggingface-hub>=0.28.1,<0.29.0",
+    "tiktoken>=0.8.0,<0.10.0",
+    "aiohttp>=3.11.12,<4.0.0",
+    "minijinja>=2.7.0,<3.0.0",
 ]
-google-genai = ["google-genai (>=1.26.0,<2.0.0)"]
+google-genai = ["google-genai>=1.26.0,<2.0.0"]
 litellm = [
-    "litellm (>=1.60.6,<2.0.0)",
-    "rapidfuzz (>=3.12.1,<4.0.0)"
+    "litellm>=1.60.6,<2.0.0",
+    "rapidfuzz>=3.12.1,<4.0.0",
 ]
 opentelemetry = [
-    "opentelemetry-api (>=1.32.1,<2.0.0)",
-    "opentelemetry-sdk (>=1.32.1,<2.0.0)",
-    "opentelemetry-exporter-otlp (>=1.32.1,<2.0.0)",
-    "tiktoken (>=0.8.0,<0.10.0)"
+    "opentelemetry-api>=1.32.1,<2.0.0",
+    "opentelemetry-sdk>=1.32.1,<2.0.0",
+    "opentelemetry-exporter-otlp>=1.32.1,<2.0.0",
+    "tiktoken>=0.8.0,<0.10.0",
 ]
 
-
-[tool.poetry]
-requires-poetry = ">=2.0"
-
-[tool.poetry.group.dev]
-optional = true
-
-[tool.poetry.group.dev.dependencies]
-pre-commit = "^4.2.0"
-pytest = "^7.2.0"
-# ruff = "^0.0.254"
-pytest-recording = "^0.13.1"
-pytest-dotenv = "^0.5.2"
-pytest-asyncio = "^0.23.6"
-numpy = "^2.0.0"
-toml = "^0.10.2"
-mypy = "^1.13.0"
-setuptools = "^80.9.0"
-
-
-[tool.poetry.group.docs]
-optional = true
-
-[tool.poetry.group.docs.dependencies]
-mkdocs = "^1.5.3"
-mkdocs-material = { version = "^9.5.12", extras = ["imaging"] }
-mkdocstrings = { version = "^0.25.0", extras = ["python"] }
-mkdocs-gen-files = "^0.5.0"
-mkdocs-autorefs = "^1.0.1"
-mkdocs-literate-nav = "^0.6.1"
-mike = "^2.1.2"
+[dependency-groups]
+dev = [
+    "pre-commit>=4.2.0",
+    "pytest>=7.2.0",
+    "pytest-recording>=0.13.1",
+    "pytest-dotenv>=0.5.2",
+    "pytest-asyncio>=0.23.6",
+    "numpy>=2.0.0",
+    "toml>=0.10.2",
+    "mypy>=1.13.0",
+    "setuptools>=80.9.0",
+]
+docs = [
+    "mkdocs>=1.5.3",
+    "mkdocs-material[imaging]>=9.5.12",
+    "mkdocstrings[python]>=0.25.0",
+    "mkdocs-gen-files>=0.5.0",
+    "mkdocs-autorefs>=1.0.1",
+    "mkdocs-literate-nav>=0.6.1",
+    "mike>=2.1.2",
+]
 
 [pytest]
 env_files = [".env"]
