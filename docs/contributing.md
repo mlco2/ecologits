@@ -18,10 +18,10 @@ For non-trivial changes, please create an issue to discuss your proposal before 
 
 You'll need to meet the following requirements:
 
-- **Python version above 3.9**
+- **Python version above 3.10**
 - **git**
 - **make**
-- **[poetry](https://python-poetry.org/docs/#installation)**
+- **[uv](https://docs.astral.sh/uv/getting-started/installation/)**
 - **[pre-commit](https://pre-commit.com/#install)**
 
 ### Installation and setup
@@ -33,7 +33,7 @@ Fork the repository on GitHub and clone your fork locally.
 git clone git@github.com:<your username>/ecologits.git
 cd ecologits
 
-# Install ecologits development dependencies with poetry
+# Install ecologits development dependencies with uv
 make install
 ```
 
@@ -77,7 +77,7 @@ You can also serve the documentation locally.
 
 ```shell
 # Serve the documentation at localhost:8000
-poetry run mkdocs serve
+uv run mkdocs serve
 ```
 
 ### Code formatting and pre-commit

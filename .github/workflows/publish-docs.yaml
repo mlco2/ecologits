@@ -19,36 +19,24 @@ jobs:
         with:
           ref: gh-pages
 
-      # check-out repo and set-up python
       - name: Check out repository
         uses: actions/checkout@v4
       - name: Configure Git Credentials
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-      - name: Set up python
-        id: setup-python
-        uses: actions/setup-python@v5
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v7
         with:
-          python-version: "3.10"
-
-      # install & configure poetry
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
-        with:
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-          installer-parallel: true
-
-      # install dependencies if cache does not exist
+          python-version: '3.13'
+          enable-cache: true
       - name: Install dependencies
-        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-        run: poetry install --no-interaction --only docs
+        run: uv sync --locked --only-group docs
 
       # deploy github pages (dev)
       - name: Deploy GitHub Pages (dev)
         if: "github.ref == 'refs/heads/main'"
-        run: poetry run mike deploy -b gh-pages dev --push
+        run: uv run mike deploy -b gh-pages dev --push
 
       # deploy github pages (release)
       - if: startsWith(github.ref, 'refs/tags/')
@@ -60,4 +48,4 @@ jobs:
 
       - name: Deploy GitHub Pages (release)
         if: startsWith(github.ref, 'refs/tags/')
-        run: poetry run mike deploy -b gh-pages ${{ steps.check-version.outputs.VERSION_MAJOR_MINOR }} latest --update-aliases --push
+        run: uv run mike deploy -b gh-pages ${{ steps.check-version.outputs.VERSION_MAJOR_MINOR }} latest --update-aliases --push
