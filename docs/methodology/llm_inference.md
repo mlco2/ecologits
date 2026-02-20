@@ -59,7 +59,7 @@ The result is illustrated below.
 
 <figure markdown="span">
   ![Figure: Energy consumption per output token vs. number of active parameters ](../assets/methodology/llm/figure_energy.png)
-  <figcaption>Figure: Energy consumption (in Wh) per output token vs. number of active parameters (in billions). The points are the datapoints from the ML.ENERGY leaderboard, and the lines are the result of our regression for fixed batch sizes (64, 128, 256).</figcaption>
+  <figcaption>Figure: Energy consumption (in Wh) per output token vs. number of active parameters (in billions). The points are the datapoints from the <a href="https://ml.energy/leaderboard/?__theme=light">ML.ENERGY Leaderboard</a>, and the lines are the result of our regression for fixed batch sizes (64, 128, 256).</figcaption>
 </figure>
 
 !!! warning "From now on, we consider that the batch size is fixed to $B = 64$."
@@ -128,7 +128,7 @@ The result is illustrated below.
 
 <figure markdown="span">
   ![Figure: Latency per output token vs. number of active parameters ](../assets/methodology/llm/figure_latency.png)
-  <figcaption>Figure: Latency (in s) per output token vs. number of active parameters (in billions). The points are the datapoints from the ML.ENERGY leaderboard, and the lines are the result of our regression for fixed batch sizes (64, 128, 256)</figcaption>
+  <figcaption>Figure: Latency (in s) per output token vs. number of active parameters (in billions). The points are the datapoints from the <a href="https://ml.energy/leaderboard/?__theme=light">ML.ENERGY Leaderboard</a>, and the lines are the result of our regression for fixed batch sizes (64, 128, 256)</figcaption>
 </figure>
 
 Using these values, we can estimate the generation latency for the entire request given the number of output tokens, $\#T_{\text{out}}$, and the number of active parameters, $P_{\text{active}}$. When possible, we also measure the request latency, $\Delta T_{\text{request}}$, and use it as the maximum bound for the generation latency:
