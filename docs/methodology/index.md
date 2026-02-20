@@ -6,7 +6,7 @@ The following methodologies are **currently available and implemented in EcoLogi
 
 - [x] [LLM Inference](llm_inference.md)
 
-Upcoming methodologies ([join us](https://genai-impact.org/contact) to help speed up our progress):
+Upcoming methodologies ([join us](https://discord.gg/CAecQ2zM4n) to help speed up our progress):
 
 - [ ] Embeddings
 - [ ] Image Generation

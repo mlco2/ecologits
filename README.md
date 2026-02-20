@@ -15,7 +15,7 @@
 
 Read the full **documentation on [ecologits.ai](https://ecologits.ai/)**.
 
-EcoLogits is part of the **[CodeCarbon](https://codecarbon.io/) non-profit**.
+EcoLogits is part of the **[CodeCarbon](https://codecarbon.io/) non-profit, chat with us on [Discord](https://discord.gg/CAecQ2zM4n)**.
 
 
 ## ⚙️ Installation
