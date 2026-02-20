@@ -66,10 +66,13 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/mlco2
-      name: GitHub organization
+      name: GitHub
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/company/ecologits/
-      name: EcoLogits LinkedIn
+      name: LinkedIn
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/CAecQ2zM4n
+      name: Discord
 
 extra_css:
   - css/extra.css
