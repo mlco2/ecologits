@@ -444,7 +444,7 @@ def compute_llm_impacts_dag(
         server_embodied_adpe: ADPe embodied impact of the server in kgSbeq.
         server_embodied_pe: PE embodied impact of the server in MJ.
         server_lifetime: Lifetime duration of the server in seconds.
-        batch_size: The number of requests handled concurrently by the server, default set to 16.
+        batch_size: The number of requests handled concurrently by the server.
     Returns:
         The environmental impacts dag with all intermediate states.
     """
