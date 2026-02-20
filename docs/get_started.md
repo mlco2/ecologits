@@ -10,7 +10,7 @@
 
 ## Requirements
 
-Python 3.9+
+Python 3.10+
 
 EcoLogits relies on key libraries to provide essential functionalities:
 
