@@ -1,36 +1,35 @@
 interactions:
 - request:
-    body: '{"messages":[{"content":"Hello World!","role":"user"}],"model":"mistral-tiny","safe_prompt":false,"stream":false,"temperature":0.7,"tool_choice":"auto","top_p":1.0}'
+    body: '{"model":"mistral-tiny-latest","messages":[{"content":"Hello World!","role":"user"}],"stream":false}'
     headers:
-      accept:
+      Accept:
       - application/json
-      accept-encoding:
+      Accept-Encoding:
       - gzip, deflate
-      connection:
+      Connection:
       - keep-alive
-      content-length:
-      - '164'
+      Content-Length:
+      - '100'
+      Host:
+      - api.mistral.ai
       content-type:
       - application/json
-      host:
-      - api.mistral.ai
       user-agent:
-      - mistral-client-python/1.0.3
+      - mistral-client-python/1.12.4
     method: POST
     uri: https://api.mistral.ai/v1/chat/completions
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAAzyQTW7CMBCFr+K+TTduRUISwJtu4QxVhRx7IG4nnige1CLE3assYPvp/endkCIc
-        Kr9eVc2u2/qqbeKm33anbtNQpNBvd00bYSH9NwWFQxi8vgcZJyZNkmERZvJKEa7a1F29btu2thgl
-        EsNhTEVnz2+a8nXRDpICFbjPG1KO9Ae3shipFH8muBtmYYKDLyUV9VkXj2SlvHTviVlezEFfi8kp
-        kFExI5Gaq1zezV5+TfDZHMxAPC3MqER//YCFivAxeOYCly/Md4tTyqkMx5l8kQyHojLBguU8zdI/
-        dF8Wl8e2aZZx0qPKD+UC1y2x6vkJ6vUy9vHME1eb+/0fAAD//wMAZfB25GkBAAA=
+        H4sIAAAAAAAAA1SPTU7DMBCFr2Jm041bNWmaBm/YFokbIFRN7Glj6niieCKIqlyAE7DjihwBRYhW
+        bJ/ez/cu4B0YKOxmXdnqvjzWWVHvKiyOeVG7TbHFCqttCRpsTyjkwGS7XVZWZV5lGlp2FMBA65P0
+        GJbi47gMKJQENAwJTwTmAl3PbScH4TPFBKbUICwYrkJeabDcdoHEc7zJuf4fPTgS9CHNnRZtQ+7q
+        XU+TBq5fyQoYsA3K6tY44zfsLSUwzxfw0dE7mLWGo48+NYeeMHEEA0m4Aw0tpT/0ngOBAUzJJ8E4
+        3xLmcLAYZo44hDCzR6E4D+8pBL5Te35TFqN6VL9BNfKghB2OD+qJZJHUTKiw5kEUxlEaH0+zaeFU
+        8Gdaqe+vzw+YppfpBwAA//8DAKHbCcmiAQAA
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
       CF-RAY:
-      - 8c289e4d49a0b76f-BRU
+      - 9d17233d2a6a3a11-DUS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -38,39 +37,47 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 13 Sep 2024 13:52:33 GMT
+      - Sat, 21 Feb 2026 15:04:42 GMT
       Server:
       - cloudflare
+      Set-Cookie:
+      - __cf_bm=7mnAYLHuWEzJrnV3ZFmugLmYahQ1OFxgbyp56Gh_aUM-1771686282-1.0.1.1-O1BDJpRqlbBn63He5VB3StTr11f7KG0n0Zmbee6yw_oZEuMCkJNHVCew8x9qBIdDqUaNgWMGFbBHOoK7olc9S3S82DmwHZOqHbsnnjfS6KM;
+        path=/; expires=Sat, 21-Feb-26 15:34:42 GMT; domain=.mistral.ai; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=m3jsTOXXamxbeLYr0aCIfzDFVq_Up10vMd0sd1xG2KQ-1771686282028-0.0.1.1-604800000;
+        path=/; domain=.mistral.ai; HttpOnly; Secure; SameSite=None
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
+      X-Content-Type-Options:
+      - nosniff
       access-control-allow-origin:
       - '*'
       alt-svc:
       - h3=":443"; ma=86400
-      ratelimitbysize-limit:
-      - '2000000'
-      ratelimitbysize-query-cost:
-      - '32003'
-      ratelimitbysize-remaining:
-      - '1967997'
-      ratelimitbysize-reset:
-      - '28'
+      cf-cache-status:
+      - DYNAMIC
+      mistral-correlation-id:
+      - 019c80bb-4250-7a78-9825-5e43216e178e
       x-envoy-upstream-service-time:
-      - '227'
+      - '199'
       x-kong-proxy-latency:
-      - '1'
+      - '8'
       x-kong-request-id:
-      - 9c55f1433b565f0b02192d09090d4349
+      - 019c80bb-4250-7a78-9825-5e43216e178e
       x-kong-upstream-latency:
-      - '228'
-      x-ratelimitbysize-limit-minute:
+      - '200'
+      x-ratelimit-limit-req-minute:
+      - '360'
+      x-ratelimit-limit-tokens-minute:
       - '2000000'
-      x-ratelimitbysize-limit-month:
-      - '10000000000'
-      x-ratelimitbysize-remaining-minute:
-      - '1967997'
-      x-ratelimitbysize-remaining-month:
-      - '9996483002'
+      x-ratelimit-remaining-req-minute:
+      - '358'
+      x-ratelimit-remaining-tokens-minute:
+      - '1999944'
+      x-ratelimit-tokens-query-cost:
+      - '28'
     status:
       code: 200
       message: OK

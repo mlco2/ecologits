@@ -1,37 +1,35 @@
 interactions:
 - request:
-    body: '{"messages":[{"content":"Hello World!","role":"user"}],"model":"mistral-tiny","safe_prompt":false,"stream":false,"temperature":0.7,"tool_choice":"auto","top_p":1.0}'
+    body: '{"model":"mistral-tiny-latest","messages":[{"content":"Hello World!","role":"user"}],"stream":false}'
     headers:
-      accept:
+      Accept:
       - application/json
-      accept-encoding:
+      Accept-Encoding:
       - gzip, deflate
-      connection:
+      Connection:
       - keep-alive
-      content-length:
-      - '164'
+      Content-Length:
+      - '100'
+      Host:
+      - api.mistral.ai
       content-type:
       - application/json
-      host:
-      - api.mistral.ai
       user-agent:
-      - mistral-client-python/1.0.3
+      - mistral-client-python/1.12.4
     method: POST
     uri: https://api.mistral.ai/v1/chat/completions
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA0yQy24CMQxFf8X1hs0UwTxoyaZb+IaqQibxMGkz8TQxoiPEv1dRBerOuvf4cX1F
-        79Bg12/Xjeu61bbt25ocObuxtmlf+75laggrlOMnW0WDdiBdWhmnwOolYoU2MSk7NOuXelM3XdfV
-        FY7iOKDB0WdNFJ7Vx7mwg3jLGc37FX10/INmVeHIOdOJ0VwxSWA0SDn7rBS19EhUjmX3jkMQ0IET
-        P8FeFxmitwwqMDIrzHJewn4xQgGKOnCYgGK+cCpmgu8z53J1BooO/pYUB3wEijNcaIY9WIpL2Mml
-        FLD/j6k4mt+wQhUJB0shZDTxHMKtwt5Hn4dDYsoS0WBWmbDCIKcpyfHOfVR4vmedkoyTHlS+OGY0
-        mzJWKTyEti7h759+yM3mdvsFAAD//wMAIUemNLkBAAA=
+        H4sIAAAAAAAAA1SPTU7DMBCFr2Jm041bJU1JWm/YFokbIBRN7Glj6niqeCqoqlyAE7DjihwBWYhW
+        bJ/ez/cu4B0YoGZTFbis6tV9vXJF1VmqypLKza6rms4RaLAjoZADUzZNWa/r5brUMLCjAAYGn2TE
+        MBcfz/OAQklAwynhnsBc4DjycJRW+EAxgak1CAuGq7Bca7A8HAOJ53iTl/p/tHUk6EPKnRZtT+7q
+        LaZJA3evZAUM2B5lcWvM+D17SwnM8wV8dPQOptCw89Gnvh0JE0cwkISPoGGg9Ic+ciAwgCn5JBjz
+        LWEOrcWQOeIphMwehWIe3lIIfKe2/KYsRvWofoPqzCcl7PD8oJ5IZkllQoUdn0RhPEvv4z6bZk4F
+        f6CF+v76/IBpepl+AAAA//8DAKTV+0CiAQAA
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
       CF-RAY:
-      - 8c289e4a3e90ba75-BRU
+      - 9d17233a0dd21b4d-DUS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -39,39 +37,47 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 13 Sep 2024 13:52:32 GMT
+      - Sat, 21 Feb 2026 15:04:41 GMT
       Server:
       - cloudflare
+      Set-Cookie:
+      - __cf_bm=qhvuXeX5IbI2WzfY.IEUvgupbyvz7aolcO2IwxdeOX8-1771686281-1.0.1.1-0UuKTguh.lc4Iu35O_etbnudK4V8dahUa7YGF6dS3Gqv3umi0bwmur_5.poiBlT2GyP5FWF1zSu0vEbToj5.4OZASRrHpzLID.S.U4TsZOU;
+        path=/; expires=Sat, 21-Feb-26 15:34:41 GMT; domain=.mistral.ai; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=3NxHevMgOgAqVfs9K9OIEMiDqiFmcECnGQpru81rz_0-1771686281523-0.0.1.1-604800000;
+        path=/; domain=.mistral.ai; HttpOnly; Secure; SameSite=None
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
+      X-Content-Type-Options:
+      - nosniff
       access-control-allow-origin:
       - '*'
       alt-svc:
       - h3=":443"; ma=86400
-      ratelimitbysize-limit:
-      - '2000000'
-      ratelimitbysize-query-cost:
-      - '32003'
-      ratelimitbysize-remaining:
-      - '1967997'
-      ratelimitbysize-reset:
-      - '28'
+      cf-cache-status:
+      - DYNAMIC
+      mistral-correlation-id:
+      - 019c80bb-405c-7b2f-adf7-7af6f720da5e
       x-envoy-upstream-service-time:
-      - '350'
+      - '188'
       x-kong-proxy-latency:
-      - '7'
+      - '10'
       x-kong-request-id:
-      - 1318333f3532af136bc8234382b1180c
+      - 019c80bb-405c-7b2f-adf7-7af6f720da5e
       x-kong-upstream-latency:
-      - '351'
-      x-ratelimitbysize-limit-minute:
+      - '188'
+      x-ratelimit-limit-req-minute:
+      - '360'
+      x-ratelimit-limit-tokens-minute:
       - '2000000'
-      x-ratelimitbysize-limit-month:
-      - '10000000000'
-      x-ratelimitbysize-remaining-minute:
-      - '1967997'
-      x-ratelimitbysize-remaining-month:
-      - '9996515005'
+      x-ratelimit-remaining-req-minute:
+      - '359'
+      x-ratelimit-remaining-tokens-minute:
+      - '1999972'
+      x-ratelimit-tokens-query-cost:
+      - '28'
     status:
       code: 200
       message: OK

@@ -1,144 +1,80 @@
 interactions:
 - request:
-    body: '{"messages":[{"content":"Hello World!","role":"user"}],"model":"mistral-tiny","safe_prompt":false,"stream":true,"temperature":0.7,"tool_choice":"auto","top_p":1.0}'
+    body: '{"model":"mistral-tiny-latest","messages":[{"content":"Hello World!","role":"user"}],"stream":true}'
     headers:
-      accept:
+      Accept:
       - text/event-stream
-      accept-encoding:
+      Accept-Encoding:
       - gzip, deflate
-      connection:
+      Connection:
       - keep-alive
-      content-length:
-      - '163'
+      Content-Length:
+      - '99'
+      Host:
+      - api.mistral.ai
       content-type:
       - application/json
-      host:
-      - api.mistral.ai
       user-agent:
-      - mistral-client-python/1.0.3
+      - mistral-client-python/1.12.4
     method: POST
-    uri: https://api.mistral.ai/v1/chat/completions#stream
+    uri: https://api.mistral.ai/v1/chat/completions
   response:
     body:
-      string: 'data: {"id":"9b710ce1e26746d39513940334e236d4","object":"chat.completion.chunk","created":1726235553,"model":"mistral-tiny","choices":[{"index":0,"delta":{"role":"assistant","content":""},"finish_reason":null,"logprobs":null}]}
-
-
-        data: {"id":"9b710ce1e26746d39513940334e236d4","object":"chat.completion.chunk","created":1726235553,"model":"mistral-tiny","choices":[{"index":0,"delta":{"content":"Hello"},"finish_reason":null,"logprobs":null}]}
-
-
-        data: {"id":"9b710ce1e26746d39513940334e236d4","object":"chat.completion.chunk","created":1726235553,"model":"mistral-tiny","choices":[{"index":0,"delta":{"content":"
-        there"},"finish_reason":null,"logprobs":null}]}
-
-
-        data: {"id":"9b710ce1e26746d39513940334e236d4","object":"chat.completion.chunk","created":1726235553,"model":"mistral-tiny","choices":[{"index":0,"delta":{"content":"!"},"finish_reason":null,"logprobs":null}]}
-
-
-        data: {"id":"9b710ce1e26746d39513940334e236d4","object":"chat.completion.chunk","created":1726235553,"model":"mistral-tiny","choices":[{"index":0,"delta":{"content":"
-        It"},"finish_reason":null,"logprobs":null}]}
-
-
-        data: {"id":"9b710ce1e26746d39513940334e236d4","object":"chat.completion.chunk","created":1726235553,"model":"mistral-tiny","choices":[{"index":0,"delta":{"content":"''"},"finish_reason":null,"logprobs":null}]}
-
-
-        data: {"id":"9b710ce1e26746d39513940334e236d4","object":"chat.completion.chunk","created":1726235553,"model":"mistral-tiny","choices":[{"index":0,"delta":{"content":"s"},"finish_reason":null,"logprobs":null}]}
-
-
-        data: {"id":"9b710ce1e26746d39513940334e236d4","object":"chat.completion.chunk","created":1726235553,"model":"mistral-tiny","choices":[{"index":0,"delta":{"content":"
-        nice"},"finish_reason":null,"logprobs":null}]}
-
-
-        data: {"id":"9b710ce1e26746d39513940334e236d4","object":"chat.completion.chunk","created":1726235553,"model":"mistral-tiny","choices":[{"index":0,"delta":{"content":"
-        to"},"finish_reason":null,"logprobs":null}]}
-
-
-        data: {"id":"9b710ce1e26746d39513940334e236d4","object":"chat.completion.chunk","created":1726235553,"model":"mistral-tiny","choices":[{"index":0,"delta":{"content":"
-        meet"},"finish_reason":null,"logprobs":null}]}
-
-
-        data: {"id":"9b710ce1e26746d39513940334e236d4","object":"chat.completion.chunk","created":1726235553,"model":"mistral-tiny","choices":[{"index":0,"delta":{"content":"
-        you"},"finish_reason":null,"logprobs":null}]}
-
-
-        data: {"id":"9b710ce1e26746d39513940334e236d4","object":"chat.completion.chunk","created":1726235553,"model":"mistral-tiny","choices":[{"index":0,"delta":{"content":"."},"finish_reason":null,"logprobs":null}]}
-
-
-        data: {"id":"9b710ce1e26746d39513940334e236d4","object":"chat.completion.chunk","created":1726235553,"model":"mistral-tiny","choices":[{"index":0,"delta":{"content":"
-        How"},"finish_reason":null,"logprobs":null}]}
-
-
-        data: {"id":"9b710ce1e26746d39513940334e236d4","object":"chat.completion.chunk","created":1726235553,"model":"mistral-tiny","choices":[{"index":0,"delta":{"content":"
-        can"},"finish_reason":null,"logprobs":null}]}
-
-
-        data: {"id":"9b710ce1e26746d39513940334e236d4","object":"chat.completion.chunk","created":1726235553,"model":"mistral-tiny","choices":[{"index":0,"delta":{"content":"
-        I"},"finish_reason":null,"logprobs":null}]}
-
-
-        data: {"id":"9b710ce1e26746d39513940334e236d4","object":"chat.completion.chunk","created":1726235553,"model":"mistral-tiny","choices":[{"index":0,"delta":{"content":"
-        assist"},"finish_reason":null,"logprobs":null}]}
-
-
-        data: {"id":"9b710ce1e26746d39513940334e236d4","object":"chat.completion.chunk","created":1726235553,"model":"mistral-tiny","choices":[{"index":0,"delta":{"content":"
-        you"},"finish_reason":null,"logprobs":null}]}
-
-
-        data: {"id":"9b710ce1e26746d39513940334e236d4","object":"chat.completion.chunk","created":1726235553,"model":"mistral-tiny","choices":[{"index":0,"delta":{"content":"
-        today"},"finish_reason":null,"logprobs":null}]}
-
-
-        data: {"id":"9b710ce1e26746d39513940334e236d4","object":"chat.completion.chunk","created":1726235553,"model":"mistral-tiny","choices":[{"index":0,"delta":{"content":"?"},"finish_reason":null,"logprobs":null}]}
-
-
-        data: {"id":"9b710ce1e26746d39513940334e236d4","object":"chat.completion.chunk","created":1726235553,"model":"mistral-tiny","choices":[{"index":0,"delta":{"content":""},"finish_reason":"stop","logprobs":null}],"usage":{"prompt_tokens":6,"total_tokens":24,"completion_tokens":18}}
-
-
-        data: [DONE]
-
-
-        '
+      string: "data: {\"id\":\"cbb17d7d35fc4f43bdc4de36546a5487\",\"object\":\"chat.completion.chunk\",\"created\":1771686282,\"model\":\"mistral-tiny-latest\",\"choices\":[{\"index\":0,\"delta\":{\"role\":\"assistant\",\"content\":\"\"},\"finish_reason\":null}]}\n\ndata:
+        {\"id\":\"cbb17d7d35fc4f43bdc4de36546a5487\",\"object\":\"chat.completion.chunk\",\"created\":1771686282,\"model\":\"mistral-tiny-latest\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"Hello\"},\"finish_reason\":null}],\"p\":\"a\"}\n\ndata:
+        {\"id\":\"cbb17d7d35fc4f43bdc4de36546a5487\",\"object\":\"chat.completion.chunk\",\"created\":1771686282,\"model\":\"mistral-tiny-latest\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"!
+        How can I\"},\"finish_reason\":null}],\"p\":\"abcdefghijklmnopqrstuvwxyz0123456\"}\n\ndata:
+        {\"id\":\"cbb17d7d35fc4f43bdc4de36546a5487\",\"object\":\"chat.completion.chunk\",\"created\":1771686282,\"model\":\"mistral-tiny-latest\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"
+        assist you today?\"},\"finish_reason\":null}],\"p\":\"abcdefghijklmnopqrstuvwxyz01\"}\n\ndata:
+        {\"id\":\"cbb17d7d35fc4f43bdc4de36546a5487\",\"object\":\"chat.completion.chunk\",\"created\":1771686282,\"model\":\"mistral-tiny-latest\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"
+        Let\"},\"finish_reason\":null}],\"p\":\"abcdefghijklmnopqrstuvw\"}\n\ndata:
+        {\"id\":\"cbb17d7d35fc4f43bdc4de36546a5487\",\"object\":\"chat.completion.chunk\",\"created\":1771686282,\"model\":\"mistral-tiny-latest\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"'s
+        chat\"},\"finish_reason\":null}],\"p\":\"abcdefghijklmnopqrstuvwxyz01\"}\n\ndata:
+        {\"id\":\"cbb17d7d35fc4f43bdc4de36546a5487\",\"object\":\"chat.completion.chunk\",\"created\":1771686282,\"model\":\"mistral-tiny-latest\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"
+        about anything you'd\"},\"finish_reason\":null}],\"p\":\"abcdefghi\"}\n\ndata:
+        {\"id\":\"cbb17d7d35fc4f43bdc4de36546a5487\",\"object\":\"chat.completion.chunk\",\"created\":1771686282,\"model\":\"mistral-tiny-latest\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"
+        like.\"},\"finish_reason\":null}],\"p\":\"abcdefghijklmno\"}\n\ndata: {\"id\":\"cbb17d7d35fc4f43bdc4de36546a5487\",\"object\":\"chat.completion.chunk\",\"created\":1771686282,\"model\":\"mistral-tiny-latest\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"
+        \U0001F60A\"},\"finish_reason\":\"stop\"}],\"usage\":{\"prompt_tokens\":6,\"total_tokens\":28,\"completion_tokens\":22,\"prompt_tokens_details\":{\"cached_tokens\":0}},\"p\":\"abcdefghijklmnopqrstuvwxyz012\"}\n\ndata:
+        [DONE]\n\n"
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
       CF-RAY:
-      - 8c289e4f7b9083de-BRU
+      - 9d1723405d8ccb37-DUS
       Connection:
       - keep-alive
       Content-Type:
       - text/event-stream; charset=utf-8
       Date:
-      - Fri, 13 Sep 2024 13:52:33 GMT
+      - Sat, 21 Feb 2026 15:04:42 GMT
       Server:
       - cloudflare
+      Set-Cookie:
+      - __cf_bm=cPFkmq7R0NXOteNZqrhWlr6RQDCv1JWqq_E83sGXeGw-1771686282-1.0.1.1-.cMMxC5vcSd2z08pOFxDLngaVEu6jsTBbCd.K84vzsigb1JVuDu5yQy75PLY3KC4LJnQ9sXmOuXuuSUWec0mwiJAYiBIpsklEWkwDw3LyMI;
+        path=/; expires=Sat, 21-Feb-26 15:34:42 GMT; domain=.mistral.ai; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=itnla6ueVjJ1AWeNKquD_JKSUuId.PZiP7Gm3v.2F8k-1771686282693-0.0.1.1-604800000;
+        path=/; domain=.mistral.ai; HttpOnly; Secure; SameSite=None
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
+      X-Content-Type-Options:
+      - nosniff
       access-control-allow-origin:
       - '*'
       alt-svc:
       - h3=":443"; ma=86400
-      ratelimitbysize-limit:
-      - '2000000'
-      ratelimitbysize-query-cost:
-      - '32003'
-      ratelimitbysize-remaining:
-      - '1967997'
-      ratelimitbysize-reset:
-      - '27'
+      cf-cache-status:
+      - DYNAMIC
+      mistral-correlation-id:
+      - 019c80bb-453f-7575-bf4e-3eb35c1267ff
       x-envoy-upstream-service-time:
-      - '49'
+      - '111'
       x-kong-proxy-latency:
-      - '0'
+      - '11'
       x-kong-request-id:
-      - f277dc2a41c22e45fb0b931c9022c73d
+      - 019c80bb-453f-7575-bf4e-3eb35c1267ff
       x-kong-upstream-latency:
-      - '50'
-      x-ratelimitbysize-limit-minute:
-      - '2000000'
-      x-ratelimitbysize-limit-month:
-      - '10000000000'
-      x-ratelimitbysize-remaining-minute:
-      - '1967997'
-      x-ratelimitbysize-remaining-month:
-      - '9996515005'
+      - '112'
     status:
       code: 200
       message: OK
