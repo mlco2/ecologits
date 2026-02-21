@@ -2900,20 +2900,6 @@
         {
             "type": "model",
             "provider": "mistralai",
-            "name": "ministral-3b-2410",
-            "architecture": {
-                "type": "dense",
-                "parameters": 3.32
-            },
-            "warnings": null,
-            "sources": [
-                "https://docs.mistral.ai/getting-started/models/",
-                "https://mistral.ai/news/ministraux"
-            ]
-        },
-        {
-            "type": "model",
-            "provider": "mistralai",
             "name": "ministral-3b-2512",
             "architecture": {
                 "type": "dense",
@@ -2932,20 +2918,6 @@
             "architecture": {
                 "type": "dense",
                 "parameters": 3.32
-            },
-            "warnings": null,
-            "sources": [
-                "https://docs.mistral.ai/getting-started/models/",
-                "https://mistral.ai/news/ministraux"
-            ]
-        },
-        {
-            "type": "model",
-            "provider": "mistralai",
-            "name": "ministral-8b-2410",
-            "architecture": {
-                "type": "dense",
-                "parameters": 8.02
             },
             "warnings": null,
             "sources": [
@@ -3154,36 +3126,6 @@
         {
             "type": "model",
             "provider": "mistralai",
-            "name": "mistral-tiny",
-            "architecture": {
-                "type": "dense",
-                "parameters": 7.3
-            },
-            "warnings": [
-                "model-arch-not-released"
-            ],
-            "sources": [
-                "https://docs.mistral.ai/getting-started/models/"
-            ]
-        },
-        {
-            "type": "model",
-            "provider": "mistralai",
-            "name": "mistral-tiny-2312",
-            "architecture": {
-                "type": "dense",
-                "parameters": 7.3
-            },
-            "warnings": [
-                "model-arch-not-released"
-            ],
-            "sources": [
-                "https://docs.mistral.ai/getting-started/models/"
-            ]
-        },
-        {
-            "type": "model",
-            "provider": "mistralai",
             "name": "mistral-tiny-2407",
             "architecture": {
                 "type": "dense",
@@ -3352,6 +3294,21 @@
             "type": "model",
             "provider": "mistralai",
             "name": "voxtral-mini-2509",
+            "architecture": {
+                "type": "dense",
+                "parameters": 4.68
+            },
+            "warnings": [
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://docs.mistral.ai/getting-started/models/"
+            ]
+        },
+        {
+            "type": "model",
+            "provider": "mistralai",
+            "name": "voxtral-mini-2602",
             "architecture": {
                 "type": "dense",
                 "parameters": 4.68
@@ -3609,6 +3566,27 @@
         {
             "type": "model",
             "provider": "anthropic",
+            "name": "claude-sonnet-4-6",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 440,
+                    "active": {
+                        "min": 44,
+                        "max": 132
+                    }
+                }
+            },
+            "warnings": [
+                "model-arch-not-released"
+            ],
+            "sources": [
+                "https://docs.anthropic.com/en/docs/about-claude/models"
+            ]
+        },
+        {
+            "type": "model",
+            "provider": "anthropic",
             "name": "claude-haiku-4-5-20251001",
             "architecture": {
                 "type": "dense",
@@ -3628,6 +3606,27 @@
             "type": "model",
             "provider": "anthropic",
             "name": "claude-opus-4-5-20251101",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 670,
+                    "active": {
+                        "min": 67,
+                        "max": 200
+                    }
+                }
+            },
+            "warnings": [
+                "model-arch-not-released"
+            ],
+            "sources": [
+                "https://docs.anthropic.com/en/docs/about-claude/models"
+            ]
+        },
+        {
+            "type": "model",
+            "provider": "anthropic",
+            "name": "claude-opus-4-6",
             "architecture": {
                 "type": "moe",
                 "parameters": {
@@ -3692,50 +3691,6 @@
         {
             "type": "model",
             "provider": "google_genai",
-            "name": "gemini-2.0-flash-exp",
-            "architecture": {
-                "type": "moe",
-                "parameters": {
-                    "total": 440,
-                    "active": {
-                        "min": 44,
-                        "max": 132
-                    }
-                }
-            },
-            "warnings": [
-                "model-arch-not-released",
-                "model-arch-multimodal"
-            ],
-            "sources": [
-                "https://ai.google.dev/gemini-api/docs/models"
-            ]
-        },
-        {
-            "type": "model",
-            "provider": "google_genai",
-            "name": "gemini-2.0-flash-exp-image-generation",
-            "architecture": {
-                "type": "moe",
-                "parameters": {
-                    "total": 440,
-                    "active": {
-                        "min": 44,
-                        "max": 132
-                    }
-                }
-            },
-            "warnings": [
-                "model-arch-not-released",
-                "model-arch-multimodal"
-            ],
-            "sources": [
-                "https://ai.google.dev/gemini-api/docs/models"
-            ]
-        },
-        {
-            "type": "model",
-            "provider": "google_genai",
             "name": "gemini-2.0-flash-lite",
             "architecture": {
                 "type": "dense",
@@ -3756,44 +3711,6 @@
             "type": "model",
             "provider": "google_genai",
             "name": "gemini-2.0-flash-lite-001",
-            "architecture": {
-                "type": "dense",
-                "parameters": {
-                    "min": 8,
-                    "max": 28
-                }
-            },
-            "warnings": [
-                "model-arch-not-released",
-                "model-arch-multimodal"
-            ],
-            "sources": [
-                "https://ai.google.dev/gemini-api/docs/models"
-            ]
-        },
-        {
-            "type": "model",
-            "provider": "google_genai",
-            "name": "gemini-2.0-flash-lite-preview",
-            "architecture": {
-                "type": "dense",
-                "parameters": {
-                    "min": 8,
-                    "max": 28
-                }
-            },
-            "warnings": [
-                "model-arch-not-released",
-                "model-arch-multimodal"
-            ],
-            "sources": [
-                "https://ai.google.dev/gemini-api/docs/models"
-            ]
-        },
-        {
-            "type": "model",
-            "provider": "google_genai",
-            "name": "gemini-2.0-flash-lite-preview-02-05",
             "architecture": {
                 "type": "dense",
                 "parameters": {
@@ -3875,28 +3792,6 @@
         {
             "type": "model",
             "provider": "google_genai",
-            "name": "gemini-2.5-flash-preview-09-2025",
-            "architecture": {
-                "type": "moe",
-                "parameters": {
-                    "total": 440,
-                    "active": {
-                        "min": 44,
-                        "max": 132
-                    }
-                }
-            },
-            "warnings": [
-                "model-arch-not-released",
-                "model-arch-multimodal"
-            ],
-            "sources": [
-                "https://ai.google.dev/gemini-api/docs/models"
-            ]
-        },
-        {
-            "type": "model",
-            "provider": "google_genai",
             "name": "gemini-2.5-pro",
             "architecture": {
                 "type": "moe",
@@ -3964,6 +3859,50 @@
             "type": "model",
             "provider": "google_genai",
             "name": "gemini-3-pro-preview",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 1200,
+                    "active": {
+                        "min": 120,
+                        "max": 360
+                    }
+                }
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://ai.google.dev/gemini-api/docs/models"
+            ]
+        },
+        {
+            "type": "model",
+            "provider": "google_genai",
+            "name": "gemini-3.1-pro-preview",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 1200,
+                    "active": {
+                        "min": 120,
+                        "max": 360
+                    }
+                }
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://ai.google.dev/gemini-api/docs/models"
+            ]
+        },
+        {
+            "type": "model",
+            "provider": "google_genai",
+            "name": "gemini-3.1-pro-preview-customtools",
             "architecture": {
                 "type": "moe",
                 "parameters": {
