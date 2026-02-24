@@ -53,7 +53,7 @@ print(f"GHG emissions: {response.impacts.gwp.value.mean} kgCO2eq")
 See package documentation on [EcoLogits](https://ecologits.ai/)
 
 
-## 💚 Sponsors & benefactors
+## 💚 Sponsors
 
 <a href="https://resilio-solutions.com/" target="_blank">
 <img src="https://raw.githubusercontent.com/mlco2/ecologits/main/docs/assets/sponsors/resilio.png" alt="Resilio" height="100" width="250">
