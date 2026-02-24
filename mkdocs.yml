@@ -30,7 +30,8 @@ nav:
       - 'Proprietary models': methodology/proprietary_models.md
       - 'LLM Inference': methodology/llm_inference.md
   - 'API Reference': reference/
-  - 'Online Calculator': 'https://huggingface.co/spaces/genai-impact/ecologits-calculator'
+  - 'Blog':
+      - blog/index.md
   - 'EcoLogits Calculator': 'https://huggingface.co/spaces/genai-impact/ecologits-calculator'
 
 theme:
@@ -115,7 +116,7 @@ plugins:
   - mike:
       alias_type: symlink
       canonical_version: latest
-
+  - blog
 
 markdown_extensions:
   - abbr
