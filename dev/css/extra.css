@@ -195,6 +195,60 @@ Light green: 00bf63
 }
 
 
+/* Contributors grid */
+
+.contributors-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.contributor-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.contributor-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.contributor-card .contributor-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.contributor-card .contributor-name {
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.contributor-card .contributor-role {
+  font-size: 0.75rem;
+  color: var(--md-default-fg-color--light);
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .contributors-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .grid.cards .row {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+
 /* Get started page */
 
 .provider-item {
