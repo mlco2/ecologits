@@ -73,7 +73,7 @@ hide:
 </div>
 
 
-## Sponsors & Benefactors
+## Sponsors
 
 <div class="grid cards" markdown>
   <div class="row">
@@ -108,9 +108,9 @@ hide:
   </div>
 </div>
 
-<div style="text-align: center;" markdown>
-  [Become a sponsor :octicons-heart-fill-24:{ .heart }](https://tally.so/r/wvLePd){ .md-button }
-</div>
+[//]: # (<div style="text-align: center;" markdown>)
+[//]: # (  [Become a sponsor :octicons-heart-fill-24:{ .heart }]&#40;https://tally.so/r/wvLePd&#41;{ .md-button })
+[//]: # (</div>)
 
 ## Acknowledgements
 
