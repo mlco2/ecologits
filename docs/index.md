@@ -73,7 +73,52 @@ hide:
 </div>
 
 
+## Contributors
+
+People who contribute significantly to the project.
+
+<div class="contributors-grid">
+  <div class="contributor-card">
+    <img src="https://avatars.githubusercontent.com/u/35747570" alt="Samuel Rincé">
+    <div class="contributor-info">
+      <span class="contributor-name">Samuel Rincé</span>
+      <span class="contributor-role">AI Engineer</span>
+    </div>
+  </div>
+  <div class="contributor-card">
+    <img src="https://raw.githubusercontent.com/genai-impact/website/refs/heads/main/assets/images/people/claire_saignol.jpg" alt="Claire Saignol">
+    <div class="contributor-info">
+      <span class="contributor-name">Claire Saignol</span>
+      <span class="contributor-role">Sustainability Manager</span>
+    </div>
+  </div>
+  <div class="contributor-card">
+    <img src="https://avatars.githubusercontent.com/u/45042779" alt="Adrien Banse">
+    <div class="contributor-info">
+      <span class="contributor-name">Adrien Banse</span>
+      <span class="contributor-role">PhD Student</span>
+    </div>
+  </div>
+  <div class="contributor-card">
+    <img src="https://avatars.githubusercontent.com/u/12235628" alt="Valentin Defour">
+    <div class="contributor-info">
+      <span class="contributor-name">Valentin Defour</span>
+      <span class="contributor-role">Data Scientist</span>
+    </div>
+  </div>
+  <div class="contributor-card">
+    <img src="https://avatars.githubusercontent.com/u/46927767" alt="Vincent Duarte">
+    <div class="contributor-info">
+      <span class="contributor-name">Vincent Duarte</span>
+      <span class="contributor-role">Software Engineer</span>
+    </div>
+  </div>
+</div>
+
+
 ## Sponsors
+
+Organizations who make this project possible.
 
 <div class="grid cards" markdown>
   <div class="row">
@@ -111,6 +156,7 @@ hide:
 [//]: # (<div style="text-align: center;" markdown>)
 [//]: # (  [Become a sponsor :octicons-heart-fill-24:{ .heart }]&#40;https://tally.so/r/wvLePd&#41;{ .md-button })
 [//]: # (</div>)
+
 
 ## Acknowledgements
 
