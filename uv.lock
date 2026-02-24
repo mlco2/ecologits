@@ -701,11 +701,11 @@ dev = [
 ]
 docs = [
     { name = "mike", specifier = ">=2.1.2" },
-    { name = "mkdocs", specifier = ">=1.5.3" },
+    { name = "mkdocs", specifier = ">=1.5.3,<2.0.0" },
     { name = "mkdocs-autorefs", specifier = ">=1.0.1" },
     { name = "mkdocs-gen-files", specifier = ">=0.5.0" },
     { name = "mkdocs-literate-nav", specifier = ">=0.6.1" },
-    { name = "mkdocs-material", extras = ["imaging"], specifier = ">=9.5.12" },
+    { name = "mkdocs-material", extras = ["imaging"], specifier = ">=9.7.2" },
     { name = "mkdocstrings", extras = ["python"], specifier = ">=0.25.0" },
 ]
 
