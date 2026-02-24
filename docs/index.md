@@ -97,6 +97,11 @@ hide:
     </a>
   </div>
   <div class="row">
+    <a href="https://www.theodo.com/" target="_blank">
+      <img src="assets/sponsors/theodo.png" width="200">
+    </a>
+  </div>
+  <div class="row">
     <a href="https://www.culture.gouv.fr/fr" target="_blank">
       <img src="assets/sponsors/ministere_culture.png" width="200">
     </a>

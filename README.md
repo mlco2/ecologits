@@ -71,6 +71,10 @@ See package documentation on [EcoLogits](https://ecologits.ai/)
 <img src="https://raw.githubusercontent.com/mlco2/ecologits/main/docs/assets/sponsors/avanade.png" alt="Avanade" height="100" width="250">
 </a>
 
+<a href="https://www.theodo.com/" target="_blank">
+<img src="https://raw.githubusercontent.com/mlco2/ecologits/main/docs/assets/sponsors/theodo.png" alt="Theodo" height="100" width="250">
+</a>
+
 <a href="https://www.culture.gouv.fr/" target="_blank">
 <img src="https://raw.githubusercontent.com/mlco2/ecologits/main/docs/assets/sponsors/ministere_culture.png" alt="Ministère de la Culture" height="100" width="132">
 </a>
