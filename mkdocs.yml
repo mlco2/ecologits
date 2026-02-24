@@ -31,6 +31,7 @@ nav:
       - 'LLM Inference': methodology/llm_inference.md
   - 'API Reference': reference/
   - 'Online Calculator': 'https://huggingface.co/spaces/genai-impact/ecologits-calculator'
+  - 'EcoLogits Calculator': 'https://huggingface.co/spaces/genai-impact/ecologits-calculator'
 
 theme:
   name: material
