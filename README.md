@@ -12,6 +12,7 @@
 [![Python version](https://img.shields.io/pypi/pyversions/ecologits)](https://pypi.org/project/ecologits/)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1VxrpJ5xuWZKQLsSN12kdqUqkppHRct3G?usp=sharing)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15601289.svg)](https://doi.org/10.5281/zenodo.15601289)
+[![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?&logo=discord&logoColor=white)](https://discord.gg/CAecQ2zM4n)
 
 Read the full **documentation on [ecologits.ai](https://ecologits.ai/)**.
 
