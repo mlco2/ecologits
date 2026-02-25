@@ -160,4 +160,6 @@ Organizations who make this project possible.
 
 ## Acknowledgements
 
+EcoLogits is part of the [CodeCarbon :octicons-link-external-16:](https://codecarbon.io/) non-profit. Together aim to build open and robust tools to assess and reduce the environmental footprint of AI.
+
 We extend our gratitude to [Data For Good :octicons-link-external-16:](https://dataforgood.fr/) and [Boavizta :octicons-link-external-16:](https://boavizta.org/en) for supporting the development of this project. Their contributions of tools, best practices, and expertise in environmental impact assessment have been invaluable.
