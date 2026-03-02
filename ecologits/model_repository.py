@@ -49,6 +49,7 @@ class Model(BaseModel):
         architecture: Architecture type (dense or mixture-of-experts)
         warnings: Warnings linked to the model (e.g. "model-arch-not-released" or "model-arch-multimodal")
         sources: Source of the model information (website link)
+        throughput: Number of tokens generated per second by the model
     """
 
     provider: Providers
@@ -56,6 +57,7 @@ class Model(BaseModel):
     architecture: Architecture
     warnings: list[WarningMessage] = []
     sources: list[str] = []
+    throughput: float | None = None
 
     @property
     def has_warnings(self) -> bool:
@@ -74,7 +76,8 @@ class Model(BaseModel):
             name=data["name"],
             architecture=Architecture.model_validate(data["architecture"]),
             warnings=warnings,
-            sources=sources
+            sources=sources,
+            throughput=data.get("throughput"),
         )
 
 
