@@ -116,6 +116,7 @@ def llm_impacts(
         if_electricity_mix_wue=if_electricity_mix.wue,
         datacenter_pue=datacenter_pue,
         datacenter_wue=datacenter_wue,
+        throughput=model.throughput,
     )
     impacts = ImpactsOutput.model_validate(impacts.model_dump())
 
