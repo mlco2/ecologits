@@ -70,7 +70,8 @@ def generation_latency(
         latency_alpha: float,
         latency_beta: float,
         latency_gamma: float,
-        request_latency: float
+        request_latency: float,
+        throughput: Optional[float] = None,
 ) -> ValueOrRange:
     """
     Compute the token generation latency in seconds.
@@ -82,11 +83,16 @@ def generation_latency(
         latency_alpha: Alpha coefficient of the latency regression.
         latency_beta: Beta coefficient of the latency regression.
         latency_gamma: Gamma coefficient of the latency regression.
+        request_latency: Measured request latency in seconds.
+        throughput: Number of tokens generated per second by the model.
 
     Returns:
         The token generation latency in seconds.
     """
-    latency_per_token = latency_alpha * model_active_parameter_count + latency_beta * batch_size + latency_gamma
+    if throughput is None:
+        latency_per_token = latency_alpha * model_active_parameter_count + latency_beta * batch_size + latency_gamma
+    else:
+        latency_per_token = 1 / throughput
     gpu_latency = output_token_count * latency_per_token
     if request_latency < gpu_latency:
         return request_latency
@@ -411,7 +417,8 @@ def compute_llm_impacts_dag(
         server_embodied_adpe: Optional[float] = SERVER_EMBODIED_IMPACT_ADPE,
         server_embodied_pe: Optional[float] = SERVER_EMBODIED_IMPACT_PE,
         server_lifetime: Optional[float] = HARDWARE_LIFESPAN,
-        batch_size: Optional[float] =  BATCH_SIZE
+        batch_size: Optional[float] = BATCH_SIZE,
+        throughput: Optional[float] = None
 ) -> dict[str, ValueOrRange]:
     """
     Compute the impacts dag of an LLM generation request.
@@ -444,7 +451,8 @@ def compute_llm_impacts_dag(
         server_embodied_adpe: ADPe embodied impact of the server in kgSbeq.
         server_embodied_pe: PE embodied impact of the server in MJ.
         server_lifetime: Lifetime duration of the server in seconds.
-        batch_size: The number of requests handled concurrently by the server.
+        batch_size: Number of requests handled concurrently by the server.
+        throughput: Number of tokens generated per second by the model (optional).
     Returns:
         The environmental impacts dag with all intermediate states.
     """
@@ -476,7 +484,8 @@ def compute_llm_impacts_dag(
         server_embodied_adpe=server_embodied_adpe,
         server_embodied_pe=server_embodied_pe,
         server_lifetime=server_lifetime,
-        batch_size=batch_size
+        batch_size=batch_size,
+        throughput=throughput,
     )
     return results
 
@@ -492,6 +501,7 @@ def compute_llm_impacts(
         datacenter_pue: ValueOrRange,
         datacenter_wue: ValueOrRange,
         request_latency: Optional[float] = None,
+        throughput: Optional[float] = None,
         **kwargs: Any
 ) -> Impacts:
     """
@@ -508,6 +518,7 @@ def compute_llm_impacts(
         datacenter_wue: Water Usage Effectiveness of the data center in L/kWh.
         datacenter_pue: Power Usage Effectiveness of the data center.
         request_latency: Measured request latency in seconds.
+        throughput: Number of tokens generated per second by the model.
         **kwargs: Any other optional parameter.
     Returns:
         The impacts of an LLM generation request.
@@ -543,6 +554,7 @@ def compute_llm_impacts(
             if_electricity_mix_wue=if_electricity_mix_wue,
             datacenter_pue=datacenter_pue,
             datacenter_wue=datacenter_wue,
+            throughput=throughput,
             **kwargs
         )
         for field in fields:
