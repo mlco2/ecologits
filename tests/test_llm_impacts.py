@@ -135,3 +135,28 @@ def test_compute_llm_impacts_monotonicity_on_parameters(if_electricity_mix_adpe:
             compare_impacts(impacts_moe, prev_impacts_moe, op=gt)
             compare_impacts(impacts, impacts_moe, op=ge)
             prev_impacts_moe = impacts_moe.model_copy(deep=True)
+
+
+def test_compute_llm_impacts_with_throughput():
+    other_params = dict(
+        model_active_parameter_count=20,
+        model_total_parameter_count=20,
+        output_token_count=100,
+        if_electricity_mix_adpe=0.0000000737708,
+        if_electricity_mix_pe=9.988,
+        if_electricity_mix_gwp=0.590478,
+        if_electricity_mix_wue=5.04,
+        datacenter_pue=1.26,
+        datacenter_wue=0.37,
+    )
+
+    impacts = compute_llm_impacts(**other_params)           # Biggest latency by default
+    impacts_with_request_latency = compute_llm_impacts(     # Forced low latency
+        request_latency=1,
+        **other_params
+    )
+    impacts_with_throughput = compute_llm_impacts(          # Very fast generation (lower latency)
+        throughput=1000,
+        **other_params
+    )
+    assert impacts.energy.value > impacts_with_request_latency.energy.value > impacts_with_throughput.energy.value
