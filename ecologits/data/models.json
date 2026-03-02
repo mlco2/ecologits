@@ -86,7 +86,8 @@
             "sources": [
                 "https://docs.cohere.com/docs/models",
                 "https://huggingface.co/CohereLabs/aya-expanse-8b"
-            ]
+            ],
+            "throughput": 25.9
         },
         {
             "type": "model",
@@ -100,7 +101,8 @@
             "sources": [
                 "https://docs.cohere.com/docs/models",
                 "https://huggingface.co/CohereLabs/aya-expanse-32b"
-            ]
+            ],
+            "throughput": 25.9
         },
         {
             "type": "model",
@@ -116,7 +118,8 @@
             "sources": [
                 "https://docs.cohere.com/docs/models",
                 "https://huggingface.co/CohereLabs/aya-vision-8b"
-            ]
+            ],
+            "throughput": 25.9
         },
         {
             "type": "model",
@@ -132,7 +135,8 @@
             "sources": [
                 "https://docs.cohere.com/docs/models",
                 "https://huggingface.co/CohereLabs/aya-vision-32b"
-            ]
+            ],
+            "throughput": 25.9
         },
         {
             "type": "model",
@@ -146,7 +150,8 @@
             "sources": [
                 "https://docs.cohere.com/docs/models",
                 "https://huggingface.co/CohereLabs/c4ai-command-a-03-2025"
-            ]
+            ],
+            "throughput": 25.9
         },
         {
             "type": "model",
@@ -160,7 +165,8 @@
             "sources": [
                 "https://docs.cohere.com/docs/models",
                 "https://huggingface.co/CohereLabs/c4ai-command-a-03-2025"
-            ]
+            ],
+            "throughput": 25.9
         },
         {
             "type": "model",
@@ -174,7 +180,8 @@
             "sources": [
                 "https://docs.cohere.com/docs/models",
                 "https://huggingface.co/CohereLabs/c4ai-command-a-03-2025"
-            ]
+            ],
+            "throughput": 25.9
         },
         {
             "type": "model",
@@ -190,7 +197,8 @@
             "sources": [
                 "https://docs.cohere.com/docs/models",
                 "https://huggingface.co/CohereLabs/command-a-vision-07-2025"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -204,7 +212,8 @@
             "sources": [
                 "https://docs.cohere.com/docs/models",
                 "https://huggingface.co/CohereLabs/c4ai-command-r-08-2024  "
-            ]
+            ],
+            "throughput": 71.1
         },
         {
             "type": "model",
@@ -218,7 +227,8 @@
             "sources": [
                 "https://docs.cohere.com/docs/models",
                 "https://huggingface.co/CohereLabs/c4ai-command-r-08-2024  "
-            ]
+            ],
+            "throughput": 35.0
         },
         {
             "type": "model",
@@ -232,7 +242,8 @@
             "sources": [
                 "https://docs.cohere.com/docs/models",
                 "https://huggingface.co/CohereLabs/c4ai-command-r-plus-08-2024"
-            ]
+            ],
+            "throughput": 30.0
         },
         {
             "type": "model",
@@ -246,7 +257,8 @@
             "sources": [
                 "https://docs.cohere.com/docs/models",
                 "https://huggingface.co/CohereLabs/c4ai-command-r7b-12-2024"
-            ]
+            ],
+            "throughput": 71.1
         },
         {
             "type": "model",
@@ -260,7 +272,8 @@
             "sources": [
                 "https://docs.cohere.com/docs/models",
                 "https://huggingface.co/CohereLabs/c4ai-command-r7b-12-2024"
-            ]
+            ],
+            "throughput": 25.9
         },
         {
             "type": "model",
@@ -273,7 +286,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/databricks/dolly-v1-6b"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -286,7 +300,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/databricks/dolly-v2-12b"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -299,7 +314,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/databricks/dolly-v2-7b"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -312,7 +328,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/databricks/dolly-v2-3b"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -328,7 +345,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/databricks/dbrx-base"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -344,7 +362,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/databricks/dbrx-instruct"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -357,7 +376,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/mistralai/Mistral-7B-v0.1"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -370,7 +390,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.1"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -386,7 +407,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/mistralai/Mixtral-8x7B-v0.1"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -402,7 +424,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -415,7 +438,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -431,7 +455,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/mistralai/Mixtral-8x22B-v0.1"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -447,7 +472,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/mistralai/Mixtral-8x22B-Instruct-v0.1"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -460,7 +486,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/mistralai/Mistral-7B-v0.3"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -473,7 +500,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -486,7 +514,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/mistralai/Codestral-22B-v0.1"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -499,7 +528,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/mistralai/Mathstral-7B-v0.1"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -512,7 +542,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/mistralai/Mistral-Nemo-Instruct-2407"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -525,7 +556,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/mistralai/Mistral-Nemo-Base-2407"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -538,7 +570,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/mistralai/Mistral-Large-Instruct-2407"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -551,7 +584,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/mistral-community/Mistral-7B-v0.2"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -567,7 +601,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/mistral-community/Mixtral-8x22B-v0.1"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -583,7 +618,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/mistral-community/Mixtral-8x22B-v0.1-original"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -599,7 +635,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/mistral-community/Mixtral-8x22B-v0.1-4bit"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -615,7 +652,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/mistral-community/Mixtral-8x22B-v0.1-AWQ"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -631,7 +669,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/mistral-community/Mixtral-8x22B-Instruct-v0.1-4bit"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -647,7 +686,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/mistral-community/mixtral-8x22B-Instruct-v0.3-original"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -663,7 +703,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/mistral-community/mixtral-8x22B-v0.3-original"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -679,7 +720,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/mistral-community/mixtral-8x22B-v0.3"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -692,7 +734,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/mistral-community/Mistral-7B-Instruct-v0.3"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -705,7 +748,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/mistral-community/Codestral-22B-v0.1"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -718,7 +762,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Meta-Llama-3.1-8B"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -731,7 +776,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -744,7 +790,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Meta-Llama-3.1-70B"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -757,7 +804,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Meta-Llama-3.1-70B-Instruct"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -770,7 +818,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Meta-Llama-3.1-405B"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -783,7 +832,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Meta-Llama-3.1-405B-Instruct"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -796,7 +846,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Meta-Llama-3.1-405B-FP8"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -809,7 +860,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Meta-Llama-3.1-405B-Instruct-FP8"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -822,7 +874,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-Guard-3-8B"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -835,7 +888,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-Guard-3-8B-INT8"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -848,7 +902,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Prompt-Guard-86M"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -861,7 +916,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Meta-Llama-3-8B"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -874,7 +930,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -887,7 +944,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Meta-Llama-3-70B-Instruct"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -900,7 +958,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Meta-Llama-3-70B"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -913,7 +972,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Meta-Llama-Guard-2-8B"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -926,7 +986,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-2-7b-hf"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -939,7 +1000,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-2-13b-hf"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -952,7 +1014,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-2-70b-hf"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -965,7 +1028,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-2-7b-chat-hf"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -978,7 +1042,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-2-13b-chat-hf"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -991,7 +1056,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-2-70b-chat-hf"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1004,7 +1070,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-2-7b"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1017,7 +1084,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-2-13b"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1030,7 +1098,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-2-70b"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1043,7 +1112,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-2-7b-chat"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1056,7 +1126,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-2-13b-chat"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1069,7 +1140,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-2-70b-chat"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1082,7 +1154,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/LlamaGuard-7b"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1095,7 +1168,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/CodeLlama-7b-hf"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1108,7 +1182,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/CodeLlama-13b-hf"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1121,7 +1196,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/CodeLlama-34b-hf"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1134,7 +1210,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/CodeLlama-70b-hf"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1147,7 +1224,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/CodeLlama-7b-Python-hf"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1160,7 +1238,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/CodeLlama-34b-Python-hf"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1173,7 +1252,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/CodeLlama-13b-Python-hf"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1186,7 +1266,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/CodeLlama-70b-Python-hf"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1199,7 +1280,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/CodeLlama-7b-Instruct-hf"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1212,7 +1294,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/CodeLlama-13b-Instruct-hf"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1225,7 +1308,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/CodeLlama-34b-Instruct-hf"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1238,7 +1322,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/meta-llama/CodeLlama-70b-Instruct-hf"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1251,7 +1336,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/CohereForAI/aya-23-8B"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1264,7 +1350,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/CohereForAI/aya-23-35B"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1277,7 +1364,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/CohereForAI/c4ai-command-r-plus"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1290,7 +1378,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/CohereForAI/c4ai-command-r-plus-4bit"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1303,7 +1392,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/CohereForAI/c4ai-command-r-v01"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1316,7 +1406,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/CohereForAI/c4ai-command-r-v01-4bit"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1329,7 +1420,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2-2b"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1342,7 +1434,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2-2b-it"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1355,7 +1448,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2-9b"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1368,7 +1462,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2-9b-it"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1381,7 +1476,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2-27b"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1394,7 +1490,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2-27b-it"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1407,7 +1504,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2-2b-pytorch"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1420,7 +1518,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2-2b-it-pytorch"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1433,7 +1532,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2-9b-pytorch"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1446,7 +1546,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2-9b-it-pytorch"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1459,7 +1560,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2-27b-pytorch"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1472,7 +1574,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2-27b-it-pytorch"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1485,7 +1588,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2-9b-keras"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1498,7 +1602,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2-instruct-9b-keras"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1511,7 +1616,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/codegemma-2b"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1524,7 +1630,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/codegemma-7b"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1537,7 +1644,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/codegemma-7b-it"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1550,7 +1658,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/codegemma-7b-it-GGUF"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1563,7 +1672,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/codegemma-2b-GGUF"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1576,7 +1686,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/codegemma-7b-GGUF"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1589,7 +1700,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/codegemma-7b-pytorch"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1602,7 +1714,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/codegemma-2b-pytorch"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1615,7 +1728,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/codegemma-7b-it-pytorch"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1628,7 +1742,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/codegemma-2b-keras"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1641,7 +1756,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/codegemma-7b-keras"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1654,7 +1770,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/codegemma-7b-it-keras"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1667,7 +1784,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/codegemma-1.1-7b-it"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1680,7 +1798,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/codegemma-1.1-2b"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1693,7 +1812,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/codegemma-1.1-2b-pytorch"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1706,7 +1826,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/codegemma-1.1-7b-it-pytorch"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1719,7 +1840,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/codegemma-1.1-2b-GGUF"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1732,7 +1854,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/codegemma-1.1-7b-it-GGUF"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1745,7 +1868,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-1.1-2b-it"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1758,7 +1882,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-1.1-7b-it"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1771,7 +1896,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-1.1-7b-it-GGUF"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1784,7 +1910,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-1.1-2b-it-GGUF"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1797,7 +1924,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-1.1-2b-it-pytorch"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1810,7 +1938,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-1.1-7b-it-pytorch"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1823,7 +1952,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-7b"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1836,7 +1966,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-7b-it"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1849,7 +1980,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2b"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1862,7 +1994,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2b-it"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1875,7 +2008,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-7b-it-GGUF"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1888,7 +2022,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-7b-GGUF"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1901,7 +2036,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2b-GGUF"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1914,7 +2050,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2b-it-GGUF"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1927,7 +2064,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-7b-it-pytorch"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1940,7 +2078,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-7b-pytorch"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1953,7 +2092,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2b-pytorch"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1966,7 +2106,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-7b-quant-pytorch"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1979,7 +2120,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-7b-it-quant-pytorch"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -1992,7 +2134,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2b-it-pytorch"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2005,7 +2148,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-7b-flax"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2018,7 +2162,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-7b-it-flax"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2031,7 +2176,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2b-flax"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2044,7 +2190,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2b-it-flax"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2057,7 +2204,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2b-it-keras"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2070,7 +2218,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-7b-keras"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2083,7 +2232,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2b-keras"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2096,7 +2246,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-7b-it-keras"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2109,7 +2260,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2b-sfp-cpp"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2122,7 +2274,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2b-it-cpp"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2135,7 +2288,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-7b-sfp-cpp"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2148,7 +2302,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-7b-cpp"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2161,7 +2316,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-7b-it-cpp"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2174,7 +2330,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-7b-it-sfp-cpp"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2187,7 +2344,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2b-it-sfp-cpp"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2200,7 +2358,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2b-cpp"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2213,7 +2372,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-1.1-2b-it-keras"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2226,7 +2386,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-1.1-7b-it-keras"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2239,7 +2400,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-1.1-2b-it-tflite"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2252,7 +2414,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/google/gemma-2b-it-tflite"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2265,7 +2428,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/microsoft/phi-1"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2278,7 +2442,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/microsoft/phi-1_5"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2291,7 +2456,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-mini-4k-instruct"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2304,7 +2470,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-mini-128k-instruct"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2317,7 +2484,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-small-8k-instruct"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2330,7 +2498,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-small-128k-instruct"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2343,7 +2512,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-medium-4k-instruct"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2356,7 +2526,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-medium-128k-instruct"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2371,7 +2542,8 @@
             ],
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-vision-128k-instruct"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2384,7 +2556,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-onnx"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2397,7 +2570,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-onnx-web"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2410,7 +2584,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-mini-128k-instruct-onnx"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2423,7 +2598,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-small-8k-instruct-onnx-cuda"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2436,7 +2612,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-small-128k-instruct-onnx-cuda"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2449,7 +2626,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-medium-4k-instruct-onnx-cpu"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2462,7 +2640,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-medium-4k-instruct-onnx-cuda"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2475,7 +2654,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-medium-4k-instruct-onnx-directml"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2488,7 +2668,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-medium-128k-instruct-onnx-cpu"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2501,7 +2682,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-medium-128k-instruct-onnx-cuda"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2514,7 +2696,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-medium-128k-instruct-onnx-directml"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2529,7 +2712,8 @@
             ],
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-vision-128k-instruct-onnx-cpu"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2544,7 +2728,8 @@
             ],
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-vision-128k-instruct-onnx-cuda"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2559,7 +2744,8 @@
             ],
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-vision-128k-instruct-onnx-directml"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2572,7 +2758,8 @@
             "warnings": null,
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2590,7 +2777,8 @@
                 "https://huggingface.co/openai/gpt-oss-120b",
                 "https://platform.openai.com/docs/models/gpt-oss-120b",
                 "https://cdn.openai.com/pdf/419b6906-9da6-406c-a19d-1bb078ac7637/oai_gpt-oss_model_card.pdf"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2608,7 +2796,8 @@
                 "https://huggingface.co/openai/gpt-oss-20b",
                 "https://platform.openai.com/docs/models/gpt-oss-20b",
                 "https://cdn.openai.com/pdf/419b6906-9da6-406c-a19d-1bb078ac7637/oai_gpt-oss_model_card.pdf"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2622,7 +2811,8 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/codestral"
-            ]
+            ],
+            "throughput": 58.9
         },
         {
             "type": "model",
@@ -2636,7 +2826,8 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/codestral"
-            ]
+            ],
+            "throughput": 58.9
         },
         {
             "type": "model",
@@ -2650,7 +2841,8 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/codestral"
-            ]
+            ],
+            "throughput": 62.1
         },
         {
             "type": "model",
@@ -2664,7 +2856,8 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/codestral"
-            ]
+            ],
+            "throughput": 58.9
         },
         {
             "type": "model",
@@ -2678,7 +2871,8 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/codestral"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -2692,7 +2886,8 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/codestral"
-            ]
+            ],
+            "throughput": 58.9
         },
         {
             "type": "model",
@@ -2705,7 +2900,8 @@
             "warnings": null,
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
-            ]
+            ],
+            "throughput": 62.1
         },
         {
             "type": "model",
@@ -2718,7 +2914,8 @@
             "warnings": null,
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
-            ]
+            ],
+            "throughput": 62.1
         },
         {
             "type": "model",
@@ -2736,7 +2933,8 @@
             ],
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
-            ]
+            ],
+            "throughput": 36.3
         },
         {
             "type": "model",
@@ -2754,7 +2952,8 @@
             ],
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
-            ]
+            ],
+            "throughput": 36.3
         },
         {
             "type": "model",
@@ -2767,7 +2966,8 @@
             "warnings": null,
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
-            ]
+            ],
+            "throughput": 149.9
         },
         {
             "type": "model",
@@ -2780,7 +2980,8 @@
             "warnings": null,
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
-            ]
+            ],
+            "throughput": 149.9
         },
         {
             "type": "model",
@@ -2793,7 +2994,8 @@
             "warnings": null,
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
-            ]
+            ],
+            "throughput": 149.9
         },
         {
             "type": "model",
@@ -2807,7 +3009,8 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/mistral-small-3"
-            ]
+            ],
+            "throughput": 68.1
         },
         {
             "type": "model",
@@ -2825,7 +3028,8 @@
             ],
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
-            ]
+            ],
+            "throughput": 41.1
         },
         {
             "type": "model",
@@ -2843,7 +3047,8 @@
             ],
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
-            ]
+            ],
+            "throughput": 36.3
         },
         {
             "type": "model",
@@ -2856,7 +3061,8 @@
             "warnings": null,
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
-            ]
+            ],
+            "throughput": 96.1
         },
         {
             "type": "model",
@@ -2869,7 +3075,8 @@
             "warnings": null,
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
-            ]
+            ],
+            "throughput": 149.9
         },
         {
             "type": "model",
@@ -2882,7 +3089,8 @@
             "warnings": null,
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
-            ]
+            ],
+            "throughput": 81.5
         },
         {
             "type": "model",
@@ -2895,7 +3103,8 @@
             "warnings": null,
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
-            ]
+            ],
+            "throughput": 81.5
         },
         {
             "type": "model",
@@ -2909,7 +3118,8 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/ministraux"
-            ]
+            ],
+            "throughput": 87.1
         },
         {
             "type": "model",
@@ -2923,7 +3133,8 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/ministraux"
-            ]
+            ],
+            "throughput": 87.1
         },
         {
             "type": "model",
@@ -2937,7 +3148,8 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/ministraux"
-            ]
+            ],
+            "throughput": 105.1
         },
         {
             "type": "model",
@@ -2951,7 +3163,8 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/ministraux"
-            ]
+            ],
+            "throughput": 105.1
         },
         {
             "type": "model",
@@ -2965,7 +3178,8 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/mistral-large-2407"
-            ]
+            ],
+            "throughput": 39.6
         },
         {
             "type": "model",
@@ -2979,7 +3193,8 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/mistral-large-2407"
-            ]
+            ],
+            "throughput": 34.1
         },
         {
             "type": "model",
@@ -2993,7 +3208,8 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/mistral-large-2407"
-            ]
+            ],
+            "throughput": 32.8
         },
         {
             "type": "model",
@@ -3007,7 +3223,8 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/mistral-large-2407"
-            ]
+            ],
+            "throughput": 39.6
         },
         {
             "type": "model",
@@ -3025,7 +3242,8 @@
             ],
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
-            ]
+            ],
+            "throughput": 53.8
         },
         {
             "type": "model",
@@ -3043,7 +3261,8 @@
             ],
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
-            ]
+            ],
+            "throughput": 41.1
         },
         {
             "type": "model",
@@ -3061,7 +3280,8 @@
             ],
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
-            ]
+            ],
+            "throughput": 41.1
         },
         {
             "type": "model",
@@ -3079,21 +3299,8 @@
             ],
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
-            ]
-        },
-        {
-            "type": "model",
-            "provider": "mistralai",
-            "name": "mistral-small-2501",
-            "architecture": {
-                "type": "dense",
-                "parameters": 23.6
-            },
-            "warnings": null,
-            "sources": [
-                "https://docs.mistral.ai/getting-started/models/",
-                "https://mistral.ai/news/mistral-small-3"
-            ]
+            ],
+            "throughput": 41.1
         },
         {
             "type": "model",
@@ -3107,7 +3314,8 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/mistral-small-3"
-            ]
+            ],
+            "throughput": 96.1
         },
         {
             "type": "model",
@@ -3121,7 +3329,8 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/mistral-small-3"
-            ]
+            ],
+            "throughput": 96.1
         },
         {
             "type": "model",
@@ -3136,7 +3345,8 @@
             ],
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
-            ]
+            ],
+            "throughput": 96.1
         },
         {
             "type": "model",
@@ -3151,7 +3361,8 @@
             ],
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
-            ]
+            ],
+            "throughput": 96.1
         },
         {
             "type": "model",
@@ -3165,7 +3376,8 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/announcing-mistral-7b"
-            ]
+            ],
+            "throughput": 96.1
         },
         {
             "type": "model",
@@ -3179,7 +3391,8 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/mistral-nemo"
-            ]
+            ],
+            "throughput": 82.6
         },
         {
             "type": "model",
@@ -3193,7 +3406,8 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/mistral-nemo"
-            ]
+            ],
+            "throughput": 82.6
         },
         {
             "type": "model",
@@ -3209,7 +3423,8 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/pixtral-12b"
-            ]
+            ],
+            "throughput": 48.9
         },
         {
             "type": "model",
@@ -3225,7 +3440,8 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/pixtral-12b"
-            ]
+            ],
+            "throughput": 48.9
         },
         {
             "type": "model",
@@ -3241,7 +3457,8 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/pixtral-12b"
-            ]
+            ],
+            "throughput": 48.9
         },
         {
             "type": "model",
@@ -3257,7 +3474,8 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/pixtral-large"
-            ]
+            ],
+            "throughput": 48.9
         },
         {
             "type": "model",
@@ -3273,7 +3491,8 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/pixtral-large"
-            ]
+            ],
+            "throughput": 32.8
         },
         {
             "type": "model",
@@ -3288,7 +3507,8 @@
             ],
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
-            ]
+            ],
+            "throughput": 70.1
         },
         {
             "type": "model",
@@ -3303,7 +3523,8 @@
             ],
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
-            ]
+            ],
+            "throughput": 70.1
         },
         {
             "type": "model",
@@ -3318,7 +3539,8 @@
             ],
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
-            ]
+            ],
+            "throughput": 70.1
         },
         {
             "type": "model",
@@ -3333,7 +3555,8 @@
             ],
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
-            ]
+            ],
+            "throughput": 32.8
         },
         {
             "type": "model",
@@ -3348,7 +3571,8 @@
             ],
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
-            ]
+            ],
+            "throughput": 70.1
         },
         {
             "type": "model",
@@ -3363,7 +3587,8 @@
             ],
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
-            ]
+            ],
+            "throughput": 70.1
         },
         {
             "type": "model",
@@ -3378,85 +3603,8 @@
             ],
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
-            ]
-        },
-        {
-            "type": "model",
-            "provider": "anthropic",
-            "name": "claude-3-5-haiku-20241022",
-            "architecture": {
-                "type": "dense",
-                "parameters": {
-                    "min": 8,
-                    "max": 28
-                }
-            },
-            "warnings": [
-                "model-arch-not-released"
             ],
-            "sources": [
-                "https://docs.anthropic.com/en/docs/about-claude/models"
-            ]
-        },
-        {
-            "type": "model",
-            "provider": "anthropic",
-            "name": "claude-3-5-haiku-latest",
-            "architecture": {
-                "type": "dense",
-                "parameters": {
-                    "min": 8,
-                    "max": 28
-                }
-            },
-            "warnings": [
-                "model-arch-not-released"
-            ],
-            "sources": [
-                "https://docs.anthropic.com/en/docs/about-claude/models"
-            ]
-        },
-        {
-            "type": "model",
-            "provider": "anthropic",
-            "name": "claude-3-7-sonnet-20250219",
-            "architecture": {
-                "type": "moe",
-                "parameters": {
-                    "total": 440,
-                    "active": {
-                        "min": 44,
-                        "max": 132
-                    }
-                }
-            },
-            "warnings": [
-                "model-arch-not-released"
-            ],
-            "sources": [
-                "https://docs.anthropic.com/en/docs/about-claude/models"
-            ]
-        },
-        {
-            "type": "model",
-            "provider": "anthropic",
-            "name": "claude-3-7-sonnet-latest",
-            "architecture": {
-                "type": "moe",
-                "parameters": {
-                    "total": 440,
-                    "active": {
-                        "min": 44,
-                        "max": 132
-                    }
-                }
-            },
-            "warnings": [
-                "model-arch-not-released"
-            ],
-            "sources": [
-                "https://docs.anthropic.com/en/docs/about-claude/models"
-            ]
+            "throughput": 96.1
         },
         {
             "type": "model",
@@ -3477,7 +3625,8 @@
             ],
             "sources": [
                 "https://docs.anthropic.com/en/docs/about-claude/models"
-            ]
+            ],
+            "throughput": 84.4
         },
         {
             "type": "model",
@@ -3498,7 +3647,8 @@
             ],
             "sources": [
                 "https://docs.anthropic.com/en/docs/about-claude/models"
-            ]
+            ],
+            "throughput": 25.2
         },
         {
             "type": "model",
@@ -3519,7 +3669,8 @@
             ],
             "sources": [
                 "https://docs.anthropic.com/en/docs/about-claude/models"
-            ]
+            ],
+            "throughput": 27.2
         },
         {
             "type": "model",
@@ -3540,7 +3691,8 @@
             ],
             "sources": [
                 "https://docs.anthropic.com/en/docs/about-claude/models"
-            ]
+            ],
+            "throughput": 44.8
         },
         {
             "type": "model",
@@ -3561,7 +3713,8 @@
             ],
             "sources": [
                 "https://docs.anthropic.com/en/docs/about-claude/models"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -3582,7 +3735,8 @@
             ],
             "sources": [
                 "https://docs.anthropic.com/en/docs/about-claude/models"
-            ]
+            ],
+            "throughput": 45.2
         },
         {
             "type": "model",
@@ -3600,7 +3754,8 @@
             ],
             "sources": [
                 "https://docs.anthropic.com/en/docs/about-claude/models"
-            ]
+            ],
+            "throughput": 66.1
         },
         {
             "type": "model",
@@ -3621,7 +3776,8 @@
             ],
             "sources": [
                 "https://docs.anthropic.com/en/docs/about-claude/models"
-            ]
+            ],
+            "throughput": 30.2
         },
         {
             "type": "model",
@@ -3642,7 +3798,8 @@
             ],
             "sources": [
                 "https://docs.anthropic.com/en/docs/about-claude/models"
-            ]
+            ],
+            "throughput": 33.4
         },
         {
             "type": "model",
@@ -3664,7 +3821,8 @@
             ],
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -3686,7 +3844,8 @@
             ],
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
-            ]
+            ],
+            "throughput": 77.9
         },
         {
             "type": "model",
@@ -3705,7 +3864,8 @@
             ],
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
-            ]
+            ],
+            "throughput": 58.3
         },
         {
             "type": "model",
@@ -3724,7 +3884,8 @@
             ],
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
-            ]
+            ],
+            "throughput": 57.8
         },
         {
             "type": "model",
@@ -3746,7 +3907,8 @@
             ],
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
-            ]
+            ],
+            "throughput": 71.2
         },
         {
             "type": "model",
@@ -3768,7 +3930,8 @@
             ],
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
-            ]
+            ],
+            "throughput": 120.8
         },
         {
             "type": "model",
@@ -3787,7 +3950,8 @@
             ],
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
-            ]
+            ],
+            "throughput": 58.3
         },
         {
             "type": "model",
@@ -3809,7 +3973,8 @@
             ],
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
-            ]
+            ],
+            "throughput": 87.5
         },
         {
             "type": "model",
@@ -3831,7 +3996,8 @@
             ],
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
-            ]
+            ],
+            "throughput": 56.9
         },
         {
             "type": "model",
@@ -3853,7 +4019,8 @@
             ],
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
-            ]
+            ],
+            "throughput": 43.2
         },
         {
             "type": "model",
@@ -3875,7 +4042,31 @@
             ],
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
-            ]
+            ],
+            "throughput": 77.9
+        },
+        {
+            "type": "model",
+            "provider": "google_genai",
+            "name": "gemini-3.1-flash-image-preview",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 1200,
+                    "active": {
+                        "min": 120,
+                        "max": 360
+                    }
+                }
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://ai.google.dev/gemini-api/docs/models"
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -3897,7 +4088,8 @@
             ],
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
-            ]
+            ],
+            "throughput": 57.9
         },
         {
             "type": "model",
@@ -3919,7 +4111,8 @@
             ],
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -3941,7 +4134,8 @@
             ],
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -3960,7 +4154,8 @@
             ],
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
-            ]
+            ],
+            "throughput": 138.4
         },
         {
             "type": "model",
@@ -3982,7 +4177,8 @@
             ],
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -3999,7 +4195,8 @@
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models",
                 "https://huggingface.co/google/gemma-3-12b-it"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -4016,7 +4213,8 @@
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models",
                 "https://huggingface.co/google/gemma-3-1b-it"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -4033,7 +4231,8 @@
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models",
                 "https://huggingface.co/google/gemma-3-27b-it"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -4050,7 +4249,8 @@
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models",
                 "https://huggingface.co/google/gemma-3-4b-it"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -4067,7 +4267,8 @@
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models",
                 "https://huggingface.co/google/gemma-3n-E2B-it"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -4084,29 +4285,8 @@
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models",
                 "https://huggingface.co/google/gemma-3n-E4B-it"
-            ]
-        },
-        {
-            "type": "model",
-            "provider": "openai",
-            "name": "chatgpt-4o-latest",
-            "architecture": {
-                "type": "moe",
-                "parameters": {
-                    "total": 440,
-                    "active": {
-                        "min": 44,
-                        "max": 132
-                    }
-                }
-            },
-            "warnings": [
-                "model-arch-not-released",
-                "model-arch-multimodal"
             ],
-            "sources": [
-                "https://platform.openai.com/docs/models#gpt-4o"
-            ]
+            "throughput": null
         },
         {
             "type": "model",
@@ -4124,7 +4304,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-3-5-turbo"
-            ]
+            ],
+            "throughput": null
         },
         {
             "type": "model",
@@ -4142,7 +4323,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-3-5-turbo"
-            ]
+            ],
+            "throughput": 62.7
         },
         {
             "type": "model",
@@ -4160,7 +4342,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-3-5-turbo"
-            ]
+            ],
+            "throughput": 62.7
         },
         {
             "type": "model",
@@ -4178,7 +4361,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-3-5-turbo"
-            ]
+            ],
+            "throughput": 63.5
         },
         {
             "type": "model",
@@ -4196,7 +4380,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-3-5-turbo"
-            ]
+            ],
+            "throughput": 72.8
         },
         {
             "type": "model",
@@ -4214,7 +4399,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-3-5-turbo"
-            ]
+            ],
+            "throughput": 72.8
         },
         {
             "type": "model",
@@ -4236,7 +4422,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4-turbo-and-gpt-4"
-            ]
+            ],
+            "throughput": 25.8
         },
         {
             "type": "model",
@@ -4258,7 +4445,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4-turbo-and-gpt-4"
-            ]
+            ],
+            "throughput": 25.8
         },
         {
             "type": "model",
@@ -4280,7 +4468,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4-turbo-and-gpt-4"
-            ]
+            ],
+            "throughput": 25.8
         },
         {
             "type": "model",
@@ -4302,7 +4491,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4-turbo-and-gpt-4"
-            ]
+            ],
+            "throughput": 33.1
         },
         {
             "type": "model",
@@ -4324,7 +4514,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4-turbo-and-gpt-4"
-            ]
+            ],
+            "throughput": 19.6
         },
         {
             "type": "model",
@@ -4346,7 +4537,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4-turbo-and-gpt-4"
-            ]
+            ],
+            "throughput": 19.6
         },
         {
             "type": "model",
@@ -4368,7 +4560,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4-turbo-and-gpt-4"
-            ]
+            ],
+            "throughput": 28.5
         },
         {
             "type": "model",
@@ -4390,7 +4583,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 42.5
         },
         {
             "type": "model",
@@ -4412,7 +4606,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 42.5
         },
         {
             "type": "model",
@@ -4431,7 +4626,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 37.2
         },
         {
             "type": "model",
@@ -4450,7 +4646,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 42.5
         },
         {
             "type": "model",
@@ -4469,7 +4666,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 57.8
         },
         {
             "type": "model",
@@ -4488,7 +4686,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 42.5
         },
         {
             "type": "model",
@@ -4510,7 +4709,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o"
-            ]
+            ],
+            "throughput": 39.6
         },
         {
             "type": "model",
@@ -4532,7 +4732,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o"
-            ]
+            ],
+            "throughput": 48.8
         },
         {
             "type": "model",
@@ -4554,7 +4755,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o"
-            ]
+            ],
+            "throughput": 21.4
         },
         {
             "type": "model",
@@ -4576,7 +4778,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o"
-            ]
+            ],
+            "throughput": 65.4
         },
         {
             "type": "model",
@@ -4598,7 +4801,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o"
-            ]
+            ],
+            "throughput": 20.0
         },
         {
             "type": "model",
@@ -4620,7 +4824,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o"
-            ]
+            ],
+            "throughput": 20.0
         },
         {
             "type": "model",
@@ -4642,7 +4847,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o"
-            ]
+            ],
+            "throughput": 20.0
         },
         {
             "type": "model",
@@ -4661,7 +4867,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
-            ]
+            ],
+            "throughput": 34.4
         },
         {
             "type": "model",
@@ -4680,7 +4887,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
-            ]
+            ],
+            "throughput": 37.5
         },
         {
             "type": "model",
@@ -4699,7 +4907,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
-            ]
+            ],
+            "throughput": 20.0
         },
         {
             "type": "model",
@@ -4718,7 +4927,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
-            ]
+            ],
+            "throughput": 34.4
         },
         {
             "type": "model",
@@ -4737,7 +4947,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
-            ]
+            ],
+            "throughput": 34.4
         },
         {
             "type": "model",
@@ -4756,7 +4967,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
-            ]
+            ],
+            "throughput": 55.1
         },
         {
             "type": "model",
@@ -4775,7 +4987,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
-            ]
+            ],
+            "throughput": 55.1
         },
         {
             "type": "model",
@@ -4794,7 +5007,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
-            ]
+            ],
+            "throughput": 34.4
         },
         {
             "type": "model",
@@ -4813,7 +5027,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
-            ]
+            ],
+            "throughput": 34.4
         },
         {
             "type": "model",
@@ -4832,7 +5047,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
-            ]
+            ],
+            "throughput": 34.4
         },
         {
             "type": "model",
@@ -4851,7 +5067,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
-            ]
+            ],
+            "throughput": 34.4
         },
         {
             "type": "model",
@@ -4870,7 +5087,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
-            ]
+            ],
+            "throughput": 34.4
         },
         {
             "type": "model",
@@ -4889,7 +5107,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
-            ]
+            ],
+            "throughput": 34.4
         },
         {
             "type": "model",
@@ -4908,7 +5127,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
-            ]
+            ],
+            "throughput": 34.4
         },
         {
             "type": "model",
@@ -4930,7 +5150,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o"
-            ]
+            ],
+            "throughput": 39.6
         },
         {
             "type": "model",
@@ -4952,7 +5173,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o"
-            ]
+            ],
+            "throughput": 39.6
         },
         {
             "type": "model",
@@ -4974,7 +5196,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o"
-            ]
+            ],
+            "throughput": 39.6
         },
         {
             "type": "model",
@@ -4996,7 +5219,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o"
-            ]
+            ],
+            "throughput": 38.2
         },
         {
             "type": "model",
@@ -5018,7 +5242,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o"
-            ]
+            ],
+            "throughput": 38.2
         },
         {
             "type": "model",
@@ -5040,7 +5265,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 44.9
         },
         {
             "type": "model",
@@ -5062,7 +5288,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 44.6
         },
         {
             "type": "model",
@@ -5084,7 +5311,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 69.1
         },
         {
             "type": "model",
@@ -5106,7 +5334,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 59.0
         },
         {
             "type": "model",
@@ -5125,7 +5354,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 61.4
         },
         {
             "type": "model",
@@ -5144,7 +5374,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 44.9
         },
         {
             "type": "model",
@@ -5163,7 +5394,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 85.1
         },
         {
             "type": "model",
@@ -5182,7 +5414,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 44.9
         },
         {
             "type": "model",
@@ -5204,7 +5437,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 10.9
         },
         {
             "type": "model",
@@ -5226,7 +5460,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 10.9
         },
         {
             "type": "model",
@@ -5248,7 +5483,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 44.9
         },
         {
             "type": "model",
@@ -5270,7 +5506,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 44.9
         },
         {
             "type": "model",
@@ -5292,7 +5529,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 48.2
         },
         {
             "type": "model",
@@ -5314,7 +5552,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 48.2
         },
         {
             "type": "model",
@@ -5336,7 +5575,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 48.2
         },
         {
             "type": "model",
@@ -5358,7 +5598,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 39.1
         },
         {
             "type": "model",
@@ -5380,7 +5621,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 56.1
         },
         {
             "type": "model",
@@ -5399,7 +5641,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 75.8
         },
         {
             "type": "model",
@@ -5421,7 +5664,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 44.6
         },
         {
             "type": "model",
@@ -5443,7 +5687,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 44.6
         },
         {
             "type": "model",
@@ -5465,7 +5710,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 45.2
         },
         {
             "type": "model",
@@ -5487,7 +5733,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 45.9
         },
         {
             "type": "model",
@@ -5509,7 +5756,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 12.2
         },
         {
             "type": "model",
@@ -5531,7 +5779,31 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models"
-            ]
+            ],
+            "throughput": 12.2
+        },
+        {
+            "type": "model",
+            "provider": "openai",
+            "name": "gpt-5.3-codex",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 420,
+                    "active": {
+                        "min": 42,
+                        "max": 126
+                    }
+                }
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://platform.openai.com/docs/models"
+            ],
+            "throughput": 49.3
         },
         {
             "type": "model",
@@ -5553,7 +5825,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#o1"
-            ]
+            ],
+            "throughput": 116.6
         },
         {
             "type": "model",
@@ -5575,7 +5848,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#o1"
-            ]
+            ],
+            "throughput": 116.6
         },
         {
             "type": "model",
@@ -5594,7 +5868,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#o3-mini"
-            ]
+            ],
+            "throughput": 234.4
         },
         {
             "type": "model",
@@ -5613,7 +5888,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#o3-mini"
-            ]
+            ],
+            "throughput": 234.4
         },
         {
             "type": "model",
@@ -5632,7 +5908,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#o3-mini"
-            ]
+            ],
+            "throughput": 91.0
         },
         {
             "type": "model",
@@ -5651,7 +5928,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#o3-mini"
-            ]
+            ],
+            "throughput": 91.0
         },
         {
             "type": "model",
@@ -5670,7 +5948,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#o3-mini"
-            ]
+            ],
+            "throughput": 44.0
         },
         {
             "type": "model",
@@ -5689,7 +5968,8 @@
             ],
             "sources": [
                 "https://platform.openai.com/docs/models#o3-mini"
-            ]
+            ],
+            "throughput": 44.0
         }
     ]
 }
