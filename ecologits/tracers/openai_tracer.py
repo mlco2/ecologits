@@ -98,7 +98,7 @@ def openai_chat_wrapper_stream(  # type: ignore[misc]
         # azure openai has an empty first chunk so we skip it
         if i == 0 and chunk.model == "":
             continue
-        if i > 0 and chunk.choices[0].finish_reason is None:
+        if i > 0 and chunk.choices and chunk.choices[0].finish_reason is None:
             output_token_count += 1
         request_latency = time.perf_counter() - timer_start
         model_name = chunk.model
@@ -204,7 +204,7 @@ async def openai_async_chat_wrapper_stream(  # type: ignore[misc]
     async for chunk in stream:
         if i == 0 and chunk.model == "":
             continue
-        if i > 0 and chunk.choices[0].finish_reason is None:
+        if i > 0 and chunk.choices and chunk.choices[0].finish_reason is None:
             output_token_count += 1
         request_latency = time.perf_counter() - timer_start
         model_name = chunk.model
