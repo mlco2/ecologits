@@ -87,8 +87,10 @@
                 "https://docs.cohere.com/docs/models",
                 "https://huggingface.co/CohereLabs/aya-expanse-8b"
             ],
-            "throughput": 21.8,
-            "latency": 0.61
+            "deployment": {
+                "tps": 21.8,
+                "ttft": 0.61
+            }
         },
         {
             "type": "model",
@@ -103,8 +105,10 @@
                 "https://docs.cohere.com/docs/models",
                 "https://huggingface.co/CohereLabs/aya-expanse-32b"
             ],
-            "throughput": 21.8,
-            "latency": 0.61
+            "deployment": {
+                "tps": 21.8,
+                "ttft": 0.61
+            }
         },
         {
             "type": "model",
@@ -121,8 +125,10 @@
                 "https://docs.cohere.com/docs/models",
                 "https://huggingface.co/CohereLabs/aya-vision-8b"
             ],
-            "throughput": 21.8,
-            "latency": 0.61
+            "deployment": {
+                "tps": 21.8,
+                "ttft": 0.61
+            }
         },
         {
             "type": "model",
@@ -139,8 +145,10 @@
                 "https://docs.cohere.com/docs/models",
                 "https://huggingface.co/CohereLabs/aya-vision-32b"
             ],
-            "throughput": 21.8,
-            "latency": 0.61
+            "deployment": {
+                "tps": 21.8,
+                "ttft": 0.61
+            }
         },
         {
             "type": "model",
@@ -155,8 +163,10 @@
                 "https://docs.cohere.com/docs/models",
                 "https://huggingface.co/CohereLabs/c4ai-command-a-03-2025"
             ],
-            "throughput": 21.8,
-            "latency": 0.61
+            "deployment": {
+                "tps": 21.8,
+                "ttft": 0.61
+            }
         },
         {
             "type": "model",
@@ -171,8 +181,10 @@
                 "https://docs.cohere.com/docs/models",
                 "https://huggingface.co/CohereLabs/c4ai-command-a-03-2025"
             ],
-            "throughput": 21.8,
-            "latency": 0.61
+            "deployment": {
+                "tps": 21.8,
+                "ttft": 0.61
+            }
         },
         {
             "type": "model",
@@ -187,8 +199,10 @@
                 "https://docs.cohere.com/docs/models",
                 "https://huggingface.co/CohereLabs/c4ai-command-a-03-2025"
             ],
-            "throughput": 21.8,
-            "latency": 0.61
+            "deployment": {
+                "tps": 21.8,
+                "ttft": 0.61
+            }
         },
         {
             "type": "model",
@@ -205,8 +219,10 @@
                 "https://docs.cohere.com/docs/models",
                 "https://huggingface.co/CohereLabs/command-a-vision-07-2025"
             ],
-            "throughput": 21.8,
-            "latency": 0.61
+            "deployment": {
+                "tps": 21.8,
+                "ttft": 0.61
+            }
         },
         {
             "type": "model",
@@ -221,8 +237,10 @@
                 "https://docs.cohere.com/docs/models",
                 "https://huggingface.co/CohereLabs/c4ai-command-r-08-2024  "
             ],
-            "throughput": 70.1,
-            "latency": 0.25
+            "deployment": {
+                "tps": 70.1,
+                "ttft": 0.25
+            }
         },
         {
             "type": "model",
@@ -237,8 +255,10 @@
                 "https://docs.cohere.com/docs/models",
                 "https://huggingface.co/CohereLabs/c4ai-command-r-08-2024  "
             ],
-            "throughput": 42.8,
-            "latency": 0.27
+            "deployment": {
+                "tps": 42.8,
+                "ttft": 0.27
+            }
         },
         {
             "type": "model",
@@ -253,8 +273,10 @@
                 "https://docs.cohere.com/docs/models",
                 "https://huggingface.co/CohereLabs/c4ai-command-r-plus-08-2024"
             ],
-            "throughput": 27.9,
-            "latency": 0.35
+            "deployment": {
+                "tps": 27.9,
+                "ttft": 0.35
+            }
         },
         {
             "type": "model",
@@ -269,8 +291,10 @@
                 "https://docs.cohere.com/docs/models",
                 "https://huggingface.co/CohereLabs/c4ai-command-r7b-12-2024"
             ],
-            "throughput": 70.1,
-            "latency": 0.25
+            "deployment": {
+                "tps": 70.1,
+                "ttft": 0.25
+            }
         },
         {
             "type": "model",
@@ -285,8 +309,10 @@
                 "https://docs.cohere.com/docs/models",
                 "https://huggingface.co/CohereLabs/c4ai-command-r7b-12-2024"
             ],
-            "throughput": 21.8,
-            "latency": 0.61
+            "deployment": {
+                "tps": 21.8,
+                "ttft": 0.61
+            }
         },
         {
             "type": "model",
@@ -300,8 +326,10 @@
             "sources": [
                 "https://huggingface.co/databricks/dolly-v1-6b"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -315,8 +343,10 @@
             "sources": [
                 "https://huggingface.co/databricks/dolly-v2-12b"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -330,8 +360,10 @@
             "sources": [
                 "https://huggingface.co/databricks/dolly-v2-7b"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -345,8 +377,10 @@
             "sources": [
                 "https://huggingface.co/databricks/dolly-v2-3b"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -363,8 +397,10 @@
             "sources": [
                 "https://huggingface.co/databricks/dbrx-base"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -381,8 +417,10 @@
             "sources": [
                 "https://huggingface.co/databricks/dbrx-instruct"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -396,8 +434,10 @@
             "sources": [
                 "https://huggingface.co/mistralai/Mistral-7B-v0.1"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -411,8 +451,10 @@
             "sources": [
                 "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.1"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -429,8 +471,10 @@
             "sources": [
                 "https://huggingface.co/mistralai/Mixtral-8x7B-v0.1"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -447,8 +491,10 @@
             "sources": [
                 "https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -462,8 +508,10 @@
             "sources": [
                 "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -480,8 +528,10 @@
             "sources": [
                 "https://huggingface.co/mistralai/Mixtral-8x22B-v0.1"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -498,8 +548,10 @@
             "sources": [
                 "https://huggingface.co/mistralai/Mixtral-8x22B-Instruct-v0.1"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -513,8 +565,10 @@
             "sources": [
                 "https://huggingface.co/mistralai/Mistral-7B-v0.3"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -528,8 +582,10 @@
             "sources": [
                 "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -543,8 +599,10 @@
             "sources": [
                 "https://huggingface.co/mistralai/Codestral-22B-v0.1"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -558,8 +616,10 @@
             "sources": [
                 "https://huggingface.co/mistralai/Mathstral-7B-v0.1"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -573,8 +633,10 @@
             "sources": [
                 "https://huggingface.co/mistralai/Mistral-Nemo-Instruct-2407"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -588,8 +650,10 @@
             "sources": [
                 "https://huggingface.co/mistralai/Mistral-Nemo-Base-2407"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -603,8 +667,10 @@
             "sources": [
                 "https://huggingface.co/mistralai/Mistral-Large-Instruct-2407"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -618,8 +684,10 @@
             "sources": [
                 "https://huggingface.co/mistral-community/Mistral-7B-v0.2"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -636,8 +704,10 @@
             "sources": [
                 "https://huggingface.co/mistral-community/Mixtral-8x22B-v0.1"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -654,8 +724,10 @@
             "sources": [
                 "https://huggingface.co/mistral-community/Mixtral-8x22B-v0.1-original"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -672,8 +744,10 @@
             "sources": [
                 "https://huggingface.co/mistral-community/Mixtral-8x22B-v0.1-4bit"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -690,8 +764,10 @@
             "sources": [
                 "https://huggingface.co/mistral-community/Mixtral-8x22B-v0.1-AWQ"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -708,8 +784,10 @@
             "sources": [
                 "https://huggingface.co/mistral-community/Mixtral-8x22B-Instruct-v0.1-4bit"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -726,8 +804,10 @@
             "sources": [
                 "https://huggingface.co/mistral-community/mixtral-8x22B-Instruct-v0.3-original"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -744,8 +824,10 @@
             "sources": [
                 "https://huggingface.co/mistral-community/mixtral-8x22B-v0.3-original"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -762,8 +844,10 @@
             "sources": [
                 "https://huggingface.co/mistral-community/mixtral-8x22B-v0.3"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -777,8 +861,10 @@
             "sources": [
                 "https://huggingface.co/mistral-community/Mistral-7B-Instruct-v0.3"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -792,8 +878,10 @@
             "sources": [
                 "https://huggingface.co/mistral-community/Codestral-22B-v0.1"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -807,8 +895,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Meta-Llama-3.1-8B"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -822,8 +912,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -837,8 +929,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Meta-Llama-3.1-70B"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -852,8 +946,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Meta-Llama-3.1-70B-Instruct"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -867,8 +963,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Meta-Llama-3.1-405B"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -882,8 +980,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Meta-Llama-3.1-405B-Instruct"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -897,8 +997,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Meta-Llama-3.1-405B-FP8"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -912,8 +1014,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Meta-Llama-3.1-405B-Instruct-FP8"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -927,8 +1031,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-Guard-3-8B"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -942,8 +1048,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-Guard-3-8B-INT8"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -957,8 +1065,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Prompt-Guard-86M"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -972,8 +1082,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Meta-Llama-3-8B"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -987,8 +1099,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1002,8 +1116,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Meta-Llama-3-70B-Instruct"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1017,8 +1133,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Meta-Llama-3-70B"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1032,8 +1150,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Meta-Llama-Guard-2-8B"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1047,8 +1167,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-2-7b-hf"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1062,8 +1184,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-2-13b-hf"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1077,8 +1201,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-2-70b-hf"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1092,8 +1218,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-2-7b-chat-hf"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1107,8 +1235,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-2-13b-chat-hf"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1122,8 +1252,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-2-70b-chat-hf"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1137,8 +1269,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-2-7b"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1152,8 +1286,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-2-13b"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1167,8 +1303,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-2-70b"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1182,8 +1320,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-2-7b-chat"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1197,8 +1337,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-2-13b-chat"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1212,8 +1354,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/Llama-2-70b-chat"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1227,8 +1371,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/LlamaGuard-7b"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1242,8 +1388,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/CodeLlama-7b-hf"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1257,8 +1405,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/CodeLlama-13b-hf"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1272,8 +1422,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/CodeLlama-34b-hf"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1287,8 +1439,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/CodeLlama-70b-hf"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1302,8 +1456,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/CodeLlama-7b-Python-hf"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1317,8 +1473,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/CodeLlama-34b-Python-hf"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1332,8 +1490,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/CodeLlama-13b-Python-hf"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1347,8 +1507,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/CodeLlama-70b-Python-hf"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1362,8 +1524,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/CodeLlama-7b-Instruct-hf"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1377,8 +1541,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/CodeLlama-13b-Instruct-hf"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1392,8 +1558,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/CodeLlama-34b-Instruct-hf"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1407,8 +1575,10 @@
             "sources": [
                 "https://huggingface.co/meta-llama/CodeLlama-70b-Instruct-hf"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1422,8 +1592,10 @@
             "sources": [
                 "https://huggingface.co/CohereForAI/aya-23-8B"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1437,8 +1609,10 @@
             "sources": [
                 "https://huggingface.co/CohereForAI/aya-23-35B"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1452,8 +1626,10 @@
             "sources": [
                 "https://huggingface.co/CohereForAI/c4ai-command-r-plus"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1467,8 +1643,10 @@
             "sources": [
                 "https://huggingface.co/CohereForAI/c4ai-command-r-plus-4bit"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1482,8 +1660,10 @@
             "sources": [
                 "https://huggingface.co/CohereForAI/c4ai-command-r-v01"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1497,8 +1677,10 @@
             "sources": [
                 "https://huggingface.co/CohereForAI/c4ai-command-r-v01-4bit"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1512,8 +1694,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2-2b"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1527,8 +1711,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2-2b-it"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1542,8 +1728,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2-9b"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1557,8 +1745,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2-9b-it"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1572,8 +1762,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2-27b"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1587,8 +1779,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2-27b-it"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1602,8 +1796,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2-2b-pytorch"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1617,8 +1813,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2-2b-it-pytorch"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1632,8 +1830,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2-9b-pytorch"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1647,8 +1847,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2-9b-it-pytorch"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1662,8 +1864,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2-27b-pytorch"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1677,8 +1881,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2-27b-it-pytorch"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1692,8 +1898,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2-9b-keras"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1707,8 +1915,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2-instruct-9b-keras"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1722,8 +1932,10 @@
             "sources": [
                 "https://huggingface.co/google/codegemma-2b"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1737,8 +1949,10 @@
             "sources": [
                 "https://huggingface.co/google/codegemma-7b"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1752,8 +1966,10 @@
             "sources": [
                 "https://huggingface.co/google/codegemma-7b-it"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1767,8 +1983,10 @@
             "sources": [
                 "https://huggingface.co/google/codegemma-7b-it-GGUF"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1782,8 +2000,10 @@
             "sources": [
                 "https://huggingface.co/google/codegemma-2b-GGUF"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1797,8 +2017,10 @@
             "sources": [
                 "https://huggingface.co/google/codegemma-7b-GGUF"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1812,8 +2034,10 @@
             "sources": [
                 "https://huggingface.co/google/codegemma-7b-pytorch"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1827,8 +2051,10 @@
             "sources": [
                 "https://huggingface.co/google/codegemma-2b-pytorch"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1842,8 +2068,10 @@
             "sources": [
                 "https://huggingface.co/google/codegemma-7b-it-pytorch"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1857,8 +2085,10 @@
             "sources": [
                 "https://huggingface.co/google/codegemma-2b-keras"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1872,8 +2102,10 @@
             "sources": [
                 "https://huggingface.co/google/codegemma-7b-keras"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1887,8 +2119,10 @@
             "sources": [
                 "https://huggingface.co/google/codegemma-7b-it-keras"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1902,8 +2136,10 @@
             "sources": [
                 "https://huggingface.co/google/codegemma-1.1-7b-it"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1917,8 +2153,10 @@
             "sources": [
                 "https://huggingface.co/google/codegemma-1.1-2b"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1932,8 +2170,10 @@
             "sources": [
                 "https://huggingface.co/google/codegemma-1.1-2b-pytorch"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1947,8 +2187,10 @@
             "sources": [
                 "https://huggingface.co/google/codegemma-1.1-7b-it-pytorch"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1962,8 +2204,10 @@
             "sources": [
                 "https://huggingface.co/google/codegemma-1.1-2b-GGUF"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1977,8 +2221,10 @@
             "sources": [
                 "https://huggingface.co/google/codegemma-1.1-7b-it-GGUF"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -1992,8 +2238,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-1.1-2b-it"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2007,8 +2255,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-1.1-7b-it"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2022,8 +2272,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-1.1-7b-it-GGUF"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2037,8 +2289,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-1.1-2b-it-GGUF"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2052,8 +2306,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-1.1-2b-it-pytorch"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2067,8 +2323,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-1.1-7b-it-pytorch"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2082,8 +2340,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-7b"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2097,8 +2357,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-7b-it"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2112,8 +2374,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2b"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2127,8 +2391,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2b-it"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2142,8 +2408,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-7b-it-GGUF"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2157,8 +2425,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-7b-GGUF"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2172,8 +2442,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2b-GGUF"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2187,8 +2459,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2b-it-GGUF"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2202,8 +2476,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-7b-it-pytorch"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2217,8 +2493,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-7b-pytorch"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2232,8 +2510,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2b-pytorch"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2247,8 +2527,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-7b-quant-pytorch"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2262,8 +2544,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-7b-it-quant-pytorch"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2277,8 +2561,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2b-it-pytorch"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2292,8 +2578,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-7b-flax"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2307,8 +2595,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-7b-it-flax"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2322,8 +2612,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2b-flax"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2337,8 +2629,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2b-it-flax"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2352,8 +2646,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2b-it-keras"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2367,8 +2663,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-7b-keras"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2382,8 +2680,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2b-keras"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2397,8 +2697,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-7b-it-keras"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2412,8 +2714,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2b-sfp-cpp"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2427,8 +2731,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2b-it-cpp"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2442,8 +2748,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-7b-sfp-cpp"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2457,8 +2765,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-7b-cpp"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2472,8 +2782,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-7b-it-cpp"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2487,8 +2799,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-7b-it-sfp-cpp"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2502,8 +2816,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2b-it-sfp-cpp"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2517,8 +2833,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2b-cpp"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2532,8 +2850,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-1.1-2b-it-keras"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2547,8 +2867,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-1.1-7b-it-keras"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2562,8 +2884,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-1.1-2b-it-tflite"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2577,8 +2901,10 @@
             "sources": [
                 "https://huggingface.co/google/gemma-2b-it-tflite"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2592,8 +2918,10 @@
             "sources": [
                 "https://huggingface.co/microsoft/phi-1"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2607,8 +2935,10 @@
             "sources": [
                 "https://huggingface.co/microsoft/phi-1_5"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2622,8 +2952,10 @@
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-mini-4k-instruct"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2637,8 +2969,10 @@
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-mini-128k-instruct"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2652,8 +2986,10 @@
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-small-8k-instruct"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2667,8 +3003,10 @@
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-small-128k-instruct"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2682,8 +3020,10 @@
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-medium-4k-instruct"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2697,8 +3037,10 @@
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-medium-128k-instruct"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2714,8 +3056,10 @@
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-vision-128k-instruct"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2729,8 +3073,10 @@
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-onnx"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2744,8 +3090,10 @@
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-onnx-web"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2759,8 +3107,10 @@
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-mini-128k-instruct-onnx"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2774,8 +3124,10 @@
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-small-8k-instruct-onnx-cuda"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2789,8 +3141,10 @@
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-small-128k-instruct-onnx-cuda"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2804,8 +3158,10 @@
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-medium-4k-instruct-onnx-cpu"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2819,8 +3175,10 @@
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-medium-4k-instruct-onnx-cuda"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2834,8 +3192,10 @@
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-medium-4k-instruct-onnx-directml"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2849,8 +3209,10 @@
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-medium-128k-instruct-onnx-cpu"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2864,8 +3226,10 @@
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-medium-128k-instruct-onnx-cuda"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2879,8 +3243,10 @@
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-medium-128k-instruct-onnx-directml"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2896,8 +3262,10 @@
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-vision-128k-instruct-onnx-cpu"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2913,8 +3281,10 @@
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-vision-128k-instruct-onnx-cuda"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2930,8 +3300,10 @@
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-vision-128k-instruct-onnx-directml"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2945,8 +3317,10 @@
             "sources": [
                 "https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2965,8 +3339,10 @@
                 "https://platform.openai.com/docs/models/gpt-oss-120b",
                 "https://cdn.openai.com/pdf/419b6906-9da6-406c-a19d-1bb078ac7637/oai_gpt-oss_model_card.pdf"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -2985,8 +3361,10 @@
                 "https://platform.openai.com/docs/models/gpt-oss-20b",
                 "https://cdn.openai.com/pdf/419b6906-9da6-406c-a19d-1bb078ac7637/oai_gpt-oss_model_card.pdf"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -3001,8 +3379,10 @@
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/codestral"
             ],
-            "throughput": 50.2,
-            "latency": 0.24
+            "deployment": {
+                "tps": 50.2,
+                "ttft": 0.24
+            }
         },
         {
             "type": "model",
@@ -3017,8 +3397,10 @@
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/codestral"
             ],
-            "throughput": 50.2,
-            "latency": 0.24
+            "deployment": {
+                "tps": 50.2,
+                "ttft": 0.24
+            }
         },
         {
             "type": "model",
@@ -3033,8 +3415,10 @@
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/codestral"
             ],
-            "throughput": 65.6,
-            "latency": 0.36
+            "deployment": {
+                "tps": 65.6,
+                "ttft": 0.36
+            }
         },
         {
             "type": "model",
@@ -3049,8 +3433,10 @@
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/codestral"
             ],
-            "throughput": 50.2,
-            "latency": 0.24
+            "deployment": {
+                "tps": 50.2,
+                "ttft": 0.24
+            }
         },
         {
             "type": "model",
@@ -3065,8 +3451,10 @@
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/codestral"
             ],
-            "throughput": 50.2,
-            "latency": 0.24
+            "deployment": {
+                "tps": 50.2,
+                "ttft": 0.24
+            }
         },
         {
             "type": "model",
@@ -3081,8 +3469,10 @@
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/codestral"
             ],
-            "throughput": 50.2,
-            "latency": 0.24
+            "deployment": {
+                "tps": 50.2,
+                "ttft": 0.24
+            }
         },
         {
             "type": "model",
@@ -3096,8 +3486,10 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
             ],
-            "throughput": 65.6,
-            "latency": 0.36
+            "deployment": {
+                "tps": 65.6,
+                "ttft": 0.36
+            }
         },
         {
             "type": "model",
@@ -3111,8 +3503,10 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
             ],
-            "throughput": 65.6,
-            "latency": 0.36
+            "deployment": {
+                "tps": 65.6,
+                "ttft": 0.36
+            }
         },
         {
             "type": "model",
@@ -3131,8 +3525,10 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
             ],
-            "throughput": 51.9,
-            "latency": 0.75
+            "deployment": {
+                "tps": 51.9,
+                "ttft": 0.75
+            }
         },
         {
             "type": "model",
@@ -3151,8 +3547,10 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
             ],
-            "throughput": 51.9,
-            "latency": 0.75
+            "deployment": {
+                "tps": 51.9,
+                "ttft": 0.75
+            }
         },
         {
             "type": "model",
@@ -3166,8 +3564,10 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
             ],
-            "throughput": 127.8,
-            "latency": 0.21
+            "deployment": {
+                "tps": 127.8,
+                "ttft": 0.21
+            }
         },
         {
             "type": "model",
@@ -3181,8 +3581,10 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
             ],
-            "throughput": 127.8,
-            "latency": 0.21
+            "deployment": {
+                "tps": 127.8,
+                "ttft": 0.21
+            }
         },
         {
             "type": "model",
@@ -3196,8 +3598,10 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
             ],
-            "throughput": 127.8,
-            "latency": 0.21
+            "deployment": {
+                "tps": 127.8,
+                "ttft": 0.21
+            }
         },
         {
             "type": "model",
@@ -3212,8 +3616,10 @@
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/mistral-small-3"
             ],
-            "throughput": 43.0,
-            "latency": 0.19
+            "deployment": {
+                "tps": 43.0,
+                "ttft": 0.19
+            }
         },
         {
             "type": "model",
@@ -3232,8 +3638,10 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
             ],
-            "throughput": 42.5,
-            "latency": 0.36
+            "deployment": {
+                "tps": 42.5,
+                "ttft": 0.36
+            }
         },
         {
             "type": "model",
@@ -3252,8 +3660,10 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
             ],
-            "throughput": 51.9,
-            "latency": 0.75
+            "deployment": {
+                "tps": 51.9,
+                "ttft": 0.75
+            }
         },
         {
             "type": "model",
@@ -3267,8 +3677,10 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
             ],
-            "throughput": 105.6,
-            "latency": 0.34
+            "deployment": {
+                "tps": 105.6,
+                "ttft": 0.34
+            }
         },
         {
             "type": "model",
@@ -3282,8 +3694,10 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
             ],
-            "throughput": 127.8,
-            "latency": 0.21
+            "deployment": {
+                "tps": 127.8,
+                "ttft": 0.21
+            }
         },
         {
             "type": "model",
@@ -3297,8 +3711,10 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
             ],
-            "throughput": 86.4,
-            "latency": 0.34
+            "deployment": {
+                "tps": 86.4,
+                "ttft": 0.34
+            }
         },
         {
             "type": "model",
@@ -3312,8 +3728,10 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
             ],
-            "throughput": 86.4,
-            "latency": 0.34
+            "deployment": {
+                "tps": 86.4,
+                "ttft": 0.34
+            }
         },
         {
             "type": "model",
@@ -3328,8 +3746,10 @@
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/ministraux"
             ],
-            "throughput": 80.6,
-            "latency": 0.23
+            "deployment": {
+                "tps": 80.6,
+                "ttft": 0.23
+            }
         },
         {
             "type": "model",
@@ -3344,8 +3764,10 @@
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/ministraux"
             ],
-            "throughput": 80.6,
-            "latency": 0.23
+            "deployment": {
+                "tps": 80.6,
+                "ttft": 0.23
+            }
         },
         {
             "type": "model",
@@ -3360,8 +3782,10 @@
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/ministraux"
             ],
-            "throughput": 140.0,
-            "latency": 0.22
+            "deployment": {
+                "tps": 140.0,
+                "ttft": 0.22
+            }
         },
         {
             "type": "model",
@@ -3376,8 +3800,10 @@
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/ministraux"
             ],
-            "throughput": 140.0,
-            "latency": 0.22
+            "deployment": {
+                "tps": 140.0,
+                "ttft": 0.22
+            }
         },
         {
             "type": "model",
@@ -3392,8 +3818,10 @@
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/mistral-large-2407"
             ],
-            "throughput": 36.9,
-            "latency": 1.05
+            "deployment": {
+                "tps": 36.9,
+                "ttft": 1.05
+            }
         },
         {
             "type": "model",
@@ -3408,8 +3836,10 @@
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/mistral-large-2407"
             ],
-            "throughput": 35.5,
-            "latency": 0.51
+            "deployment": {
+                "tps": 35.5,
+                "ttft": 0.51
+            }
         },
         {
             "type": "model",
@@ -3424,8 +3854,10 @@
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/mistral-large-2407"
             ],
-            "throughput": 36.1,
-            "latency": 0.48
+            "deployment": {
+                "tps": 36.1,
+                "ttft": 0.48
+            }
         },
         {
             "type": "model",
@@ -3440,8 +3872,10 @@
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/mistral-large-2407"
             ],
-            "throughput": 36.9,
-            "latency": 1.05
+            "deployment": {
+                "tps": 36.9,
+                "ttft": 1.05
+            }
         },
         {
             "type": "model",
@@ -3460,8 +3894,10 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
             ],
-            "throughput": 56.1,
-            "latency": 0.62
+            "deployment": {
+                "tps": 56.1,
+                "ttft": 0.62
+            }
         },
         {
             "type": "model",
@@ -3480,8 +3916,10 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
             ],
-            "throughput": 42.5,
-            "latency": 0.36
+            "deployment": {
+                "tps": 42.5,
+                "ttft": 0.36
+            }
         },
         {
             "type": "model",
@@ -3500,8 +3938,10 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
             ],
-            "throughput": 42.5,
-            "latency": 0.36
+            "deployment": {
+                "tps": 42.5,
+                "ttft": 0.36
+            }
         },
         {
             "type": "model",
@@ -3520,8 +3960,10 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
             ],
-            "throughput": 42.5,
-            "latency": 0.36
+            "deployment": {
+                "tps": 42.5,
+                "ttft": 0.36
+            }
         },
         {
             "type": "model",
@@ -3536,8 +3978,10 @@
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/mistral-small-3"
             ],
-            "throughput": 105.6,
-            "latency": 0.34
+            "deployment": {
+                "tps": 105.6,
+                "ttft": 0.34
+            }
         },
         {
             "type": "model",
@@ -3552,8 +3996,10 @@
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/mistral-small-3"
             ],
-            "throughput": 105.6,
-            "latency": 0.34
+            "deployment": {
+                "tps": 105.6,
+                "ttft": 0.34
+            }
         },
         {
             "type": "model",
@@ -3569,8 +4015,10 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
             ],
-            "throughput": 105.6,
-            "latency": 0.34
+            "deployment": {
+                "tps": 105.6,
+                "ttft": 0.34
+            }
         },
         {
             "type": "model",
@@ -3586,8 +4034,10 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
             ],
-            "throughput": 105.6,
-            "latency": 0.34
+            "deployment": {
+                "tps": 105.6,
+                "ttft": 0.34
+            }
         },
         {
             "type": "model",
@@ -3602,8 +4052,10 @@
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/announcing-mistral-7b"
             ],
-            "throughput": 105.6,
-            "latency": 0.34
+            "deployment": {
+                "tps": 105.6,
+                "ttft": 0.34
+            }
         },
         {
             "type": "model",
@@ -3618,8 +4070,10 @@
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/mistral-nemo"
             ],
-            "throughput": 108.4,
-            "latency": 0.27
+            "deployment": {
+                "tps": 108.4,
+                "ttft": 0.27
+            }
         },
         {
             "type": "model",
@@ -3634,8 +4088,10 @@
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/mistral-nemo"
             ],
-            "throughput": 108.4,
-            "latency": 0.27
+            "deployment": {
+                "tps": 108.4,
+                "ttft": 0.27
+            }
         },
         {
             "type": "model",
@@ -3652,8 +4108,10 @@
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/pixtral-12b"
             ],
-            "throughput": 49.9,
-            "latency": 0.51
+            "deployment": {
+                "tps": 49.9,
+                "ttft": 0.51
+            }
         },
         {
             "type": "model",
@@ -3670,8 +4128,10 @@
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/pixtral-12b"
             ],
-            "throughput": 49.9,
-            "latency": 0.51
+            "deployment": {
+                "tps": 49.9,
+                "ttft": 0.51
+            }
         },
         {
             "type": "model",
@@ -3688,8 +4148,10 @@
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/pixtral-12b"
             ],
-            "throughput": 49.9,
-            "latency": 0.51
+            "deployment": {
+                "tps": 49.9,
+                "ttft": 0.51
+            }
         },
         {
             "type": "model",
@@ -3706,8 +4168,10 @@
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/pixtral-large"
             ],
-            "throughput": 49.9,
-            "latency": 0.51
+            "deployment": {
+                "tps": 49.9,
+                "ttft": 0.51
+            }
         },
         {
             "type": "model",
@@ -3724,8 +4188,10 @@
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/pixtral-large"
             ],
-            "throughput": 36.1,
-            "latency": 0.48
+            "deployment": {
+                "tps": 36.1,
+                "ttft": 0.48
+            }
         },
         {
             "type": "model",
@@ -3741,8 +4207,10 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
             ],
-            "throughput": 74.4,
-            "latency": 0.29
+            "deployment": {
+                "tps": 74.4,
+                "ttft": 0.29
+            }
         },
         {
             "type": "model",
@@ -3758,8 +4226,10 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
             ],
-            "throughput": 74.1,
-            "latency": 0.29
+            "deployment": {
+                "tps": 74.1,
+                "ttft": 0.29
+            }
         },
         {
             "type": "model",
@@ -3775,8 +4245,10 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
             ],
-            "throughput": 74.4,
-            "latency": 0.29
+            "deployment": {
+                "tps": 74.4,
+                "ttft": 0.29
+            }
         },
         {
             "type": "model",
@@ -3792,8 +4264,10 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
             ],
-            "throughput": 36.1,
-            "latency": 0.48
+            "deployment": {
+                "tps": 36.1,
+                "ttft": 0.48
+            }
         },
         {
             "type": "model",
@@ -3809,8 +4283,10 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
             ],
-            "throughput": 74.4,
-            "latency": 0.29
+            "deployment": {
+                "tps": 74.4,
+                "ttft": 0.29
+            }
         },
         {
             "type": "model",
@@ -3826,8 +4302,10 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
             ],
-            "throughput": 74.4,
-            "latency": 0.29
+            "deployment": {
+                "tps": 74.4,
+                "ttft": 0.29
+            }
         },
         {
             "type": "model",
@@ -3843,8 +4321,10 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/"
             ],
-            "throughput": 105.6,
-            "latency": 0.34
+            "deployment": {
+                "tps": 105.6,
+                "ttft": 0.34
+            }
         },
         {
             "type": "model",
@@ -3866,8 +4346,10 @@
             "sources": [
                 "https://docs.anthropic.com/en/docs/about-claude/models"
             ],
-            "throughput": 81.4,
-            "latency": 0.46
+            "deployment": {
+                "tps": 81.4,
+                "ttft": 0.46
+            }
         },
         {
             "type": "model",
@@ -3889,8 +4371,10 @@
             "sources": [
                 "https://docs.anthropic.com/en/docs/about-claude/models"
             ],
-            "throughput": 25.1,
-            "latency": 1.95
+            "deployment": {
+                "tps": 25.1,
+                "ttft": 1.95
+            }
         },
         {
             "type": "model",
@@ -3912,8 +4396,10 @@
             "sources": [
                 "https://docs.anthropic.com/en/docs/about-claude/models"
             ],
-            "throughput": 24.2,
-            "latency": 1.62
+            "deployment": {
+                "tps": 24.2,
+                "ttft": 1.62
+            }
         },
         {
             "type": "model",
@@ -3935,8 +4421,10 @@
             "sources": [
                 "https://docs.anthropic.com/en/docs/about-claude/models"
             ],
-            "throughput": 47.5,
-            "latency": 1.13
+            "deployment": {
+                "tps": 47.5,
+                "ttft": 1.13
+            }
         },
         {
             "type": "model",
@@ -3958,8 +4446,10 @@
             "sources": [
                 "https://docs.anthropic.com/en/docs/about-claude/models"
             ],
-            "throughput": 36.1,
-            "latency": 1.83
+            "deployment": {
+                "tps": 36.1,
+                "ttft": 1.83
+            }
         },
         {
             "type": "model",
@@ -3981,8 +4471,10 @@
             "sources": [
                 "https://docs.anthropic.com/en/docs/about-claude/models"
             ],
-            "throughput": 42.0,
-            "latency": 1.38
+            "deployment": {
+                "tps": 42.0,
+                "ttft": 1.38
+            }
         },
         {
             "type": "model",
@@ -4001,8 +4493,10 @@
             "sources": [
                 "https://docs.anthropic.com/en/docs/about-claude/models"
             ],
-            "throughput": 69.9,
-            "latency": 0.58
+            "deployment": {
+                "tps": 69.9,
+                "ttft": 0.58
+            }
         },
         {
             "type": "model",
@@ -4024,8 +4518,10 @@
             "sources": [
                 "https://docs.anthropic.com/en/docs/about-claude/models"
             ],
-            "throughput": 32.5,
-            "latency": 1.65
+            "deployment": {
+                "tps": 32.5,
+                "ttft": 1.65
+            }
         },
         {
             "type": "model",
@@ -4047,8 +4543,10 @@
             "sources": [
                 "https://docs.anthropic.com/en/docs/about-claude/models"
             ],
-            "throughput": 34.0,
-            "latency": 2.09
+            "deployment": {
+                "tps": 34.0,
+                "ttft": 2.09
+            }
         },
         {
             "type": "model",
@@ -4071,8 +4569,10 @@
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
-            "throughput": 69.1,
-            "latency": 0.53
+            "deployment": {
+                "tps": 69.1,
+                "ttft": 0.53
+            }
         },
         {
             "type": "model",
@@ -4095,8 +4595,10 @@
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
-            "throughput": 69.1,
-            "latency": 0.53
+            "deployment": {
+                "tps": 69.1,
+                "ttft": 0.53
+            }
         },
         {
             "type": "model",
@@ -4116,8 +4618,10 @@
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
-            "throughput": 76.9,
-            "latency": 0.57
+            "deployment": {
+                "tps": 76.9,
+                "ttft": 0.57
+            }
         },
         {
             "type": "model",
@@ -4137,8 +4641,10 @@
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
-            "throughput": 58.9,
-            "latency": 0.52
+            "deployment": {
+                "tps": 58.9,
+                "ttft": 0.52
+            }
         },
         {
             "type": "model",
@@ -4161,8 +4667,10 @@
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
-            "throughput": 71.0,
-            "latency": 0.66
+            "deployment": {
+                "tps": 71.0,
+                "ttft": 0.66
+            }
         },
         {
             "type": "model",
@@ -4185,8 +4693,10 @@
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
-            "throughput": 117.5,
-            "latency": 5.81
+            "deployment": {
+                "tps": 117.5,
+                "ttft": 5.81
+            }
         },
         {
             "type": "model",
@@ -4206,8 +4716,10 @@
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
-            "throughput": 76.9,
-            "latency": 0.57
+            "deployment": {
+                "tps": 76.9,
+                "ttft": 0.57
+            }
         },
         {
             "type": "model",
@@ -4230,8 +4742,10 @@
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
-            "throughput": 92.0,
-            "latency": 2.67
+            "deployment": {
+                "tps": 92.0,
+                "ttft": 2.67
+            }
         },
         {
             "type": "model",
@@ -4254,8 +4768,10 @@
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
-            "throughput": 60.4,
-            "latency": 1.47
+            "deployment": {
+                "tps": 60.4,
+                "ttft": 1.47
+            }
         },
         {
             "type": "model",
@@ -4275,8 +4791,10 @@
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
-            "throughput": 71.9,
-            "latency": 0.89
+            "deployment": {
+                "tps": 71.9,
+                "ttft": 0.89
+            }
         },
         {
             "type": "model",
@@ -4299,8 +4817,10 @@
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
-            "throughput": 51.6,
-            "latency": 23.08
+            "deployment": {
+                "tps": 51.6,
+                "ttft": 23.08
+            }
         },
         {
             "type": "model",
@@ -4323,8 +4843,10 @@
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
-            "throughput": 71.6,
-            "latency": 4.47
+            "deployment": {
+                "tps": 71.6,
+                "ttft": 4.47
+            }
         },
         {
             "type": "model",
@@ -4347,8 +4869,10 @@
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -4371,8 +4895,10 @@
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
-            "throughput": 57.8,
-            "latency": 4.68
+            "deployment": {
+                "tps": 57.8,
+                "ttft": 4.68
+            }
         },
         {
             "type": "model",
@@ -4395,8 +4921,10 @@
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -4419,8 +4947,10 @@
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
-            "throughput": 71.9,
-            "latency": 0.89
+            "deployment": {
+                "tps": 71.9,
+                "ttft": 0.89
+            }
         },
         {
             "type": "model",
@@ -4440,8 +4970,10 @@
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
-            "throughput": 133.6,
-            "latency": 1.07
+            "deployment": {
+                "tps": 133.6,
+                "ttft": 1.07
+            }
         },
         {
             "type": "model",
@@ -4464,8 +4996,10 @@
             "sources": [
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
-            "throughput": 71.9,
-            "latency": 0.89
+            "deployment": {
+                "tps": 71.9,
+                "ttft": 0.89
+            }
         },
         {
             "type": "model",
@@ -4483,8 +5017,10 @@
                 "https://ai.google.dev/gemini-api/docs/models",
                 "https://huggingface.co/google/gemma-3-12b-it"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -4502,8 +5038,10 @@
                 "https://ai.google.dev/gemini-api/docs/models",
                 "https://huggingface.co/google/gemma-3-1b-it"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -4521,8 +5059,10 @@
                 "https://ai.google.dev/gemini-api/docs/models",
                 "https://huggingface.co/google/gemma-3-27b-it"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -4540,8 +5080,10 @@
                 "https://ai.google.dev/gemini-api/docs/models",
                 "https://huggingface.co/google/gemma-3-4b-it"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -4559,8 +5101,10 @@
                 "https://ai.google.dev/gemini-api/docs/models",
                 "https://huggingface.co/google/gemma-3n-E2B-it"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -4578,8 +5122,10 @@
                 "https://ai.google.dev/gemini-api/docs/models",
                 "https://huggingface.co/google/gemma-3n-E4B-it"
             ],
-            "throughput": null,
-            "latency": null
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
         },
         {
             "type": "model",
@@ -4598,8 +5144,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-3-5-turbo"
             ],
-            "throughput": 56.4,
-            "latency": 0.41
+            "deployment": {
+                "tps": 56.4,
+                "ttft": 0.41
+            }
         },
         {
             "type": "model",
@@ -4618,8 +5166,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-3-5-turbo"
             ],
-            "throughput": 56.4,
-            "latency": 0.41
+            "deployment": {
+                "tps": 56.4,
+                "ttft": 0.41
+            }
         },
         {
             "type": "model",
@@ -4638,8 +5188,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-3-5-turbo"
             ],
-            "throughput": 56.4,
-            "latency": 0.41
+            "deployment": {
+                "tps": 56.4,
+                "ttft": 0.41
+            }
         },
         {
             "type": "model",
@@ -4658,8 +5210,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-3-5-turbo"
             ],
-            "throughput": 56.5,
-            "latency": 0.45
+            "deployment": {
+                "tps": 56.5,
+                "ttft": 0.45
+            }
         },
         {
             "type": "model",
@@ -4678,8 +5232,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-3-5-turbo"
             ],
-            "throughput": 80.1,
-            "latency": 0.89
+            "deployment": {
+                "tps": 80.1,
+                "ttft": 0.89
+            }
         },
         {
             "type": "model",
@@ -4698,8 +5254,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-3-5-turbo"
             ],
-            "throughput": 80.1,
-            "latency": 0.89
+            "deployment": {
+                "tps": 80.1,
+                "ttft": 0.89
+            }
         },
         {
             "type": "model",
@@ -4722,8 +5280,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4-turbo-and-gpt-4"
             ],
-            "throughput": 25.4,
-            "latency": 0.7
+            "deployment": {
+                "tps": 25.4,
+                "ttft": 0.7
+            }
         },
         {
             "type": "model",
@@ -4746,8 +5306,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4-turbo-and-gpt-4"
             ],
-            "throughput": 25.4,
-            "latency": 0.7
+            "deployment": {
+                "tps": 25.4,
+                "ttft": 0.7
+            }
         },
         {
             "type": "model",
@@ -4770,8 +5332,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4-turbo-and-gpt-4"
             ],
-            "throughput": 25.4,
-            "latency": 0.7
+            "deployment": {
+                "tps": 25.4,
+                "ttft": 0.7
+            }
         },
         {
             "type": "model",
@@ -4794,8 +5358,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4-turbo-and-gpt-4"
             ],
-            "throughput": 15.5,
-            "latency": 0.68
+            "deployment": {
+                "tps": 15.5,
+                "ttft": 0.68
+            }
         },
         {
             "type": "model",
@@ -4818,8 +5384,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4-turbo-and-gpt-4"
             ],
-            "throughput": 25.9,
-            "latency": 1.02
+            "deployment": {
+                "tps": 25.9,
+                "ttft": 1.02
+            }
         },
         {
             "type": "model",
@@ -4842,8 +5410,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4-turbo-and-gpt-4"
             ],
-            "throughput": 25.9,
-            "latency": 1.02
+            "deployment": {
+                "tps": 25.9,
+                "ttft": 1.02
+            }
         },
         {
             "type": "model",
@@ -4866,8 +5436,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4-turbo-and-gpt-4"
             ],
-            "throughput": 30.8,
-            "latency": 1.07
+            "deployment": {
+                "tps": 30.8,
+                "ttft": 1.07
+            }
         },
         {
             "type": "model",
@@ -4890,8 +5462,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 40.0,
-            "latency": 0.79
+            "deployment": {
+                "tps": 40.0,
+                "ttft": 0.79
+            }
         },
         {
             "type": "model",
@@ -4914,8 +5488,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 40.0,
-            "latency": 0.79
+            "deployment": {
+                "tps": 40.0,
+                "ttft": 0.79
+            }
         },
         {
             "type": "model",
@@ -4935,8 +5511,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 36.2,
-            "latency": 0.62
+            "deployment": {
+                "tps": 36.2,
+                "ttft": 0.62
+            }
         },
         {
             "type": "model",
@@ -4956,8 +5534,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 40.0,
-            "latency": 0.79
+            "deployment": {
+                "tps": 40.0,
+                "ttft": 0.79
+            }
         },
         {
             "type": "model",
@@ -4977,8 +5557,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 53.9,
-            "latency": 0.55
+            "deployment": {
+                "tps": 53.9,
+                "ttft": 0.55
+            }
         },
         {
             "type": "model",
@@ -4998,8 +5580,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 40.0,
-            "latency": 0.79
+            "deployment": {
+                "tps": 40.0,
+                "ttft": 0.79
+            }
         },
         {
             "type": "model",
@@ -5022,8 +5606,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o"
             ],
-            "throughput": 37.8,
-            "latency": 0.52
+            "deployment": {
+                "tps": 37.8,
+                "ttft": 0.52
+            }
         },
         {
             "type": "model",
@@ -5046,8 +5632,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o"
             ],
-            "throughput": 76.1,
-            "latency": 0.49
+            "deployment": {
+                "tps": 76.1,
+                "ttft": 0.49
+            }
         },
         {
             "type": "model",
@@ -5070,8 +5658,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o"
             ],
-            "throughput": 24.0,
-            "latency": 1.22
+            "deployment": {
+                "tps": 24.0,
+                "ttft": 1.22
+            }
         },
         {
             "type": "model",
@@ -5094,8 +5684,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o"
             ],
-            "throughput": 60.9,
-            "latency": 0.45
+            "deployment": {
+                "tps": 60.9,
+                "ttft": 0.45
+            }
         },
         {
             "type": "model",
@@ -5118,8 +5710,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o"
             ],
-            "throughput": 47.2,
-            "latency": 0.8
+            "deployment": {
+                "tps": 47.2,
+                "ttft": 0.8
+            }
         },
         {
             "type": "model",
@@ -5142,8 +5736,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o"
             ],
-            "throughput": 47.2,
-            "latency": 0.8
+            "deployment": {
+                "tps": 47.2,
+                "ttft": 0.8
+            }
         },
         {
             "type": "model",
@@ -5166,8 +5762,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o"
             ],
-            "throughput": 47.2,
-            "latency": 0.8
+            "deployment": {
+                "tps": 47.2,
+                "ttft": 0.8
+            }
         },
         {
             "type": "model",
@@ -5187,8 +5785,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
             ],
-            "throughput": 36.8,
-            "latency": 0.49
+            "deployment": {
+                "tps": 36.8,
+                "ttft": 0.49
+            }
         },
         {
             "type": "model",
@@ -5208,8 +5808,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
             ],
-            "throughput": 38.9,
-            "latency": 0.5
+            "deployment": {
+                "tps": 38.9,
+                "ttft": 0.5
+            }
         },
         {
             "type": "model",
@@ -5229,8 +5831,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
             ],
-            "throughput": 47.2,
-            "latency": 0.8
+            "deployment": {
+                "tps": 47.2,
+                "ttft": 0.8
+            }
         },
         {
             "type": "model",
@@ -5250,8 +5854,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
             ],
-            "throughput": 36.8,
-            "latency": 0.49
+            "deployment": {
+                "tps": 36.8,
+                "ttft": 0.49
+            }
         },
         {
             "type": "model",
@@ -5271,8 +5877,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
             ],
-            "throughput": 36.8,
-            "latency": 0.49
+            "deployment": {
+                "tps": 36.8,
+                "ttft": 0.49
+            }
         },
         {
             "type": "model",
@@ -5292,8 +5900,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
             ],
-            "throughput": 53.9,
-            "latency": 1.73
+            "deployment": {
+                "tps": 53.9,
+                "ttft": 1.73
+            }
         },
         {
             "type": "model",
@@ -5313,8 +5923,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
             ],
-            "throughput": 53.9,
-            "latency": 1.73
+            "deployment": {
+                "tps": 53.9,
+                "ttft": 1.73
+            }
         },
         {
             "type": "model",
@@ -5334,8 +5946,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
             ],
-            "throughput": 36.8,
-            "latency": 0.49
+            "deployment": {
+                "tps": 36.8,
+                "ttft": 0.49
+            }
         },
         {
             "type": "model",
@@ -5355,8 +5969,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
             ],
-            "throughput": 36.8,
-            "latency": 0.49
+            "deployment": {
+                "tps": 36.8,
+                "ttft": 0.49
+            }
         },
         {
             "type": "model",
@@ -5376,8 +5992,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
             ],
-            "throughput": 36.8,
-            "latency": 0.49
+            "deployment": {
+                "tps": 36.8,
+                "ttft": 0.49
+            }
         },
         {
             "type": "model",
@@ -5397,8 +6015,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
             ],
-            "throughput": 36.8,
-            "latency": 0.49
+            "deployment": {
+                "tps": 36.8,
+                "ttft": 0.49
+            }
         },
         {
             "type": "model",
@@ -5418,8 +6038,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
             ],
-            "throughput": 36.8,
-            "latency": 0.49
+            "deployment": {
+                "tps": 36.8,
+                "ttft": 0.49
+            }
         },
         {
             "type": "model",
@@ -5439,8 +6061,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
             ],
-            "throughput": 36.8,
-            "latency": 0.49
+            "deployment": {
+                "tps": 36.8,
+                "ttft": 0.49
+            }
         },
         {
             "type": "model",
@@ -5460,8 +6084,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
             ],
-            "throughput": 36.8,
-            "latency": 0.49
+            "deployment": {
+                "tps": 36.8,
+                "ttft": 0.49
+            }
         },
         {
             "type": "model",
@@ -5484,8 +6110,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o"
             ],
-            "throughput": 37.8,
-            "latency": 0.52
+            "deployment": {
+                "tps": 37.8,
+                "ttft": 0.52
+            }
         },
         {
             "type": "model",
@@ -5508,8 +6136,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o"
             ],
-            "throughput": 37.8,
-            "latency": 0.52
+            "deployment": {
+                "tps": 37.8,
+                "ttft": 0.52
+            }
         },
         {
             "type": "model",
@@ -5532,8 +6162,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o"
             ],
-            "throughput": 37.8,
-            "latency": 0.52
+            "deployment": {
+                "tps": 37.8,
+                "ttft": 0.52
+            }
         },
         {
             "type": "model",
@@ -5556,8 +6188,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o"
             ],
-            "throughput": 34.6,
-            "latency": 3.28
+            "deployment": {
+                "tps": 34.6,
+                "ttft": 3.28
+            }
         },
         {
             "type": "model",
@@ -5580,8 +6214,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#gpt-4o"
             ],
-            "throughput": 34.6,
-            "latency": 3.28
+            "deployment": {
+                "tps": 34.6,
+                "ttft": 3.28
+            }
         },
         {
             "type": "model",
@@ -5604,8 +6240,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 44.9,
-            "latency": 9.8
+            "deployment": {
+                "tps": 44.9,
+                "ttft": 9.8
+            }
         },
         {
             "type": "model",
@@ -5628,8 +6266,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 40.9,
-            "latency": 3.7
+            "deployment": {
+                "tps": 40.9,
+                "ttft": 3.7
+            }
         },
         {
             "type": "model",
@@ -5652,8 +6292,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 71.1,
-            "latency": 0.56
+            "deployment": {
+                "tps": 71.1,
+                "ttft": 0.56
+            }
         },
         {
             "type": "model",
@@ -5676,8 +6318,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 71.4,
-            "latency": 3.33
+            "deployment": {
+                "tps": 71.4,
+                "ttft": 3.33
+            }
         },
         {
             "type": "model",
@@ -5697,8 +6341,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 57.0,
-            "latency": 7.98
+            "deployment": {
+                "tps": 57.0,
+                "ttft": 7.98
+            }
         },
         {
             "type": "model",
@@ -5718,8 +6364,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 44.8,
-            "latency": 9.8
+            "deployment": {
+                "tps": 44.8,
+                "ttft": 9.8
+            }
         },
         {
             "type": "model",
@@ -5739,8 +6387,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 91.6,
-            "latency": 4.45
+            "deployment": {
+                "tps": 91.6,
+                "ttft": 4.45
+            }
         },
         {
             "type": "model",
@@ -5760,8 +6410,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 44.8,
-            "latency": 9.8
+            "deployment": {
+                "tps": 44.8,
+                "ttft": 9.8
+            }
         },
         {
             "type": "model",
@@ -5784,8 +6436,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 11.8,
-            "latency": 61.71
+            "deployment": {
+                "tps": 11.8,
+                "ttft": 61.71
+            }
         },
         {
             "type": "model",
@@ -5808,8 +6462,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 11.8,
-            "latency": 61.71
+            "deployment": {
+                "tps": 11.8,
+                "ttft": 61.71
+            }
         },
         {
             "type": "model",
@@ -5832,8 +6488,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 44.8,
-            "latency": 9.8
+            "deployment": {
+                "tps": 44.8,
+                "ttft": 9.8
+            }
         },
         {
             "type": "model",
@@ -5856,8 +6514,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 44.8,
-            "latency": 9.8
+            "deployment": {
+                "tps": 44.8,
+                "ttft": 9.8
+            }
         },
         {
             "type": "model",
@@ -5880,8 +6540,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 50.4,
-            "latency": 5.18
+            "deployment": {
+                "tps": 50.4,
+                "ttft": 5.18
+            }
         },
         {
             "type": "model",
@@ -5904,8 +6566,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 50.2,
-            "latency": 5.18
+            "deployment": {
+                "tps": 50.2,
+                "ttft": 5.18
+            }
         },
         {
             "type": "model",
@@ -5928,8 +6592,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 50.4,
-            "latency": 5.18
+            "deployment": {
+                "tps": 50.4,
+                "ttft": 5.18
+            }
         },
         {
             "type": "model",
@@ -5952,8 +6618,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 37.9,
-            "latency": 1.96
+            "deployment": {
+                "tps": 37.9,
+                "ttft": 1.96
+            }
         },
         {
             "type": "model",
@@ -5976,8 +6644,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 56.5,
-            "latency": 2.45
+            "deployment": {
+                "tps": 56.5,
+                "ttft": 2.45
+            }
         },
         {
             "type": "model",
@@ -5997,8 +6667,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 90.5,
-            "latency": 2.56
+            "deployment": {
+                "tps": 90.5,
+                "ttft": 2.56
+            }
         },
         {
             "type": "model",
@@ -6021,8 +6693,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 40.9,
-            "latency": 3.7
+            "deployment": {
+                "tps": 40.9,
+                "ttft": 3.7
+            }
         },
         {
             "type": "model",
@@ -6045,8 +6719,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 40.9,
-            "latency": 3.7
+            "deployment": {
+                "tps": 40.9,
+                "ttft": 3.7
+            }
         },
         {
             "type": "model",
@@ -6069,8 +6745,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 46.1,
-            "latency": 1.54
+            "deployment": {
+                "tps": 46.1,
+                "ttft": 1.54
+            }
         },
         {
             "type": "model",
@@ -6093,8 +6771,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 47.0,
-            "latency": 2.78
+            "deployment": {
+                "tps": 47.0,
+                "ttft": 2.78
+            }
         },
         {
             "type": "model",
@@ -6117,8 +6797,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 12.2,
-            "latency": 31.89
+            "deployment": {
+                "tps": 12.2,
+                "ttft": 31.89
+            }
         },
         {
             "type": "model",
@@ -6141,8 +6823,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 12.2,
-            "latency": 31.89
+            "deployment": {
+                "tps": 12.2,
+                "ttft": 31.89
+            }
         },
         {
             "type": "model",
@@ -6165,8 +6849,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 64.6,
-            "latency": 1.87
+            "deployment": {
+                "tps": 64.6,
+                "ttft": 1.87
+            }
         },
         {
             "type": "model",
@@ -6189,8 +6875,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 47.6,
-            "latency": 4.08
+            "deployment": {
+                "tps": 47.6,
+                "ttft": 4.08
+            }
         },
         {
             "type": "model",
@@ -6213,8 +6901,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 42.2,
-            "latency": 1.27
+            "deployment": {
+                "tps": 42.2,
+                "ttft": 1.27
+            }
         },
         {
             "type": "model",
@@ -6237,8 +6927,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 42.4,
-            "latency": 1.27
+            "deployment": {
+                "tps": 42.4,
+                "ttft": 1.27
+            }
         },
         {
             "type": "model",
@@ -6261,8 +6953,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 7.8,
-            "latency": 116.74
+            "deployment": {
+                "tps": 7.8,
+                "ttft": 116.74
+            }
         },
         {
             "type": "model",
@@ -6285,8 +6979,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models"
             ],
-            "throughput": 7.8,
-            "latency": 116.74
+            "deployment": {
+                "tps": 7.8,
+                "ttft": 116.74
+            }
         },
         {
             "type": "model",
@@ -6309,8 +7005,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#o1"
             ],
-            "throughput": 126.7,
-            "latency": 6.19
+            "deployment": {
+                "tps": 126.7,
+                "ttft": 6.19
+            }
         },
         {
             "type": "model",
@@ -6333,8 +7031,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#o1"
             ],
-            "throughput": 126.7,
-            "latency": 6.19
+            "deployment": {
+                "tps": 126.7,
+                "ttft": 6.19
+            }
         },
         {
             "type": "model",
@@ -6354,8 +7054,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#o3-mini"
             ],
-            "throughput": 231.4,
-            "latency": 6.48
+            "deployment": {
+                "tps": 231.4,
+                "ttft": 6.48
+            }
         },
         {
             "type": "model",
@@ -6375,8 +7077,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#o3-mini"
             ],
-            "throughput": 231.4,
-            "latency": 6.48
+            "deployment": {
+                "tps": 231.4,
+                "ttft": 6.48
+            }
         },
         {
             "type": "model",
@@ -6396,8 +7100,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#o3-mini"
             ],
-            "throughput": 91.8,
-            "latency": 6.12
+            "deployment": {
+                "tps": 91.8,
+                "ttft": 6.12
+            }
         },
         {
             "type": "model",
@@ -6417,8 +7123,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#o3-mini"
             ],
-            "throughput": 91.8,
-            "latency": 6.12
+            "deployment": {
+                "tps": 91.8,
+                "ttft": 6.12
+            }
         },
         {
             "type": "model",
@@ -6438,8 +7146,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#o3-mini"
             ],
-            "throughput": 44.4,
-            "latency": 86.78
+            "deployment": {
+                "tps": 44.4,
+                "ttft": 86.78
+            }
         },
         {
             "type": "model",
@@ -6459,8 +7169,10 @@
             "sources": [
                 "https://platform.openai.com/docs/models#o3-mini"
             ],
-            "throughput": 44.4,
-            "latency": 86.78
+            "deployment": {
+                "tps": 44.4,
+                "ttft": 86.78
+            }
         }
     ]
 }

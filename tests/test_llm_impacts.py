@@ -155,14 +155,14 @@ def test_compute_llm_impacts_with_throughput_and_latency():
         request_latency=1,
         **other_params
     )
-    impacts_fast_tps_low_lat = compute_llm_impacts(         # Fast generation, low latency
-        throughput=1000,
-        latency=0.1,
+    impacts_fast_tps_low_lat = compute_llm_impacts(         # Fast generation, low ttft
+        tps=1000,
+        ttft=0.1,
         **other_params
     )
-    impacts_fast_tps_high_lat = compute_llm_impacts(        # Fast generation, high latency
-        throughput=1000,
-        latency=100,
+    impacts_fast_tps_high_lat = compute_llm_impacts(        # Fast generation, high ttft
+        tps=1000,
+        ttft=100,
         **other_params
     )
     assert impacts_fast_tps_high_lat.energy.value \
