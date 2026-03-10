@@ -117,6 +117,7 @@ def llm_impacts(
         datacenter_pue=datacenter_pue,
         datacenter_wue=datacenter_wue,
         throughput=model.throughput,
+        latency=model.latency,
     )
     impacts = ImpactsOutput.model_validate(impacts.model_dump())
 

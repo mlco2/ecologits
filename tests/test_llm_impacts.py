@@ -137,7 +137,7 @@ def test_compute_llm_impacts_monotonicity_on_parameters(if_electricity_mix_adpe:
             prev_impacts_moe = impacts_moe.model_copy(deep=True)
 
 
-def test_compute_llm_impacts_with_throughput():
+def test_compute_llm_impacts_with_throughput_and_latency():
     other_params = dict(
         model_active_parameter_count=20,
         model_total_parameter_count=20,
@@ -150,13 +150,22 @@ def test_compute_llm_impacts_with_throughput():
         datacenter_wue=0.37,
     )
 
-    impacts = compute_llm_impacts(**other_params)           # Biggest latency by default
-    impacts_with_request_latency = compute_llm_impacts(     # Forced low latency
+    impacts = compute_llm_impacts(**other_params)           # Biggest estimated latency by default
+    impacts_with_request_latency = compute_llm_impacts(     # Forced low request latency
         request_latency=1,
         **other_params
     )
-    impacts_with_throughput = compute_llm_impacts(          # Very fast generation (lower latency)
+    impacts_fast_tps_low_lat = compute_llm_impacts(         # Fast generation, low latency
         throughput=1000,
+        latency=0.1,
         **other_params
     )
-    assert impacts.energy.value > impacts_with_request_latency.energy.value > impacts_with_throughput.energy.value
+    impacts_fast_tps_high_lat = compute_llm_impacts(        # Fast generation, high latency
+        throughput=1000,
+        latency=100,
+        **other_params
+    )
+    assert impacts_fast_tps_high_lat.energy.value \
+           > impacts.energy.value \
+           > impacts_with_request_latency.energy.value \
+           > impacts_fast_tps_low_lat.energy.value
