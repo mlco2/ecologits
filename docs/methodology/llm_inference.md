@@ -105,37 +105,49 @@ For a typical high-end GPU-accelerated cloud instance, we use $W_{\text{server} 
         }' | jq .verbose.avg_power
     ```
 
-
 #### Estimating the generation latency
 
-The generation latency, $\Delta T$, is the duration of the inference measured on the server and is independent of networking latency. We estimate the generation latency using the [ML.ENERGY Leaderboard](https://ml.energy/leaderboard/?__theme=light) dataset with the previously mentioned filters applied.
+The generation latency, $\Delta T$, is the duration of the inference measure on the server and is independent of networking latency. It is estimated based on real-world statistic metrics from [OpenRouter](https://openrouter.ai) when available and fallback to an alternative approach using the [ML.ENERGY Leaderboard](https://ml.energy/leaderboard/?__theme=light) benchmark, previously mentioned.
 
-To be consistent with observed behaviors while staying relatively simple we opted to fit a function of the form
+It is decomposed in two phases: the **pre-fill latency** (or time-to-first-token) denoted as $\text{TTFT}$ and the **decode latency** (related to the throughput or tokens-per-second), denoted as $\text{TPS}$, both can be collected for many different providers and models thanks to [OpenRouter](https://openrouter.ai).
 
-$$ 
-f_L(P_{\text{active}}, B) = \alpha P_{\text{active}} + \beta B + \gamma, 
-$$
-
-that is linear in both the number of parameters and the batch size. 
-
-We find the values : 
-
-- $\alpha = 6.78 \times 10^{-4}$, 
-- $\beta = 3.12 \times 10^{-4}$, 
-- $\gamma = 1.94 \times 10^{-2}$, 
-
-The result is illustrated below. 
-
-<figure markdown="span">
-  ![Figure: Latency per output token vs. number of active parameters ](../assets/methodology/llm/figure_latency.png)
-  <figcaption>Figure: Latency (in s) per output token vs. number of active parameters (in billions). The points are the datapoints from the <a href="https://ml.energy/leaderboard/?__theme=light">ML.ENERGY Leaderboard</a>, and the lines are the result of our regression for fixed batch sizes (64, 128, 256)</figcaption>
-</figure>
-
-Using these values, we can estimate the generation latency for the entire request given the number of output tokens, $\#T_{\text{out}}$, and the number of active parameters, $P_{\text{active}}$. When possible, we also measure the request latency, $\Delta T_{\text{request}}$, and use it as the maximum bound for the generation latency:
+Using these values, we can estimate the generation latency for the entire request given the number of output tokens, $\#T_{\text{out}}$. When possible, we also measure the request latency, $\Delta T_{\text{request}}$, and use it as the maximum bound for the generation latency:
 
 $$
-\Delta T(\#T_{\text{out}}, P_{\text{active}}, \Delta T_{\text{request}}) = \min \left\{ \#T_{\text{out}} \times f_L(P_{\text{active}}, 64), \Delta T_{\text{request}} \right\}.
+\Delta T(\#T_{\text{out}}) = \min \left\{ \text{TTFT} + \#T_{\text{out}} \times \text{TPS}, \Delta T_{\text{request}}\right\}.
 $$
+
+
+??? info "Alternative approach using ML.ENERGY benchmark data (will be deprecated)"
+
+    When OpenRouter data is not available for a specific model or provider we fallback on the method using benchmarking data (same as energy consumption for GPUs). 
+
+    To be consistent with observed behaviors while staying relatively simple we opted to fit a function of the form
+    
+    $$ 
+    f_L(P_{\text{active}}, B) = \alpha P_{\text{active}} + \beta B + \gamma, 
+    $$
+    
+    that is linear in both the number of parameters and the batch size. 
+    
+    We find the values : 
+    
+    - $\alpha = 6.78 \times 10^{-4}$, 
+      - $\beta = 3.12 \times 10^{-4}$, 
+      - $\gamma = 1.94 \times 10^{-2}$, 
+    
+    The result is illustrated below. 
+    
+    <figure markdown="span">
+      ![Figure: Latency per output token vs. number of active parameters ](../assets/methodology/llm/figure_latency.png)
+      <figcaption>Figure: Latency (in s) per output token vs. number of active parameters (in billions). The points are the datapoints from the <a href="https://ml.energy/leaderboard/?__theme=light">ML.ENERGY Leaderboard</a>, and the lines are the result of our regression for fixed batch sizes (64, 128, 256)</figcaption>
+    </figure>
+    
+    Using these values, we can estimate the generation latency for the entire request given the number of output tokens, $\#T_{\text{out}}$, and the number of active parameters, $P_{\text{active}}$. When possible, we also measure the request latency, $\Delta T_{\text{request}}$, and use it as the maximum bound for the generation latency:
+    
+    $$
+    \Delta T(\#T_{\text{out}}, P_{\text{active}}, \Delta T_{\text{request}}) = \min \left\{ \#T_{\text{out}} \times f_L(P_{\text{active}}, 64), \Delta T_{\text{request}} \right\}.
+    $$
 
 #### Estimating the number of active GPUs
 
