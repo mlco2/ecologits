@@ -33,6 +33,11 @@ class Architecture(BaseModel):
     parameters: Union[ValueOrRange, ParametersMoE]
 
 
+class Deployment(BaseModel):
+    tps: float | None = None
+    ttft: float | None = None
+
+
 class Alias(BaseModel):
     provider: Providers
     name: str
@@ -49,8 +54,7 @@ class Model(BaseModel):
         architecture: Architecture type (dense or mixture-of-experts)
         warnings: Warnings linked to the model (e.g. "model-arch-not-released" or "model-arch-multimodal")
         sources: Source of the model information (website link)
-        throughput: Number of tokens generated per second by the model
-        latency: Time-to-first-token latency in seconds
+        deployment: Deployment information (tps, ttft)
     """
 
     provider: Providers
@@ -58,8 +62,7 @@ class Model(BaseModel):
     architecture: Architecture
     warnings: list[WarningMessage] = []
     sources: list[str] = []
-    throughput: float | None = None
-    latency: float | None = None
+    deployment: Deployment | None = None
 
     @property
     def has_warnings(self) -> bool:
@@ -73,14 +76,16 @@ class Model(BaseModel):
             warnings = [WarningMessage.from_code(code) for code in data["warnings"]]
         if "source" in data and data["sources"] is not None:
             sources = data["sources"]
+        deployment = None
+        if "deployment" in data and data["deployment"] is not None:
+            deployment = Deployment.model_validate(data["deployment"])
         return cls(
             provider=Providers(data["provider"]),
             name=data["name"],
             architecture=Architecture.model_validate(data["architecture"]),
             warnings=warnings,
             sources=sources,
-            throughput=data.get("throughput"),
-            latency=data.get("latency"),
+            deployment=deployment,
         )
 
 
