@@ -107,9 +107,9 @@ For a typical high-end GPU-accelerated cloud instance, we use $W_{\text{server} 
 
 #### Estimating the generation latency
 
-The generation latency, $\Delta T$, is the duration of the inference measure on the server and is independent of networking latency. It is estimated based on real-world statistic metrics from [OpenRouter](https://openrouter.ai) when available and fallback to an alternative approach using the [ML.ENERGY Leaderboard](https://ml.energy/leaderboard/?__theme=light) benchmark, previously mentioned.
+The generation latency, $\Delta T$, is the duration of the inference measure on the server and is independent of networking latency. It is estimated based on real-world statistical metrics from [OpenRouter](https://openrouter.ai) when available and falls back to an alternative approach using the [ML.ENERGY Leaderboard](https://ml.energy/leaderboard/?__theme=light) benchmark, previously mentioned.
 
-It is decomposed in two phases: the **pre-fill latency** (or time-to-first-token) denoted as $\text{TTFT}$ and the **decode latency** (related to the throughput or tokens-per-second), denoted as $\text{TPS}$, both can be collected for many different providers and models thanks to [OpenRouter](https://openrouter.ai).
+It is decomposed into two phases: the **pre-fill latency** (or time-to-first-token) denoted as $\text{TTFT}$ and the **decode latency** (related to the throughput or tokens-per-second), denoted as $\text{TPS}$, both of which can be collected for many different providers and models thanks to [OpenRouter](https://openrouter.ai).
 
 Using these values, we can estimate the generation latency for the entire request given the number of output tokens, $\#T_{\text{out}}$. When possible, we also measure the request latency, $\Delta T_{\text{request}}$, and use it as the maximum bound for the generation latency:
 
@@ -120,7 +120,7 @@ $$
 
 ??? info "Alternative approach using ML.ENERGY benchmark data (will be deprecated)"
 
-    When OpenRouter data is not available for a specific model or provider we fallback on the method using benchmarking data (same as energy consumption for GPUs). 
+    When OpenRouter data is not available for a specific model or provider we fall back on the method using benchmarking data (same as energy consumption for GPUs). 
 
     To be consistent with observed behaviors while staying relatively simple we opted to fit a function of the form
     
