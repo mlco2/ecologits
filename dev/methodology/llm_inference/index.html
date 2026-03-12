@@ -3266,7 +3266,15 @@ E_{\text{server} \backslash \text{GPU}}(\Delta T) = \Delta T \times W_{\text{ser
 </span></code></pre></div>
 </details>
 <h4 id="estimating-the-generation-latency">Estimating the generation latency</h4>
-<p>The generation latency, <span class="arithmatex">\(\Delta T\)</span>, is the duration of the inference measured on the server and is independent of networking latency. We estimate the generation latency using the <a href="https://ml.energy/leaderboard/?__theme=light">ML.ENERGY Leaderboard</a> dataset with the previously mentioned filters applied.</p>
+<p>The generation latency, <span class="arithmatex">\(\Delta T\)</span>, is the duration of the inference measure on the server and is independent of networking latency. It is estimated based on real-world statistical metrics from <a href="https://openrouter.ai">OpenRouter</a> when available and falls back to an alternative approach using the <a href="https://ml.energy/leaderboard/?__theme=light">ML.ENERGY Leaderboard</a> benchmark, previously mentioned.</p>
+<p>It is decomposed into two phases: the <strong>pre-fill latency</strong> (or time-to-first-token) denoted as <span class="arithmatex">\(\text{TTFT}\)</span> and the <strong>decode latency</strong> (related to the throughput or tokens-per-second), denoted as <span class="arithmatex">\(\text{TPS}\)</span>, both of which can be collected for many different providers and models thanks to <a href="https://openrouter.ai">OpenRouter</a>.</p>
+<p>Using these values, we can estimate the generation latency for the entire request given the number of output tokens, <span class="arithmatex">\(\#T_{\text{out}}\)</span>. When possible, we also measure the request latency, <span class="arithmatex">\(\Delta T_{\text{request}}\)</span>, and use it as the maximum bound for the generation latency:</p>
+<div class="arithmatex">\[
+\Delta T(\#T_{\text{out}}) = \min \left\{ \text{TTFT} + \#T_{\text{out}} \times \text{TPS}, \Delta T_{\text{request}}\right\}.
+\]</div>
+<details class="info">
+<summary>Alternative approach using ML.ENERGY benchmark data (will be deprecated)</summary>
+<p>When OpenRouter data is not available for a specific model or provider we fall back on the method using benchmarking data (same as energy consumption for GPUs). </p>
 <p>To be consistent with observed behaviors while staying relatively simple we opted to fit a function of the form</p>
 <div class="arithmatex">\[ 
 f_L(P_{\text{active}}, B) = \alpha P_{\text{active}} + \beta B + \gamma, 
@@ -3279,15 +3287,15 @@ f_L(P_{\text{active}}, B) = \alpha P_{\text{active}} + \beta B + \gamma,
 <li><span class="arithmatex">\(\gamma = 1.94 \times 10^{-2}\)</span>, </li>
 </ul>
 <p>The result is illustrated below. </p>
-<figure>
+<p><figure markdown="span">
   <img alt="Figure: Latency per output token vs. number of active parameters " src="../../assets/methodology/llm/figure_latency.png" />
-<br />
-<figcaption>Figure: Latency (in s) per output token vs. number of active parameters (in billions). The points are the datapoints from the <a href="https://ml.energy/leaderboard/?__theme=light">ML.ENERGY Leaderboard</a>, and the lines are the result of our regression for fixed batch sizes (64, 128, 256)</figcaption>
-</figure>
+  <figcaption>Figure: Latency (in s) per output token vs. number of active parameters (in billions). The points are the datapoints from the <a href="https://ml.energy/leaderboard/?__theme=light">ML.ENERGY Leaderboard</a>, and the lines are the result of our regression for fixed batch sizes (64, 128, 256)</figcaption>
+</figure></p>
 <p>Using these values, we can estimate the generation latency for the entire request given the number of output tokens, <span class="arithmatex">\(\#T_{\text{out}}\)</span>, and the number of active parameters, <span class="arithmatex">\(P_{\text{active}}\)</span>. When possible, we also measure the request latency, <span class="arithmatex">\(\Delta T_{\text{request}}\)</span>, and use it as the maximum bound for the generation latency:</p>
 <div class="arithmatex">\[
 \Delta T(\#T_{\text{out}}, P_{\text{active}}, \Delta T_{\text{request}}) = \min \left\{ \#T_{\text{out}} \times f_L(P_{\text{active}}, 64), \Delta T_{\text{request}} \right\}.
 \]</div>
+</details>
 <h4 id="estimating-the-number-of-active-gpus">Estimating the number of active GPUs</h4>
 <p>To estimate the number of required GPUs, <span class="arithmatex">\(\text{GPU}\)</span>, to load the model in virtual memory, we divide the required memory to host the LLM for inference, noted <span class="arithmatex">\(M_{\text{model}}\)</span>, by the memory available on one GPU, noted <span class="arithmatex">\(M_{\text{GPU}}\)</span>.</p>
 <p>The required memory to host the LLM for inference is estimated based on the total number of parameters and the number of bits used for model weights related to quantization. We also apply a memory overhead of <span class="arithmatex">\(1.2\)</span> (see <a href="https://blog.eleuther.ai/transformer-math/#total-inference-memory">Transformers Math 101 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>):</p>
