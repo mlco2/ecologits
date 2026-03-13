@@ -8,7 +8,7 @@ from openai import AsyncAzureOpenAI, AsyncOpenAI, AzureOpenAI, OpenAI
 def test_openai_chat(tracer_init):
     client = OpenAI()
     response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="gpt-5-nano",
         messages=[{"role": "user", "content": "Hello World!"}]
     )
     assert len(response.choices) > 0
@@ -20,7 +20,7 @@ def test_openai_chat(tracer_init):
 async def test_openai_async_chat(tracer_init):
     client = AsyncOpenAI()
     response = await client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="gpt-5-nano",
         messages=[{"role": "user", "content": "Hello World!"}]
     )
     assert len(response.choices) > 0
@@ -31,7 +31,7 @@ async def test_openai_async_chat(tracer_init):
 def test_openai_stream_chat(tracer_init):
     client = OpenAI()
     stream = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="gpt-5-nano",
         messages=[{"role": "user", "content": "Hello World!"}],
         stream=True
     )
@@ -57,7 +57,7 @@ def test_openai_stream_chat_with_options(tracer_init):
 async def test_openai_async_stream_chat(tracer_init):
     client = AsyncOpenAI()
     stream = await client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="gpt-5-nano",
         messages=[{"role": "user", "content": "Hello World!"}],
         stream=True
     )
