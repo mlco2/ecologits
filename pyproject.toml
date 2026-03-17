@@ -46,12 +46,11 @@ dependencies = [
 [project.optional-dependencies]
 openai = ["openai>=1.66.0,<3.0.0"]
 mistralai = ["mistralai>=1.5.0,<2.0.0"]
-anthropic = ["anthropic>=0.45.2,<0.46.0"]
+anthropic = ["anthropic>=0.45.2,<1.0.0"]
 cohere = ["cohere>=5.13.12,<6.0.0"]
 huggingface-hub = [
-    "huggingface-hub>=0.28.1,<0.29.0",
+    "huggingface-hub>=0.28.1,<2.0.0",
     "tiktoken>=0.8.0,<0.10.0",
-    "aiohttp>=3.11.12,<4.0.0",
     "minijinja>=2.7.0,<3.0.0",
 ]
 google-genai = ["google-genai>=1.26.0,<2.0.0"]

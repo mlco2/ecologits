@@ -619,7 +619,6 @@ google-genai = [
     { name = "google-genai" },
 ]
 huggingface-hub = [
-    { name = "aiohttp" },
     { name = "huggingface-hub" },
     { name = "minijinja" },
     { name = "tiktoken" },
@@ -666,11 +665,10 @@ docs = [
 
 [package.metadata]
 requires-dist = [
-    { name = "aiohttp", marker = "extra == 'huggingface-hub'", specifier = ">=3.11.12,<4.0.0" },
-    { name = "anthropic", marker = "extra == 'anthropic'", specifier = ">=0.45.2,<0.46.0" },
+    { name = "anthropic", marker = "extra == 'anthropic'", specifier = ">=0.45.2,<1.0.0" },
     { name = "cohere", marker = "extra == 'cohere'", specifier = ">=5.13.12,<6.0.0" },
     { name = "google-genai", marker = "extra == 'google-genai'", specifier = ">=1.26.0,<2.0.0" },
-    { name = "huggingface-hub", marker = "extra == 'huggingface-hub'", specifier = ">=0.28.1,<0.29.0" },
+    { name = "huggingface-hub", marker = "extra == 'huggingface-hub'", specifier = ">=0.28.1,<2.0.0" },
     { name = "litellm", marker = "extra == 'litellm'", specifier = ">=1.60.6,<2.0.0" },
     { name = "minijinja", marker = "extra == 'huggingface-hub'", specifier = ">=2.7.0,<3.0.0" },
     { name = "mistralai", marker = "extra == 'mistralai'", specifier = ">=1.5.0,<2.0.0" },
