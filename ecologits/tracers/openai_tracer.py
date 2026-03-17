@@ -316,40 +316,32 @@ def openai_responses_wrapper_stream(  # type: ignore[misc]
 ) -> Stream[ResponseStreamEvent]:
     timer_start = time.perf_counter()
     stream = wrapped(*args, **kwargs)
-    model_name = kwargs["model"]
-    output_token_count = 0
     for event in stream:
-        if event.type == "response.output_text.delta":
-            output_token_count += 1
-        request_latency = time.perf_counter() - timer_start
         if event.type == "response.completed":
+            request_latency = time.perf_counter() - timer_start
             model_name = event.response.model
             output_token_count = event.response.usage.output_tokens
-        impacts = llm_impacts(
-            provider=PROVIDER,
-            model_name=model_name,
-            output_token_count=output_token_count,
-            request_latency=request_latency,
-            electricity_mix_zone=EcoLogits.config.electricity_mix_zone
-        )
-        if impacts is not None:
-            if EcoLogits.config.opentelemetry \
-                    and event.type == "response.completed":
-                EcoLogits.config.opentelemetry.record_request(
-                    input_tokens=event.response.usage.input_tokens,
-                    output_tokens=output_token_count,
-                    request_latency=request_latency,
-                    impacts=impacts,
-                    provider=PROVIDER,
-                    model=model_name,
-                    endpoint="/responses"
-                )
-            if event.type == "response.completed":
+            impacts = llm_impacts(
+                provider=PROVIDER,
+                model_name=model_name,
+                output_token_count=output_token_count,
+                request_latency=request_latency,
+                electricity_mix_zone=EcoLogits.config.electricity_mix_zone
+            )
+            if impacts is not None:
+                if EcoLogits.config.opentelemetry:
+                    EcoLogits.config.opentelemetry.record_request(
+                        input_tokens=event.response.usage.input_tokens,
+                        output_tokens=output_token_count,
+                        request_latency=request_latency,
+                        impacts=impacts,
+                        provider=PROVIDER,
+                        model=model_name,
+                        endpoint="/responses"
+                    )
                 event.response = Response(**event.response.model_dump(), impacts=impacts)
-            event.impacts = impacts
-            yield event
-        else:
-            yield event
+                event.impacts = impacts
+        yield event
 
 
 async def openai_async_responses_wrapper(
@@ -418,40 +410,32 @@ async def openai_async_responses_wrapper_stream(  # type: ignore[misc]
 ) -> AsyncStream[ResponseStreamEvent]:
     timer_start = time.perf_counter()
     stream = await wrapped(*args, **kwargs)
-    model_name = kwargs["model"]
-    output_token_count = 0
     async for event in stream:
-        if event.type == "response.output_text.delta":
-            output_token_count += 1
-        request_latency = time.perf_counter() - timer_start
         if event.type == "response.completed":
+            request_latency = time.perf_counter() - timer_start
             model_name = event.response.model
             output_token_count = event.response.usage.output_tokens
-        impacts = llm_impacts(
-            provider=PROVIDER,
-            model_name=model_name,
-            output_token_count=output_token_count,
-            request_latency=request_latency,
-            electricity_mix_zone=EcoLogits.config.electricity_mix_zone
-        )
-        if impacts is not None:
-            if EcoLogits.config.opentelemetry \
-                    and event.type == "response.completed":
-                EcoLogits.config.opentelemetry.record_request(
-                    input_tokens=event.response.usage.input_tokens,
-                    output_tokens=output_token_count,
-                    request_latency=request_latency,
-                    impacts=impacts,
-                    provider=PROVIDER,
-                    model=model_name,
-                    endpoint="/responses"
-                )
-            if event.type == "response.completed":
+            impacts = llm_impacts(
+                provider=PROVIDER,
+                model_name=model_name,
+                output_token_count=output_token_count,
+                request_latency=request_latency,
+                electricity_mix_zone=EcoLogits.config.electricity_mix_zone
+            )
+            if impacts is not None:
+                if EcoLogits.config.opentelemetry:
+                    EcoLogits.config.opentelemetry.record_request(
+                        input_tokens=event.response.usage.input_tokens,
+                        output_tokens=output_token_count,
+                        request_latency=request_latency,
+                        impacts=impacts,
+                        provider=PROVIDER,
+                        model=model_name,
+                        endpoint="/responses"
+                    )
                 event.response = Response(**event.response.model_dump(), impacts=impacts)
-            event.impacts = impacts
-            yield event
-        else:
-            yield event
+                event.impacts = impacts
+        yield event
 
 
 class OpenAIInstrumentor:

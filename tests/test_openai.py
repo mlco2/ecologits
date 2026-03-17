@@ -111,9 +111,11 @@ def test_openai_stream_responses(tracer_init):
         stream=True
     )
     for event in stream:
-        assert event.impacts.energy.value >= 0
         if event.type == "response.completed":
+            assert event.impacts.energy.value > 0
             assert event.response.impacts.energy.value > 0
+        else:
+            assert not hasattr(event, "impacts")
 
 
 @pytest.mark.vcr
@@ -126,9 +128,11 @@ async def test_openai_async_stream_responses(tracer_init):
         stream=True
     )
     async for event in stream:
-        assert event.impacts.energy.value >= 0
         if event.type == "response.completed":
+            assert event.impacts.energy.value > 0
             assert event.response.impacts.energy.value > 0
+        else:
+            assert not hasattr(event, "impacts")
 
 
 @pytest.mark.vcr
