@@ -237,13 +237,13 @@ The embodied environmental impacts of the cloud instance **(excluding GPUs)** ar
 
 #### GPU embodied impacts
 
-According to this [NVIDIA datasheet](https://images.nvidia.com/aem-dam/Solutions/documents/HGX-H100-PCF-Summary.pdf), a NVIDIA H100 80GB GPU has a GWP of 164 kgCO2eq. To approximate the ADPe and PE, we rely on the [Boavizta methodology for previous A100 GPUs](https://github.com/Boavizta/boaviztapi/issues/65#issuecomment-1604242196). These values will be used to estimate the embodied impacts of a single GPU, denoted as $I^{\text{e}}_{\text{GPU}}$.
+We use results from [Lees-Perasso et al. (2026)](https://librairie.ademe.fr/economie-circulaire-et-dechets/9103-analyse-de-cycle-de-vie-de-gpu-cartes-graphiques-pour-l-intelligence-artificielle.html) to estimate the embodied impacts of an NVIDIA H100 80GB GPU across multiple environmental criteria. These values will be used to estimate the embodied impacts of a single GPU, denoted as $I^{\text{e}}_{\text{GPU}}$.
 
-|                | NVIDIA H100 80GB | NVIDIA A100 80GB      |
-|----------------|------------------|-----------------------|
-| GWP (kgCO2eq)  | $164$            | _Not used_            |
-| ADPe (kgSbeq)  | _Not available_  | $5.09 \times 10^{-3}$ |
-| PE (MJ)        | _Not available_  | $1,828$               |
+|                | NVIDIA H100 80GB |
+|----------------|------------------|
+| GWP (kgCO2eq)  | $273$            |
+| ADPe (kgSbeq)  | $0.00895$        |
+| PE (MJ)        | $3721$           |
 
 #### Complete server embodied impacts
 
@@ -351,7 +351,7 @@ We aim at covering the largest scope possible when assessing the environmental i
 ## References
 
 - [ML.ENERGY Leaderboard](https://ml.energy/leaderboard/?__theme=light) to estimate GPU energy consumption and latency based on the model architecture and number of output tokens.
-- [BoaviztAPI](https://github.com/Boavizta/boaviztapi) to estimate server embodied impacts and base energy consumption.
+- [Lees-Perasso et al. (2026)](https://librairie.ademe.fr/economie-circulaire-et-dechets/9103-analyse-de-cycle-de-vie-de-gpu-cartes-graphiques-pour-l-intelligence-artificielle.html) and [BoaviztAPI](https://github.com/Boavizta/boaviztapi) to estimate GPU and server embodied impacts and base energy consumption.
 - [Our World in Data](https://ourworldindata.org/), [ADEME Base Empreinte®](https://base-empreinte.ademe.fr/) and [World Resource Institute](https://www.wri.org/) for electricity mix impacts per country.
 
 ## :material-bookshelf: Citation
