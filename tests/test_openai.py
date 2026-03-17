@@ -80,6 +80,58 @@ async def test_openai_async_stream_chat_with_options(tracer_init):
 
 
 @pytest.mark.vcr
+def test_openai_responses(tracer_init):
+    client = OpenAI()
+    response = client.responses.create(
+        model="gpt-5-nano",
+        input="Hello World!"
+    )
+    assert response.output is not None
+    assert response.impacts.energy.value > 0
+
+
+@pytest.mark.vcr
+@pytest.mark.asyncio
+async def test_openai_async_responses(tracer_init):
+    client = AsyncOpenAI()
+    response = await client.responses.create(
+        model="gpt-5-nano",
+        input="Hello World!"
+    )
+    assert response.output is not None
+    assert response.impacts.energy.value > 0
+
+
+@pytest.mark.vcr
+def test_openai_stream_responses(tracer_init):
+    client = OpenAI()
+    stream = client.responses.create(
+        model="gpt-5-nano",
+        input="Hello World!",
+        stream=True
+    )
+    for event in stream:
+        assert event.impacts.energy.value >= 0
+        if event.type == "response.completed":
+            assert event.response.impacts.energy.value > 0
+
+
+@pytest.mark.vcr
+@pytest.mark.asyncio
+async def test_openai_async_stream_responses(tracer_init):
+    client = AsyncOpenAI()
+    stream = await client.responses.create(
+        model="gpt-5-nano",
+        input="Hello World!",
+        stream=True
+    )
+    async for event in stream:
+        assert event.impacts.energy.value >= 0
+        if event.type == "response.completed":
+            assert event.response.impacts.energy.value > 0
+
+
+@pytest.mark.vcr
 def test_azure_openai_chat(tracer_init):
     client = AzureOpenAI(azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"))
     response = client.chat.completions.create(
