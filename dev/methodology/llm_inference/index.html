@@ -3370,30 +3370,26 @@ I^\text{u}_{\text{request}} = E_{\text{request}} \times F_{\text{em}}.
 </span></code></pre></div>
 </details>
 <h4 id="gpu-embodied-impacts">GPU embodied impacts</h4>
-<p>According to this <a href="https://images.nvidia.com/aem-dam/Solutions/documents/HGX-H100-PCF-Summary.pdf">NVIDIA datasheet</a>, a NVIDIA H100 80GB GPU has a <abbr title="Global Warming Potential">GWP</abbr> of 164 <abbr title="Kilograms of CO2 (carbon dioxide) equivalent">kgCO2eq</abbr>. To approximate the <abbr title="Abiotic Depletion Potential for Elements">ADPe</abbr> and <abbr title="Primary Energy">PE</abbr>, we rely on the <a href="https://github.com/Boavizta/boaviztapi/issues/65#issuecomment-1604242196">Boavizta methodology for previous A100 GPUs</a>. These values will be used to estimate the embodied impacts of a single GPU, denoted as <span class="arithmatex">\(I^{\text{e}}_{\text{GPU}}\)</span>.</p>
+<p>We use results from <a href="https://librairie.ademe.fr/economie-circulaire-et-dechets/9103-analyse-de-cycle-de-vie-de-gpu-cartes-graphiques-pour-l-intelligence-artificielle.html">Lees-Perasso et al. (2026)</a> to estimate the embodied impacts of an NVIDIA H100 80GB GPU across multiple environmental criteria. These values will be used to estimate the embodied impacts of a single GPU, denoted as <span class="arithmatex">\(I^{\text{e}}_{\text{GPU}}\)</span>.</p>
 <table>
 <thead>
 <tr>
 <th></th>
 <th>NVIDIA H100 80GB</th>
-<th>NVIDIA A100 80GB</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><abbr title="Global Warming Potential">GWP</abbr> (<abbr title="Kilograms of CO2 (carbon dioxide) equivalent">kgCO2eq</abbr>)</td>
-<td><span class="arithmatex">\(164\)</span></td>
-<td><em>Not used</em></td>
+<td><span class="arithmatex">\(273\)</span></td>
 </tr>
 <tr>
 <td><abbr title="Abiotic Depletion Potential for Elements">ADPe</abbr> (<abbr title="Kilograms of Sb (antimony) equivalent">kgSbeq</abbr>)</td>
-<td><em>Not available</em></td>
-<td><span class="arithmatex">\(5.09 \times 10^{-3}\)</span></td>
+<td><span class="arithmatex">\(0.00895\)</span></td>
 </tr>
 <tr>
 <td><abbr title="Primary Energy">PE</abbr> (MJ)</td>
-<td><em>Not available</em></td>
-<td><span class="arithmatex">\(1,828\)</span></td>
+<td><span class="arithmatex">\(3721\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -3528,7 +3524,7 @@ I^{\text{e}}_{\text{request}}=\frac{\Delta T}{B \times  \Delta L} \times I^{\tex
 <h2 id="references">References</h2>
 <ul>
 <li><a href="https://ml.energy/leaderboard/?__theme=light">ML.ENERGY Leaderboard</a> to estimate GPU energy consumption and latency based on the model architecture and number of output tokens.</li>
-<li><a href="https://github.com/Boavizta/boaviztapi">BoaviztAPI</a> to estimate server embodied impacts and base energy consumption.</li>
+<li><a href="https://librairie.ademe.fr/economie-circulaire-et-dechets/9103-analyse-de-cycle-de-vie-de-gpu-cartes-graphiques-pour-l-intelligence-artificielle.html">Lees-Perasso et al. (2026)</a> and <a href="https://github.com/Boavizta/boaviztapi">BoaviztAPI</a> to estimate GPU and server embodied impacts and base energy consumption.</li>
 <li><a href="https://ourworldindata.org/">Our World in Data</a>, <a href="https://base-empreinte.ademe.fr/">ADEME Base Empreinte®</a> and <a href="https://www.wri.org/">World Resource Institute</a> for electricity mix impacts per country.</li>
 </ul>
 <h2 id="citation"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg></span> Citation</h2>
