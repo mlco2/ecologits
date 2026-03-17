@@ -134,6 +134,113 @@ Integrating EcoLogits with your applications does not alter the standard outputs
     ```
 
 
+## Responses
+
+### Example
+
+The Responses API works the same way as Chat Completions. EcoLogits enriches the `Response` object with the `Impacts` object containing environmental impact data.
+
+=== "Sync"
+
+    ```python
+    from ecologits import EcoLogits
+    from openai import OpenAI
+
+    # Initialize EcoLogits
+    EcoLogits.init(providers=["openai"])
+
+    client = OpenAI(api_key="<OPENAI_API_KEY>")
+
+    response = client.responses.create(
+        model="gpt-4o-mini",
+        input="Tell me a funny joke!"
+    )
+
+    # Get estimated environmental impacts of the inference
+    print(response.impacts)
+    ```
+
+=== "Async"
+
+    ```python
+    import asyncio
+    from ecologits import EcoLogits
+    from openai import AsyncOpenAI
+
+    # Initialize EcoLogits
+    EcoLogits.init(providers=["openai"])
+
+    client = AsyncOpenAI(api_key="<OPENAI_API_KEY>")
+
+    async def main() -> None:
+        response = await client.responses.create(
+            model="gpt-4o-mini",
+            input="Tell me a funny joke!"
+        )
+
+        # Get estimated environmental impacts of the inference
+        print(response.impacts)
+
+
+    asyncio.run(main())
+    ```
+
+### Streaming example
+
+**In streaming mode, the impacts are only available on the final `response.completed` event.** Non-completed events are yielded as-is without impact data.
+
+=== "Sync"
+
+    ```python
+    from ecologits import EcoLogits
+    from openai import OpenAI
+
+    # Initialize EcoLogits
+    EcoLogits.init(providers=["openai"])
+
+    client = OpenAI(api_key="<OPENAI_API_KEY>")
+
+    stream = client.responses.create(
+        model="gpt-4o-mini",
+        input="Tell me a funny joke!",
+        stream=True
+    )
+
+    for event in stream:
+        if event.type == "response.completed":
+            # Get estimated environmental impacts of the inference
+            print(event.impacts)
+    ```
+
+=== "Async"
+
+    ```python
+    import asyncio
+    from ecologits import EcoLogits
+    from openai import AsyncOpenAI
+
+    # Initialize EcoLogits
+    EcoLogits.init(providers=["openai"])
+
+    client = AsyncOpenAI(api_key="<OPENAI_API_KEY>")
+
+    async def main() -> None:
+        stream = await client.responses.create(
+            model="gpt-4o-mini",
+            input="Tell me a funny joke!",
+            stream=True
+        )
+
+        async for event in stream:
+            if event.type == "response.completed":
+                # Get estimated environmental impacts of the inference
+                print(event.impacts)
+
+
+    asyncio.run(main())
+    ```
+
+
 ## Compatibility with Azure OpenAI
 
 EcoLogits is also compatible with [Azure OpenAI :octicons-link-external-16:](https://learn.microsoft.com/en-us/azure/ai-services/openai/).
