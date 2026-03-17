@@ -2459,6 +2459,60 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
+          <time datetime="2026-03-16 00:00:00+00:00">March 16, 2026</time></li>
+        
+          <li class="md-meta__item">
+            in
+            
+              <a href="../../category/methodology/" class="md-meta__link">Methodology</a></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              1 min read
+            
+          </li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="improvements-in-generation-latency-estimation"><a class="toclink" href="../../2026/03/16/latency-estimation-with-openrouter/">Improvements in generation latency estimation</a></h2>
+<p>We have made an improvement regarding how we estimate the <strong>generation latency</strong> (i.e. estimated duration of a request excluding network latency) for a request. Our <strong>new default estimation</strong> is based on <strong>time to first token</strong> and <strong>throughput</strong> metrics collected on <a href="https://openrouter.ai/">OpenRouter</a> for the supporter providers and models.</p>
+<p>The new generation latency calculation is now:</p>
+<div class="arithmatex">\[
+\text{generation latency} = \text{time to first token} + \text{throughput} \times \text{output tokens}
+\]</div>
+<p>With:</p>
+<ul>
+<li>Time-to-first-token (<abbr title="Time to First Token">TTFT</abbr>) represents the average duration in seconds of the pre-fill phase for an LLM.</li>
+<li>Throughput (<abbr title="Tokens per Second">TPS</abbr>) represents the average number of output tokens generated per second, it helps estimate the duration of the decode phase for an LLM.</li>
+</ul>
+<p>These two metrics are being collected from <a href="https://openrouter.ai/">OpenRouter</a>, a service that centralizes the access to many AI providers with a single API key. Since the service is widely adopted (<strong>over 30 trillion tokens per month</strong>) the average data should be representative of real-world conditions.</p>
+<p>This work extends what was <a href="../../2025/11/13/major-methodology-update-2025/#other-minor-changes">previously done</a> to patch the energy and impacts overestimations we had in <a href="https://huggingface.co/spaces/genai-impact/ecologits-calculator">EcoLogits Calculator</a> compared to the Python library. Having this new estimation method in our core methodology makes it more reliable and reusable in all projects that depend on EcoLogits.</p>
+<p>It is important to note that the <strong>old method</strong> to estimate generation latency using the <a href="https://ml.energy/leaderboard/?__theme=light">ML.ENERGY Leaderboard</a> is <strong>still being used when <abbr title="Time to First Token">TTFT</abbr> and <abbr title="Tokens per Second">TPS</abbr> values are not available</strong> on OpenRouter. This is the case for the Hugging Face inference provider that we support.</p>
+    
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+      <nav class="md-post__authors md-typeset">
+        
+          <span class="md-author">
+            <img src="https://avatars.githubusercontent.com/u/35747570" alt="Samuel Rincé">
+          </span>
+        
+      </nav>
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
           <time datetime="2026-01-22 00:00:00+00:00">January 22, 2026</time></li>
         
           <li class="md-meta__item">
