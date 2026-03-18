@@ -11,6 +11,7 @@ hide:
   ![EcoLogits](assets/logo_dark.png#only-dark){ width="500" }
   <figcaption>
     <p class="hero-logo__tagline">Estimate and track the environmental footprint of GenAI models at inference.</p>
+    <p class="hero-logo__team">Made with 💚 by <a href="https://codecarbon.io/">CodeCarbon</a> non-profit.</p>
   </figcaption>
 </figure>
 
