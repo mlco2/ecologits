@@ -1,0 +1,303 @@
+/*:root {*/
+/*  --md-primary-fg-color: #0b3b36;*/
+/*  !*--md-primary-fg-color: #0b3b36;*!*/
+/*  !*--md-primary-fg-color--light: #ff0000;*!*/
+/*  !*--md-primary-fg-color--dark: #ffea00;*!*/
+/*  --md-primary-bg-color--light: #0b3b36*/
+/*}*/
+
+/*
+Dark green: 0b3b36
+Light green: 00bf63
+*/
+
+
+[data-md-color-scheme="ecologits"] {
+  --md-primary-fg-color: #0b3b36;
+  --md-typeset-a-color: #00914b;
+  --md-accent-fg-color: #00bf63;
+  --md-primary-fg-color--dark: #062522;
+}
+
+[data-md-color-scheme="ecologits"] img[src$="#only-dark"],
+[data-md-color-scheme="ecologits"] img[src$="#gh-dark-mode-only"] {
+  display: none; /* Hide dark images in light mode */
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #0b3b36;
+  --md-hue: 200;
+  --md-default-fg-color: hsla(var(--md-hue), 15%, 95%, 1);
+  --md-typeset-a-color: #00bf63 !important;
+  --md-accent-fg-color: #008343;
+  --md-primary-fg-color--dark: #062522;
+}
+
+
+/* Home page */
+
+.hero-logo br {
+  display: none !important;
+}
+
+.hero-logo figcaption {
+  color: var(--md-typeset-color) !important;
+  font-style: normal !important;
+  max-width: 480px !important;
+}
+
+.hero-logo__tagline {
+  font-size: 1rem !important;
+}
+
+.hero-logo__team {
+  font-size: 0.875rem !important;
+}
+
+.project-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  /*margin-top: 6rem;*/
+  /*margin-bottom: 4rem;*/
+  max-width: 1000px;
+}
+
+.project-card {
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.project-card.calculator {
+  grid-row: span 2;
+}
+
+.project-card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.project-card-header svg {
+  margin-right: 5px;
+  fill: var(--md-typeset-color);
+}
+
+.project-card-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--md-typeset-color);
+}
+
+.project-card p {
+  margin: 0.2rem 0;
+}
+
+.project-card .card-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.project-card img {
+  margin: 0 auto;
+  border-radius: 6px;
+  max-width: 100%;
+}
+
+.code-snippet-container {
+  position: relative;
+  /*margin-top: auto;*/
+  /*margin: 0;*/
+}
+
+.project-card .code-snippet {
+  background-color: #f4f4f4;
+  border-radius: 6px;
+  padding: 0.5rem 2.5rem 0.5rem 0.5rem;
+  font-family: monospace;
+  word-break: break-all;
+  text-align: left;
+  font-size: 0.8rem;
+}
+
+.copy-button {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.copy-button:hover {
+  opacity: 1;
+}
+
+.mdx-content {
+  width: 100%;
+  max-width: 1000px;
+}
+
+@media screen and (max-width: 768px) {
+  .mdx-hero__content .subtitle {
+      font-size: 0.8rem;
+      max-width: 70%;
+      font-weight: 700;
+  }
+
+  .project-cards {
+      grid-template-columns: 1fr;
+  }
+
+  .project-card.calculator {
+      grid-row: auto;
+  }
+}
+
+[data-md-color-scheme="slate"] {
+  .project-card {
+      border-color: #484848;
+  }
+
+  .project-card .code-snippet {
+      background-color: #293034;
+  }
+}
+
+@keyframes heart {
+  0%, 40%, 80%, 100% {
+    transform: scale(1);
+  }
+  20%, 60% {
+    transform: scale(1.15);
+  }
+}
+.heart {
+  animation: heart 1000ms infinite;
+}
+
+
+/* Contributors grid */
+
+.contributors-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.contributor-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.contributor-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.contributor-card .contributor-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.contributor-card .contributor-name {
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.contributor-card .contributor-role {
+  font-size: 0.75rem;
+  color: var(--md-default-fg-color--light);
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .contributors-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .grid.cards .row {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+
+/* Get started page */
+
+.provider-item {
+  display: inline-block;
+  margin: 4px 4px;
+  border-radius: 5px;
+}
+
+.provider-item:hover {
+  background: #0000000c;
+}
+
+[data-md-color-scheme="slate"] {
+  .provider-item:hover {
+    background: #0000005f;
+  }
+}
+
+.provider-item label {
+  padding: 1px 4px 1px 0;
+  /*padding-right: 4px;*/
+}
+
+.provider-item input {
+  accent-color: var(--md-accent-fg-color);
+}
+
+
+/* External link icon for nav items */
+
+.md-tabs__link[href^="http"],
+.md-nav__link[href^="http"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.md-tabs__link[href^="http"]::after,
+.md-nav__link[href^="http"]::after {
+  content: "";
+  display: block;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  background: currentColor;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1'/%3E%3C/svg%3E");
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
