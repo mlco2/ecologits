@@ -41,8 +41,8 @@ def google_genai_content_wrapper(
     response = wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
     model_name = kwargs["model"]
-    input_tokens = response.usage_metadata.candidates_token_count
-    output_tokens = response.usage_metadata.total_token_count - input_tokens
+    output_tokens = response.usage_metadata.candidates_token_count
+    input_tokens = response.usage_metadata.prompt_token_count
     impacts = llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
@@ -94,8 +94,8 @@ def google_genai_content_stream_wrapper(
         else:
             request_latency = time.perf_counter() - timer_start
             model_name = kwargs["model"]
-            input_tokens = chunk.usage_metadata.candidates_token_count
-            output_tokens = chunk.usage_metadata.total_token_count - input_tokens
+            output_tokens = chunk.usage_metadata.candidates_token_count
+            input_tokens = chunk.usage_metadata.prompt_token_count
             impacts = llm_impacts(
                 provider=PROVIDER,
                 model_name=model_name,
@@ -142,8 +142,8 @@ async def google_genai_async_content_wrapper(
     response = await wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
     model_name = kwargs["model"]
-    input_tokens = response.usage_metadata.candidates_token_count
-    output_tokens = response.usage_metadata.total_token_count - input_tokens
+    output_tokens = response.usage_metadata.candidates_token_count
+    input_tokens = response.usage_metadata.prompt_token_count
     impacts = llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
@@ -179,8 +179,8 @@ async def _generator(
 
         else:
             request_latency = time.perf_counter() - timer_start
-            input_tokens = chunk.usage_metadata.candidates_token_count
-            output_tokens = chunk.usage_metadata.total_token_count - input_tokens
+            output_tokens = chunk.usage_metadata.candidates_token_count
+            input_tokens = chunk.usage_metadata.prompt_token_count
             impacts = llm_impacts(
                 provider=PROVIDER,
                 model_name=model_name,
