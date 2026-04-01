@@ -42,7 +42,10 @@ def google_genai_content_wrapper(
     request_latency = time.perf_counter() - timer_start
     model_name = kwargs["model"]
     input_tokens = response.usage_metadata.prompt_token_count
-    output_tokens = response.usage_metadata.candidates_token_count + (response.usage_metadata.thoughts_token_count or 0)
+    output_tokens = (
+        response.usage_metadata.candidates_token_count
+        + (response.usage_metadata.thoughts_token_count or 0)
+    )
     impacts = llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
@@ -95,7 +98,10 @@ def google_genai_content_stream_wrapper(
             request_latency = time.perf_counter() - timer_start
             model_name = kwargs["model"]
             input_tokens = chunk.usage_metadata.prompt_token_count
-            output_tokens = chunk.usage_metadata.candidates_token_count + (chunk.usage_metadata.thoughts_token_count or 0)
+            output_tokens = (
+                chunk.usage_metadata.candidates_token_count
+                + (chunk.usage_metadata.thoughts_token_count or 0)
+            )
             impacts = llm_impacts(
                 provider=PROVIDER,
                 model_name=model_name,
@@ -143,7 +149,10 @@ async def google_genai_async_content_wrapper(
     request_latency = time.perf_counter() - timer_start
     model_name = kwargs["model"]
     input_tokens = response.usage_metadata.prompt_token_count
-    output_tokens = response.usage_metadata.candidates_token_count + (response.usage_metadata.thoughts_token_count or 0)
+    output_tokens = (
+        response.usage_metadata.candidates_token_count
+        + (response.usage_metadata.thoughts_token_count or 0)
+    )
     impacts = llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
@@ -180,7 +189,10 @@ async def _generator(
         else:
             request_latency = time.perf_counter() - timer_start
             input_tokens = chunk.usage_metadata.prompt_token_count
-            output_tokens = chunk.usage_metadata.candidates_token_count + (chunk.usage_metadata.thoughts_token_count or 0)
+            output_tokens = (
+                chunk.usage_metadata.candidates_token_count
+                + (chunk.usage_metadata.thoughts_token_count or 0)
+            )
             impacts = llm_impacts(
                 provider=PROVIDER,
                 model_name=model_name,
