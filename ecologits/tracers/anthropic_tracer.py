@@ -127,12 +127,13 @@ class MessageStreamManager(Generic[MessageStreamT]):
     Re-writing of Anthropic's `MessageStreamManager` with wrapped `MessageStream`
     """
 
-    def __init__(self, api_request: Callable[[], MessageStream]) -> None:
+    def __init__(self, api_request: Callable[[], Any], output_format: Any) -> None:
         self.__api_request = api_request
+        self.__output_format = output_format
 
     def __enter__(self) -> MessageStream:
-        self.__stream = self.__api_request()
-        self.__stream = MessageStream(self.__stream)
+        raw_stream = self.__api_request()
+        self.__stream = MessageStream(raw_stream, output_format=self.__output_format)
         return self.__stream
 
     def __exit__(
@@ -149,12 +150,13 @@ class AsyncMessageStreamManager(Generic[AsyncMessageStreamT]):
     """
     Re-writing of Anthropic's `AsyncMessageStreamManager` with wrapped `AsyncMessageStream`
     """
-    def __init__(self, api_request: Awaitable[AsyncMessageStream]) -> None:
+    def __init__(self, api_request: Awaitable[Any], output_format: Any) -> None:
         self.__api_request = api_request
+        self.__output_format = output_format
 
     async def __aenter__(self) -> AsyncMessageStream:
-        self.__stream = await self.__api_request
-        self.__stream = AsyncMessageStream(self.__stream)
+        raw_stream = await self.__api_request
+        self.__stream = AsyncMessageStream(raw_stream, output_format=self.__output_format)
         return self.__stream
 
     async def __aexit__(
@@ -271,7 +273,10 @@ def anthropic_stream_chat_wrapper(
         A wrapped `MessageStreamManager` with impacts
     """
     response = wrapped(*args, **kwargs)
-    return MessageStreamManager(response._MessageStreamManager__api_request)    # noqa: SLF001
+    return MessageStreamManager(  # noqa: SLF001
+        response._MessageStreamManager__api_request,
+        response._MessageStreamManager__output_format,
+    )
 
 
 def anthropic_async_stream_chat_wrapper(
@@ -290,7 +295,10 @@ def anthropic_async_stream_chat_wrapper(
         A wrapped `AsyncMessageStreamManager` with impacts
     """
     response = wrapped(*args, **kwargs)
-    return AsyncMessageStreamManager(response._AsyncMessageStreamManager__api_request)  # noqa: SLF001
+    return AsyncMessageStreamManager(  # noqa: SLF001
+        response._AsyncMessageStreamManager__api_request,
+        response._AsyncMessageStreamManager__output_format,
+    )
 
 
 class AnthropicInstrumentor:
