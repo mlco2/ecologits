@@ -84,6 +84,9 @@ def huggingface_chat_wrapper_non_stream(
     output_tokens = response.usage["completion_tokens"]
     input_tokens = response.usage["prompt_tokens"]
     model_name = _resolve_model_name(response.model, kwargs.get("model"), instance.model)
+    if model_name is None:
+        return response
+
     impacts = llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
@@ -122,9 +125,13 @@ def huggingface_chat_wrapper_stream(
     stream = wrapped(*args, **kwargs)
     output_tokens = 0
     for chunk in stream:
-        output_tokens += 1 # noqa: SIM113
+        output_tokens += 1
         request_latency = time.perf_counter() - timer_start
         model_name = _resolve_model_name(getattr(chunk, "model", None), default_model_name)
+        if model_name is None:
+            yield chunk
+            continue
+
         impacts = llm_impacts(
             provider=PROVIDER,
             model_name=model_name,
@@ -187,6 +194,9 @@ async def huggingface_async_chat_wrapper_non_stream(
     output_tokens = response.usage["completion_tokens"]
     input_tokens = response.usage["prompt_tokens"]
     model_name = _resolve_model_name(response.model, kwargs.get("model"), instance.model)
+    if model_name is None:
+        return response
+
     impacts = llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
@@ -228,6 +238,10 @@ async def huggingface_async_chat_wrapper_stream(
         output_tokens += 1
         request_latency = time.perf_counter() - timer_start
         model_name = _resolve_model_name(getattr(chunk, "model", None), default_model_name)
+        if model_name is None:
+            yield chunk
+            continue
+
         impacts = llm_impacts(
             provider=PROVIDER,
             model_name=model_name,
