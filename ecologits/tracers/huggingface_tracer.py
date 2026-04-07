@@ -13,6 +13,10 @@ from ecologits._ecologits import EcoLogits
 from ecologits.tracers.utils import ImpactsOutput, llm_impacts
 
 PROVIDER = "huggingface_hub"
+HF_INFERENCE_URL_PREFIXES = (
+    "https://api-inference.huggingface.co/models/",
+    "https://router.huggingface.co/hf-inference/models/",
+)
 
 
 @dataclass
@@ -29,6 +33,18 @@ class ChatCompletionStreamOutput(_ChatCompletionStreamOutput):
     Wrapper of `huggingface_hub.ChatCompletionStreamOutput` with `ImpactsOutput`
     """
     impacts: Optional[ImpactsOutput] = None
+
+
+def _resolve_model_name(*values: Optional[str]) -> Optional[str]:
+    for value in values:
+        if value is None:
+            continue
+        for prefix in HF_INFERENCE_URL_PREFIXES:
+            if value.startswith(prefix):
+                return value.removeprefix(prefix).removesuffix("/v1/chat/completions")
+        return value
+
+    return None
 
 
 def huggingface_chat_wrapper(
@@ -67,7 +83,7 @@ def huggingface_chat_wrapper_non_stream(
     request_latency = time.perf_counter() - timer_start
     output_tokens = response.usage["completion_tokens"]
     input_tokens = response.usage["prompt_tokens"]
-    model_name = instance.model or kwargs.get("model")
+    model_name = _resolve_model_name(response.model, kwargs.get("model"), instance.model)
     impacts = llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
@@ -101,13 +117,14 @@ def huggingface_chat_wrapper_stream(
     encoder = tiktoken.get_encoding("cl100k_base")
     prompt_text = "".join([m["content"] for m in kwargs["messages"]])
     input_tokens = len(encoder.encode(prompt_text))
-    model_name = instance.model or kwargs.get("model")
+    default_model_name = _resolve_model_name(kwargs.get("model"), instance.model)
     timer_start = time.perf_counter()
     stream = wrapped(*args, **kwargs)
     output_tokens = 0
     for chunk in stream:
         output_tokens += 1 # noqa: SIM113
         request_latency = time.perf_counter() - timer_start
+        model_name = _resolve_model_name(getattr(chunk, "model", None), default_model_name)
         impacts = llm_impacts(
             provider=PROVIDER,
             model_name=model_name,
@@ -169,7 +186,7 @@ async def huggingface_async_chat_wrapper_non_stream(
     request_latency = time.perf_counter() - timer_start
     output_tokens = response.usage["completion_tokens"]
     input_tokens = response.usage["prompt_tokens"]
-    model_name = instance.model or kwargs.get("model")
+    model_name = _resolve_model_name(response.model, kwargs.get("model"), instance.model)
     impacts = llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
@@ -203,13 +220,14 @@ async def huggingface_async_chat_wrapper_stream(
     encoder = tiktoken.get_encoding("cl100k_base")
     prompt_text = "".join([m["content"] for m in kwargs["messages"]])
     input_tokens = len(encoder.encode(prompt_text))
-    model_name = instance.model or kwargs.get("model")
+    default_model_name = _resolve_model_name(kwargs.get("model"), instance.model)
     timer_start = time.perf_counter()
     stream = await wrapped(*args, **kwargs)
     output_tokens = 0
     async for chunk in stream:
         output_tokens += 1
         request_latency = time.perf_counter() - timer_start
+        model_name = _resolve_model_name(getattr(chunk, "model", None), default_model_name)
         impacts = llm_impacts(
             provider=PROVIDER,
             model_name=model_name,
