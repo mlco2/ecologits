@@ -273,10 +273,9 @@ def anthropic_stream_chat_wrapper(
         A wrapped `MessageStreamManager` with impacts
     """
     response = wrapped(*args, **kwargs)
-    return MessageStreamManager(  # noqa: SLF001
-        response._MessageStreamManager__api_request,
-        response._MessageStreamManager__output_format,
-    )
+    api_request = response._MessageStreamManager__api_request  # noqa: SLF001
+    output_format = response._MessageStreamManager__output_format  # noqa: SLF001
+    return MessageStreamManager(api_request, output_format)
 
 
 def anthropic_async_stream_chat_wrapper(
@@ -295,10 +294,9 @@ def anthropic_async_stream_chat_wrapper(
         A wrapped `AsyncMessageStreamManager` with impacts
     """
     response = wrapped(*args, **kwargs)
-    return AsyncMessageStreamManager(  # noqa: SLF001
-        response._AsyncMessageStreamManager__api_request,
-        response._AsyncMessageStreamManager__output_format,
-    )
+    api_request = response._AsyncMessageStreamManager__api_request  # noqa: SLF001
+    output_format = response._AsyncMessageStreamManager__output_format  # noqa: SLF001
+    return AsyncMessageStreamManager(api_request, output_format)
 
 
 class AnthropicInstrumentor:
