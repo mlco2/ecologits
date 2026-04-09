@@ -33,6 +33,7 @@ nav:
   - 'Blog':
       - blog/index.md
   - 'EcoLogits Calculator': 'https://huggingface.co/spaces/genai-impact/ecologits-calculator'
+  - 'EcoLogits API': 'https://api.ecologits.ai/docs'
 
 theme:
   name: material

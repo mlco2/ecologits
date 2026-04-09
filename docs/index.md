@@ -65,9 +65,15 @@ hide:
             <h3>EcoLogits API</h3>
         </div>
         <div class="card-content">
-            <p>An <b>API service</b> enabling integrations of our impact assessment methodology into your applications.</p>
+            <p>An <b>API service</b> enabling integrations of our impact assessment methodology into your applications.<br><a href="https://api.ecologits.ai/docs" target="_blank">Learn more <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"></path></svg></span></a></p>
             <div class="code-snippet-container">
-                <div class="code-snippet">coming soon</div>
+                <div class="code-snippet">curl https://api.ecologits.ai/v1beta</div>
+                <button class="copy-button" onclick="copyToClipboard(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                </button>
             </div>
         </div>
     </div>
