@@ -12,6 +12,18 @@ from ecologits.estimations import (
 class ImpactsOutput(LLMEstimationResult):
     """
     Environmental impacts of an LLM generation request.
+
+    Attributes:
+        energy: Total energy consumption.
+        gwp: Total Global Warming Potential (GWP) impact.
+        adpe: Total Abiotic Depletion Potential for Elements (ADPe) impact.
+        pe: Total Primary Energy (PE) impact.
+        wcf: Usage-only Water Consumption Footprint (WCF) impact.
+        usage: Impacts for the usage phase.
+        embodied: Impacts for the embodied phase.
+        warnings: List of warnings.
+        errors: List of errors.
+        details: Intermediate estimation values.
     """
 
     def __eq__(self, other: Any) -> bool:

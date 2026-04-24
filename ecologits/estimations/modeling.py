@@ -86,18 +86,42 @@ class LLMEstimationResult(BaseModel):
 
     @property
     def has_warnings(self) -> bool:
+        """
+        Check whether the estimation result contains warnings.
+
+        Returns:
+            Whether warnings are present.
+        """
         return isinstance(self.warnings, list) and len(self.warnings) > 0
 
     @property
     def has_errors(self) -> bool:
+        """
+        Check whether the estimation result contains errors.
+
+        Returns:
+            Whether errors are present.
+        """
         return isinstance(self.errors, list) and len(self.errors) > 0
 
     def add_warning(self, warning: WarningMessage) -> None:
+        """
+        Add a warning to the estimation result.
+
+        Args:
+            warning: Warning to add.
+        """
         if self.warnings is None:
             self.warnings = []
         self.warnings.append(warning)
 
     def add_errors(self, error: ErrorMessage) -> None:
+        """
+        Add an error to the estimation result.
+
+        Args:
+            error: Error to add.
+        """
         if self.errors is None:
             self.errors = []
         self.errors.append(error)
