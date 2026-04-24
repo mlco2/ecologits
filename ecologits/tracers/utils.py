@@ -1,12 +1,23 @@
 from __future__ import annotations
 
+from typing import Any
+
 from ecologits.estimations import (
     PROVIDER_CONFIG_MAP,
     LLMEstimationResult,
     estimate_llm_impacts,
 )
 
-ImpactsOutput = LLMEstimationResult
+
+class ImpactsOutput(LLMEstimationResult):
+    """
+    Environmental impacts of an LLM generation request.
+    """
+
+    def __eq__(self, other: Any) -> bool:
+        if isinstance(other, LLMEstimationResult):
+            return self.model_dump() == other.model_dump()
+        return super().__eq__(other)
 
 __all__ = [
     "PROVIDER_CONFIG_MAP",
@@ -35,10 +46,14 @@ def llm_impacts(
     Returns:
         The impacts of an LLM generation request.
     """
-    return estimate_llm_impacts(
+    estimation = estimate_llm_impacts(
         provider=provider,
         model_name=model_name,
         output_token_count=output_token_count,
         request_latency=request_latency,
         electricity_mix_zone=electricity_mix_zone,
+    )
+    return ImpactsOutput.model_construct(
+        _fields_set=estimation.model_fields_set,
+        **estimation.__dict__,
     )

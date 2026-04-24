@@ -5,7 +5,7 @@ from ecologits.status_messages import (
     ModelNotRegisteredError,
     ZoneNotRegisteredError,
 )
-from ecologits.tracers.utils import llm_impacts
+from ecologits.tracers.utils import ImpactsOutput, llm_impacts
 
 
 def test_estimate_llm_impacts() -> None:
@@ -114,4 +114,5 @@ def test_llm_impacts_wrapper_matches_estimation() -> None:
         request_latency=10,
     )
 
+    assert isinstance(tracer_impacts, ImpactsOutput)
     assert tracer_impacts == estimation
