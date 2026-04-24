@@ -14,6 +14,7 @@ nav:
   - 'Tutorial':
       - 'Introduction': tutorial/index.md
       - 'Environmental Impacts': tutorial/impacts.md
+      - 'Manual Estimations': tutorial/estimations.md
       - 'Warnings and Errors': tutorial/warnings_and_errors.md
       - 'Supported providers': tutorial/providers.md
       - 'OpenTelemetry': tutorial/opentelemetry.md
