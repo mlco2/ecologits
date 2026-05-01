@@ -1,0 +1,283 @@
+{
+    "hardware_configurations": {
+        "dgx_h100": {
+            "server_power": {
+                "p2_5": null,
+                "mean": null,
+                "p97_5": null
+            },
+            "server_embodied": {
+                "gwp": 6000,
+                "adpe": 0.42,
+                "pe": 8000
+            },
+            "gpu_embodied": {
+                "gwp": 273,
+                "adpe": 0.00895,
+                "pe": 3721
+            }
+        },
+        "dgx_h800": {
+            "server_power": {
+                "p2_5": 4894.93,
+                "mean": 5438.48,
+                "p97_5": 5974.24
+            },
+            "server_embodied": {
+                "gwp": 6000,
+                "adpe": 0.42,
+                "pe": 8000
+            },
+            "gpu_embodied": {
+                "gwp": 273,
+                "adpe": 0.00895,
+                "pe": 3721
+            }
+        },
+        "dgx_h200": {
+            "server_power": {
+                "p2_5": 4992.03,
+                "mean": 6646.63,
+                "p97_5": 8487.31
+            },
+            "server_embodied": {
+                "gwp": 6000,
+                "adpe": 0.42,
+                "pe": 8000
+            },
+            "gpu_embodied": {
+                "gwp": 364,
+                "adpe": 0.00895,
+                "pe": 4906
+            }
+        },
+        "tpu_v6e": {
+            "server_power": {
+                "p2_5": 1074.08,
+                "mean": 1672.99,
+                "p97_5": 2352.81
+            },
+            "server_embodied": {
+                "gwp": null,
+                "adpe": null,
+                "pe": null
+            },
+            "gpu_embodied": {
+                "gwp": null,
+                "adpe": null,
+                "pe": null
+            }
+        }
+    },
+    "models": [
+        {
+            "model_name": "klingai/kling-v1.6",
+            "regression_parameters": {
+                "n": 0,
+                "m": 1.52e-03,
+                "m1": 0,
+                "m2": 0,
+                "n1": 0,
+                "n2": 0,
+                "g": 0,
+                "non_audio_weight": 1.0
+            },
+            "capabilities": {
+                "resolutions": [[1280, 720]],
+                "frames_count": [121, 241],
+                "audio_generation": false
+            },
+            "hardware": "dgx_h800"
+        },
+        {
+            "model_name": "klingai/kling-v2.6",
+            "regression_parameters": {
+                "n": 0,
+                "m": 6.81e-04,
+                "m1": 0,
+                "m2": 0,
+                "n1": 0,
+                "n2": 0,
+                "g": 0,
+                "non_audio_weight": 0.5
+            },
+            "capabilities": {
+                "resolutions": [[1280, 720]],
+                "frames_count": [121, 241],
+                "audio_generation": true
+            },
+            "hardware": "dgx_h800"
+        },
+        {
+            "model_name": "klingai/kling-v3",
+            "regression_parameters": {
+                "n": 0,
+                "m": 7.56e-04,
+                "m1": 0,
+                "m2": 0,
+                "n1": 0,
+                "n2": 0,
+                "g": 0,
+                "non_audio_weight": 0.667
+            },
+            "capabilities": {
+                "resolutions": [[1280, 720]],
+                "frames_count": [97, 145, 193],
+                "audio_generation": true
+            },
+            "hardware": "dgx_h800"
+        },
+        {
+            "model_name": "bytedance/seedance-1.0",
+            "regression_parameters": {
+                "n": 0,
+                "m": 1.02e-04,
+                "m1": 0,
+                "m2": 0,
+                "n1": 3.84e-04,
+                "n2": 0,
+                "g": 2.05e+01,
+                "non_audio_weight": 1.0
+            },
+            "capabilities": {
+                "resolutions": [[854, 480], [1280, 720]],
+                "frames_count": [121, 193, 241],
+                "audio_generation": false
+            },
+            "hardware": "dgx_h800"
+        },
+        {
+            "model_name": "bytedance/seedance-1.5-pro",
+            "regression_parameters": {
+                "n": 0,
+                "m": 0,
+                "m1": 0,
+                "m2": 7.20e-12,
+                "n1": 1.10e-03,
+                "n2": 0,
+                "g": 2.06e+01,
+                "non_audio_weight": 0.5
+            },
+            "capabilities": {
+                "resolutions": [[1280, 720], [1920, 1080]],
+                "frames_count": [121, 193, 241],
+                "audio_generation": true
+            },
+            "hardware": "dgx_h800"
+        },
+        {
+            "model_name": "runway/gen-4.5",
+            "regression_parameters": {
+                "n": 0,
+                "m": 8.24e-04,
+                "m1": 0,
+                "m2": 0,
+                "n1": 0,
+                "n2": 8.80e-10,
+                "g": 0,
+                "non_audio_weight": 1.0
+            },
+            "capabilities": {
+                "resolutions": [[1280, 720]],
+                "frames_count": [121, 193, 241],
+                "audio_generation": false
+            },
+            "hardware": "dgx_h200"
+        },
+        {
+            "model_name": "openai/sora-2-pro",
+            "regression_parameters": {
+                "n": 0,
+                "m": 4.27e-04,
+                "m1": 6.63e-01,
+                "m2": 0,
+                "n1": 0,
+                "n2": 7.39e-10,
+                "g": 0,
+                "non_audio_weight": 1.0
+            },
+            "capabilities": {
+                "resolutions": [[1280, 720], [1920, 1080]],
+                "frames_count": [97, 193, 289],
+                "audio_generation": true
+            },
+            "hardware": "dgx_h200"
+        },
+        {
+            "model_name": "google/veo-3.0",
+            "regression_parameters": {
+                "n": 3.31e-14,
+                "m": 1.53e-04,
+                "m1": 0,
+                "m2": 0,
+                "n1": 0,
+                "n2": 0,
+                "g": 3.39e+01,
+                "non_audio_weight": 0.5
+            },
+            "capabilities": {
+                "resolutions": [[1280, 720], [1920, 1080]],
+                "frames_count": [121, 193, 241],
+                "audio_generation": true
+            },
+            "hardware": "tpu_v6e"
+        },
+        {
+            "model_name": "google/veo-3.0-fast",
+            "regression_parameters": {
+                "n": 3.18e-14,
+                "m": 1.39e-04,
+                "m1": 0,
+                "m2": 0,
+                "n1": 0,
+                "n2": 0,
+                "g": 2.96e+01,
+                "non_audio_weight": 0.667
+            },
+            "capabilities": {
+                "resolutions": [[1280, 720], [1920, 1080]],
+                "frames_count": [97, 145, 193],
+                "audio_generation": true
+            },
+            "hardware": "tpu_v6e"
+        },
+        {
+            "model_name": "google/veo-3.1",
+            "regression_parameters": {
+                "n": 0,
+                "m": 3.41e-04,
+                "m1": 0,
+                "m2": 0,
+                "n1": 0,
+                "n2": 0,
+                "g": 2.44e+01,
+                "non_audio_weight": 0.5
+            },
+            "capabilities": {
+                "resolutions": [[1280, 720], [1920, 1080]],
+                "frames_count": [97, 145, 193],
+                "audio_generation": true
+            },
+            "hardware": "tpu_v6e"
+        },
+        {
+            "model_name": "google/veo-3.1-fast",
+            "regression_parameters": {
+                "n": 9.60e-14,
+                "m": 3.22e-05,
+                "m1": 0,
+                "m2": 0,
+                "n1": 0,
+                "n2": 0,
+                "g": 3.85e+01,
+                "non_audio_weight": 0.667
+            },
+            "capabilities": {
+                "resolutions": [[1280, 720], [1920, 1080]],
+                "frames_count": [97, 145, 193],
+                "audio_generation": true
+            },
+            "hardware": "tpu_v6e"
+        }
+    ]
+}
