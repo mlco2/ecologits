@@ -89,7 +89,28 @@ class RangeValue(BaseModel):
         else:
             return self.min > other
 
-    def __format__(self, format_spec:str)-> str:
-        return f"{format(self.mean,format_spec)} [{format(self.min,format_spec)} - {format(self.max,format_spec)}]"
+    def __format__(self, format_spec: str) -> str:
+        return f"{format(self.mean, format_spec)} [{format(self.min, format_spec)} - {format(self.max, format_spec)}]"
+
+    def __repr__(self) -> str:
+        return f"RangeValue(min={self.min}, max={self.max}, mean={self.mean})"
+
+    def __sub__(self, other: "Union[RangeValue, int, float]") -> "RangeValue":
+        if isinstance(other, RangeValue):
+            return RangeValue(min=self.min - other.max, max=self.max - other.min)
+        return RangeValue(min=self.min - other, max=self.max - other)
+
+    def __neg__(self) -> "RangeValue":
+        return RangeValue(min=-self.max, max=-self.min)
+
+    def __abs__(self) -> "RangeValue":
+        return RangeValue(min=min(abs(self.min), abs(self.max)), max=max(abs(self.min), abs(self.max)))
+
+    def to_dict(self) -> dict:
+        """Return a plain dictionary representation."""
+        return {"min": self.min, "max": self.max, "mean": self.mean}
+
+    __rsub__ = __sub__
+
 
 ValueOrRange = Union[int, float, RangeValue]
