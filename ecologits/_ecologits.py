@@ -8,7 +8,14 @@ from typing import TYPE_CHECKING
 
 from packaging.version import Version
 
-from ecologits.exceptions import EcoLogitsError
+from ecologits.exceptions import (
+    ConfigurationError,
+    EcoLogitsError,
+    InvalidProviderError,
+    OpenTelemetryNotInstalledError,
+    ProviderNotInstalledError,
+    _PROVIDER_INSTALL_HINTS,
+)
 from ecologits.log import logger
 
 if TYPE_CHECKING:
@@ -153,9 +160,7 @@ class EcoLogits:
 
         if opentelemetry_endpoint is not None:
             if not is_opentelemetry_installed():
-                logger.error("OpenTelemetry package is not installed. Install with "
-                             "`pip install ecologits[opentelemetry]`.")
-                raise EcoLogitsError("OpenTelemetry package is not installed.")
+                raise OpenTelemetryNotInstalledError()
 
             from ecologits.utils.opentelemetry import OpenTelemetry
 
@@ -210,7 +215,7 @@ class EcoLogits:
 def init_instruments(providers: list[str]) -> None:
     for provider in providers:
         if provider not in _INSTRUMENTS:
-            raise EcoLogitsError(f"Could not find tracer for the `{provider}` provider.")
+            raise InvalidProviderError(provider)
         if provider not in EcoLogits.config.providers:
             init_func = _INSTRUMENTS[provider]
             init_func()
