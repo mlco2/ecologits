@@ -14,7 +14,7 @@ from ecologits.exceptions import (
     InvalidProviderError,
     OpenTelemetryNotInstalledError,
     ProviderNotInstalledError,
-    _PROVIDER_INSTALL_HINTS,
+    _PROVIDER_INSTALL_HINTS,  # noqa: F401 – re-exported for convenience
 )
 from ecologits.log import logger
 
@@ -165,6 +165,26 @@ class EcoLogits:
             from ecologits.utils.opentelemetry import OpenTelemetry
 
             EcoLogits.config.opentelemetry = OpenTelemetry(endpoint=opentelemetry_endpoint)
+
+    @staticmethod
+    def init_from_yaml(path: "str | Path") -> None:
+        """
+        Initialize EcoLogits from a YAML configuration file.
+
+        Requires ``pyyaml`` (``pip install pyyaml``).
+
+        Args:
+            path: Path to a YAML file containing ``providers``,
+                ``electricity_mix_zone``, and/or ``opentelemetry_endpoint`` keys.
+
+        Example::
+
+            EcoLogits.init_from_yaml("ecologits.yaml")
+        """
+        from pathlib import Path as Path_
+        from ecologits.config import load_config_from_yaml
+        config = load_config_from_yaml(Path_(path))
+        EcoLogits.init(**config)
 
     @staticmethod
     def init_from_config(path: "str | Path") -> None:
