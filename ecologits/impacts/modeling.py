@@ -245,3 +245,58 @@ class Impacts(BaseModel):
     wcf: WCF
     usage: Usage
     embodied: Embodied
+
+    def to_dict(self) -> dict[str, Any]:
+        """Return a plain-dict representation of all impacts."""
+        return {
+            "energy": self.energy.to_dict(),
+            "gwp": self.gwp.to_dict(),
+            "adpe": self.adpe.to_dict(),
+            "pe": self.pe.to_dict(),
+            "wcf": self.wcf.to_dict(),
+            "usage": {
+                "energy": self.usage.energy.to_dict(),
+                "gwp": self.usage.gwp.to_dict(),
+                "adpe": self.usage.adpe.to_dict(),
+                "pe": self.usage.pe.to_dict(),
+                "wcf": self.usage.wcf.to_dict(),
+            },
+            "embodied": {
+                "gwp": self.embodied.gwp.to_dict(),
+                "adpe": self.embodied.adpe.to_dict(),
+                "pe": self.embodied.pe.to_dict(),
+            },
+        }
+
+    def to_json(self, indent: int = 2) -> str:
+        """Return a JSON string representation of all impacts."""
+        return json.dumps(self.to_dict(), indent=indent)
+
+    def summary(self) -> str:
+        """Return a concise human-readable summary of the top-level impacts."""
+
+        def _fmt(v: ValueOrRange, unit: str) -> str:
+            if isinstance(v, RangeValue):
+                return f"{v.mean:.4g} {unit} (range: {v.min:.4g}–{v.max:.4g})"
+            return f"{v:.4g} {unit}"
+
+        lines = [
+            "EcoLogits Impact Summary",
+            "------------------------",
+            f"Energy : {_fmt(self.energy.value, self.energy.unit)}",
+            f"GWP    : {_fmt(self.gwp.value, self.gwp.unit)}",
+            f"ADPe   : {_fmt(self.adpe.value, self.adpe.unit)}",
+            f"PE     : {_fmt(self.pe.value, self.pe.unit)}",
+            f"WCF    : {_fmt(self.wcf.value, self.wcf.unit)}",
+        ]
+        return "\n".join(lines)
+
+    def __repr__(self) -> str:
+        e = self.energy.value
+        g = self.gwp.value
+        e_val = e.mean if isinstance(e, RangeValue) else e
+        g_val = g.mean if isinstance(g, RangeValue) else g
+        return (
+            f"Impacts(energy={e_val:.4g} {self.energy.unit}, "
+            f"gwp={g_val:.4g} {self.gwp.unit})"
+        )
