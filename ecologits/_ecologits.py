@@ -203,9 +203,10 @@ class EcoLogits:
             ```
         """
         if EcoLogits.config.opentelemetry is None:
-            logger.error("You must enable OpenTelemetry to use labels. Initialize with "
-                         "opentelemetry_endpoint='http://localhost:4318/v1/metrics' for instance.")
-            raise EcoLogitsError("OpenTelemetry is not enabled.")
+            raise ConfigurationError(
+                "OpenTelemetry is not enabled. Initialize EcoLogits with "
+                "opentelemetry_endpoint='http://localhost:4318/v1/metrics' to use labels."
+            )
 
         from ecologits.utils.opentelemetry import OpenTelemetryLabels
 
