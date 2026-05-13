@@ -1,10 +1,13 @@
+from __future__ import annotations
+
+import json
 from functools import total_ordering
-from typing import TypeVar
+from typing import Any, TypeVar
 
 from pydantic import BaseModel
 
 from ecologits.exceptions import ModelingError
-from ecologits.utils.range_value import ValueOrRange
+from ecologits.utils.range_value import RangeValue, ValueOrRange
 
 Impact = TypeVar("Impact", bound="BaseImpact")
 
@@ -57,6 +60,22 @@ class BaseImpact(BaseModel):
         if self.type != other.type:
             raise ModelingError(f"Error occurred, cannot compare a {self.type} Impact with {other.type} Impact.")
         return self.value >= other.value
+
+    def _value_as_serializable(self) -> Any:
+        v = self.value
+        return v.to_dict() if isinstance(v, RangeValue) else v
+
+    def to_dict(self) -> dict[str, Any]:
+        """Return a plain-dict representation of this impact."""
+        return {
+            "type": self.type,
+            "name": self.name,
+            "value": self._value_as_serializable(),
+            "unit": self.unit,
+        }
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(value={self.value!r}, unit={self.unit!r})"
 
 
 class Energy(BaseImpact):
