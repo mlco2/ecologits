@@ -100,3 +100,7 @@ class TestRangeValueNewMethods:
     def test_repr_contains_min_max_mean(self):
         r = repr(RangeValue(min=1, max=3))
         assert "min=1" in r and "max=3" in r and "mean=2.0" in r
+
+    def test_rsub_scalar_minus_range(self):
+        r = 10 - RangeValue(min=2, max=4)
+        assert r.min == 6 and r.max == 8
