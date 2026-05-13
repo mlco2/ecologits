@@ -17,8 +17,11 @@ class _StatusMessage(BaseModel):
     def __str__(self) -> str:
         return f"{self.message} For further information visit {STATUS_DOCS_URL.format(code=self.code)}"
 
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(code={self.code!r})"
+
     @classmethod
-    def from_code(cls, code: str) -> type["_StatusMessage"]:
+    def from_code(cls, code: str) -> "_StatusMessage":
         raise NotImplementedError("Should be called from WarningMessage or ErrorMessage.")
 
 
