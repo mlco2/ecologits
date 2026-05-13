@@ -76,9 +76,33 @@ class ZoneNotRegisteredError(ErrorMessage):
     message: str = "The zone is not registered."
 
 
+class ElectricityMixNotAvailableWarning(WarningMessage):
+    code: str = "electricity-mix-not-available"
+    message: str = "Electricity mix data is not available for this zone; using world average."
+
+
+class ModelArchDeprecatedWarning(WarningMessage):
+    code: str = "model-arch-deprecated"
+    message: str = "The model architecture is deprecated; impact estimates may be less accurate."
+
+
+class ProviderDataUnavailableWarning(WarningMessage):
+    code: str = "provider-data-unavailable"
+    message: str = "Provider-specific hardware data is unavailable; using generic defaults."
+
+
+class ImpactEstimateUncertainWarning(WarningMessage):
+    code: str = "impact-estimate-uncertain"
+    message: str = "Impact estimate has high uncertainty due to missing model parameters."
+
+
 _warning_codes: dict[str, type[WarningMessage]] = {
     "model-arch-not-released": ModelArchNotReleasedWarning,
-    "model-arch-multimodal": ModelArchMultimodalWarning
+    "model-arch-multimodal": ModelArchMultimodalWarning,
+    "electricity-mix-not-available": ElectricityMixNotAvailableWarning,
+    "model-arch-deprecated": ModelArchDeprecatedWarning,
+    "provider-data-unavailable": ProviderDataUnavailableWarning,
+    "impact-estimate-uncertain": ImpactEstimateUncertainWarning,
 }
 
 _error_codes: dict[str, type[ErrorMessage]] = {
