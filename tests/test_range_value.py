@@ -66,3 +66,37 @@ def test_value_range_compare(val_1, val_2, op, result):
 def test_value_range_transformation(val_1, val_2, op, exp_result):
     result = op(val_1, val_2)
     assert result.min == exp_result.min and result.max == exp_result.max
+
+
+class TestRangeValueNewMethods:
+    def test_sub_range_range(self):
+        r = RangeValue(min=3, max=5) - RangeValue(min=1, max=2)
+        assert r.min == 1 and r.max == 4
+
+    def test_sub_range_scalar(self):
+        r = RangeValue(min=3, max=5) - 1
+        assert r.min == 2 and r.max == 4
+
+    def test_neg(self):
+        r = -RangeValue(min=1, max=3)
+        assert r.min == -3 and r.max == -1
+
+    def test_abs_positive(self):
+        r = abs(RangeValue(min=2, max=5))
+        assert r.min == 2 and r.max == 5
+
+    def test_abs_negative(self):
+        r = abs(RangeValue(min=-5, max=-2))
+        assert r.min == 2 and r.max == 5
+
+    def test_to_dict_keys(self):
+        d = RangeValue(min=1.0, max=3.0).to_dict()
+        assert set(d.keys()) == {"min", "max", "mean"}
+
+    def test_to_dict_mean(self):
+        d = RangeValue(min=1.0, max=3.0).to_dict()
+        assert d["mean"] == 2.0
+
+    def test_repr_contains_min_max_mean(self):
+        r = repr(RangeValue(min=1, max=3))
+        assert "min=1" in r and "max=3" in r and "mean=2.0" in r
