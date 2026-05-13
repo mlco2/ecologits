@@ -4,7 +4,7 @@ import os
 import pytest
 from pathlib import Path
 
-from ecologits.config import load_config_from_json, load_config_from_env
+from ecologits.config import load_config_from_json, load_config_from_env, load_config_from_yaml
 from ecologits.exceptions import ConfigurationError
 
 
@@ -70,3 +70,29 @@ class TestLoadConfigFromEnv:
         monkeypatch.setenv("MY_PROVIDERS", "cohere")
         result = load_config_from_env(prefix="MY_")
         assert result["providers"] == ["cohere"]
+
+
+class TestLoadConfigFromYaml:
+    pytest.importorskip("yaml", reason="pyyaml not installed")
+
+    def test_loads_providers(self, tmp_path):
+        p = tmp_path / "ecologits.yaml"
+        p.write_text("providers:\n  - openai\n  - anthropic\n")
+        result = load_config_from_yaml(p)
+        assert result["providers"] == ["openai", "anthropic"]
+
+    def test_raises_file_not_found(self, tmp_path):
+        with pytest.raises(FileNotFoundError):
+            load_config_from_yaml(tmp_path / "missing.yaml")
+
+    def test_empty_yaml_returns_empty_dict(self, tmp_path):
+        p = tmp_path / "empty.yaml"
+        p.write_text("")
+        result = load_config_from_yaml(p)
+        assert result == {}
+
+    def test_accepts_string_path(self, tmp_path):
+        p = tmp_path / "ecologits.yaml"
+        p.write_text("providers:\n  - openai\n")
+        result = load_config_from_yaml(str(p))
+        assert result["providers"] == ["openai"]
