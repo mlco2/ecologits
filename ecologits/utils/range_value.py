@@ -55,6 +55,10 @@ class RangeValue(BaseModel):
             max=self.max / other
         )
 
+    def __rsub__(self, other: "Union[int, float]") -> "RangeValue":
+        """Support ``scalar - RangeValue`` — note: subtraction is not commutative."""
+        return RangeValue(min=other - self.max, max=other - self.min)
+
     __radd__ = __add__
     __rmul__ = __mul__
     __rtruediv__ = __truediv__
