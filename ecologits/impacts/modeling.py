@@ -149,6 +149,7 @@ class PE(BaseImpact):
     name: str = "Primary Energy"
     unit: str = "MJ"
 
+
 class WCF(BaseImpact):
     """
     Water Consumption Footprint (WCF) impact.
