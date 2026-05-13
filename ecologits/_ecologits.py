@@ -124,7 +124,18 @@ class EcoLogits:
         electricity_mix_zone: str | None = None
         opentelemetry: OpenTelemetry | None = None
 
+        def __repr__(self) -> str:
+            return (
+                f"EcoLogits.Config(providers={self.providers!r}, "
+                f"electricity_mix_zone={self.electricity_mix_zone!r})"
+            )
+
     config = _Config()
+
+    @classmethod
+    def reset(cls) -> None:
+        """Reset EcoLogits configuration to defaults. Useful in tests."""
+        cls.config = cls._Config()
 
     @staticmethod
     def init(
