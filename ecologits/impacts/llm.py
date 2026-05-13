@@ -250,14 +250,21 @@ def request_usage_wcf(
     Compute the water usage impact of the request.
 
     Args:
-        request_energy: Energy consumption of the request in kWh.
+        request_energy: Energy consumption of the request in kWh (already includes PUE).
         if_electricity_mix_wue: WCF impact factor of electricity consumption in L / kWh.
-        datacenter_wue: Water Usage Effectiveness of the data center in L/kWh.
+        datacenter_wue: Water Usage Effectiveness of the data center in L/kWh (relative to IT energy).
         datacenter_pue: Power Usage Effectiveness of the data center.
+
     Returns:
         The water usage impact of the request in liters.
+
+    Note:
+        `request_energy` already embeds PUE. WUE is defined relative to IT energy (before PUE),
+        so we divide by PUE to recover IT energy for the datacenter cooling term.
+        The electricity-mix term uses `request_energy` directly (grid sees the full PUE-inflated draw).
     """
-    return request_energy * (datacenter_wue + datacenter_pue * if_electricity_mix_wue)
+    it_energy = request_energy / datacenter_pue
+    return it_energy * datacenter_wue + request_energy * if_electricity_mix_wue
 
 
 @dag.asset
