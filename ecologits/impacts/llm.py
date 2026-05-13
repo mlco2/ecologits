@@ -51,7 +51,7 @@ def gpu_energy(
         batch_size: Number of requests handled concurrently by the server.
         gpu_energy_alpha: Alpha coefficient of the energy regression.
         gpu_energy_beta: Beta coefficient of the energy regression.
-        gpu_energy_gamma: Beta coefficient of the energy regression.
+        gpu_energy_gamma: Gamma coefficient of the energy regression.
 
     Returns:
         The energy consumption of a single GPU in kWh.
