@@ -167,6 +167,49 @@ class EcoLogits:
             EcoLogits.config.opentelemetry = OpenTelemetry(endpoint=opentelemetry_endpoint)
 
     @staticmethod
+    def init_from_config(path: "str | Path") -> None:
+        """
+        Initialize EcoLogits from a JSON configuration file.
+
+        Args:
+            path: Path to a JSON file containing ``providers``,
+                ``electricity_mix_zone``, and/or ``opentelemetry_endpoint`` keys.
+
+        Example::
+
+            EcoLogits.init_from_config("ecologits.json")
+        """
+        from pathlib import Path as Path_
+        from ecologits.config import load_config_from_json
+        config = load_config_from_json(Path_(path))
+        EcoLogits.init(**config)
+
+    @staticmethod
+    def init_from_env(prefix: str = "ECOLOGITS_") -> None:
+        """
+        Initialize EcoLogits from environment variables.
+
+        Reads ``ECOLOGITS_PROVIDERS``, ``ECOLOGITS_ELECTRICITY_MIX_ZONE``,
+        and ``ECOLOGITS_OPENTELEMETRY_ENDPOINT`` (all overridable via *prefix*).
+
+        Args:
+            prefix: Environment variable prefix (default ``"ECOLOGITS_"``).
+
+        Example::
+
+            # export ECOLOGITS_PROVIDERS=openai,anthropic
+            EcoLogits.init_from_env()
+        """
+        from ecologits.config import load_config_from_env
+        config = load_config_from_env(prefix=prefix)
+        if not config:
+            raise ConfigurationError(
+                "No EcoLogits configuration found in environment variables. "
+                f"Set at least {prefix}PROVIDERS to one or more provider names."
+            )
+        EcoLogits.init(**config)
+
+    @staticmethod
     def label(**labels: str) -> OpenTelemetryLabels:
         """
         Create OpenTelemetry labels. Can be used as a context manager or as a function decorator.
