@@ -50,19 +50,19 @@ anthropic = ["anthropic>=0.45.2,<1.0.0"]
 cohere = ["cohere>=5.13.12,<6.0.0"]
 huggingface-hub = [
     "huggingface-hub>=0.28.1,<2.0.0",
-    "tiktoken>=0.8.0,<0.10.0",
+    "tiktoken>=0.8.0,<0.13.0",
     "minijinja>=2.7.0,<3.0.0",
 ]
 google-genai = ["google-genai>=1.26.0,<2.0.0"]
 litellm = [
-    "litellm>=1.60.6,<2.0.0",
+    "litellm>=1.83.10,<2.0.0",
     "rapidfuzz>=3.12.1,<4.0.0",
 ]
 opentelemetry = [
     "opentelemetry-api>=1.32.1,<2.0.0",
     "opentelemetry-sdk>=1.32.1,<2.0.0",
     "opentelemetry-exporter-otlp>=1.32.1,<2.0.0",
-    "tiktoken>=0.8.0,<0.10.0",
+    "tiktoken>=0.8.0,<0.13.0",
 ]
 
 [dependency-groups]
@@ -89,6 +89,7 @@ docs = [
 
 [tool.uv]
 exclude-newer = "2 weeks"
+exclude-newer-package = { urllib3 = "2026-05-07T16:13:18Z" }
 
 [pytest]
 env_files = [".env"]
