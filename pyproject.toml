@@ -88,8 +88,7 @@ docs = [
 ]
 
 [tool.uv]
-exclude-newer = "2 weeks"
-exclude-newer-package = { urllib3 = "2026-05-07T16:13:18Z" }
+exclude-newer = "2 days"
 
 [pytest]
 env_files = [".env"]
