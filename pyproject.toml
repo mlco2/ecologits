@@ -87,6 +87,9 @@ docs = [
     "mike>=2.1.2",
 ]
 
+[tool.uv]
+exclude-newer = "2 weeks"
+
 [pytest]
 env_files = [".env"]
 
