@@ -166,23 +166,39 @@ def server_energy(
 @dag.asset
 def request_energy(
         datacenter_pue: float,
-        server_energy: float,
-        gpu_required_count: int,
-        gpu_energy: ValueOrRange
+        request_it_energy: ValueOrRange
 ) -> ValueOrRange:
     """
     Compute the energy consumption of the request.
 
     Args:
         datacenter_pue: Power Usage Effectiveness of the data center.
+        request_it_energy: IT energy consumption of the request in kWh.
+
+    Returns:
+        The energy consumption of the request in kWh.
+    """
+    return datacenter_pue * request_it_energy
+
+
+@dag.asset
+def request_it_energy(
+        server_energy: float,
+        gpu_required_count: int,
+        gpu_energy: ValueOrRange
+) -> ValueOrRange:
+    """
+    Compute the IT energy consumption of the request before data center overhead.
+
+    Args:
         server_energy: Energy consumption of the server in kWh.
         gpu_required_count: Number of required GPUs to load the model.
         gpu_energy: Energy consumption of a single GPU in kWh.
 
     Returns:
-        The energy consumption of the request in kWh.
+        The IT energy consumption of the request in kWh.
     """
-    return datacenter_pue * (server_energy + gpu_required_count * gpu_energy)
+    return server_energy + gpu_required_count * gpu_energy
 
 
 @dag.asset
@@ -241,7 +257,7 @@ def request_usage_pe(
 
 @dag.asset
 def request_usage_wcf(
-        request_energy: ValueOrRange,
+        request_it_energy: ValueOrRange,
         if_electricity_mix_wue: float,
         datacenter_wue: float,
         datacenter_pue: float
@@ -250,14 +266,14 @@ def request_usage_wcf(
     Compute the water usage impact of the request.
 
     Args:
-        request_energy: Energy consumption of the request in kWh.
+        request_it_energy: IT energy consumption of the request in kWh.
         if_electricity_mix_wue: WCF impact factor of electricity consumption in L / kWh.
         datacenter_wue: Water Usage Effectiveness of the data center in L/kWh.
         datacenter_pue: Power Usage Effectiveness of the data center.
     Returns:
         The water usage impact of the request in liters.
     """
-    return request_energy * (datacenter_wue + datacenter_pue * if_electricity_mix_wue)
+    return request_it_energy * (datacenter_wue + datacenter_pue * if_electricity_mix_wue)
 
 
 @dag.asset
