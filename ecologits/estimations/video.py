@@ -16,31 +16,16 @@ _NAMED_RESOLUTIONS = {
 }
 
 
-# Video model regression parameters and hardware configurations loaded from
-# data/video_models.json. Coefficients map to the latency regression in
-# `ecologits.impacts.video.generation_latency`:
-#   n*F*WH^2 + m*T + n1*F^2 + n2*T^2 + m1*F + m2*WH^2 + g
-# where F = frame count, WH = width*height, T = WH*F/1000.
 _VIDEO_MODELS_PATH = os.path.join(
     os.path.dirname(os.path.realpath(__file__)), "..", "data", "video_models.json"
 )
-# Models excluded until the missing data (TPU embodied impacts) is provided.
-_IGNORED_MODELS = {
-    "google/veo-3.0",
-    "google/veo-3.0-fast",
-    "google/veo-3.1",
-    "google/veo-3.1-fast",
-}
 with open(_VIDEO_MODELS_PATH) as _fd:
     _video_models_data = json.load(_fd)
 _HARDWARE_CONFIGURATIONS = _video_models_data["hardware_configurations"]
 _MODELS_INFO = {
     m["model_name"]: m
     for m in _video_models_data["models"]
-    if m["model_name"] not in _IGNORED_MODELS
 }
-
-
 
 
 def impacts_video_generation(
@@ -90,10 +75,11 @@ def impacts_video_generation(
     hardware = _HARDWARE_CONFIGURATIONS[model_info["hardware"]]
     server_power = hardware["server_power"]
     server_embodied = hardware["server_embodied"]
-    gpu_embodied = hardware["gpu_embodied"]
+    accelerator_embodied = hardware["accelerator_embodied"]
+    server_accelerator_count = hardware["number_of_accelerators"]
 
     # Server power in the data is in W; the dag expects kW.
-    server_gpu_power: float | RangeValue = RangeValue(
+    server_accelerator_power: float | RangeValue = RangeValue(
         min=server_power["p2_5"] / 1000,
         max=server_power["p97_5"] / 1000,
     )
@@ -109,19 +95,20 @@ def impacts_video_generation(
         video_width=width,
         video_height=height,
         video_frames_count=frames_count,
-        server_gpu_power=server_gpu_power,
+        server_accelerator_power=server_accelerator_power,
         if_electricity_mix_adpe=if_electricity_mix.adpe,
         if_electricity_mix_pe=if_electricity_mix.pe,
         if_electricity_mix_gwp=if_electricity_mix.gwp,
         if_electricity_mix_wue=if_electricity_mix.wue,
         datacenter_pue=datacenter_pue,
         datacenter_wue=datacenter_wue,
-        gpu_embodied_gwp=gpu_embodied["gwp"],
-        gpu_embodied_adpe=gpu_embodied["adpe"],
-        gpu_embodied_pe=gpu_embodied["pe"],
+        accelerator_embodied_gwp=accelerator_embodied["gwp"],
+        accelerator_embodied_adpe=accelerator_embodied["adpe"],
+        accelerator_embodied_pe=accelerator_embodied["pe"],
         server_embodied_gwp=server_embodied["gwp"],
         server_embodied_adpe=server_embodied["adpe"],
         server_embodied_pe=server_embodied["pe"],
+        server_accelerator_count=server_accelerator_count,
         **regression,
     )
     return ImpactsOutput.model_validate(impacts.model_dump())
