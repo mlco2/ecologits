@@ -29,6 +29,7 @@ nav:
       - 'Introduction': methodology/index.md
       - 'Proprietary models': methodology/proprietary_models.md
       - 'LLM Inference': methodology/llm_inference.md
+      - 'Video Generation': methodology/video_generation.md
   - 'API Reference': reference/
   - 'Blog':
       - blog/index.md
