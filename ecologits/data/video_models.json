@@ -1,23 +1,7 @@
 {
     "hardware_configurations": {
-        "dgx_h100": {
-            "server_power": {
-                "p2_5": null,
-                "mean": null,
-                "p97_5": null
-            },
-            "server_embodied": {
-                "gwp": 6000,
-                "adpe": 0.42,
-                "pe": 8000
-            },
-            "gpu_embodied": {
-                "gwp": 273,
-                "adpe": 0.00895,
-                "pe": 3721
-            }
-        },
         "dgx_h800": {
+            "number_of_accelerators": 8,
             "server_power": {
                 "p2_5": 4894.93,
                 "mean": 5438.48,
@@ -28,13 +12,14 @@
                 "adpe": 0.42,
                 "pe": 8000
             },
-            "gpu_embodied": {
+            "accelerator_embodied": {
                 "gwp": 273,
                 "adpe": 0.00895,
                 "pe": 3721
             }
         },
         "dgx_h200": {
+            "number_of_accelerators": 8,
             "server_power": {
                 "p2_5": 4992.03,
                 "mean": 6646.63,
@@ -45,27 +30,28 @@
                 "adpe": 0.42,
                 "pe": 8000
             },
-            "gpu_embodied": {
+            "accelerator_embodied": {
                 "gwp": 364,
                 "adpe": 0.00895,
                 "pe": 4906
             }
         },
         "tpu_v6e": {
+            "number_of_accelerators": 8,
             "server_power": {
                 "p2_5": 1074.08,
                 "mean": 1672.99,
                 "p97_5": 2352.81
             },
             "server_embodied": {
-                "gwp": null,
-                "adpe": null,
-                "pe": null
+                "gwp": 3550,
+                "adpe": 0.42,
+                "pe": 8000
             },
-            "gpu_embodied": {
-                "gwp": null,
-                "adpe": null,
-                "pe": null
+            "accelerator_embodied": {
+                "gwp": 323,
+                "adpe": 0.00895,
+                "pe": 4906
             }
         }
     },
