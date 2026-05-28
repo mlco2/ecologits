@@ -1,4 +1,37 @@
 {
+    "provider_configurations": {
+        "google": {
+            "datacenter_location": "USA",
+            "datacenter_pue": 1.09,
+            "datacenter_wue": 0.999
+        },
+        "openai": {
+            "datacenter_location": "USA",
+            "datacenter_pue": 1.20,
+            "datacenter_wue": 0.569
+        },
+        "klingai": {
+            "datacenter_location": "SGP",
+            "datacenter_pue": 1.2,
+            "datacenter_wue": 0.5
+        },
+        "bytedance": {
+            "datacenter_location": "SGP",
+            "datacenter_pue": 1.2,
+            "datacenter_wue": 0.5
+        },
+        "runway": {
+            "datacenter_location": "USA",
+            "datacenter_pue": {
+                "min": 1.09,
+                "max": 1.14
+            },
+            "datacenter_wue": {
+                "min": 0.13,
+                "max": 0.999
+            }
+        }
+    },
     "hardware_configurations": {
         "dgx_h800": {
             "number_of_accelerators": 8,
@@ -57,6 +90,7 @@
     },
     "models": [
         {
+            "provider": "klingai",
             "model_name": "klingai/kling-v1.6",
             "regression_parameters": {
                 "n": 0,
@@ -76,6 +110,7 @@
             "hardware": "dgx_h800"
         },
         {
+            "provider": "klingai",
             "model_name": "klingai/kling-v2.6",
             "regression_parameters": {
                 "n": 0,
@@ -95,6 +130,7 @@
             "hardware": "dgx_h800"
         },
         {
+            "provider": "klingai",
             "model_name": "klingai/kling-v3",
             "regression_parameters": {
                 "n": 0,
@@ -114,6 +150,7 @@
             "hardware": "dgx_h800"
         },
         {
+            "provider": "bytedance",
             "model_name": "bytedance/seedance-1.0",
             "regression_parameters": {
                 "n": 0,
@@ -133,6 +170,7 @@
             "hardware": "dgx_h800"
         },
         {
+            "provider": "bytedance",
             "model_name": "bytedance/seedance-1.5-pro",
             "regression_parameters": {
                 "n": 0,
@@ -152,6 +190,7 @@
             "hardware": "dgx_h800"
         },
         {
+            "provider": "runway",
             "model_name": "runway/gen-4.5",
             "regression_parameters": {
                 "n": 0,
@@ -171,6 +210,7 @@
             "hardware": "dgx_h200"
         },
         {
+            "provider": "openai",
             "model_name": "openai/sora-2-pro",
             "regression_parameters": {
                 "n": 0,
@@ -190,6 +230,7 @@
             "hardware": "dgx_h200"
         },
         {
+            "provider": "google",
             "model_name": "google/veo-3.0",
             "regression_parameters": {
                 "n": 3.31e-14,
@@ -209,6 +250,7 @@
             "hardware": "tpu_v6e"
         },
         {
+            "provider": "google",
             "model_name": "google/veo-3.0-fast",
             "regression_parameters": {
                 "n": 3.18e-14,
@@ -228,6 +270,7 @@
             "hardware": "tpu_v6e"
         },
         {
+            "provider": "google",
             "model_name": "google/veo-3.1",
             "regression_parameters": {
                 "n": 0,
@@ -247,6 +290,7 @@
             "hardware": "tpu_v6e"
         },
         {
+            "provider": "google",
             "model_name": "google/veo-3.1-fast",
             "regression_parameters": {
                 "n": 9.60e-14,

@@ -22,6 +22,7 @@ _VIDEO_MODELS_PATH = os.path.join(
 with open(_VIDEO_MODELS_PATH) as _fd:
     _video_models_data = json.load(_fd)
 _HARDWARE_CONFIGURATIONS = _video_models_data["hardware_configurations"]
+_PROVIDER_CONFIGURATIONS = _video_models_data["provider_configurations"]
 _MODELS_INFO = {
     m["model_name"]: m
     for m in _video_models_data["models"]
@@ -33,9 +34,9 @@ def impacts_video_generation(
         resolution: str,
         duration: float,
         with_audio: bool = True,
-        electricity_mix_zone: str = "WOR",
-        datacenter_pue: float = 1.2,
-        datacenter_wue: float = 0.5,
+        datacenter_location: str | None = "WOR",
+        datacenter_pue: float | RangeValue | None = None,
+        datacenter_wue: float | RangeValue | None = None,
 ) -> ImpactsOutput:
     """
     Determines the impacts of generating a video based on the specified model, resolution,
@@ -48,9 +49,9 @@ def impacts_video_generation(
             as a string (e.g., "1920x1080" or "1080p").
         duration: The length of the video to generate, specified in seconds.
         with_audio: Whether the video generation also includes audio.
-        electricity_mix_zone: ISO 3166-1 alpha-3 code of the electricity mix zone (WOR by default).
-        datacenter_pue: Power Usage Effectiveness of the datacenter.
-        datacenter_wue: Water Usage Effectiveness of the datacenter in L/kWh.
+        datacenter_location: ISO 3166-1 alpha-3 code of the datacenter location (WOR by default).
+        datacenter_pue: Power Usage Effectiveness of the datacenter. Uses the provider default when omitted.
+        datacenter_wue: Water Usage Effectiveness of the datacenter in L/kWh. Uses the provider default when omitted.
 
     Returns:
         An ImpactsOutput object containing details of the computed impacts.
@@ -61,10 +62,18 @@ def impacts_video_generation(
         logger.warning_once(str(error))
         return ImpactsOutput(errors=[error])
 
-    if_electricity_mix = electricity_mixes.find_electricity_mix(zone=electricity_mix_zone)
+    provider_configuration = _PROVIDER_CONFIGURATIONS[model_info["provider"]]
+    if datacenter_location is None:
+        datacenter_location = provider_configuration["datacenter_location"]
+    if datacenter_pue is None:
+        datacenter_pue = parse_value_or_range(provider_configuration["datacenter_pue"])
+    if datacenter_wue is None:
+        datacenter_wue = parse_value_or_range(provider_configuration["datacenter_wue"])
+
+    if_electricity_mix = electricity_mixes.find_electricity_mix(zone=datacenter_location)
     if if_electricity_mix is None:
         error = ZoneNotRegisteredError(
-            message=f"Could not find electricity mix for `{electricity_mix_zone}` zone."
+            message=f"Could not find electricity mix for `{datacenter_location}` zone."
         )
         logger.warning_once(str(error))
         return ImpactsOutput(errors=[error])
@@ -142,6 +151,21 @@ def parse_resolution(resolution: str) -> tuple[int, int]:
         width_str, height_str = key.split("x", 1)
         return int(width_str), int(height_str)
     raise ValueError(f"Unsupported resolution: {resolution!r}")
+
+
+def parse_value_or_range(value: float | dict[str, float]) -> float | RangeValue:
+    """
+    Parses a fixed numeric value or min/max range from model data.
+
+    Arguments:
+        value: Either a fixed numeric value or a dict containing "min" and "max" values.
+
+    Returns:
+        The fixed value or a RangeValue.
+    """
+    if isinstance(value, dict):
+        return RangeValue(min=value["min"], max=value["max"])
+    return value
 
 
 def duration_to_frames(duration: float) -> int:
