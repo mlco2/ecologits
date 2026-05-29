@@ -16,7 +16,7 @@
             "name": "AFG",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.12371,
+            "gwp": 0.13131,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -28,7 +28,7 @@
             "name": "AGO",
             "adpe": 1.2407e-07,
             "pe": 5.0407,
-            "gwp": 0.16722,
+            "gwp": 0.18538,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -38,7 +38,7 @@
             "name": "ALB",
             "adpe": 2.2956e-07,
             "pe": 0.2005,
-            "gwp": 0.02442,
+            "gwp": 0.02518,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -48,7 +48,7 @@
             "name": "ARE",
             "adpe": 1.415e-08,
             "pe": 18.9746,
-            "gwp": 0.4927,
+            "gwp": 0.46751,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -58,7 +58,7 @@
             "name": "ARG",
             "adpe": 7.686e-08,
             "pe": 7.8888,
-            "gwp": 0.35895,
+            "gwp": 0.346,
             "wue": 11.4558,
             "warnings": null
         },
@@ -66,7 +66,7 @@
             "name": "ARM",
             "adpe": 8.542e-08,
             "pe": 9.0719,
-            "gwp": 0.24434,
+            "gwp": 0.21193,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -74,18 +74,6 @@
         },
         {
             "name": "ASM",
-            "adpe": 1.349e-08,
-            "pe": 2.5871,
-            "gwp": 0.64706,
-            "wue": 3.908,
-            "warnings": [
-                "electricity-mix-adpe-world",
-                "electricity-mix-pe-world",
-                "electricity-mix-wue-world"
-            ]
-        },
-        {
-            "name": "ATG",
             "adpe": 1.349e-08,
             "pe": 2.5871,
             "gwp": 0.61111,
@@ -97,10 +85,22 @@
             ]
         },
         {
+            "name": "ATG",
+            "adpe": 1.349e-08,
+            "pe": 2.5871,
+            "gwp": 0.5946,
+            "wue": 3.908,
+            "warnings": [
+                "electricity-mix-adpe-world",
+                "electricity-mix-pe-world",
+                "electricity-mix-wue-world"
+            ]
+        },
+        {
             "name": "AUS",
             "adpe": 7.908e-08,
             "pe": 12.2247,
-            "gwp": 0.55159,
+            "gwp": 0.52518,
             "wue": 4.7293,
             "warnings": null
         },
@@ -108,7 +108,7 @@
             "name": "AUT",
             "adpe": 1.4112e-07,
             "pe": 2.8363,
-            "gwp": 0.10262,
+            "gwp": 0.11691,
             "wue": 5.7222,
             "warnings": null
         },
@@ -116,7 +116,7 @@
             "name": "AZE",
             "adpe": 9.257e-08,
             "pe": 11.7022,
-            "gwp": 0.63307,
+            "gwp": 0.6319,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -126,7 +126,7 @@
             "name": "BDI",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.23077,
+            "gwp": 0.18367,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -138,7 +138,7 @@
             "name": "BEL",
             "adpe": 3.372e-08,
             "pe": 8.9876,
-            "gwp": 0.11758,
+            "gwp": 0.14982,
             "wue": 2.6198,
             "warnings": null
         },
@@ -146,7 +146,7 @@
             "name": "BEN",
             "adpe": 2.397e-08,
             "pe": 13.8784,
-            "gwp": 0.59,
+            "gwp": 0.58416,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -156,7 +156,7 @@
             "name": "BFA",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.55491,
+            "gwp": 0.56213,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -168,7 +168,7 @@
             "name": "BGD",
             "adpe": 3.942e-08,
             "pe": 12.702,
-            "gwp": 0.69462,
+            "gwp": 0.69613,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -178,7 +178,7 @@
             "name": "BGR",
             "adpe": 8.236e-08,
             "pe": 12.118,
-            "gwp": 0.26421,
+            "gwp": 0.27555,
             "wue": 4.6228,
             "warnings": null
         },
@@ -186,7 +186,7 @@
             "name": "BHR",
             "adpe": 1.35e-08,
             "pe": 14.0361,
-            "gwp": 0.9024,
+            "gwp": 0.90224,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -196,7 +196,7 @@
             "name": "BHS",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.65366,
+            "gwp": 0.65333,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -208,7 +208,7 @@
             "name": "BIH",
             "adpe": 1.4801e-07,
             "pe": 14.868,
-            "gwp": 0.63804,
+            "gwp": 0.57064,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -218,7 +218,7 @@
             "name": "BLR",
             "adpe": 8.405e-08,
             "pe": 13.0352,
-            "gwp": 0.31362,
+            "gwp": 0.30925,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -228,7 +228,7 @@
             "name": "BLZ",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.15556,
+            "gwp": 0.17021,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -240,7 +240,7 @@
             "name": "BMU",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.64062,
+            "gwp": 0.63934,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -252,7 +252,7 @@
             "name": "BOL",
             "adpe": 9.698e-08,
             "pe": 9.2001,
-            "gwp": 0.46802,
+            "gwp": 0.48129,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -262,7 +262,7 @@
             "name": "BRA",
             "adpe": 1.0962e-07,
             "pe": 1.7701,
-            "gwp": 0.10321,
+            "gwp": 0.10995,
             "wue": 18.6033,
             "warnings": null
         },
@@ -270,7 +270,7 @@
             "name": "BRB",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.6,
+            "gwp": 0.5946,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -282,7 +282,7 @@
             "name": "BRN",
             "adpe": 1.856e-08,
             "pe": 15.6889,
-            "gwp": 0.89266,
+            "gwp": 0.89209,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -292,7 +292,7 @@
             "name": "BTN",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.02419,
+            "gwp": 0.02364,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -304,7 +304,7 @@
             "name": "BWA",
             "adpe": 8.66e-08,
             "pe": 19.6029,
-            "gwp": 0.84942,
+            "gwp": 0.85131,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -326,7 +326,7 @@
             "name": "CAN",
             "adpe": 9.932e-08,
             "pe": 4.1955,
-            "gwp": 0.17481,
+            "gwp": 0.19072,
             "wue": 8.1662,
             "warnings": null
         },
@@ -334,7 +334,7 @@
             "name": "CHE",
             "adpe": 1.0047e-07,
             "pe": 4.7362,
-            "gwp": 0.0366,
+            "gwp": 0.03922,
             "wue": 5.6641,
             "warnings": null
         },
@@ -342,7 +342,7 @@
             "name": "CHL",
             "adpe": 1.0585e-07,
             "pe": 6.434,
-            "gwp": 0.26552,
+            "gwp": 0.28949,
             "wue": 10.5226,
             "warnings": null
         },
@@ -350,7 +350,7 @@
             "name": "CHN",
             "adpe": 8.516e-08,
             "pe": 10.6736,
-            "gwp": 0.55955,
+            "gwp": 0.52534,
             "wue": 6.0065,
             "warnings": null
         },
@@ -358,7 +358,7 @@
             "name": "CIV",
             "adpe": 9.49e-08,
             "pe": 12.5653,
-            "gwp": 0.39353,
+            "gwp": 0.40501,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -368,7 +368,7 @@
             "name": "CMR",
             "adpe": 1.4631e-07,
             "pe": 5.1439,
-            "gwp": 0.28571,
+            "gwp": 0.2259,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -378,7 +378,7 @@
             "name": "COD",
             "adpe": 1.7465e-07,
             "pe": 0.097,
-            "gwp": 0.02704,
+            "gwp": 0.02764,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -388,7 +388,7 @@
             "name": "COG",
             "adpe": 2.6558e-07,
             "pe": 11.4735,
-            "gwp": 0.71373,
+            "gwp": 0.71612,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -410,7 +410,7 @@
             "name": "COL",
             "adpe": 1.2203e-07,
             "pe": 2.7127,
-            "gwp": 0.2858,
+            "gwp": 0.18681,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -432,7 +432,7 @@
             "name": "CPV",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.48,
+            "gwp": 0.46154,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -444,7 +444,7 @@
             "name": "CRI",
             "adpe": 8.639e-08,
             "pe": 1.0579,
-            "gwp": 0.06301,
+            "gwp": 0.0242,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -454,7 +454,7 @@
             "name": "CUB",
             "adpe": 2.995e-08,
             "pe": 16.5378,
-            "gwp": 0.63898,
+            "gwp": 0.64282,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -464,7 +464,7 @@
             "name": "CYM",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.64286,
+            "gwp": 0.6338,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -476,7 +476,7 @@
             "name": "CYP",
             "adpe": 4.488e-08,
             "pe": 11.9763,
-            "gwp": 0.51224,
+            "gwp": 0.489,
             "wue": 1.2947,
             "warnings": null
         },
@@ -484,7 +484,7 @@
             "name": "CZE",
             "adpe": 8.176e-08,
             "pe": 11.103,
-            "gwp": 0.41386,
+            "gwp": 0.40146,
             "wue": 3.2133,
             "warnings": null
         },
@@ -492,7 +492,7 @@
             "name": "DEU",
             "adpe": 8.787e-08,
             "pe": 8.7477,
-            "gwp": 0.34414,
+            "gwp": 0.32965,
             "wue": 1.947,
             "warnings": null
         },
@@ -524,7 +524,7 @@
             "name": "DNK",
             "adpe": 1.574e-08,
             "pe": 6.6454,
-            "gwp": 0.1433,
+            "gwp": 0.11441,
             "wue": 3.1935,
             "warnings": null
         },
@@ -532,7 +532,7 @@
             "name": "DOM",
             "adpe": 4.293e-08,
             "pe": 11.121,
-            "gwp": 0.56669,
+            "gwp": 0.53748,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -542,7 +542,7 @@
             "name": "DZA",
             "adpe": 2.164e-08,
             "pe": 16.2778,
-            "gwp": 0.63364,
+            "gwp": 0.63294,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -552,7 +552,7 @@
             "name": "ECU",
             "adpe": 1.2717e-07,
             "pe": 8.3213,
-            "gwp": 0.2097,
+            "gwp": 0.15902,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -562,7 +562,7 @@
             "name": "EEE",
             "adpe": 6.423e-08,
             "pe": 8.5477,
-            "gwp": 0.28417,
+            "gwp": 0.28268,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -572,7 +572,7 @@
             "name": "EGY",
             "adpe": 3.392e-08,
             "pe": 9.3589,
-            "gwp": 0.57194,
+            "gwp": 0.56323,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -582,7 +582,7 @@
             "name": "ERI",
             "adpe": 5.124e-08,
             "pe": 13.1822,
-            "gwp": 0.59091,
+            "gwp": 0.57778,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -604,7 +604,7 @@
             "name": "ESP",
             "adpe": 5.183e-08,
             "pe": 7.4839,
-            "gwp": 0.14615,
+            "gwp": 0.1536,
             "wue": 6.2088,
             "warnings": null
         },
@@ -612,7 +612,7 @@
             "name": "EST",
             "adpe": 9.902e-08,
             "pe": 14.2926,
-            "gwp": 0.34102,
+            "gwp": 0.31915,
             "wue": 2.1986,
             "warnings": null
         },
@@ -620,7 +620,7 @@
             "name": "ETH",
             "adpe": 1.7416e-07,
             "pe": 2.3125,
-            "gwp": 0.02355,
+            "gwp": 0.02308,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -630,7 +630,7 @@
             "name": "FIN",
             "adpe": 8.051e-08,
             "pe": 6.2915,
-            "gwp": 0.07225,
+            "gwp": 0.05747,
             "wue": 4.5289,
             "warnings": null
         },
@@ -662,7 +662,7 @@
             "name": "FRA",
             "adpe": 4.858e-08,
             "pe": 9.3135,
-            "gwp": 0.04418,
+            "gwp": 0.04144,
             "wue": 3.6737,
             "warnings": null
         },
@@ -670,7 +670,7 @@
             "name": "FRO",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.35417,
+            "gwp": 0.34694,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -682,7 +682,7 @@
             "name": "GAB",
             "adpe": 1.1384e-07,
             "pe": 8.9556,
-            "gwp": 0.42947,
+            "gwp": 0.52308,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -692,7 +692,7 @@
             "name": "GBR",
             "adpe": 3.71e-08,
             "pe": 9.0976,
-            "gwp": 0.21089,
+            "gwp": 0.21741,
             "wue": 2.329,
             "warnings": null
         },
@@ -700,7 +700,7 @@
             "name": "GEO",
             "adpe": 1.38e-07,
             "pe": 2.0119,
-            "gwp": 0.14306,
+            "gwp": 0.14593,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -710,7 +710,7 @@
             "name": "GHA",
             "adpe": 1.56e-07,
             "pe": 5.7652,
-            "gwp": 0.45286,
+            "gwp": 0.46889,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -730,7 +730,7 @@
             "name": "GIN",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.18272,
+            "gwp": 0.18114,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -742,7 +742,7 @@
             "name": "GLP",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.4939,
+            "gwp": 0.49701,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -778,7 +778,7 @@
             "name": "GNQ",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.6051,
+            "gwp": 0.6443,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -790,7 +790,7 @@
             "name": "GRC",
             "adpe": 6.916e-08,
             "pe": 10.5179,
-            "gwp": 0.31976,
+            "gwp": 0.31509,
             "wue": 5.1451,
             "warnings": null
         },
@@ -810,7 +810,7 @@
             "name": "GRL",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.11111,
+            "gwp": 0.15,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -822,7 +822,7 @@
             "name": "GTM",
             "adpe": 8.033e-08,
             "pe": 6.9261,
-            "gwp": 0.27266,
+            "gwp": 0.30146,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -832,7 +832,7 @@
             "name": "GUF",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.20408,
+            "gwp": 0.2449,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -844,7 +844,7 @@
             "name": "GUM",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.61111,
+            "gwp": 0.60753,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -856,7 +856,7 @@
             "name": "GUY",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.63433,
+            "gwp": 0.64493,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -868,7 +868,7 @@
             "name": "HKG",
             "adpe": 8.162e-08,
             "pe": 10.8916,
-            "gwp": 0.68199,
+            "gwp": 0.67548,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -878,7 +878,7 @@
             "name": "HND",
             "adpe": 6.494e-08,
             "pe": 7.8653,
-            "gwp": 0.2895,
+            "gwp": 0.32212,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -888,7 +888,7 @@
             "name": "HRV",
             "adpe": 1.5399e-07,
             "pe": 6.4549,
-            "gwp": 0.17448,
+            "gwp": 0.1585,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -898,7 +898,7 @@
             "name": "HTI",
             "adpe": 9.371e-08,
             "pe": 16.2948,
-            "gwp": 0.53465,
+            "gwp": 0.53488,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -908,7 +908,7 @@
             "name": "HUN",
             "adpe": 6.446e-08,
             "pe": 10.5942,
-            "gwp": 0.18282,
+            "gwp": 0.16302,
             "wue": 3.6874,
             "warnings": null
         },
@@ -916,7 +916,7 @@
             "name": "IDN",
             "adpe": 6.105e-08,
             "pe": 9.7582,
-            "gwp": 0.68243,
+            "gwp": 0.68025,
             "wue": 2.2554,
             "warnings": null
         },
@@ -924,7 +924,7 @@
             "name": "IND",
             "adpe": 1.001e-07,
             "pe": 16.6775,
-            "gwp": 0.70832,
+            "gwp": 0.67013,
             "wue": 3.4368,
             "warnings": null
         },
@@ -932,7 +932,7 @@
             "name": "IRL",
             "adpe": 2.193e-08,
             "pe": 8.0614,
-            "gwp": 0.2797,
+            "gwp": 0.25654,
             "wue": 1.4769,
             "warnings": null
         },
@@ -940,7 +940,7 @@
             "name": "IRN",
             "adpe": 2.203e-08,
             "pe": 14.1505,
-            "gwp": 0.64194,
+            "gwp": 0.65953,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -950,7 +950,7 @@
             "name": "IRQ",
             "adpe": 4.043e-08,
             "pe": 19.0682,
-            "gwp": 0.6894,
+            "gwp": 0.6831,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -960,7 +960,7 @@
             "name": "ISL",
             "adpe": 7.819e-08,
             "pe": 0.0128,
-            "gwp": 0.02833,
+            "gwp": 0.02782,
             "wue": 6.1409,
             "warnings": null
         },
@@ -968,7 +968,7 @@
             "name": "ISR",
             "adpe": 6.102e-08,
             "pe": 9.7726,
-            "gwp": 0.56726,
+            "gwp": 0.49269,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -978,7 +978,7 @@
             "name": "ITA",
             "adpe": 5.439e-08,
             "pe": 7.9351,
-            "gwp": 0.28753,
+            "gwp": 0.28478,
             "wue": 4.8374,
             "warnings": null
         },
@@ -986,7 +986,7 @@
             "name": "JAM",
             "adpe": 1.96e-08,
             "pe": 13.5858,
-            "gwp": 0.56125,
+            "gwp": 0.56301,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -996,7 +996,7 @@
             "name": "JOR",
             "adpe": 1.47e-08,
             "pe": 13.0065,
-            "gwp": 0.53921,
+            "gwp": 0.52979,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1006,7 +1006,7 @@
             "name": "JPN",
             "adpe": 5.966e-08,
             "pe": 9.1105,
-            "gwp": 0.48232,
+            "gwp": 0.47726,
             "wue": 2.3063,
             "warnings": null
         },
@@ -1014,7 +1014,7 @@
             "name": "KAZ",
             "adpe": 1.3539e-07,
             "pe": 11.7616,
-            "gwp": 0.80195,
+            "gwp": 0.80532,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1024,7 +1024,7 @@
             "name": "KEN",
             "adpe": 9.585e-08,
             "pe": 6.4166,
-            "gwp": 0.08483,
+            "gwp": 0.09544,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1034,7 +1034,7 @@
             "name": "KGZ",
             "adpe": 1.8183e-07,
             "pe": 2.0456,
-            "gwp": 0.1637,
+            "gwp": 0.15273,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1044,7 +1044,7 @@
             "name": "KHM",
             "adpe": 3.192e-08,
             "pe": 18.2978,
-            "gwp": 0.49746,
+            "gwp": 0.49887,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1066,7 +1066,7 @@
             "name": "KNA",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.63636,
+            "gwp": 0.6087,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -1078,7 +1078,7 @@
             "name": "KOR",
             "adpe": 5.18e-08,
             "pe": 9.9136,
-            "gwp": 0.41427,
+            "gwp": 0.41706,
             "wue": 1.8877,
             "warnings": null
         },
@@ -1086,7 +1086,7 @@
             "name": "KWT",
             "adpe": 1.412e-08,
             "pe": 12.7407,
-            "gwp": 0.63724,
+            "gwp": 0.63531,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1096,7 +1096,7 @@
             "name": "LAO",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.23212,
+            "gwp": 0.23208,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -1108,7 +1108,7 @@
             "name": "LBN",
             "adpe": 1.821e-08,
             "pe": 11.995,
-            "gwp": 0.36947,
+            "gwp": 0.38951,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1118,7 +1118,7 @@
             "name": "LBR",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.4359,
+            "gwp": 0.31579,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -1130,7 +1130,7 @@
             "name": "LBY",
             "adpe": 2.066e-08,
             "pe": 19.116,
-            "gwp": 0.83053,
+            "gwp": 0.82683,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1152,7 +1152,7 @@
             "name": "LKA",
             "adpe": 9.869e-08,
             "pe": 8.7599,
-            "gwp": 0.50978,
+            "gwp": 0.32928,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1174,7 +1174,7 @@
             "name": "LTU",
             "adpe": 2.946e-08,
             "pe": 10.6476,
-            "gwp": 0.13934,
+            "gwp": 0.13836,
             "wue": 5.8994,
             "warnings": null
         },
@@ -1182,7 +1182,7 @@
             "name": "LUX",
             "adpe": 1.0569e-07,
             "pe": 8.0213,
-            "gwp": 0.13462,
+            "gwp": 0.12338,
             "wue": 12.7784,
             "warnings": null
         },
@@ -1190,7 +1190,7 @@
             "name": "LVA",
             "adpe": 1.5376e-07,
             "pe": 3.7781,
-            "gwp": 0.13622,
+            "gwp": 0.13876,
             "wue": 2.5526,
             "warnings": null
         },
@@ -1198,7 +1198,7 @@
             "name": "MAC",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.44898,
+            "gwp": 0.47436,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -1210,7 +1210,7 @@
             "name": "MAR",
             "adpe": 6.411e-08,
             "pe": 9.9697,
-            "gwp": 0.57765,
+            "gwp": 0.5964,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1220,7 +1220,7 @@
             "name": "MDA",
             "adpe": 1.1067e-07,
             "pe": 17.4518,
-            "gwp": 0.62956,
+            "gwp": 0.63312,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1230,7 +1230,7 @@
             "name": "MDG",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.47727,
+            "gwp": 0.4321,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -1242,7 +1242,7 @@
             "name": "MDV",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.61176,
+            "gwp": 0.61177,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -1254,7 +1254,7 @@
             "name": "MEX",
             "adpe": 5.784e-08,
             "pe": 9.9732,
-            "gwp": 0.48483,
+            "gwp": 0.47402,
             "wue": 5.3047,
             "warnings": null
         },
@@ -1262,7 +1262,7 @@
             "name": "MKD",
             "adpe": 1.1987e-07,
             "pe": 12.1032,
-            "gwp": 0.56897,
+            "gwp": 0.44135,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1272,7 +1272,7 @@
             "name": "MLI",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.3945,
+            "gwp": 0.53859,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -1284,7 +1284,7 @@
             "name": "MLT",
             "adpe": 4.948e-08,
             "pe": 16.3514,
-            "gwp": 0.48416,
+            "gwp": 0.48402,
             "wue": 1.1185,
             "warnings": null
         },
@@ -1292,7 +1292,7 @@
             "name": "MMR",
             "adpe": 1.527e-07,
             "pe": 6.6701,
-            "gwp": 0.56969,
+            "gwp": 0.50299,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1302,7 +1302,7 @@
             "name": "MNE",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.41351,
+            "gwp": 0.26423,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -1314,7 +1314,7 @@
             "name": "MNG",
             "adpe": 1.7636e-07,
             "pe": 14.5244,
-            "gwp": 0.78401,
+            "gwp": 0.81631,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1324,7 +1324,7 @@
             "name": "MOZ",
             "adpe": 1.4838e-07,
             "pe": 0.0336,
-            "gwp": 0.12781,
+            "gwp": 0.12936,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1334,7 +1334,7 @@
             "name": "MRT",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.48171,
+            "gwp": 0.51208,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -1358,7 +1358,7 @@
             "name": "MTQ",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.51678,
+            "gwp": 0.5298,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -1370,7 +1370,7 @@
             "name": "MUS",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.63303,
+            "gwp": 0.64223,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -1394,7 +1394,7 @@
             "name": "MYS",
             "adpe": 4.494e-08,
             "pe": 10.5875,
-            "gwp": 0.60443,
+            "gwp": 0.60197,
             "wue": 1.6778,
             "warnings": null
         },
@@ -1402,7 +1402,7 @@
             "name": "NAM",
             "adpe": 1.2828e-07,
             "pe": 3.277,
-            "gwp": 0.04762,
+            "gwp": 0.04878,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1412,7 +1412,7 @@
             "name": "NCL",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.58576,
+            "gwp": 0.5609,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -1424,7 +1424,7 @@
             "name": "NER",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.6875,
+            "gwp": 0.67368,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -1436,7 +1436,7 @@
             "name": "NGA",
             "adpe": 6.21e-08,
             "pe": 9.1812,
-            "gwp": 0.50785,
+            "gwp": 0.45571,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1446,7 +1446,7 @@
             "name": "NIC",
             "adpe": 4.15e-08,
             "pe": 11.5328,
-            "gwp": 0.28833,
+            "gwp": 0.30089,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1456,7 +1456,7 @@
             "name": "NLD",
             "adpe": 3.293e-08,
             "pe": 7.4815,
-            "gwp": 0.25331,
+            "gwp": 0.25356,
             "wue": 3.433,
             "warnings": null
         },
@@ -1464,7 +1464,7 @@
             "name": "NOR",
             "adpe": 1.2749e-07,
             "pe": 0.1386,
-            "gwp": 0.03075,
+            "gwp": 0.02811,
             "wue": 6.6633,
             "warnings": null
         },
@@ -1472,7 +1472,7 @@
             "name": "NPL",
             "adpe": 2.3827e-07,
             "pe": 0.1367,
-            "gwp": 0.02336,
+            "gwp": 0.02426,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1482,7 +1482,7 @@
             "name": "NRU",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.75,
+            "gwp": 0.6,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -1494,7 +1494,7 @@
             "name": "NZL",
             "adpe": 7.205e-08,
             "pe": 3.9817,
-            "gwp": 0.12011,
+            "gwp": 0.09276,
             "wue": 14.9681,
             "warnings": null
         },
@@ -1502,7 +1502,7 @@
             "name": "OMN",
             "adpe": 3.741e-08,
             "pe": 22.3058,
-            "gwp": 0.54533,
+            "gwp": 0.54447,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1512,7 +1512,7 @@
             "name": "PAK",
             "adpe": 8.43e-08,
             "pe": 10.886,
-            "gwp": 0.39861,
+            "gwp": 0.34656,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1522,7 +1522,7 @@
             "name": "PAN",
             "adpe": 7.906e-08,
             "pe": 5.4656,
-            "gwp": 0.25874,
+            "gwp": 0.22115,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1532,7 +1532,7 @@
             "name": "PER",
             "adpe": 9.527e-08,
             "pe": 4.0973,
-            "gwp": 0.26327,
+            "gwp": 0.23825,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1542,7 +1542,7 @@
             "name": "PHL",
             "adpe": 5.953e-08,
             "pe": 8.4176,
-            "gwp": 0.61338,
+            "gwp": 0.58829,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1564,7 +1564,7 @@
             "name": "POL",
             "adpe": 1.0195e-07,
             "pe": 11.1352,
-            "gwp": 0.61498,
+            "gwp": 0.5886,
             "wue": 2.5135,
             "warnings": null
         },
@@ -1572,7 +1572,7 @@
             "name": "PRI",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.66453,
+            "gwp": 0.65466,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -1584,7 +1584,7 @@
             "name": "PRK",
             "adpe": 1.1746e-07,
             "pe": 7.9688,
-            "gwp": 0.34426,
+            "gwp": 0.34059,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1594,7 +1594,7 @@
             "name": "PRT",
             "adpe": 3.419e-08,
             "pe": 6.5813,
-            "gwp": 0.11229,
+            "gwp": 0.12791,
             "wue": 9.5932,
             "warnings": null
         },
@@ -1602,7 +1602,7 @@
             "name": "PRY",
             "adpe": 1.4918e-07,
             "pe": 0.0195,
-            "gwp": 0.02486,
+            "gwp": 0.0247,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1612,7 +1612,7 @@
             "name": "PSE",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.46078,
+            "gwp": 0.41414,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -1624,7 +1624,7 @@
             "name": "PYF",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.43662,
+            "gwp": 0.43056,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -1636,7 +1636,7 @@
             "name": "QAT",
             "adpe": 1.324e-08,
             "pe": 11.8805,
-            "gwp": 0.60283,
+            "gwp": 0.58152,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1646,7 +1646,7 @@
             "name": "REU",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.52522,
+            "gwp": 0.39414,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -1658,7 +1658,7 @@
             "name": "ROU",
             "adpe": 9.818e-08,
             "pe": 9.1329,
-            "gwp": 0.24555,
+            "gwp": 0.25075,
             "wue": 7.3563,
             "warnings": null
         },
@@ -1666,7 +1666,7 @@
             "name": "RUS",
             "adpe": 9.603e-08,
             "pe": 10.9691,
-            "gwp": 0.4492,
+            "gwp": 0.44973,
             "wue": 3.4595,
             "warnings": null
         },
@@ -1674,7 +1674,7 @@
             "name": "RWA",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.30189,
+            "gwp": 0.35398,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -1686,7 +1686,7 @@
             "name": "SAU",
             "adpe": 1.342e-08,
             "pe": 14.0581,
-            "gwp": 0.69631,
+            "gwp": 0.69195,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1696,7 +1696,7 @@
             "name": "SDN",
             "adpe": 9.557e-08,
             "pe": 12.8292,
-            "gwp": 0.21433,
+            "gwp": 0.15369,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1706,7 +1706,7 @@
             "name": "SEN",
             "adpe": 4.707e-08,
             "pe": 13.0059,
-            "gwp": 0.5354,
+            "gwp": 0.53997,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1716,7 +1716,7 @@
             "name": "SGP",
             "adpe": 1.985e-08,
             "pe": 10.3089,
-            "gwp": 0.49874,
+            "gwp": 0.49709,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1762,7 +1762,7 @@
             "name": "SLV",
             "adpe": 4.721e-08,
             "pe": 5.1138,
-            "gwp": 0.10156,
+            "gwp": 0.13932,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1772,7 +1772,7 @@
             "name": "SOM",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.52381,
+            "gwp": 0.51163,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -1796,7 +1796,7 @@
             "name": "SRB",
             "adpe": 1.3277e-07,
             "pe": 10.311,
-            "gwp": 0.6708,
+            "gwp": 0.6958,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1806,7 +1806,7 @@
             "name": "SSD",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.61017,
+            "gwp": 0.64286,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -1830,7 +1830,7 @@
             "name": "SUR",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.38318,
+            "gwp": 0.32184,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -1842,7 +1842,7 @@
             "name": "SVK",
             "adpe": 6.061e-08,
             "pe": 8.8184,
-            "gwp": 0.09649,
+            "gwp": 0.09485,
             "wue": 5.7952,
             "warnings": null
         },
@@ -1850,7 +1850,7 @@
             "name": "SVN",
             "adpe": 9.923e-08,
             "pe": 8.4293,
-            "gwp": 0.22765,
+            "gwp": 0.18329,
             "wue": 2.9769,
             "warnings": null
         },
@@ -1858,7 +1858,7 @@
             "name": "SWE",
             "adpe": 7.771e-08,
             "pe": 4.73,
-            "gwp": 0.03582,
+            "gwp": 0.03526,
             "wue": 6.0315,
             "warnings": null
         },
@@ -1866,7 +1866,7 @@
             "name": "SWZ",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.14286,
+            "gwp": 0.13115,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -1878,7 +1878,7 @@
             "name": "SYC",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.57143,
+            "gwp": 0.55556,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -1890,7 +1890,7 @@
             "name": "SYR",
             "adpe": 2.684e-08,
             "pe": 16.0882,
-            "gwp": 0.68227,
+            "gwp": 0.70619,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1900,7 +1900,7 @@
             "name": "TCA",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.65385,
+            "gwp": 0.62963,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -1912,7 +1912,7 @@
             "name": "TCD",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.61538,
+            "gwp": 0.62162,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -1924,7 +1924,7 @@
             "name": "TGO",
             "adpe": 1.3426e-07,
             "pe": 5.912,
-            "gwp": 0.47826,
+            "gwp": 0.42254,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1934,7 +1934,7 @@
             "name": "THA",
             "adpe": 5.696e-08,
             "pe": 9.0495,
-            "gwp": 0.5545,
+            "gwp": 0.54574,
             "wue": 2.8902,
             "warnings": null
         },
@@ -1942,7 +1942,7 @@
             "name": "TJK",
             "adpe": 1.5262e-07,
             "pe": 0.4791,
-            "gwp": 0.11588,
+            "gwp": 0.07256,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1952,7 +1952,7 @@
             "name": "TKM",
             "adpe": 1.3182e-07,
             "pe": 23.3003,
-            "gwp": 1.3063,
+            "gwp": 1.30627,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1986,7 +1986,7 @@
             "name": "TTO",
             "adpe": 6.455e-08,
             "pe": 14.289,
-            "gwp": 0.6821,
+            "gwp": 0.68168,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -1996,7 +1996,7 @@
             "name": "TUN",
             "adpe": 1.77e-08,
             "pe": 12.5148,
-            "gwp": 0.56025,
+            "gwp": 0.56029,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -2006,7 +2006,7 @@
             "name": "TUR",
             "adpe": 7.498e-08,
             "pe": 8.7855,
-            "gwp": 0.4697,
+            "gwp": 0.47474,
             "wue": 4.9197,
             "warnings": null
         },
@@ -2014,7 +2014,7 @@
             "name": "TWN",
             "adpe": 5.781e-08,
             "pe": 10.9587,
-            "gwp": 0.63565,
+            "gwp": 0.63321,
             "wue": 1.4886,
             "warnings": null
         },
@@ -2022,7 +2022,7 @@
             "name": "TZA",
             "adpe": 1.3226e-07,
             "pe": 5.8527,
-            "gwp": 0.37158,
+            "gwp": 0.34502,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -2032,7 +2032,7 @@
             "name": "UGA",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.05739,
+            "gwp": 0.05852,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -2044,7 +2044,7 @@
             "name": "UKR",
             "adpe": 6.479e-08,
             "pe": 12.2117,
-            "gwp": 0.25621,
+            "gwp": 0.25047,
             "wue": 2.1306,
             "warnings": null
         },
@@ -2052,7 +2052,7 @@
             "name": "URY",
             "adpe": 1.0459e-07,
             "pe": 3.765,
-            "gwp": 0.0967,
+            "gwp": 0.0804,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -2062,7 +2062,7 @@
             "name": "USA",
             "adpe": 9.855e-08,
             "pe": 9.6884,
-            "gwp": 0.38355,
+            "gwp": 0.3844,
             "wue": 3.1321,
             "warnings": null
         },
@@ -2070,7 +2070,7 @@
             "name": "UZB",
             "adpe": 1.0368e-07,
             "pe": 12.9214,
-            "gwp": 1.12118,
+            "gwp": 1.0,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -2092,7 +2092,7 @@
             "name": "VEN",
             "adpe": 1.1281e-07,
             "pe": 4.9129,
-            "gwp": 0.18025,
+            "gwp": 0.08586,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -2114,7 +2114,7 @@
             "name": "VIR",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.64179,
+            "gwp": 0.63235,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -2126,7 +2126,7 @@
             "name": "VNM",
             "adpe": 9.456e-08,
             "pe": 6.9003,
-            "gwp": 0.47116,
+            "gwp": 0.46073,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -2148,7 +2148,7 @@
             "name": "WOR",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.47301,
+            "gwp": 0.45829,
             "wue": 3.908,
             "warnings": null
         },
@@ -2156,7 +2156,7 @@
             "name": "WSM",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.4,
+            "gwp": 0.375,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
@@ -2168,7 +2168,7 @@
             "name": "YEM",
             "adpe": 1.639e-08,
             "pe": 14.4784,
-            "gwp": 0.58632,
+            "gwp": 0.59238,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -2178,7 +2178,7 @@
             "name": "ZAF",
             "adpe": 8.624e-08,
             "pe": 11.357,
-            "gwp": 0.70888,
+            "gwp": 0.69929,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -2188,7 +2188,7 @@
             "name": "ZMB",
             "adpe": 1.6219e-07,
             "pe": 0.0899,
-            "gwp": 0.111,
+            "gwp": 0.11968,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
@@ -2198,7 +2198,7 @@
             "name": "ZWE",
             "adpe": 1.095e-07,
             "pe": 7.7549,
-            "gwp": 0.29844,
+            "gwp": 0.38402,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-wue-world"
