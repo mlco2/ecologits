@@ -49,6 +49,8 @@ class ImpactsOutput(BaseModel):
     def add_warning(self, warning: WarningMessage) -> None:
         if self.warnings is None:
             self.warnings = []
+        if warning.code in {w.code for w in self.warnings}:
+            return
         self.warnings.append(warning)
 
     def add_errors(self, error: ErrorMessage) -> None:
@@ -123,6 +125,11 @@ def llm_impacts(
 
     if model.has_warnings:
         for w in model.warnings:
+            logger.warning_once(str(w))
+            impacts.add_warning(w)
+
+    if if_electricity_mix.has_warnings:
+        for w in if_electricity_mix.warnings:
             logger.warning_once(str(w))
             impacts.add_warning(w)
 
