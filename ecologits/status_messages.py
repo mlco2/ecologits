@@ -66,6 +66,21 @@ class ModelArchMultimodalWarning(WarningMessage):
     message: str = "The model architecture is multimodal, expect lower precision."
 
 
+class ElectricityMixADPeDefaultWarning(WarningMessage):
+    code: str = "electricity-mix-adpe-world"
+    message: str = "The electricity mix ADPe factor is using the world default value, expect lower precision."
+
+
+class ElectricityMixPEDefaultWarning(WarningMessage):
+    code: str = "electricity-mix-pe-world"
+    message: str = "The electricity mix PE factor is using the world default value, expect lower precision."
+
+
+class ElectricityMixWUEDefaultWarning(WarningMessage):
+    code: str = "electricity-mix-wue-world"
+    message: str = "The electricity mix WUE factor is using the world default value, expect lower precision."
+
+
 class ModelNotRegisteredError(ErrorMessage):
     code: str = "model-not-registered"
     message: str = "The model is not registered in the model repository."
@@ -78,7 +93,10 @@ class ZoneNotRegisteredError(ErrorMessage):
 
 _warning_codes: dict[str, type[WarningMessage]] = {
     "model-arch-not-released": ModelArchNotReleasedWarning,
-    "model-arch-multimodal": ModelArchMultimodalWarning
+    "model-arch-multimodal": ModelArchMultimodalWarning,
+    "electricity-mix-adpe-world": ElectricityMixADPeDefaultWarning,
+    "electricity-mix-pe-world": ElectricityMixPEDefaultWarning,
+    "electricity-mix-wue-world": ElectricityMixWUEDefaultWarning,
 }
 
 _error_codes: dict[str, type[ErrorMessage]] = {
