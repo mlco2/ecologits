@@ -22,6 +22,4 @@ repos:
   - repo: https://github.com/owenlamont/uv-secure
     rev: 0.16.0
     hooks:
-      # Temporary ignore until PYSEC-2026-89 has an upstream Markdown fix release.
       - id: uv-secure
-        args: [--ignore-vulns, PYSEC-2026-89]
