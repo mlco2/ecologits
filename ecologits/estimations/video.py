@@ -120,7 +120,14 @@ def impacts_video_generation(
         server_accelerator_count=server_accelerator_count,
         **regression,
     )
-    return ImpactsOutput.model_validate(impacts.model_dump())
+    impacts = ImpactsOutput.model_validate(impacts.model_dump())
+
+    if if_electricity_mix.has_warnings:
+        for warning in if_electricity_mix.warnings:
+            logger.warning_once(str(warning))
+            impacts.add_warning(warning)
+
+    return impacts
 
 
 def parse_resolution(resolution: str) -> tuple[int, int]:
