@@ -154,11 +154,11 @@ The embodied environmental impacts of the base server are:
 
 We use Boavizta-based values to estimate the embodied impacts of a single accelerator, denoted as $I^{\text{e}}_{\text{acc}}$.
 
-|                   | H800 | H200 | TPU v6e |
-|-------------------|------|------|---------|
-| GWP (kgCO2eq)     | $273$ | $364$ | $323$ |
+|                   | H800      | H200      | TPU v6e   |
+|-------------------|-----------|-----------|-----------|
+| GWP (kgCO2eq)     | $273$     | $364$     | $323$     |
 | ADPe (kgSbeq)     | $0.00895$ | $0.00895$ | $0.00895$ |
-| PE (MJ)           | $3721$ | $4906$ | $4906$ |
+| PE (MJ)           | $3721$    | $4906$    | $4906$    |
 
 ??? info "On accelerator embodied values"
 
@@ -187,6 +187,21 @@ I^{\text{e}}_{\text{request}} =
 $$
 
 !!! warning "Water consumption (WCF) is not modeled for the embodied phase due to a lack of data."
+
+
+## Supplemental material
+
+### Data center configuration
+
+We use provider-level assumptions for the default **deployment location**, **PUE**, and **WUE** used in video generation impact estimates. These values are used when no request-specific data center location, PUE, or WUE is provided.
+
+| AI Provider | Location | PUE         | WUE          |
+|-------------|----------|-------------|--------------|
+| ByteDance   | SGP      | 1.20        | 0.50         |
+| Google      | USA      | 1.09        | 0.999        |
+| Kling AI    | SGP      | 1.20        | 0.50         |
+| OpenAI      | USA      | 1.20        | 0.569        |
+| Runway      | USA      | 1.09 - 1.14 | 0.13 - 0.999 |
 
 
 ## References
