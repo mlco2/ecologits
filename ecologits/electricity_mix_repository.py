@@ -52,7 +52,7 @@ class ElectricityMixRepository:
     """
 
     def __init__(self, electricity_mixes: list[ElectricityMix]) -> None:
-        self.__electricity_mixes = {}
+        self.__electricity_mixes: dict[str, ElectricityMix] = {}
         for electricity_mix in electricity_mixes:
             if electricity_mix.zone in self.__electricity_mixes:
                 raise ValueError(f"duplicated electricity mix with: {electricity_mix.zone}")
