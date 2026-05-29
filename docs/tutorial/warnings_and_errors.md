@@ -39,6 +39,18 @@ This warning is reported when the model architecture is not disclosed by the pro
 
 This warning is reported when the model is multimodal. EcoLogits uses energy benchmarking data from open source LLMs that can only generate text. Models that can generate (or use as input) data from other modalities such as image, audio or video are currently not fully supported.
 
+### `electricity-mix-adpe-world`
+
+This warning is reported when the selected electricity mix uses the world default value for the ADPe impact factor. This can happen for countries where GWP data is available, but country-specific ADPe data is not.
+
+### `electricity-mix-pe-world`
+
+This warning is reported when the selected electricity mix uses the world default value for the PE impact factor. This can happen for countries where GWP data is available, but country-specific PE data is not.
+
+### `electricity-mix-wue-world`
+
+This warning is reported when the selected electricity mix uses the world default value for the WUE impact factor. This can happen for countries where GWP data is available, but country-specific WUE data is not.
+
 
 ## Errors
 
