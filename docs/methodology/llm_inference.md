@@ -185,7 +185,7 @@ $$
 
 ### Modeling request usage environmental impacts
 
-To assess the environmental impacts of the request for the usage phase, we multiply the estimated electricity consumption by the impact factor of the electricity mix, $F_{\text{em}}$, specific to the target country and time. We use data from the [Our World in Data](https://ourworldindata.org/electricity-mix) for GWP impact and from the [ADEME Base Empreinte®](https://base-empreinte.ademe.fr/) for ADPe and PE impacts. It gives us:
+To assess the environmental impacts of the request for the usage phase, we multiply the estimated electricity consumption by the impact factor of the electricity mix, $F_{\text{em}}$, specific to the target country and time. We use data from the [Our World in Data](https://ourworldindata.org/electricity-mix) for GWP impact and from the [ADEME Base Empreinte®](https://base-empreinte.ademe.fr/) for ADPe and PE impacts. When country-specific data is unavailable for ADPe or PE, EcoLogits uses the world default value and reports a warning in the request impacts. It gives us:
 
 $$
 I^\text{u}_{\text{request}} = E_{\text{request}} \times F_{\text{em}}.
@@ -193,7 +193,7 @@ $$
 
 #### Modeling request water consumption footprint for usage phase
 
-To assess the Water Consumption Footprint (WCF) for the usage phase we use the modeling from [Li et al. (2025)](https://arxiv.org/abs/2304.03271). It uses the Water Usage Effectiveness (WUE) of both the data center $\text{WUE}_\text{on-site}$ and of the local electricity mix $\text{WUE}_\text{off-site}$. On-site data is assessed for each provider individually, whereas off-site data is averaged from each country according to the [World Resource Institute methodology](https://www.wri.org/research/guidance-calculating-water-use-embedded-purchased-electricity). It gives us:
+To assess the Water Consumption Footprint (WCF) for the usage phase we use the modeling from [Li et al. (2025)](https://arxiv.org/abs/2304.03271). It uses the Water Usage Effectiveness (WUE) of both the data center $\text{WUE}_\text{on-site}$ and of the local electricity mix $\text{WUE}_\text{off-site}$. On-site data is assessed for each provider individually, whereas off-site data is averaged from each country according to the [World Resource Institute methodology](https://www.wri.org/research/guidance-calculating-water-use-embedded-purchased-electricity). When country-specific data is unavailable for off-site WUE, EcoLogits uses the world default value and reports a warning in the request impacts. It gives us:
 
 $$
 \text{WCF}^{\text{u}}_\text{request} = E_\text{server} \times [\text{WUE}_\text{on-site} + \text{PUE} \times \text{WUE}_\text{off-site}].
@@ -337,11 +337,12 @@ To transform physical values such as energy consumption into environmental impac
 
 **Assumptions:**
 
-* Electricity mix are taken from the ADEME Base Empreinte database and averaged per country.
+* Electricity mix impact factors are averaged per country. GWP coverage is based on Our World in Data, ADPe and PE values are based on ADEME Base Empreinte, and off-site WUE values are based on World Resource Institute data.
 
 **Limitations:**
 
 * We do not account for local electricity generation for data center or regional electricity mixes the smallest supported zone is a country.
+* Some countries use world default values for ADPe, PE, or off-site WUE when country-specific data is unavailable. EcoLogits reports these cases as warnings.
 
 ### On embodied impacts
 

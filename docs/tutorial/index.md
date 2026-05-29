@@ -63,9 +63,9 @@ EcoLogits.init(providers=["openai", "anthropic"])
 
 You can change the [electricity mix :octicons-link-external-16:](https://ourworldindata.org/electricity-mix) for server-side computation depending on a specific location. EcoLogits will automatically change the default impact factors for electricity consumption according to the selected zone. 
 
-Available zones are listed in the [electricity_mixes.csv :octicons-link-external-16:](https://github.com/mlco2/ecologits/blob/main/ecologits/data/electricity_mixes.csv) file and are based on the [ISO 3166-1 alpha-3 :octicons-link-external-16:](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) convention with some extras like `WOR` for World or `EEE` for Europe. 
+Available zones are listed in the [electricity_mixes.json :octicons-link-external-16:](https://github.com/mlco2/ecologits/blob/main/ecologits/data/electricity_mixes.json) file and are based on the [ISO 3166-1 alpha-3 :octicons-link-external-16:](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) convention with some extras like `WOR` for World or `EEE` for Europe. 
 
-Electricity mixes for each geographic zone are sourced from the [ADEME Base Empreinte® :octicons-link-external-16:](https://base-empreinte.ademe.fr/) database and are based on yearly averages.
+Electricity mixes for each geographic zone are based on available data for the supported impact factors. When country-specific data is missing for ADPe, PE, or WUE, EcoLogits can use the world default value and report a warning in the request impacts.
 
 !!! info "Default electricity mix zone is `WOR` for World."
 
