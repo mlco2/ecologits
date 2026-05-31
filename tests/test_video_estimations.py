@@ -33,7 +33,7 @@ def test_impacts_video_generation_uses_number_of_accelerators_from_hardware_conf
     }
     monkeypatch.setitem(video_estimations._HARDWARE_CONFIGURATIONS, hardware_name, hardware)
 
-    impacts = video_estimations.impacts_video_generation(
+    impacts = video_estimations.video_impacts(
         model_name="klingai/kling-v1.6",
         resolution="1280x720",
         duration=5,
@@ -53,7 +53,7 @@ def test_impacts_video_generation_uses_number_of_accelerators_from_hardware_conf
 
 
 def test_impacts_video_generation_supports_tpu_backed_models():
-    impacts = video_estimations.impacts_video_generation(
+    impacts = video_estimations.video_impacts(
         model_name="google/veo-3.0",
         resolution="1280x720",
         duration=5,
@@ -77,7 +77,7 @@ def test_impacts_video_generation_uses_provider_configuration(monkeypatch):
 
     monkeypatch.setattr(video_estimations, "compute_video_impacts", fake_compute_video_impacts)
 
-    video_estimations.impacts_video_generation(
+    video_estimations.video_impacts(
         model_name="runway/gen-4.5",
         resolution="1280x720",
         duration=5,
@@ -91,7 +91,7 @@ def test_impacts_video_generation_uses_provider_configuration(monkeypatch):
 
 
 def test_impacts_video_generation_uses_datacenter_location_when_provided():
-    impacts = video_estimations.impacts_video_generation(
+    impacts = video_estimations.video_impacts(
         model_name="runway/gen-4.5",
         resolution="1280x720",
         duration=5,
@@ -103,7 +103,7 @@ def test_impacts_video_generation_uses_datacenter_location_when_provided():
 
 
 def test_impacts_video_generation_adds_electricity_mix_warnings():
-    impacts = video_estimations.impacts_video_generation(
+    impacts = video_estimations.video_impacts(
         model_name="runway/gen-4.5",
         resolution="1280x720",
         duration=5,
