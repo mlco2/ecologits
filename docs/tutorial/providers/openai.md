@@ -270,3 +270,38 @@ response = client.chat.completions.create(
 # Get estimated environmental impacts of the inference
 print(response.impacts)
 ```
+
+
+## Video Generation
+
+Video generation impacts are estimated with the [`video_impacts`][estimations.video.video_impacts] function. This is independent from the OpenAI client tracer: call it with the same model, resolution, and duration that you use for the video generation request.
+
+Supported OpenAI video models:
+
+| Model | Identifier |
+|-------|------------|
+| Sora 2 Pro | `openai/sora-2-pro` |
+
+```python
+from ecologits.estimations import video_impacts
+
+model = "openai/sora-2-pro"
+resolution = "1080p"
+duration = 10
+
+# Use these same values in your OpenAI video generation request.
+
+impacts = video_impacts(
+    model_name=model,
+    resolution=resolution,
+    duration=duration,
+)
+
+print(impacts.gwp.value)
+```
+
+You can serialize the impacts object if you want to store it with your video request metadata:
+
+```python
+impact_payload = impacts.model_dump(mode="json")
+```

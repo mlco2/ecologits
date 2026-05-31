@@ -14,17 +14,21 @@ nav:
   - 'Tutorial':
       - 'Introduction': tutorial/index.md
       - 'Environmental Impacts': tutorial/impacts.md
+      - 'Video Generation': tutorial/video_generation.md
       - 'Warnings and Errors': tutorial/warnings_and_errors.md
       - 'Supported providers': tutorial/providers.md
       - 'OpenTelemetry': tutorial/opentelemetry.md
       - 'Providers':
           - 'Anthropic': tutorial/providers/anthropic.md
+          - 'ByteDance': tutorial/providers/bytedance.md
           - 'Cohere': tutorial/providers/cohere.md
           - 'Google Gemini': tutorial/providers/google_genai.md
           - 'Hugging Face Hub': tutorial/providers/huggingface_hub.md
+          - 'Kling AI': tutorial/providers/klingai.md
           - 'LiteLLM': tutorial/providers/litellm.md
           - 'Mistral AI': tutorial/providers/mistralai.md
           - 'OpenAI': tutorial/providers/openai.md
+          - 'Runway': tutorial/providers/runway.md
   - 'Methodology':
       - 'Introduction': methodology/index.md
       - 'Proprietary models': methodology/proprietary_models.md
