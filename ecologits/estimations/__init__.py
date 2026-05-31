@@ -1,5 +1,5 @@
-from .video import impacts_video_generation
+from .video import video_impacts
 
 __all__ = [
-    "impacts_video_generation"
+    "video_impacts"
 ]

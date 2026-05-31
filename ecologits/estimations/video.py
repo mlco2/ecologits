@@ -29,7 +29,7 @@ _MODELS_INFO = {
 }
 
 
-def impacts_video_generation(
+def video_impacts(
         model_name: str,
         resolution: str,
         duration: float,
