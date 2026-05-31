@@ -157,3 +157,46 @@ Integrating EcoLogits with your applications does not alter the standard outputs
         if chunk.impacts is not None:
             print(chunk.impacts)
     ```
+
+
+## Video Generation
+
+Video generation impacts are estimated with the [`video_impacts`][estimations.video.video_impacts] function. This is independent from the Google Gemini client tracer: call it with the same model, resolution, and duration that you use for the video generation request.
+
+Supported Google video models:
+
+| Model | Identifier |
+|-------|------------|
+| Veo 3.0 | `google/veo-3.0` |
+| Veo 3.0 Fast | `google/veo-3.0-fast` |
+| Veo 3.1 | `google/veo-3.1` |
+| Veo 3.1 Fast | `google/veo-3.1-fast` |
+
+```python
+from ecologits.estimations import video_impacts
+
+model = "google/veo-3.1"
+resolution = "1080p"
+duration = 8
+
+# Use these same values in your Google video generation request.
+
+impacts = video_impacts(
+    model_name=model,
+    resolution=resolution,
+    duration=duration,
+)
+
+print(impacts.gwp.value)
+```
+
+Set `with_audio=False` when your request generates video without audio:
+
+```python
+impacts = video_impacts(
+    model_name=model,
+    resolution=resolution,
+    duration=duration,
+    with_audio=False,
+)
+```
