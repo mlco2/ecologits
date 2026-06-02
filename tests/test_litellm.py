@@ -7,7 +7,7 @@ from ecologits.tracers.litellm_tracer import litellm_match_model
 @pytest.mark.parametrize("model_name,expected_tuple", [
     ("gpt-4o", ("openai", "gpt-4o")),
     ("mistral/mistral-large-latest", ("mistralai", "mistral-large-latest")),
-    ("command-r", ("cohere", "command-r")),
+    ("command-r-08-2024", ("cohere", "command-r-08-2024")),
     ("huggingface/meta-llama/Llama-2-7b", ("huggingface_hub", "meta-llama/Llama-2-7b")),
     ("gemini/gemini-2.5-pro", ("google_genai", "gemini-2.5-pro")),
     ("gemini/gemini-2.5-flash", ("google_genai", "gemini-2.5-flash")),

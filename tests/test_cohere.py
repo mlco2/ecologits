@@ -7,6 +7,7 @@ def test_cohere_chat(tracer_init):
     client = Client()
     chat = client.chat(
         message="Hello!",
+        model="command-r-08-2024",
         max_tokens=100
     )
     assert len(chat.text) > 0
@@ -19,6 +20,7 @@ async def test_cohere_async_chat(tracer_init):
     client = AsyncClient()
     chat = await client.chat(
         message="Hello!",
+        model="command-r-08-2024",
         max_tokens=100
     )
     assert len(chat.text) > 0
@@ -30,6 +32,7 @@ def test_cohere_stream_chat(tracer_init):
     client = Client()
     stream = client.chat_stream(
         message="Tell me a short story",
+        model="command-r-08-2024",
         max_tokens=100
     )
     for event in stream:
@@ -45,6 +48,7 @@ async def test_cohere_async_stream_chat(tracer_init):
     client = AsyncClient()
     stream = client.chat_stream(
         message="Tell me a short story",
+        model="command-r-08-2024",
         max_tokens=100
     )
     async for event in stream:

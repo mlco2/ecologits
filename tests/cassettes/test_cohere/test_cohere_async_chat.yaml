@@ -1,69 +1,79 @@
 interactions:
 - request:
-    body: '{"message": "Hello!", "stream": false, "max_tokens": 100}'
+    body: '{"message":"Hello!","model":"command-r-08-2024","max_tokens":100,"stream":false}'
     headers:
-      accept:
+      Accept:
       - '*/*'
-      accept-encoding:
+      Accept-Encoding:
       - gzip, deflate
-      connection:
+      Connection:
       - keep-alive
-      content-length:
-      - '57'
+      Content-Length:
+      - '80'
+      Host:
+      - api.cohere.com
+      User-Agent:
+      - cohere/5.21.1
+      X-Fern-Language:
+      - Python
+      X-Fern-Platform:
+      - darwin/24.6.0
+      X-Fern-Runtime:
+      - python/3.10.19
+      X-Fern-SDK-Name:
+      - cohere
+      X-Fern-SDK-Version:
+      - 5.21.1
       content-type:
       - application/json
-      host:
-      - api.cohere.com
-      user-agent:
-      - python-httpx/0.25.2
-      x-fern-language:
-      - Python
-      x-fern-sdk-name:
-      - cohere
-      x-fern-sdk-version:
-      - 5.2.5
     method: POST
     uri: https://api.cohere.com/v1/chat
   response:
     body:
-      string: '{"response_id":"85411c88-dcf9-4ed8-87f9-d32b2c06edfa","text":"Hello!
-        How can I help you today?","generation_id":"ea42ed56-669a-4e53-abce-1f2a6ded3c81","chat_history":[{"role":"USER","message":"Hello!"},{"role":"CHATBOT","message":"Hello!
-        How can I help you today?"}],"finish_reason":"COMPLETE","meta":{"api_version":{"version":"1"},"billed_units":{"input_tokens":2,"output_tokens":9},"tokens":{"input_tokens":68,"output_tokens":9}}}'
+      string: !!binary |
+        H4sIAAAAAAAA/4yO0UrzQBCFXyWd611Ik80mm5ufXylUUCpar0TCJJk2i3G37G7UEvLuUqVVKIJ3
+        M2e+OeeM4MjvrPFU6RZKSEkVebqZ87yuJReykLxAjHkuRBZLkahcEjAI9B6ghCX1vY1CR45m0dK+
+        RQ2a6CpC77UP0d4OUbAt7v8Bgy0Zchi0NV9BUmYqUyh4LUXChYxTrrJU8TpPRYGUtC02wKDpMFSd
+        9sG6PZSPIzjbE5TwcL+4AwYv5D1u6VhlBhM7IZfL/+uL1fqc+kvh6YnBRhvtu8oRemsOhqub2+vF
+        evHpGBDKEXCnq1dyXh+AEU4jzGFiUOu+p7YajA7+cNZmN4Qq2GcyHsqEgR3CT2UeTwyOyxke//LQ
+        YNNR+62pZJo+AgAA//+PZmbV1wEAAA==
     headers:
       Alt-Svc:
-      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
-      Content-Length:
-      - '432'
+      - h3=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
       Via:
       - 1.1 google
       access-control-expose-headers:
       - X-Debug-Trace-ID
       cache-control:
       - no-cache, no-store, no-transform, must-revalidate, private, max-age=0
+      content-encoding:
+      - gzip
       content-type:
       - application/json
       date:
-      - Fri, 12 Apr 2024 18:44:02 GMT
+      - Tue, 02 Jun 2026 17:48:14 GMT
       expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
+      - Thu, 01 Jan 1970 00:00:00 GMT
       num_chars:
-      - '421'
+      - '1183'
       num_tokens:
-      - '11'
+      - '12'
       pragma:
       - no-cache
       server:
       - envoy
       vary:
-      - Origin
+      - Origin,Accept-Encoding
       x-accel-expires:
       - '0'
       x-debug-trace-id:
-      - d86f0708c168a539d7010d395ba626b6
+      - 1523dc48d7ebabd9507eca0ec468433a
       x-endpoint-monthly-call-limit:
       - '1000'
       x-envoy-upstream-service-time:
-      - '388'
+      - '393'
       x-trial-endpoint-call-limit:
       - '20'
       x-trial-endpoint-call-remaining:
