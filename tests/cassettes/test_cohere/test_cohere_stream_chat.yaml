@@ -1,32 +1,36 @@
 interactions:
 - request:
-    body: '{"message": "Tell me a short story", "stream": true, "max_tokens": 100}'
+    body: '{"message":"Tell me a short story","model":"command-r-08-2024","max_tokens":100,"stream":true}'
     headers:
-      accept:
+      Accept:
       - '*/*'
-      accept-encoding:
+      Accept-Encoding:
       - gzip, deflate
-      connection:
+      Connection:
       - keep-alive
-      content-length:
-      - '71'
+      Content-Length:
+      - '94'
+      Host:
+      - api.cohere.com
+      User-Agent:
+      - cohere/5.21.1
+      X-Fern-Language:
+      - Python
+      X-Fern-Platform:
+      - darwin/24.6.0
+      X-Fern-Runtime:
+      - python/3.10.19
+      X-Fern-SDK-Name:
+      - cohere
+      X-Fern-SDK-Version:
+      - 5.21.1
       content-type:
       - application/json
-      host:
-      - api.cohere.com
-      user-agent:
-      - python-httpx/0.25.2
-      x-fern-language:
-      - Python
-      x-fern-sdk-name:
-      - cohere
-      x-fern-sdk-version:
-      - 5.2.5
     method: POST
     uri: https://api.cohere.com/v1/chat
   response:
     body:
-      string: '{"is_finished":false,"event_type":"stream-start","generation_id":"94cdd35d-d52e-460b-8858-75a87848182b"}
+      string: '{"is_finished":false,"event_type":"stream-start","generation_id":"2e6477be-fab9-4b79-982f-f208e43cda68"}
 
         {"is_finished":false,"event_type":"text-generation","text":"Once"}
 
@@ -42,21 +46,9 @@ interactions:
 
         {"is_finished":false,"event_type":"text-generation","text":" a"}
 
-        {"is_finished":false,"event_type":"text-generation","text":" small"}
+        {"is_finished":false,"event_type":"text-generation","text":" bustling"}
 
-        {"is_finished":false,"event_type":"text-generation","text":","}
-
-        {"is_finished":false,"event_type":"text-generation","text":" peaceful"}
-
-        {"is_finished":false,"event_type":"text-generation","text":" town"}
-
-        {"is_finished":false,"event_type":"text-generation","text":" nestled"}
-
-        {"is_finished":false,"event_type":"text-generation","text":" amidst"}
-
-        {"is_finished":false,"event_type":"text-generation","text":" rolling"}
-
-        {"is_finished":false,"event_type":"text-generation","text":" hills"}
+        {"is_finished":false,"event_type":"text-generation","text":" city"}
 
         {"is_finished":false,"event_type":"text-generation","text":","}
 
@@ -66,31 +58,49 @@ interactions:
 
         {"is_finished":false,"event_type":"text-generation","text":" a"}
 
-        {"is_finished":false,"event_type":"text-generation","text":" curious"}
+        {"is_finished":false,"event_type":"text-generation","text":" young"}
 
-        {"is_finished":false,"event_type":"text-generation","text":" little"}
-
-        {"is_finished":false,"event_type":"text-generation","text":" girl"}
+        {"is_finished":false,"event_type":"text-generation","text":" artist"}
 
         {"is_finished":false,"event_type":"text-generation","text":" named"}
 
-        {"is_finished":false,"event_type":"text-generation","text":" Emily"}
+        {"is_finished":false,"event_type":"text-generation","text":" Mia"}
 
         {"is_finished":false,"event_type":"text-generation","text":"."}
 
-        {"is_finished":false,"event_type":"text-generation","text":" Emily"}
+        {"is_finished":false,"event_type":"text-generation","text":" Mia"}
 
         {"is_finished":false,"event_type":"text-generation","text":" had"}
 
         {"is_finished":false,"event_type":"text-generation","text":" a"}
 
-        {"is_finished":false,"event_type":"text-generation","text":" vivid"}
+        {"is_finished":false,"event_type":"text-generation","text":" unique"}
 
-        {"is_finished":false,"event_type":"text-generation","text":" imagination"}
+        {"is_finished":false,"event_type":"text-generation","text":" talent"}
 
-        {"is_finished":false,"event_type":"text-generation","text":" and"}
+        {"is_finished":false,"event_type":"text-generation","text":" for"}
 
-        {"is_finished":false,"event_type":"text-generation","text":" often"}
+        {"is_finished":false,"event_type":"text-generation","text":" capturing"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" the"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" beauty"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" of"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" nature"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" through"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" her"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" vibrant"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" paintings"}
+
+        {"is_finished":false,"event_type":"text-generation","text":"."}
+
+        {"is_finished":false,"event_type":"text-generation","text":" She"}
 
         {"is_finished":false,"event_type":"text-generation","text":" spent"}
 
@@ -98,21 +108,37 @@ interactions:
 
         {"is_finished":false,"event_type":"text-generation","text":" days"}
 
-        {"is_finished":false,"event_type":"text-generation","text":" dreaming"}
+        {"is_finished":false,"event_type":"text-generation","text":" wandering"}
 
-        {"is_finished":false,"event_type":"text-generation","text":" up"}
+        {"is_finished":false,"event_type":"text-generation","text":" through"}
 
-        {"is_finished":false,"event_type":"text-generation","text":" grand"}
+        {"is_finished":false,"event_type":"text-generation","text":" the"}
 
-        {"is_finished":false,"event_type":"text-generation","text":" adventures"}
+        {"is_finished":false,"event_type":"text-generation","text":" parks"}
+
+        {"is_finished":false,"event_type":"text-generation","text":","}
+
+        {"is_finished":false,"event_type":"text-generation","text":" inspired"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" by"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" the"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" changing"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" seasons"}
 
         {"is_finished":false,"event_type":"text-generation","text":" and"}
 
-        {"is_finished":false,"event_type":"text-generation","text":" far"}
+        {"is_finished":false,"event_type":"text-generation","text":" the"}
 
-        {"is_finished":false,"event_type":"text-generation","text":"away"}
+        {"is_finished":false,"event_type":"text-generation","text":" vibrant"}
 
-        {"is_finished":false,"event_type":"text-generation","text":" lands"}
+        {"is_finished":false,"event_type":"text-generation","text":" flora"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" and"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" fauna"}
 
         {"is_finished":false,"event_type":"text-generation","text":"."}
 
@@ -124,25 +150,7 @@ interactions:
 
         {"is_finished":false,"event_type":"text-generation","text":","}
 
-        {"is_finished":false,"event_type":"text-generation","text":" while"}
-
-        {"is_finished":false,"event_type":"text-generation","text":" wandering"}
-
-        {"is_finished":false,"event_type":"text-generation","text":" through"}
-
-        {"is_finished":false,"event_type":"text-generation","text":" the"}
-
-        {"is_finished":false,"event_type":"text-generation","text":" woods"}
-
-        {"is_finished":false,"event_type":"text-generation","text":" near"}
-
-        {"is_finished":false,"event_type":"text-generation","text":" her"}
-
-        {"is_finished":false,"event_type":"text-generation","text":" home"}
-
-        {"is_finished":false,"event_type":"text-generation","text":","}
-
-        {"is_finished":false,"event_type":"text-generation","text":" Emily"}
+        {"is_finished":false,"event_type":"text-generation","text":" Mia"}
 
         {"is_finished":false,"event_type":"text-generation","text":" stumbled"}
 
@@ -152,98 +160,94 @@ interactions:
 
         {"is_finished":false,"event_type":"text-generation","text":" old"}
 
-        {"is_finished":false,"event_type":"text-generation","text":","}
+        {"is_finished":false,"event_type":"text-generation","text":" abandoned"}
 
-        {"is_finished":false,"event_type":"text-generation","text":" forgotten"}
+        {"is_finished":false,"event_type":"text-generation","text":" garden"}
 
-        {"is_finished":false,"event_type":"text-generation","text":" tree"}
+        {"is_finished":false,"event_type":"text-generation","text":" hidden"}
 
-        {"is_finished":false,"event_type":"text-generation","text":"house"}
-
-        {"is_finished":false,"event_type":"text-generation","text":"."}
-
-        {"is_finished":false,"event_type":"text-generation","text":" Climbing"}
-
-        {"is_finished":false,"event_type":"text-generation","text":" up"}
-
-        {"is_finished":false,"event_type":"text-generation","text":" the"}
-
-        {"is_finished":false,"event_type":"text-generation","text":" cre"}
-
-        {"is_finished":false,"event_type":"text-generation","text":"aky"}
-
-        {"is_finished":false,"event_type":"text-generation","text":" wooden"}
-
-        {"is_finished":false,"event_type":"text-generation","text":" ladder"}
-
-        {"is_finished":false,"event_type":"text-generation","text":","}
-
-        {"is_finished":false,"event_type":"text-generation","text":" she"}
-
-        {"is_finished":false,"event_type":"text-generation","text":" found"}
-
-        {"is_finished":false,"event_type":"text-generation","text":" herself"}
-
-        {"is_finished":false,"event_type":"text-generation","text":" in"}
+        {"is_finished":false,"event_type":"text-generation","text":" behind"}
 
         {"is_finished":false,"event_type":"text-generation","text":" a"}
 
-        {"is_finished":false,"event_type":"text-generation","text":" magical"}
-
-        {"is_finished":false,"event_type":"text-generation","text":" world"}
+        {"is_finished":false,"event_type":"text-generation","text":" row"}
 
         {"is_finished":false,"event_type":"text-generation","text":" of"}
 
-        {"is_finished":false,"event_type":"text-generation","text":" her"}
-
-        {"is_finished":false,"event_type":"text-generation","text":" own"}
+        {"is_finished":false,"event_type":"text-generation","text":" apartments"}
 
         {"is_finished":false,"event_type":"text-generation","text":"."}
 
-        {"is_finished":false,"event_type":"text-generation","text":" The"}
+        {"is_finished":false,"event_type":"text-generation","text":" Over"}
 
-        {"is_finished":false,"event_type":"text-generation","text":" tree"}
+        {"is_finished":false,"event_type":"text-generation","text":"grown"}
 
-        {"is_finished":false,"event_type":"text-generation","text":"house"}
+        {"is_finished":false,"event_type":"text-generation","text":" with"}
 
-        {"is_finished":false,"event_type":"text-generation","text":" became"}
+        {"is_finished":false,"event_type":"text-generation","text":" wild"}
 
-        {"is_finished":false,"event_type":"text-generation","text":" her"}
+        {"is_finished":false,"event_type":"text-generation","text":"flowers"}
 
-        {"is_finished":false,"event_type":"text-generation","text":" secret"}
+        {"is_finished":false,"event_type":"text-generation","text":" and"}
 
-        {"is_finished":false,"event_type":"text-generation","text":" hide"}
+        {"is_finished":false,"event_type":"text-generation","text":" forgotten"}
 
-        {"is_finished":false,"event_type":"text-generation","text":"away"}
+        {"is_finished":false,"event_type":"text-generation","text":" vines"}
 
         {"is_finished":false,"event_type":"text-generation","text":","}
 
-        {"is_finished":false,"event_type":"text-generation","text":" where"}
+        {"is_finished":false,"event_type":"text-generation","text":" it"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" was"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" a"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" secret"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" oasis"}
+
+        {"is_finished":false,"event_type":"text-generation","text":"."}
+
+        {"is_finished":false,"event_type":"text-generation","text":" Intr"}
+
+        {"is_finished":false,"event_type":"text-generation","text":"igued"}
+
+        {"is_finished":false,"event_type":"text-generation","text":","}
 
         {"is_finished":false,"event_type":"text-generation","text":" she"}
 
-        {"is_finished":false,"event_type":"text-generation","text":" would"}
+        {"is_finished":false,"event_type":"text-generation","text":" decided"}
 
-        {"is_finished":true,"event_type":"stream-end","response":{"response_id":"5524414f-9fef-454b-a531-d12244a02080","text":"Once
-        upon a time, in a small, peaceful town nestled amidst rolling hills, there
-        lived a curious little girl named Emily. Emily had a vivid imagination and
-        often spent her days dreaming up grand adventures and faraway lands.\n\nOne
-        sunny afternoon, while wandering through the woods near her home, Emily stumbled
-        upon an old, forgotten treehouse. Climbing up the creaky wooden ladder, she
-        found herself in a magical world of her own. The treehouse became her secret
-        hideaway, where she would","generation_id":"94cdd35d-d52e-460b-8858-75a87848182b","chat_history":[{"role":"USER","message":"Tell
-        me a short story"},{"role":"CHATBOT","message":"Once upon a time, in a small,
-        peaceful town nestled amidst rolling hills, there lived a curious little girl
-        named Emily. Emily had a vivid imagination and often spent her days dreaming
-        up grand adventures and faraway lands.\n\nOne sunny afternoon, while wandering
-        through the woods near her home, Emily stumbled upon an old, forgotten treehouse.
-        Climbing up the creaky wooden ladder, she found herself in a magical world
-        of her own. The treehouse became her secret hideaway, where she would"}],"finish_reason":"MAX_TOKENS","meta":{"api_version":{"version":"1"},"billed_units":{"input_tokens":5,"output_tokens":100},"tokens":{"input_tokens":71,"output_tokens":100}}},"finish_reason":"MAX_TOKENS"}
+        {"is_finished":false,"event_type":"text-generation","text":" to"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" make"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" this"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" place"}
+
+        {"is_finished":false,"event_type":"text-generation","text":" her"}
+
+        {"is_finished":true,"event_type":"stream-end","response":{"response_id":"20c38487-7800-435e-bea2-cfb264ac8534","text":"Once
+        upon a time, in a bustling city, there lived a young artist named Mia. Mia
+        had a unique talent for capturing the beauty of nature through her vibrant
+        paintings. She spent her days wandering through the parks, inspired by the
+        changing seasons and the vibrant flora and fauna.\n\nOne sunny afternoon,
+        Mia stumbled upon an old abandoned garden hidden behind a row of apartments.
+        Overgrown with wildflowers and forgotten vines, it was a secret oasis. Intrigued,
+        she decided to make this place her","generation_id":"2e6477be-fab9-4b79-982f-f208e43cda68","chat_history":[{"role":"USER","message":"Tell
+        me a short story"},{"role":"CHATBOT","message":"Once upon a time, in a bustling
+        city, there lived a young artist named Mia. Mia had a unique talent for capturing
+        the beauty of nature through her vibrant paintings. She spent her days wandering
+        through the parks, inspired by the changing seasons and the vibrant flora
+        and fauna.\n\nOne sunny afternoon, Mia stumbled upon an old abandoned garden
+        hidden behind a row of apartments. Overgrown with wildflowers and forgotten
+        vines, it was a secret oasis. Intrigued, she decided to make this place her"}],"finish_reason":"MAX_TOKENS","meta":{"api_version":{"version":"1"},"billed_units":{"input_tokens":5,"output_tokens":100},"tokens":{"input_tokens":205,"output_tokens":100},"cached_tokens":192}},"finish_reason":"MAX_TOKENS"}
 
         '
     headers:
       Alt-Svc:
-      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      - h3=":443"; ma=2592000
       Transfer-Encoding:
       - chunked
       Via:
@@ -255,9 +259,9 @@ interactions:
       content-type:
       - application/stream+json
       date:
-      - Fri, 12 Apr 2024 18:44:03 GMT
+      - Tue, 02 Jun 2026 17:48:15 GMT
       expires:
-      - Thu, 01 Jan 1970 00:00:00 UTC
+      - Thu, 01 Jan 1970 00:00:00 GMT
       pragma:
       - no-cache
       server:
@@ -267,11 +271,11 @@ interactions:
       x-accel-expires:
       - '0'
       x-debug-trace-id:
-      - 8062c2808f584a8d6cc9e084e9e2adff
+      - 98f4e6e32a56295382fbdd1cebe1d90f
       x-endpoint-monthly-call-limit:
       - '1000'
       x-envoy-upstream-service-time:
-      - '75'
+      - '90'
       x-trial-endpoint-call-limit:
       - '20'
       x-trial-endpoint-call-remaining:
