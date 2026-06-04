@@ -90,7 +90,7 @@ docs = [
 ]
 
 [tool.uv]
-exclude-newer = "2 days"
+exclude-newer = "2026-06-04T00:00:00Z"
 
 [pytest]
 env_files = [".env"]
