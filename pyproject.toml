@@ -56,6 +56,7 @@ huggingface-hub = [
 google-genai = ["google-genai>=1.26.0,<2.0.0"]
 litellm = [
     "litellm>=1.83.10,<2.0.0",
+    "aiohttp>=3.14.0",
     "rapidfuzz>=3.12.1,<4.0.0",
 ]
 opentelemetry = [
