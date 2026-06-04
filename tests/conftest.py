@@ -2,10 +2,39 @@ import os
 
 import pytest
 import tiktoken
+from aiohttp import ClientResponse, streams
 
 from ecologits import EcoLogits
 
 tiktoken.get_encoding("cl100k_base")
+
+# Compatibility shim for vcrpy with aiohttp>=3.14.0. Remove once vcrpy releases
+# https://github.com/kevin1024/vcrpy/pull/996 for
+# https://github.com/kevin1024/vcrpy/issues/995.
+if not hasattr(streams, "AsyncStreamReaderMixin"):
+    class _AsyncStreamReaderMixinCompat:
+        async def iter_chunked(self, n):
+            while True:
+                chunk = await self.read(n)
+                if not chunk:
+                    break
+                yield chunk
+
+    streams.AsyncStreamReaderMixin = _AsyncStreamReaderMixinCompat
+
+_client_response_init = ClientResponse.__init__
+
+
+class _VcrStreamWriterCompat:
+    output_size = 0
+
+
+def _client_response_init_compat(self, *args, **kwargs):
+    kwargs.setdefault("stream_writer", _VcrStreamWriterCompat())
+    return _client_response_init(self, *args, **kwargs)
+
+
+ClientResponse.__init__ = _client_response_init_compat
 
 
 @pytest.fixture(autouse=True)
