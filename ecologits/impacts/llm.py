@@ -28,7 +28,7 @@ SERVER_EMBODIED_IMPACT_PE = 70000
 
 HARDWARE_LIFESPAN = 3 * 365 * 24 * 60 * 60
 
-BATCH_SIZE = 64
+BATCH_SIZE = RangeValue(min=4, max=16)
 
 dag = DAG()
 
@@ -37,7 +37,7 @@ dag = DAG()
 def gpu_energy(
         model_active_parameter_count: float,
         output_token_count: float,
-        batch_size: int,
+        batch_size: ValueOrRange,
         gpu_energy_alpha: float,
         gpu_energy_beta: float,
         gpu_energy_gamma: float,
@@ -51,11 +51,18 @@ def gpu_energy(
         batch_size: Number of requests handled concurrently by the server.
         gpu_energy_alpha: Alpha coefficient of the energy regression.
         gpu_energy_beta: Beta coefficient of the energy regression.
-        gpu_energy_gamma: Beta coefficient of the energy regression.
+        gpu_energy_gamma: Gamma coefficient of the energy regression.
 
     Returns:
         The energy consumption of a single GPU in kWh.
     """
+    if isinstance(batch_size, RangeValue):
+        energy_at_min_batch = (gpu_energy_alpha * math.exp(gpu_energy_beta * batch_size.min) * model_active_parameter_count + gpu_energy_gamma) / 1000
+        energy_at_max_batch = (gpu_energy_alpha * math.exp(gpu_energy_beta * batch_size.max) * model_active_parameter_count + gpu_energy_gamma) / 1000
+        return RangeValue(
+            min=output_token_count * energy_at_max_batch,
+            max=output_token_count * energy_at_min_batch
+    )
     gpu_energy_per_token = gpu_energy_alpha * math.exp(gpu_energy_beta * batch_size) * model_active_parameter_count + \
         gpu_energy_gamma
     gpu_energy_per_token /= 1000    # convert to kWh
@@ -66,7 +73,7 @@ def gpu_energy(
 def generation_latency(
         model_active_parameter_count: float,
         output_token_count: float,
-        batch_size: int,
+        batch_size: ValueOrRange,
         latency_alpha: float,
         latency_beta: float,
         latency_gamma: float,
@@ -347,7 +354,7 @@ def request_embodied_gwp(
         server_gpu_embodied_gwp: float,
         server_lifetime: float,
         generation_latency: ValueOrRange,
-        batch_size: int
+        batch_size: ValueOrRange
 ) -> ValueOrRange:
     """
     Compute the Global Warming Potential (GWP) embodied impact of the request.
@@ -361,15 +368,20 @@ def request_embodied_gwp(
     Returns:
         The GWP embodied impact of the request in kgCO2eq.
     """
+    if isinstance(batch_size, RangeValue):
+        lat = generation_latency.mean if isinstance(generation_latency, RangeValue) else generation_latency
+        return RangeValue(
+            min=lat * server_gpu_embodied_gwp / (server_lifetime * batch_size.max),
+            max=lat * server_gpu_embodied_gwp / (server_lifetime * batch_size.min)
+        )
     return generation_latency * server_gpu_embodied_gwp / (server_lifetime * batch_size)
-
 
 @dag.asset
 def request_embodied_adpe(
         server_gpu_embodied_adpe: float,
         server_lifetime: float,
         generation_latency: ValueOrRange,
-        batch_size: int
+        batch_size: ValueOrRange
 ) -> ValueOrRange:
     """
     Compute the Abiotic Depletion Potential for Elements (ADPe) embodied impact of the request.
@@ -383,6 +395,12 @@ def request_embodied_adpe(
     Returns:
         The ADPe embodied impact of the request in kgSbeq.
     """
+    if isinstance(batch_size, RangeValue):
+        lat = generation_latency.mean if isinstance(generation_latency, RangeValue) else generation_latency
+        return RangeValue(
+            min=lat * server_gpu_embodied_adpe / (server_lifetime * batch_size.max),
+            max=lat * server_gpu_embodied_adpe / (server_lifetime * batch_size.min)
+        )
     return generation_latency * server_gpu_embodied_adpe / (server_lifetime * batch_size)
 
 
@@ -391,7 +409,7 @@ def request_embodied_pe(
         server_gpu_embodied_pe: float,
         server_lifetime: float,
         generation_latency: ValueOrRange,
-        batch_size: int
+        batch_size: ValueOrRange
 ) -> ValueOrRange:
     """
     Compute the Primary Energy (PE) embodied impact of the request.
@@ -405,6 +423,12 @@ def request_embodied_pe(
     Returns:
         The PE embodied impact of the request in MJ.
     """
+    if isinstance(batch_size, RangeValue):
+        lat = generation_latency.mean if isinstance(generation_latency, RangeValue) else generation_latency
+        return RangeValue(
+            min=lat * server_gpu_embodied_pe / (server_lifetime * batch_size.max),
+            max=lat * server_gpu_embodied_pe / (server_lifetime * batch_size.min)
+        )
     return generation_latency * server_gpu_embodied_pe / (server_lifetime * batch_size)
 
 
@@ -436,7 +460,7 @@ def compute_llm_impacts_dag(
         server_embodied_adpe: Optional[float] = SERVER_EMBODIED_IMPACT_ADPE,
         server_embodied_pe: Optional[float] = SERVER_EMBODIED_IMPACT_PE,
         server_lifetime: Optional[float] = HARDWARE_LIFESPAN,
-        batch_size: Optional[float] = BATCH_SIZE,
+        batch_size: Optional[ValueOrRange] = BATCH_SIZE,
         tps: Optional[float] = None,
         ttft: Optional[float] = None,
 ) -> dict[str, ValueOrRange]:

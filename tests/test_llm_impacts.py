@@ -165,7 +165,7 @@ def test_compute_llm_impacts_with_throughput_and_latency():
         ttft=100,
         **other_params
     )
-    assert impacts_fast_tps_high_lat.energy.value \
-           > impacts.energy.value \
-           > impacts_with_request_latency.energy.value \
-           > impacts_fast_tps_low_lat.energy.value
+    assert impacts_fast_tps_high_lat.energy.value.mean \
+           > impacts.energy.value.mean \
+           > impacts_with_request_latency.energy.value.mean \
+           > impacts_fast_tps_low_lat.energy.value.mean
