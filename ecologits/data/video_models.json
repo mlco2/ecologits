@@ -30,6 +30,27 @@
                 "min": 0.13,
                 "max": 0.999
             }
+        },
+        "tencent": {
+            "datacenter_location": "SGP",
+            "datacenter_pue": 1.20,
+            "datacenter_wue": 0.569
+        },
+        "alibaba": {
+            "datacenter_location": "SGP",
+            "datacenter_pue": 1.20,
+            "datacenter_wue": 0.569
+        },
+        "lightricks": {
+            "datacenter_location": "USA",
+            "datacenter_pue": {
+                "min": 1.09,
+                "max": 1.14
+            },
+            "datacenter_wue": {
+                "min": 0.13,
+                "max": 0.999
+            }
         }
     },
     "hardware_configurations": {
@@ -62,6 +83,24 @@
                 "gwp": 6000,
                 "adpe": 0.42,
                 "pe": 8000
+            },
+            "accelerator_embodied": {
+                "gwp": 364,
+                "adpe": 0.00895,
+                "pe": 4906
+            }
+        },
+        "single_h200": {
+            "number_of_accelerators": 1,
+            "server_power": {
+                "p2_5": 624.00375,
+                "mean": 830.82875,
+                "p97_5": 1060.91375
+            },
+            "server_embodied": {
+                "gwp": 750,
+                "adpe": 0.0525,
+                "pe": 1000
             },
             "accelerator_embodied": {
                 "gwp": 364,
@@ -200,6 +239,126 @@
                 "n1": 0,
                 "n2": 8.80e-10,
                 "g": 0,
+                "non_audio_weight": 1.0
+            },
+            "capabilities": {
+                "resolutions": [[1280, 720]],
+                "frames_count": [121, 193, 241],
+                "audio_generation": false
+            },
+            "hardware": "dgx_h200"
+        },
+        {
+            "provider": "lightricks",
+            "model_name": "lightricks/ltx-2-t2va",
+            "regression_parameters": {
+                "n": 0,
+                "m": 1.35016993574e-04,
+                "m1": 0,
+                "m2": 0,
+                "n1": 0,
+                "n2": 1.58328656778e-10,
+                "g": 4.33302290033e+00,
+                "non_audio_weight": 1.0
+            },
+            "capabilities": {
+                "resolutions": [[1024, 576]],
+                "frames_count": [73, 121, 193],
+                "audio_generation": true
+            },
+            "hardware": "single_h200"
+        },
+        {
+            "provider": "lightricks",
+            "model_name": "lightricks/ltx-2-t2v",
+            "regression_parameters": {
+                "n": 0,
+                "m": 1.12138632660e-04,
+                "m1": 0,
+                "m2": 0,
+                "n1": 0,
+                "n2": 1.58328656778e-10,
+                "g": 2.42649282418e+00,
+                "non_audio_weight": 1.0
+            },
+            "capabilities": {
+                "resolutions": [[1024, 576]],
+                "frames_count": [73, 121, 193],
+                "audio_generation": false
+            },
+            "hardware": "single_h200"
+        },
+        {
+            "provider": "tencent",
+            "model_name": "tencent/hunyuanvideo",
+            "regression_parameters": {
+                "n": 1.73320916013e-13,
+                "m": 1.84153473264e-04,
+                "m1": 0,
+                "m2": 0,
+                "n1": 0,
+                "n2": 5.19962748039e-09,
+                "g": 1.19158129759e-01,
+                "non_audio_weight": 1.0
+            },
+            "capabilities": {
+                "resolutions": [[1280, 720]],
+                "frames_count": [121, 193, 241],
+                "audio_generation": false
+            },
+            "hardware": "dgx_h200"
+        },
+        {
+            "provider": "tencent",
+            "model_name": "tencent/hunyuanvideo-1.5",
+            "regression_parameters": {
+                "n": 0,
+                "m": 2.27483702267e-04,
+                "m1": 0,
+                "m2": 0,
+                "n1": 0,
+                "n2": 6.49953435049e-09,
+                "g": 1.00796945219e+01,
+                "non_audio_weight": 1.0
+            },
+            "capabilities": {
+                "resolutions": [[1280, 720]],
+                "frames_count": [121, 193, 241],
+                "audio_generation": false
+            },
+            "hardware": "dgx_h200"
+        },
+        {
+            "provider": "alibaba",
+            "model_name": "alibaba/wan2.1",
+            "regression_parameters": {
+                "n": 0,
+                "m": 5.45960885441e-04,
+                "m1": 0,
+                "m2": 0,
+                "n1": 0,
+                "n2": 1.13741851134e-08,
+                "g": 5.15629725139e+00,
+                "non_audio_weight": 1.0
+            },
+            "capabilities": {
+                "resolutions": [[1280, 720]],
+                "frames_count": [121, 193, 241],
+                "audio_generation": false
+            },
+            "hardware": "dgx_h200"
+        },
+        {
+            "provider": "alibaba",
+            "model_name": "alibaba/wan2.2",
+            "regression_parameters": {
+                "n": 0,
+                "m": 5.02630656438e-04,
+                "m1": 0,
+                "m2": 0,
+                "n1": 0,
+                "n2": 1.16125013729e-08,
+                "g": 7.00324826265e+00,
                 "non_audio_weight": 1.0
             },
             "capabilities": {

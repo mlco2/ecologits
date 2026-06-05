@@ -68,6 +68,59 @@ def test_impacts_video_generation_supports_tpu_backed_models():
     assert impacts.embodied.gwp.value > 0
 
 
+def test_impacts_video_generation_supports_h200_open_models(monkeypatch):
+    captured = {}
+
+    def fake_compute_video_impacts(**kwargs):
+        captured.update(kwargs)
+        return ImpactsOutput()
+
+    monkeypatch.setattr(video_estimations, "compute_video_impacts", fake_compute_video_impacts)
+
+    video_estimations.video_impacts(
+        model_name="tencent/hunyuanvideo",
+        resolution="1280x720",
+        duration=5,
+        with_audio=True,
+    )
+
+    assert captured["n"] == pytest.approx(1.73320916013e-13)
+    assert captured["m"] == pytest.approx(1.84153473264e-04)
+    assert captured["n1"] == 0
+    assert captured["n2"] == pytest.approx(5.19962748039e-09)
+    assert captured["g"] == pytest.approx(1.19158129759e-01)
+    assert captured["server_accelerator_count"] == 8
+
+
+def test_impacts_video_generation_uses_h200_open_model_latency_regression():
+    impacts = video_estimations.video_impacts(
+        model_name="tencent/hunyuanvideo",
+        resolution="1280x720",
+        duration=5,
+        with_audio=True,
+        datacenter_pue=1.0,
+        datacenter_wue=0.0,
+    )
+
+    assert impacts.energy.value.mean == pytest.approx(0.19306527276816782)
+
+
+def test_impacts_video_generation_supports_single_h200_ltx_models():
+    impacts = video_estimations.video_impacts(
+        model_name="lightricks/ltx-2-t2v",
+        resolution="1024x576",
+        duration=5,
+        with_audio=False,
+        datacenter_pue=1.0,
+        datacenter_wue=0.0,
+    )
+
+    assert impacts.errors is None
+    assert impacts.energy.value.min > 0
+    assert impacts.energy.value.max > 0
+    assert impacts.embodied.gwp.value > 0
+
+
 def test_impacts_video_generation_uses_provider_configuration(monkeypatch):
     captured = {}
 

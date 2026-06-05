@@ -54,11 +54,14 @@ Use one of the video model identifiers supported by EcoLogits:
 
 | Provider | Models |
 |----------|--------|
+| Alibaba | `alibaba/wan2.1`, `alibaba/wan2.2` |
 | ByteDance | `bytedance/seedance-1.0`, `bytedance/seedance-1.5-pro` |
 | Google | `google/veo-3.0`, `google/veo-3.0-fast`, `google/veo-3.1`, `google/veo-3.1-fast` |
 | Kling AI | `klingai/kling-v1.6`, `klingai/kling-v2.6`, `klingai/kling-v3` |
+| Lightricks | `lightricks/ltx-2-t2v`, `lightricks/ltx-2-t2va` |
 | OpenAI | `openai/sora-2-pro` |
 | Runway | `runway/gen-4.5` |
+| Tencent | `tencent/hunyuanvideo`, `tencent/hunyuanvideo-1.5` |
 
 If the model is unknown, EcoLogits returns an `ImpactsOutput` with an error instead of raising an exception.
 
