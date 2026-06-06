@@ -57,8 +57,14 @@ def gpu_energy(
         The energy consumption of a single GPU in kWh.
     """
     if isinstance(batch_size, RangeValue):
-        energy_at_min_batch = (gpu_energy_alpha * math.exp(gpu_energy_beta * batch_size.min) * model_active_parameter_count + gpu_energy_gamma) / 1000
-        energy_at_max_batch = (gpu_energy_alpha * math.exp(gpu_energy_beta * batch_size.max) * model_active_parameter_count + gpu_energy_gamma) / 1000
+        energy_at_min_batch = (
+            gpu_energy_alpha * math.exp(gpu_energy_beta * batch_size.min)
+            * model_active_parameter_count + gpu_energy_gamma
+        ) / 1000
+        energy_at_max_batch = (
+            gpu_energy_alpha * math.exp(gpu_energy_beta * batch_size.max)
+            * model_active_parameter_count + gpu_energy_gamma
+        ) / 1000
         return RangeValue(
             min=output_token_count * energy_at_max_batch,
             max=output_token_count * energy_at_min_batch
