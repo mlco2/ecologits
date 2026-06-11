@@ -114,7 +114,7 @@ It is decomposed into two phases: the **pre-fill latency** (or time-to-first-tok
 Using these values, we can estimate the generation latency for the entire request given the number of output tokens, $\#T_{\text{out}}$. When possible, we also measure the request latency, $\Delta T_{\text{request}}$, and use it as the maximum bound for the generation latency:
 
 $$
-\Delta T(\#T_{\text{out}}) = \min \left\{ \text{TTFT} + \#T_{\text{out}} \times \text{TPS}, \Delta T_{\text{request}}\right\}.
+\Delta T(\#T_{\text{out}}) = \min \left\{ \text{TTFT} + \frac{\#T_{\text{out}}}{\text{TPS}}, \Delta T_{\text{request}}\right\}.
 $$
 
 
