@@ -2528,7 +2528,7 @@
 <p>We have made an improvement regarding how we estimate the <strong>generation latency</strong> (i.e. estimated duration of a request excluding network latency) for a request. Our <strong>new default estimation</strong> is based on <strong>time to first token</strong> and <strong>throughput</strong> metrics collected on <a href="https://openrouter.ai/">OpenRouter</a> for the supporter providers and models.</p>
 <p>The new generation latency calculation is now:</p>
 <div class="arithmatex">\[
-\text{generation latency} = \text{time to first token} + \text{throughput} \times \text{output tokens}
+\text{generation latency} = \text{time to first token} + \frac{\text{output tokens}}{\text{throughput}}
 \]</div>
 <p>With:</p>
 <ul>
