@@ -17,7 +17,7 @@ We have made an improvement regarding how we estimate the **generation latency**
 The new generation latency calculation is now:
 
 $$
-\text{generation latency} = \text{time to first token} + \text{throughput} \times \text{output tokens}
+\text{generation latency} = \text{time to first token} + \frac{\text{output tokens}}{\text{throughput}}
 $$
 
 With:
