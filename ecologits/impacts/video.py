@@ -1,5 +1,5 @@
 import math
-from typing import Optional
+from typing import Any, Optional
 
 from ecologits.impacts.dag import DAG
 from ecologits.impacts.modeling import GWP, PE, WCF, ADPe, Embodied, Energy, Impacts, Usage
@@ -191,7 +191,7 @@ def compute_video_impacts_dag(
         non_audio_weight: float = 1,
         server_accelerator_count: int = SERVER_ACCELERATORS,
         server_lifetime: float = HARDWARE_LIFESPAN,
-):
+) -> dict[str, Any]:
     results = dag.execute(
         video_width=video_width,
         video_height=video_height,
@@ -250,7 +250,7 @@ def compute_video_impacts(
         g: float = 0,
         non_audio_weight: float = 1,
         request_latency: Optional[float] = None,
-        **kwargs
+        **kwargs: Any,
 ) -> Impacts:
     """
     Compute the environmental impacts of a video generation request.

@@ -8,7 +8,6 @@ from ecologits.status_messages import ModelNotRegisteredError, ZoneNotRegistered
 from ecologits.tracers.utils import ImpactsOutput
 from ecologits.utils.range_value import RangeValue
 
-
 _NAMED_RESOLUTIONS = {
     "720p": (1280, 720),
     "1080p": (1920, 1080),
