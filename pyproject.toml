@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ecologits"
-version = "0.10.2"
+version = "0.11.0"
 description = "EcoLogits tracks and estimates the energy consumption and environmental impacts of using generative AI models through APIs."
 authors = [
     {name = "Samuel Rincé"},
