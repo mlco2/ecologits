@@ -58,6 +58,9 @@ class DiffusionParameters(BaseModel):
         is_video: Whether the model generates video.
         default_frames: Default number of generated frames (video only).
         default_fps: Default frames per second (video only).
+        frame_attn_fraction: Share of per-step FLOPs from full-sequence 3D attention (scales as F²).
+            0.0 for image models and sparse-attention video models; 0.5–0.64 for full-3D-attention
+            DiT video models. Used in the mixed frame scaling: (1-f)*(F/F_default) + f*(F/F_default)².
     """
 
     flops_denoise_per_step: ValueOrRange
@@ -68,6 +71,7 @@ class DiffusionParameters(BaseModel):
     is_video: bool = False
     default_frames: int | None = None
     default_fps: int | None = None
+    frame_attn_fraction: float = 0.0
 
 
 class Deployment(BaseModel):

@@ -7731,7 +7731,8 @@
                 "latent_downscale": 8,
                 "is_video": false,
                 "default_guidance_scale": 7.5,
-                "cfg_double_pass": true
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.0
             },
             "modality": "image"
         },
@@ -7754,7 +7755,8 @@
                 "latent_downscale": 8,
                 "is_video": false,
                 "default_guidance_scale": 7.5,
-                "cfg_double_pass": true
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.0
             },
             "modality": "image"
         },
@@ -7777,7 +7779,8 @@
                 "latent_downscale": 8,
                 "is_video": false,
                 "default_guidance_scale": 4.5,
-                "cfg_double_pass": false
+                "cfg_double_pass": false,
+                "frame_attn_fraction": 0.0
             },
             "modality": "image"
         },
@@ -7800,7 +7803,8 @@
                 "latent_downscale": 8,
                 "is_video": false,
                 "default_guidance_scale": 3.5,
-                "cfg_double_pass": false
+                "cfg_double_pass": false,
+                "frame_attn_fraction": 0.0
             },
             "modality": "image"
         },
@@ -7822,7 +7826,8 @@
                 "latent_downscale": 8,
                 "is_video": false,
                 "default_guidance_scale": 0.0,
-                "cfg_double_pass": false
+                "cfg_double_pass": false,
+                "frame_attn_fraction": 0.0
             },
             "modality": "image"
         },
@@ -7846,8 +7851,9 @@
                 "is_video": true,
                 "default_frames": 49,
                 "default_fps": 8,
-                "default_guidance_scale": 7.5,
-                "cfg_double_pass": true
+                "default_guidance_scale": 6.0,
+                "cfg_double_pass": false,
+                "frame_attn_fraction": 0.5
             },
             "modality": "video"
         },
@@ -7871,8 +7877,9 @@
                 "is_video": true,
                 "default_frames": 49,
                 "default_fps": 8,
-                "default_guidance_scale": 7.5,
-                "cfg_double_pass": true
+                "default_guidance_scale": 6.0,
+                "cfg_double_pass": false,
+                "frame_attn_fraction": 0.5
             },
             "modality": "video"
         },
@@ -7895,8 +7902,9 @@
                 "is_video": true,
                 "default_frames": 81,
                 "default_fps": 16,
-                "default_guidance_scale": 7.5,
-                "cfg_double_pass": true
+                "default_guidance_scale": 5.0,
+                "cfg_double_pass": false,
+                "frame_attn_fraction": 0.54
             },
             "modality": "video"
         },
@@ -7919,8 +7927,9 @@
                 "is_video": true,
                 "default_frames": 81,
                 "default_fps": 16,
-                "default_guidance_scale": 7.5,
-                "cfg_double_pass": true
+                "default_guidance_scale": 5.0,
+                "cfg_double_pass": false,
+                "frame_attn_fraction": 0.54
             },
             "modality": "video"
         },
@@ -7943,8 +7952,9 @@
                 "is_video": true,
                 "default_frames": 121,
                 "default_fps": 24,
-                "default_guidance_scale": 7.5,
-                "cfg_double_pass": true
+                "default_guidance_scale": 3.5,
+                "cfg_double_pass": false,
+                "frame_attn_fraction": 0.0
             },
             "modality": "video"
         },
@@ -7967,8 +7977,9 @@
                 "is_video": true,
                 "default_frames": 129,
                 "default_fps": 24,
-                "default_guidance_scale": 7.5,
-                "cfg_double_pass": true
+                "default_guidance_scale": 1.0,
+                "cfg_double_pass": false,
+                "frame_attn_fraction": 0.64
             },
             "modality": "video"
         },
@@ -7991,8 +8002,9 @@
                 "is_video": true,
                 "default_frames": 163,
                 "default_fps": 30,
-                "default_guidance_scale": 7.5,
-                "cfg_double_pass": true
+                "default_guidance_scale": 4.5,
+                "cfg_double_pass": false,
+                "frame_attn_fraction": 0.5
             },
             "modality": "video"
         },
@@ -8022,7 +8034,8 @@
                 "latent_downscale": 8,
                 "is_video": false,
                 "default_guidance_scale": 7.5,
-                "cfg_double_pass": true
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.45
             },
             "modality": "image"
         },
@@ -8052,7 +8065,8 @@
                 "latent_downscale": 8,
                 "is_video": false,
                 "default_guidance_scale": 7.5,
-                "cfg_double_pass": true
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.45
             },
             "modality": "image"
         },
@@ -8082,7 +8096,8 @@
                 "latent_downscale": 8,
                 "is_video": false,
                 "default_guidance_scale": 7.5,
-                "cfg_double_pass": true
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.45
             },
             "modality": "image"
         },
@@ -8112,7 +8127,8 @@
                 "latent_downscale": 8,
                 "is_video": false,
                 "default_guidance_scale": 7.5,
-                "cfg_double_pass": true
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.45
             },
             "modality": "image"
         },
@@ -8142,7 +8158,8 @@
                 "latent_downscale": 8,
                 "is_video": false,
                 "default_guidance_scale": 7.5,
-                "cfg_double_pass": true
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.45
             },
             "modality": "image"
         },
@@ -8174,7 +8191,8 @@
                 "default_frames": 120,
                 "default_fps": 24,
                 "default_guidance_scale": 7.5,
-                "cfg_double_pass": true
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.55
             },
             "modality": "video"
         },
@@ -8206,7 +8224,8 @@
                 "default_frames": 240,
                 "default_fps": 24,
                 "default_guidance_scale": 7.5,
-                "cfg_double_pass": true
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.55
             },
             "modality": "video"
         },
@@ -8238,7 +8257,8 @@
                 "default_frames": 120,
                 "default_fps": 24,
                 "default_guidance_scale": 7.5,
-                "cfg_double_pass": true
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.55
             },
             "modality": "video"
         },
@@ -8270,7 +8290,8 @@
                 "default_frames": 192,
                 "default_fps": 24,
                 "default_guidance_scale": 7.5,
-                "cfg_double_pass": true
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.55
             },
             "modality": "video"
         },
@@ -8302,7 +8323,8 @@
                 "default_frames": 120,
                 "default_fps": 24,
                 "default_guidance_scale": 7.5,
-                "cfg_double_pass": true
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.5
             },
             "modality": "video"
         },
@@ -8334,7 +8356,8 @@
                 "default_frames": 120,
                 "default_fps": 24,
                 "default_guidance_scale": 7.5,
-                "cfg_double_pass": true
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.5
             },
             "modality": "video"
         },
@@ -8366,7 +8389,8 @@
                 "default_frames": 120,
                 "default_fps": 24,
                 "default_guidance_scale": 7.5,
-                "cfg_double_pass": true
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.5
             },
             "modality": "video"
         },
@@ -8398,7 +8422,8 @@
                 "default_frames": 120,
                 "default_fps": 24,
                 "default_guidance_scale": 7.5,
-                "cfg_double_pass": true
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.5
             },
             "modality": "video"
         },
@@ -8430,7 +8455,8 @@
                 "default_frames": 120,
                 "default_fps": 24,
                 "default_guidance_scale": 7.5,
-                "cfg_double_pass": true
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.5
             },
             "modality": "video"
         }

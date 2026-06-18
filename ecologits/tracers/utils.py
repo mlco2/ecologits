@@ -233,6 +233,7 @@ def diffusion_impacts(
         if_electricity_mix_wue=if_electricity_mix.wue,
         datacenter_pue=datacenter_pue,
         datacenter_wue=datacenter_wue,
+        frame_attn_fraction=diff.frame_attn_fraction,
     )
     out = ImpactsOutput.model_validate(impacts.model_dump())
 

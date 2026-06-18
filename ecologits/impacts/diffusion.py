@@ -18,9 +18,12 @@ from ecologits.impacts.llm import (
 from ecologits.impacts.modeling import GWP, PE, WCF, ADPe, Embodied, Energy, Impacts, Usage
 from ecologits.utils.range_value import RangeValue, ValueOrRange
 
-# Calibrated from AI Energy Score (SD 2.1 → 0.534 Wh, SDXL → 1.64 Wh on A100 80 GB).
-# Range spans hardware generation spread (A100 to H100).
-GPU_EFFICIENCY_KWH_PER_FLOP = RangeValue(min=2.5e-18, max=4.5e-18)
+# Lower bound: AI Energy Score U-Net calibration (SD 2.1, SDXL on A100), extended downward
+# to cover LTX-Video on single H200 (implied η_mean 2.29e-18, η_min 1.72e-18).
+# Upper bound: extended to cover WAN2.1-14B on DGX H200 (implied η_mean 5.01e-18).
+# DiT cross-check uses modelled power from Jegham et al. (arXiv:2505.09598); treat as
+# directional sanity range, not ground truth. See image_generation.md calibration section.
+GPU_EFFICIENCY_KWH_PER_FLOP = RangeValue(min=1.7e-18, max=5.5e-18)
 
 # Text-encode (CLIP / T5) + VAE-decode each run once and together contribute
 # 5–15% of total pipeline FLOPs (larger for T5-XXL models such as Flux).
@@ -58,17 +61,24 @@ def denoise_flops(
     n_frames: int,
     default_frames: int,
     pipeline_overhead_factor: float,
+    frame_attn_fraction: float,
 ) -> ValueOrRange:
     """
     Compute total pipeline FLOPs for the request.
 
-    Denoiser FLOPs are scaled by `pipeline_overhead_factor` (default 1.1) to
-    account for the single text-encode and VAE-decode passes that together
-    contribute 5–15% of total compute and are not negligible.
-    For video models FLOPs also scale linearly with the requested frame count
-    relative to the model's native clip length.
+    Uses a mixed linear+quadratic frame scaling:
+
+        frame_scale = (1 - f) * x + f * x²,   x = n_frames / default_frames
+
+    where f = ``frame_attn_fraction`` is the fraction of per-step FLOPs coming
+    from full-sequence 3D attention (quadratic in frame count). MLP/FFN layers
+    contribute the linear term. f=0 for image models and sparse-attention video
+    models (LTX-Video); f=0.54–0.64 for full-3D-attention DiT video models
+    (HunyuanVideo, WAN). See image_generation.md §"Frame attention scaling" for
+    the fitting procedure and per-model calibration table.
     """
-    frame_scale = n_frames / max(default_frames, 1)
+    x = n_frames / max(default_frames, 1)
+    frame_scale = (1 - frame_attn_fraction) * x + frame_attn_fraction * x ** 2
     return flops_per_step * effective_steps * frame_scale * pipeline_overhead_factor
 
 
@@ -272,6 +282,7 @@ def compute_diffusion_impacts_dag(
     model_quantization_bits: Optional[int] = MODEL_QUANTIZATION_BITS,
     gpu_efficiency_kwh_per_flop: Optional[ValueOrRange] = GPU_EFFICIENCY_KWH_PER_FLOP,
     pipeline_overhead_factor: Optional[float] = PIPELINE_OVERHEAD_FACTOR,
+    frame_attn_fraction: Optional[float] = 0.0,
     gpu_memory: Optional[float] = GPU_MEMORY,
     gpu_embodied_gwp: Optional[float] = GPU_EMBODIED_IMPACT_GWP,
     gpu_embodied_adpe: Optional[float] = GPU_EMBODIED_IMPACT_ADPE,
@@ -302,6 +313,7 @@ def compute_diffusion_impacts_dag(
         request_latency=request_latency,
         gpu_efficiency_kwh_per_flop=gpu_efficiency_kwh_per_flop,
         pipeline_overhead_factor=pipeline_overhead_factor,
+        frame_attn_fraction=frame_attn_fraction,
         if_electricity_mix_gwp=if_electricity_mix_gwp,
         if_electricity_mix_adpe=if_electricity_mix_adpe,
         if_electricity_mix_pe=if_electricity_mix_pe,
@@ -338,6 +350,7 @@ def compute_diffusion_impacts(
     datacenter_pue: ValueOrRange,
     datacenter_wue: ValueOrRange,
     request_latency: Optional[float] = None,
+    frame_attn_fraction: float = 0.0,
     **kwargs: Any,
 ) -> Impacts:
     """
@@ -396,6 +409,7 @@ def compute_diffusion_impacts(
             if_electricity_mix_wue=if_electricity_mix_wue,
             datacenter_pue=datacenter_pue,
             datacenter_wue=datacenter_wue,
+            frame_attn_fraction=frame_attn_fraction,
             **kwargs,
         )
         for field in fields:

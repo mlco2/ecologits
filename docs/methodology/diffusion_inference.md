@@ -10,6 +10,10 @@ $$
 
 Everything **downstream of GPU energy** — server energy, PUE, electricity mix $F_{\text{em}}$, embodied impacts, WCF and the `RangeValue` approximation intervals — is **reused unchanged** from the LLM methodology. The diffusion-specific part is the way the **GPU energy** $E_{\text{GPU}}$ is estimated.
 
+!!! note "This methodology also serves as the fallback for unbenchmarked video models."
+
+    When a video model has no empirical latency regression in `video_models.json`, EcoLogits uses this FLOPs-based backend and attaches the `modality-video-flops-fallback` warning. See [Video Generation](video_generation.md) for the primary video methodology.
+
 ## Why FLOPs, not tokens
 
 The LLM model keys energy off the number of output tokens and the number of active parameters via a regression of the form $f_E = \alpha e^{\beta B} P_{\text{active}} + \gamma$. This does not transfer to diffusion: there is **no token stream**. The energy of a diffusion request is driven by the number of **denoising steps**, the **resolution**, the **number of frames** (video) and the **FLOPs per denoising pass**, not by tokens.
@@ -42,13 +46,50 @@ $$
 E_{\text{GPU}}^{\text{image}} = n_{\text{images}} \times \exp\!\Big(\log(A) + \alpha \log(\text{FLOPs}_{\text{cfg}}) + \beta_{\text{res}} \log\!\big(\tfrac{H \cdot W}{256}\big) + \beta_{\text{dtype}} + \beta_{\text{gpu}}\Big).
 $$
 
-For **video** generation, the same law applies with the denoiser operating over the full latent volume. The denoising cost scales **linearly with the number of latent frames** and **near-quadratically with the spatial resolution**, so the per-step FLOPs already embed the frame count $N_f$:
+For **video** generation, the denoiser operates over the full spatiotemporal latent volume, so the per-step FLOPs grow with the frame count $N_f$. The frame budget is taken from `num_frames` or derived from `duration_s` $\times$ `fps`:
 
 $$
-\text{FLOPs}_{\text{denoise}}^{\text{video}} \propto N_f \times (H \cdot W), \qquad N_f = \min\{\text{num\_frames},\ \text{duration\_s} \times \text{fps}\}.
+N_f = \min\{\text{num\_frames},\ \text{duration\_s} \times \text{fps}\}.
 $$
 
-The frame budget is taken either directly from `num_frames` or derived from `duration_s` $\times$ `fps`. This is consistent with the video diffusion benchmarks (*Carbon in Motion*, *Video Killed the Energy Budget*).
+#### Frame attention scaling
+
+The per-step FLOPs of a video denoiser have two distinct scaling regimes depending on architecture:
+
+- **MLP / FFN layers** — cost scales **linearly** with the number of tokens, i.e., $\propto N_f$.
+- **Full-sequence 3D attention** (used in HunyuanVideo, WAN, CogVideoX) — cost scales **quadratically**, i.e., $\propto N_f^2$, because every token attends to every other token across space *and* time.
+- **Sparse / causal attention** (used in LTX-Video) — cost is closer to linear or sub-linear.
+
+EcoLogits models this with a **mixed linear+quadratic frame scaling**:
+
+$$
+\text{frame\_scale}(N_f) = (1 - f) \cdot \frac{N_f}{N_f^{\text{default}}} + f \cdot \left(\frac{N_f}{N_f^{\text{default}}}\right)^2,
+$$
+
+where $N_f^{\text{default}}$ is the model's native clip length (from `models.json`), and $f \in [0, 1]$ is the **`frame_attn_fraction`**: the share of per-step FLOPs that come from full-sequence attention and therefore scale quadratically with frame count.
+
+**Calibration of $f$.** For the three open video models present in both the FLOPs registry (`models.json`) and the empirical latency registry (`video_models.json`), $f$ was fitted by requiring the frame-count scaling curve of this model to match the ratio $E_{\text{PR}}(N_f) / E_{\text{PR}}(N_f^{\text{ref}})$ from the PR #240 latency-based backend, with $N_f^{\text{ref}}$ corresponding to a 2-second clip:
+
+$$
+f = \frac{x_{\text{tgt}} - r \cdot x_{\text{ref}}}{r \cdot (x_{\text{ref}}^2 - x_{\text{ref}}) - (x_{\text{tgt}}^2 - x_{\text{tgt}})}, \qquad r = \frac{E_{\text{PR}}(N_f^{\text{tgt}})}{E_{\text{PR}}(N_f^{\text{ref}})},
+$$
+
+where $x = N_f / N_f^{\text{default}}$ and the target point is an 8-second clip.
+
+| Model | $N_f^{\text{default}}$ | Attention type | $f$ | Basis |
+|-------|------------------------|----------------|-----|-------|
+| HunyuanVideo | 129 | Full 3D attention | **0.64** | Empirically fitted |
+| WAN2.1-T2V-14B / 1.3B | 81 | Full 3D attention | **0.54** | Empirically fitted |
+| LTX-Video | 121 | Causal / sparse attention | **0.00** | Sub-linear; capped at 0 |
+| CogVideoX-2b / 5b, Mochi-1 | — | DiT 3D attention | **0.50** | Architecture estimate |
+| Closed video models | — | Unknown | **0.45–0.55** | Conservative estimate |
+| Image models | — | No temporal attention | **0.00** | By definition |
+
+**Effect.** Cross-validating against the PR latency backend at 720p, the PR/FLOPs energy ratio was **growing** from ~1.7× at 2 s to ~3.8× at 8 s before this correction (quadratic drift). After adding $f$, the ratio is **constant** at ~2.9× for HunyuanVideo and ~2.5× for WAN across all tested durations. The remaining constant gap reflects known attribution differences between the two methods (whole-machine DGX power allocation vs. per-GPU H100), not a scaling artefact.
+
+!!! note "Limitation"
+
+    The fitted $f$ values are derived from the empirical latency regressions in `video_models.json`, which are themselves modelled (latency empirical, power inferred from datasheets). Direct per-architecture FLOPs profiling is needed to replace these estimates with ground-truth attention fractions.
 
 ## Input taxonomy
 
@@ -294,6 +335,29 @@ Both measurements fall within the computed GPU energy range. The "Our" figures a
     Distilled/few-step models (SD-Turbo, SDXL-Turbo, LCM) are excluded from calibration because GPU startup and memory-allocation overhead dominates their energy at 1–4 steps, breaking the linear $E = \eta \cdot F$ assumption by a factor of 15–130×.
 
     DiT-based models (SD3, Flux, CogVideoX, HunyuanVideo) were not directly benchmarked. DiT backbones typically achieve higher GPU utilisation than U-Nets (regular matmul-heavy compute vs. U-Net scatter/gather), so a U-Net-derived $\eta$ likely **overestimates** their energy per FLOP. The `RangeValue(2.5e-18, 4.5e-18)` and, for proprietary models, wide FLOPs ranges absorb part of this uncertainty, but a dedicated DiT benchmark is needed for a tighter calibration.
+
+### DiT / video sanity range (from `video_models.json`)
+
+To cross-check whether the U-Net-derived $\eta$ is applicable to DiT video models (SD3, Flux, CogVideoX, HunyuanVideo, WAN2.1, LTX-Video), we derive implied $\eta$ values from the video model registry. For each benchmarked open model, we compute:
+
+$$\eta_{\text{implied}} = \frac{E_{\text{GPU}}(\Delta T, P_{\text{server}})}{FLOPs_{\text{model}}(W, H, F)}$$
+
+where $E_{\text{GPU}} = (\Delta T / 3600) \times P_{\text{server}} \times f_{\text{GPU}}$ (with $f_{\text{GPU}} \approx 0.75$ for DGX-8 and $\approx 0.85$ for single-accelerator configs), and $\Delta T$ is estimated from the per-model latency regression at $1280 \times 720$, 49 frames, 50 steps. The model FLOPs are:
+
+$$FLOPs_{\text{model}} = F_{\text{step}} \times T \times (F / F_{\text{default}}) \times \varphi$$
+
+with $\varphi = 1.1$ and $F / F_{\text{default}}$ the frame-count scaling relative to the model's native clip length.
+
+**Important caveat:** The power figures come from Jegham et al. "How Hungry is AI?" (arXiv:2505.09598). The `server_power` values are inferred from hardware datasheets and utilisation assumptions, not wattmeter measurements. The latency figures come from empirical API timings. Treating the result as ground truth would introduce circular reasoning; it is a directional sanity check only.
+
+| Model | Hardware | $\eta_{\text{min}}$ | $\eta_{\text{mean}}$ | $\eta_{\text{max}}$ | vs. U-Net range |
+|-------|----------|---------------------|----------------------|---------------------|-----------------|
+| HunyuanVideo | DGX H200 (8×) | 3.27 × 10⁻¹⁸ | 4.35 × 10⁻¹⁸ | 5.56 × 10⁻¹⁸ | overlaps [core within range, p97.5 ~24% above] |
+| WAN2.1-T2V-14B | DGX H200 (8×) | 3.77 × 10⁻¹⁸ | 5.01 × 10⁻¹⁸ | 6.40 × 10⁻¹⁸ | overlaps [mean ~34% above upper bound] |
+| LTX-Video | single H200 | 1.72 × 10⁻¹⁸ | 2.29 × 10⁻¹⁸ | 2.93 × 10⁻¹⁸ | overlaps [entirely at lower end, mean ~39% below central] |
+| **U-Net (A100 ref)** | A100 | 2.50 × 10⁻¹⁸ | 3.73 × 10⁻¹⁸ | 4.50 × 10⁻¹⁸ | *calibration reference* |
+
+All three implied ranges overlap the U-Net calibration band $[2.5, 4.5] \times 10^{-18}$ kWh/FLOP, which confirms the current range is directionally valid for DiT video models. The DGX-hosted models (HunyuanVideo, WAN2.1) sit toward the upper half of or slightly above the U-Net range — consistent with heavier server-level GPU sharing across eight accelerators inflating the apparent per-FLOP cost. LTX-Video on a single H200 falls near the lower bound, consistent with a more efficient single-GPU utilisation profile. No systematic frame-count drift can be assessed from this single operating point (49 frames); a sweep across 49–241 frames would be needed to determine whether $\eta$ is stable or frame-dependent for these architectures.
 
 ## References
 
