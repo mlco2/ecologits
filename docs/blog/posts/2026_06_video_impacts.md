@@ -12,13 +12,13 @@ categories:
 
 # AI Videos in EcoLogits
 
-We are happy to release our first methodology for assessing the environmental footprint of **AI-generated videos**. This is a major step forward in modeling new GenAI use cases beyond text generation, and this contribution is part of the work pursued with the **GenAI Footprint Alliance**.
+We are happy to release our first methodology for assessing the environmental footprint of **AI-generated videos**. This is a major step forward in modeling new GenAI use cases beyond text generation, and this contribution is part of the work pursued with the **GenAI footprint Alliance**.
 
-The GenAI Footprint Alliance is a [Publicis Groupe](https://www.publicisgroupe.com/en) initiative dedicated to the common good. Its goal is to quantify and share reliable data on the environmental footprint of GenAI models for content production, and to integrate this data into open source tools. The alliance is led by Publicis France's CSR team, AXA, Engie, and Groupe La Poste/La Banque Postale as founding members, with support from FDJ United, Accor, L'Oréal, Orange, and Renault Group as partner members.
+The GenAI footprint Alliance is a [Publicis Groupe](https://www.publicisgroupe.com/en) initiative dedicated to the common good. Its goal is to quantify and share reliable data on the environmental footprint of GenAI models for content production, and to integrate this data into open source tools. The alliance is led by Publicis France's CSR team, AXA, Engie, and Groupe La Poste/La Banque Postale as founding members, with support from FDJ United, Accor, L'Oréal, Orange, and Renault Group as partner members.
 
 The research behind this work was conducted by the [Sustainable AI Group](https://sustainableaigroup.com/) (SAIG) with [Sasha Luccioni](https://www.linkedin.com/in/sashaluccioniphd/), [Boris Gamazaychikov](https://www.linkedin.com/in/bgamazay/), and [Nidhal Jegham](https://www.linkedin.com/in/nidhal-jegham-b05840224/). The methodology was then operationalized in a corporate context through its integration into EcoLogits tools from [CodeCarbon](https://codecarbon.io) and the [e-footprint](https://e-footprint.boavizta.org/) modeling tool, developed by [Publicis Sapient](https://www.publicissapient.com/) France and open-sourced within [Boavizta](https://boavizta.org/en).
 
-The GenAI Footprint Alliance also contributes to the _Consortium IA durable_ supported by [ADEME](https://www.ademe.fr/). The _Consortium IA durable_ gathers [Institut Louis Bachelier](https://www.institutlouisbachelier.org/) and CodeCarbon.
+The GenAI footprint Alliance also contributes to the _Consortium IA durable_ supported by [ADEME](https://www.ademe.fr/). The _Consortium IA durable_ gathers [Institut Louis Bachelier](https://www.institutlouisbachelier.org/) and CodeCarbon.
 
 ## Why AI videos?
 
