@@ -19,7 +19,7 @@ On the other hand EcoLogits is designed for scenarios where you do not have acce
 
 ## How can I estimate impacts of general use of GenAI models? 
 
-If you want to estimate the environmental impacts of using generative AI models without coding or making request, we recommend you to use our online webapp [EcoLogits Calculator :octicons-link-external-16:](https://huggingface.co/spaces/genai-impact/ecologits-calculator).
+If you want to estimate the environmental impacts of using generative AI models without coding or making request, we recommend you to use our online webapp [EcoLogits Calculator :octicons-link-external-16:](https://calculator.ecologits.ai/).
 
 
 ## How do we assess impacts for proprietary models?

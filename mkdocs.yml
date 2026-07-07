@@ -37,7 +37,7 @@ nav:
   - 'API Reference': reference/
   - 'Blog':
       - blog/index.md
-  - 'EcoLogits Calculator': 'https://huggingface.co/spaces/genai-impact/ecologits-calculator'
+  - 'EcoLogits Calculator': 'https://calculator.ecologits.ai/'
   - 'EcoLogits API': 'https://api.ecologits.ai/docs'
 
 theme:
