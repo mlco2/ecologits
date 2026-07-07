@@ -379,7 +379,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="https://huggingface.co/spaces/genai-impact/ecologits-calculator" class="md-tabs__link">
+      <a href="https://calculator.ecologits.ai/" class="md-tabs__link">
         
   
   
@@ -2749,7 +2749,7 @@
   
   
     <li class="md-nav__item">
-      <a href="https://huggingface.co/spaces/genai-impact/ecologits-calculator" class="md-nav__link">
+      <a href="https://calculator.ecologits.ai/" class="md-nav__link">
         
   
   
@@ -2906,7 +2906,7 @@
 <p>EcoLogits and <a href="https://github.com/mlco2/codecarbon">CodeCarbon <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a> are two different tools that do not aim to address the same use case. CodeCarbon should be used when you control the execution environment of your model. This means that if you deploy models on your laptop, your server or in the cloud it is preferable to use CodeCarbon to get energy consumption and estimate carbon emissions associated with running your model (including training, fine-tuning or inference).</p>
 <p>On the other hand EcoLogits is designed for scenarios where you do not have access to the execution environment of your GenAI model because it is managed by a third-party provider.  In such cases you can rely on EcoLogits to estimate energy consumption and environmental impacts for inference workloads. Both tools are complementary and can be used together to provide a comprehensive view of environmental impacts across different deployment scenarios.</p>
 <h2 id="how-can-i-estimate-impacts-of-general-use-of-genai-models">How can I estimate impacts of general use of GenAI models?</h2>
-<p>If you want to estimate the environmental impacts of using generative AI models without coding or making request, we recommend you to use our online webapp <a href="https://huggingface.co/spaces/genai-impact/ecologits-calculator">EcoLogits Calculator <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p>
+<p>If you want to estimate the environmental impacts of using generative AI models without coding or making request, we recommend you to use our online webapp <a href="https://calculator.ecologits.ai/">EcoLogits Calculator <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"/></svg></span></a>.</p>
 <h2 id="how-do-we-assess-impacts-for-proprietary-models">How do we assess impacts for proprietary models?</h2>
 <p>Environmental impacts are calculated based on model architecture and parameter count. For proprietary models, we lack transparency from providers, so we estimate parameter counts using available information. For GPT models, we based our estimates on leaked GPT-4 architecture and scaled parameters count for GPT-4-Turbo and GPT-4o based on pricing differences. For other proprietary models like Anthropic's Claude, we assume similar impacts for models released around the same time with similar performance on public benchmarks. Please note that these estimates are based on assumptions and may not be exact. Our methods are open-source and transparent, so you can always see the hypotheses we use.</p>
 <h2 id="how-to-reduce-my-environmental-impact">How to reduce my environmental impact?</h2>
