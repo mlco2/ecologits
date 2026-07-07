@@ -83,7 +83,7 @@ We also reduced the hardware lifetime from 5 to 3 years, reflecting [recent repo
 
 **Better latency estimations in EcoLogits Calculator**
 
-We improved latency calculations in the [EcoLogits Calculator](https://huggingface.co/spaces/genai-impact/ecologits-calculator) by incorporating model and provider throughput data from [OpenRouter](https://openrouter.ai/). This provides a more accurate estimate of execution duration and, consequently, environmental impacts. Note that this change does not affect the EcoLogits Python library, which relies on direct latency measurements.
+We improved latency calculations in the [EcoLogits Calculator](https://calculator.ecologits.ai/) by incorporating model and provider throughput data from [OpenRouter](https://openrouter.ai/). This provides a more accurate estimate of execution duration and, consequently, environmental impacts. Note that this change does not affect the EcoLogits Python library, which relies on direct latency measurements.
 
 ## Comparison with other disclosures from the AI providers
 

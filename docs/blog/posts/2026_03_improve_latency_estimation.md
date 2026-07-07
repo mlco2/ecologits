@@ -27,6 +27,6 @@ With:
 
 These two metrics are being collected from [OpenRouter](https://openrouter.ai/), a service that centralizes the access to many AI providers with a single API key. Since the service is widely adopted (**over 30 trillion tokens per month**) the average data should be representative of real-world conditions.
 
-This work extends what was [previously done](2025_11_methodology_update.md#other-minor-changes) to patch the energy and impacts overestimations we had in [EcoLogits Calculator](https://huggingface.co/spaces/genai-impact/ecologits-calculator) compared to the Python library. Having this new estimation method in our core methodology makes it more reliable and reusable in all projects that depend on EcoLogits.
+This work extends what was [previously done](2025_11_methodology_update.md#other-minor-changes) to patch the energy and impacts overestimations we had in [EcoLogits Calculator](https://calculator.ecologits.ai/) compared to the Python library. Having this new estimation method in our core methodology makes it more reliable and reusable in all projects that depend on EcoLogits.
 
 It is important to note that the **old method** to estimate generation latency using the [ML.ENERGY Leaderboard](https://ml.energy/leaderboard/?__theme=light) is **still being used when TTFT and TPS values are not available** on OpenRouter. This is the case for the Hugging Face inference provider that we support.
