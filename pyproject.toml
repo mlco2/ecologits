@@ -40,7 +40,7 @@ requires-python = ">=3.10,<4"
 dependencies = [
     "wrapt>=1.14.1,<2.0.0",
     "pydantic>=1.9.0,<3",
-    "packaging>=24.2,<25.0",
+    "packaging>=24.2",
 ]
 
 [project.optional-dependencies]
