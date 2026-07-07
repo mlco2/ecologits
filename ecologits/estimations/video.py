@@ -2,10 +2,16 @@ import json
 import os
 
 from ecologits.electricity_mix_repository import electricity_mixes
+from ecologits.impacts.diffusion import compute_diffusion_impacts
 from ecologits.impacts.video import compute_video_impacts
 from ecologits.log import logger
-from ecologits.status_messages import ModelNotRegisteredError, ZoneNotRegisteredError
-from ecologits.tracers.utils import ImpactsOutput
+from ecologits.model_repository import ModalityTypes, ParametersMoE, models
+from ecologits.status_messages import (
+    ModalityVideoFlopsFallbackWarning,
+    ModelNotRegisteredError,
+    ZoneNotRegisteredError,
+)
+from ecologits.tracers.utils import PROVIDER_CONFIG_MAP, ImpactsOutput
 from ecologits.utils.range_value import RangeValue
 
 _NAMED_RESOLUTIONS = {
@@ -26,6 +32,130 @@ _MODELS_INFO = {
     m["model_name"]: m
     for m in _video_models_data["models"]
 }
+
+
+def _find_model_by_name(model_name: str):
+    """
+    Search the main model registry across all providers by model name.
+    """
+    return next(
+        (m for m in models.list_models() if m.name == model_name),
+        None,
+    )
+
+
+def _resolve_fallback_model(model_name: str):
+    """
+    Validate and return ``(model, diff)`` for the FLOPs fallback path.
+
+    Returns ``(None, None)`` when the model is absent, has wrong modality, or lacks
+    diffusion parameters.
+    """
+    model = _find_model_by_name(model_name)
+    if model is None:
+        return None, None
+    if model.modality not in (ModalityTypes.IMAGE, ModalityTypes.VIDEO):
+        return None, None
+    if model.diffusion is None:
+        return None, None
+    return model, model.diffusion
+
+
+def _resolve_datacenter_config(
+    provider_name: str,
+    datacenter_location: str | None,
+    datacenter_pue: float | RangeValue | None,
+    datacenter_wue: float | RangeValue | None,
+) -> tuple[str, float | RangeValue, float | RangeValue]:
+    """
+    Resolve datacenter location, PUE and WUE from provider config or world defaults.
+    """
+    provider_config = PROVIDER_CONFIG_MAP.get(provider_name)
+    resolved_location = datacenter_location
+    if resolved_location is None:
+        resolved_location = provider_config.datacenter_location if provider_config else "WOR"
+    resolved_pue = datacenter_pue
+    if resolved_pue is None:
+        resolved_pue = provider_config.datacenter_pue if provider_config else RangeValue(min=1.09, max=1.20)
+    resolved_wue = datacenter_wue
+    if resolved_wue is None:
+        resolved_wue = provider_config.datacenter_wue if provider_config else RangeValue(min=0.13, max=0.99)
+    return resolved_location, resolved_pue, resolved_wue
+
+
+def _video_impacts_flops_fallback(
+    model_name: str,
+    duration: float,
+    datacenter_location: str | None,
+    datacenter_pue: float | RangeValue | None,
+    datacenter_wue: float | RangeValue | None,
+) -> ImpactsOutput:
+    """
+    FLOPs-based fallback for video models absent from the empirical regression registry.
+
+    Returns a ``ModelNotRegisteredError`` when the model is also missing from the main
+    model repository or has neither IMAGE/VIDEO modality nor diffusion parameters.
+    Adds ``ModalityVideoFlopsFallbackWarning`` to results to signal lower precision.
+    """
+    model, diff = _resolve_fallback_model(model_name)
+    if model is None or diff is None:
+        error = ModelNotRegisteredError(message=f"Could not find video model `{model_name}`.")
+        logger.warning_once(str(error))
+        return ImpactsOutput(errors=[error])
+
+    datacenter_location, datacenter_pue, datacenter_wue = _resolve_datacenter_config(
+        model.provider.value, datacenter_location, datacenter_pue, datacenter_wue
+    )
+
+    if_electricity_mix = electricity_mixes.find_electricity_mix(zone=datacenter_location)
+    if if_electricity_mix is None:
+        error = ZoneNotRegisteredError(
+            message=f"Could not find electricity mix for `{datacenter_location}` zone."
+        )
+        logger.warning_once(str(error))
+        return ImpactsOutput(errors=[error])
+
+    model_total_params = (
+        model.architecture.parameters.total
+        if isinstance(model.architecture.parameters, ParametersMoE)
+        else model.architecture.parameters
+    )
+    n_frames = duration_to_frames(duration)
+    default_frames = diff.default_frames or 1
+
+    impacts = compute_diffusion_impacts(
+        model_total_parameter_count=model_total_params,
+        flops_per_step=diff.flops_denoise_per_step,
+        n_steps=diff.default_steps,
+        guidance_scale=diff.default_guidance_scale,
+        cfg_double_pass=diff.cfg_double_pass,
+        denoising_strength=1.0,
+        n_frames=n_frames,
+        default_frames=default_frames,
+        if_electricity_mix_adpe=if_electricity_mix.adpe,
+        if_electricity_mix_pe=if_electricity_mix.pe,
+        if_electricity_mix_gwp=if_electricity_mix.gwp,
+        if_electricity_mix_wue=if_electricity_mix.wue,
+        datacenter_pue=datacenter_pue,
+        datacenter_wue=datacenter_wue,
+    )
+    out = ImpactsOutput.model_validate(impacts.model_dump())
+
+    if model.has_warnings:
+        for w in model.warnings:
+            logger.warning_once(str(w))
+            out.add_warning(w)
+
+    if if_electricity_mix.has_warnings:
+        for warning in if_electricity_mix.warnings:
+            logger.warning_once(str(warning))
+            out.add_warning(warning)
+
+    fallback_warning = ModalityVideoFlopsFallbackWarning()
+    logger.warning_once(str(fallback_warning))
+    out.add_warning(fallback_warning)
+
+    return out
 
 
 def video_impacts(
@@ -57,9 +187,13 @@ def video_impacts(
     """
     model_info = _MODELS_INFO.get(model_name)
     if model_info is None:
-        error = ModelNotRegisteredError(message=f"Could not find video model `{model_name}`.")
-        logger.warning_once(str(error))
-        return ImpactsOutput(errors=[error])
+        return _video_impacts_flops_fallback(
+            model_name=model_name,
+            duration=duration,
+            datacenter_location=datacenter_location,
+            datacenter_pue=datacenter_pue,
+            datacenter_wue=datacenter_wue,
+        )
 
     provider_configuration = _PROVIDER_CONFIGURATIONS[model_info["provider"]]
     if datacenter_location is None:

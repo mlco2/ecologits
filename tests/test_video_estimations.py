@@ -175,3 +175,29 @@ def test_video_models_reference_provider_configurations():
 
     for model_info in video_estimations._MODELS_INFO.values():
         assert model_info["provider"] in provider_configurations
+
+
+def test_video_impacts_flops_fallback_for_model_absent_from_video_registry():
+    impacts = video_estimations.video_impacts(
+        model_name="cogvideox-5b",
+        resolution="720p",
+        duration=5,
+        with_audio=False,
+    )
+
+    assert impacts.errors is None
+    assert impacts.has_warnings
+    assert any(w.code == "modality-video-flops-fallback" for w in impacts.warnings)
+    assert impacts.energy is not None
+
+
+def test_video_impacts_returns_error_for_completely_unknown_model():
+    impacts = video_estimations.video_impacts(
+        model_name="completely-unknown-model-xyz",
+        resolution="720p",
+        duration=5,
+        with_audio=False,
+    )
+
+    assert impacts.has_errors
+    assert any(e.code == "model-not-registered" for e in impacts.errors)

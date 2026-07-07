@@ -126,6 +126,16 @@ E_{\text{server}} \times
 $$
 
 
+### Fallback for unbenchmarked models
+
+When a model is not present in the video model registry (no empirical regression coefficients), EcoLogits falls back to the **FLOPs-based image generation methodology**. In this case:
+
+- Energy is estimated from architecture FLOPs, denoising steps, CFG, and frame count rather than from a fitted latency regression.
+- The `modality-video-flops-fallback` warning is attached to the result.
+- Precision is lower than for benchmarked models; the result is returned as a `RangeValue` interval.
+
+See [Image Generation](diffusion_inference.md) for the full description of the FLOPs-based backend.
+
 ## Embodied impacts
 
 To determine the embodied impacts of a video generation request, we need to estimate the **hardware configuration** used to host the model and its lifetime. Embodied impacts account for resource extraction (e.g., minerals and metals), manufacturing, and transportation of the hardware.

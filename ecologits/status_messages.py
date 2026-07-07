@@ -81,6 +81,22 @@ class ElectricityMixWUEDefaultWarning(WarningMessage):
     message: str = "The electricity mix WUE factor is using the world default value, expect lower precision."
 
 
+class ModalityEditingUnvalidatedWarning(WarningMessage):
+    code: str = "modality-editing-unvalidated"
+    message: str = (
+        "The end-to-end energy mapping for editing tasks (img2img, inpaint, vid2vid) is unvalidated, "
+        "the result is returned as a bounded range instead of a point estimate."
+    )
+
+
+class ModalityVideoFlopsFallbackWarning(WarningMessage):
+    code: str = "modality-video-flops-fallback"
+    message: str = (
+        "This video model has no empirical latency regression; energy was estimated using the "
+        "FLOPs-based diffusion model. Expect lower precision than for benchmarked models."
+    )
+
+
 class ModelNotRegisteredError(ErrorMessage):
     code: str = "model-not-registered"
     message: str = "The model is not registered in the model repository."
@@ -97,6 +113,8 @@ _warning_codes: dict[str, type[WarningMessage]] = {
     "electricity-mix-adpe-world": ElectricityMixADPeDefaultWarning,
     "electricity-mix-pe-world": ElectricityMixPEDefaultWarning,
     "electricity-mix-wue-world": ElectricityMixWUEDefaultWarning,
+    "modality-editing-unvalidated": ModalityEditingUnvalidatedWarning,
+    "modality-video-flops-fallback": ModalityVideoFlopsFallbackWarning,
 }
 
 _error_codes: dict[str, type[ErrorMessage]] = {

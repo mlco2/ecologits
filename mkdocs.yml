@@ -8,6 +8,7 @@ nav:
   - 'Get Started':
     - 'Welcome to EcoLogits': get_started.md
     - 'Why use EcoLogits': why.md
+    - 'Supported Models': models.md
     - 'Supported providers': tutorial/providers.md
     - 'FAQ': faq.md
     - 'Contributing': contributing.md
@@ -34,6 +35,7 @@ nav:
       - 'Proprietary models': methodology/proprietary_models.md
       - 'LLM Inference': methodology/llm_inference.md
       - 'Video Generation': methodology/video_generation.md
+      - 'Multimedia Generation': methodology/diffusion_inference.md
   - 'API Reference': reference/
   - 'Blog':
       - blog/index.md
@@ -90,8 +92,11 @@ extra_javascript:
   - js/katex.js
   - js/installer.js
   - js/clipboard_copy.js
+  - js/models_filter.js
   - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js
   - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js
+  - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
+  - https://unpkg.com/tablesort@5.3.0/dist/sorts/tablesort.number.min.js
 
 watch:
   - docs
@@ -106,6 +111,7 @@ plugins:
   - gen-files:
       scripts:
         - docs/scripts/gen_references.py
+        - docs/scripts/gen_models_page.py
   - literate-nav:
       nav_file: SUMMARY.md
   - mkdocstrings:
@@ -147,7 +153,11 @@ markdown_extensions:
   - pymdownx.snippets:
       auto_append:
         - docs/_abbreviations
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.details
   - pymdownx.tabbed:
       alternate_style: true

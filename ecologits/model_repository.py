@@ -16,11 +16,23 @@ class Providers(Enum):
     huggingface_hub = "huggingface_hub"
     cohere = "cohere"
     google_genai = "google_genai"
+    stabilityai = "stabilityai"
+    black_forest_labs = "black_forest_labs"
+    midjourney = "midjourney"
+    kling = "kling"
+    runway = "runway"
+    luma = "luma"
 
 
 class ArchitectureTypes(Enum):
     DENSE = "dense"
     MOE = "moe"
+
+
+class ModalityTypes(Enum):
+    TEXT = "text"
+    IMAGE = "image"
+    VIDEO = "video"
 
 
 class ParametersMoE(BaseModel):
@@ -31,6 +43,35 @@ class ParametersMoE(BaseModel):
 class Architecture(BaseModel):
     type: ArchitectureTypes
     parameters: Union[ValueOrRange, ParametersMoE]
+
+
+class DiffusionParameters(BaseModel):
+    """
+    Diffusion model description used for image and video generation.
+
+    Attributes:
+        flops_denoise_per_step: FLOPs for one denoiser forward pass at the model native resolution.
+        default_steps: Default number of denoising steps (sampler dependent).
+        default_guidance_scale: Default guidance scale; CFG double-pass applies when > 1.0.
+            Flow-matching models (Flux, SD3) store their typical value without triggering double-pass.
+        latent_downscale: Spatial downscale factor between pixel and latent space (e.g. 8).
+        is_video: Whether the model generates video.
+        default_frames: Default number of generated frames (video only).
+        default_fps: Default frames per second (video only).
+        frame_attn_fraction: Share of per-step FLOPs from full-sequence 3D attention (scales as F²).
+            0.0 for image models and sparse-attention video models; 0.5–0.64 for full-3D-attention
+            DiT video models. Used in the mixed frame scaling: (1-f)*(F/F_default) + f*(F/F_default)².
+    """
+
+    flops_denoise_per_step: ValueOrRange
+    default_steps: int
+    default_guidance_scale: float = 7.5
+    cfg_double_pass: bool = True
+    latent_downscale: int = 8
+    is_video: bool = False
+    default_frames: int | None = None
+    default_fps: int | None = None
+    frame_attn_fraction: float = 0.0
 
 
 class Deployment(BaseModel):
@@ -46,23 +87,27 @@ class Alias(BaseModel):
 
 class Model(BaseModel):
     """
-    LLM Model
+    Generative AI Model.
 
     Attributes:
         provider: Provider of the model (e.g. "OpenAI")
         name: Name of the model (e.g. "gpt-4o-mini")
+        modality: Output modality produced by the model (text, image, or video).
         architecture: Architecture type (dense or mixture-of-experts)
         warnings: Warnings linked to the model (e.g. "model-arch-not-released" or "model-arch-multimodal")
         sources: Source of the model information (website link)
         deployment: Deployment information (tps, ttft)
+        diffusion: Optional diffusion description for image and video generation models
     """
 
     provider: Providers
     name: str
+    modality: ModalityTypes = ModalityTypes.TEXT
     architecture: Architecture
     warnings: list[WarningMessage] = []
     sources: list[str] = []
     deployment: Deployment | None = None
+    diffusion: DiffusionParameters | None = None
 
     @property
     def has_warnings(self) -> bool:
@@ -79,13 +124,21 @@ class Model(BaseModel):
         deployment = None
         if "deployment" in data and data["deployment"] is not None:
             deployment = Deployment.model_validate(data["deployment"])
+        diffusion = None
+        if "diffusion" in data and data["diffusion"] is not None:
+            diffusion = DiffusionParameters.model_validate(data["diffusion"])
+        modality = ModalityTypes.TEXT
+        if "modality" in data and data["modality"] is not None:
+            modality = ModalityTypes(data["modality"])
         return cls(
             provider=Providers(data["provider"]),
             name=data["name"],
+            modality=modality,
             architecture=Architecture.model_validate(data["architecture"]),
             warnings=warnings,
             sources=sources,
             deployment=deployment,
+            diffusion=diffusion,
         )
 
 

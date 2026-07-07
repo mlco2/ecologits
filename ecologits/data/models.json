@@ -6959,6 +6959,1506 @@
                 "tps": 91.9,
                 "ttft": 17.34
             }
+        },
+        {
+            "type": "model",
+            "provider": "cohere",
+            "name": "c4ai-aya-expanse-8b",
+            "architecture": {
+                "type": "dense",
+                "parameters": 8.03
+            },
+            "warnings": null,
+            "sources": [
+                "https://docs.cohere.com/docs/models",
+                "https://huggingface.co/CohereLabs/aya-expanse-8b"
+            ],
+            "deployment": {
+                "tps": 23.1,
+                "ttft": 0.56
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "cohere",
+            "name": "c4ai-aya-vision-8b",
+            "architecture": {
+                "type": "dense",
+                "parameters": 8.63
+            },
+            "warnings": [
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://docs.cohere.com/docs/models",
+                "https://huggingface.co/CohereLabs/aya-vision-8b"
+            ],
+            "deployment": {
+                "tps": 23.1,
+                "ttft": 0.56
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "cohere",
+            "name": "command-r",
+            "architecture": {
+                "type": "dense",
+                "parameters": 32.3
+            },
+            "warnings": null,
+            "sources": [
+                "https://docs.cohere.com/docs/models",
+                "https://huggingface.co/CohereLabs/c4ai-command-r-08-2024  "
+            ],
+            "deployment": {
+                "tps": 58.1,
+                "ttft": 0.19
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "mistralai",
+            "name": "devstral-medium-2507",
+            "architecture": {
+                "type": "dense",
+                "parameters": {
+                    "min": 70,
+                    "max": 120
+                }
+            },
+            "warnings": [
+                "model-arch-not-released"
+            ],
+            "sources": [
+                "https://docs.mistral.ai/getting-started/models/"
+            ],
+            "deployment": {
+                "tps": 48.5,
+                "ttft": 0.41
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "mistralai",
+            "name": "devstral-small-2507",
+            "architecture": {
+                "type": "dense",
+                "parameters": 23.6
+            },
+            "warnings": null,
+            "sources": [
+                "https://docs.mistral.ai/getting-started/models/"
+            ],
+            "deployment": {
+                "tps": 115.2,
+                "ttft": 0.21
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "mistralai",
+            "name": "devstral-small-latest",
+            "architecture": {
+                "type": "dense",
+                "parameters": 23.6
+            },
+            "warnings": null,
+            "sources": [
+                "https://docs.mistral.ai/getting-started/models/"
+            ],
+            "deployment": {
+                "tps": 115.2,
+                "ttft": 0.21
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "mistralai",
+            "name": "labs-devstral-small-2512",
+            "architecture": {
+                "type": "dense",
+                "parameters": 24
+            },
+            "warnings": null,
+            "sources": [
+                "https://docs.mistral.ai/getting-started/models/"
+            ],
+            "deployment": {
+                "tps": 115.2,
+                "ttft": 0.21
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "mistralai",
+            "name": "labs-mistral-small-creative",
+            "architecture": {
+                "type": "dense",
+                "parameters": 23.6
+            },
+            "warnings": null,
+            "sources": [
+                "https://docs.mistral.ai/getting-started/models/",
+                "https://mistral.ai/news/mistral-small-3"
+            ],
+            "deployment": {
+                "tps": 45.1,
+                "ttft": 0.18
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "mistralai",
+            "name": "mistral-large-2411",
+            "architecture": {
+                "type": "dense",
+                "parameters": 123
+            },
+            "warnings": null,
+            "sources": [
+                "https://docs.mistral.ai/getting-started/models/",
+                "https://mistral.ai/news/mistral-large-2407"
+            ],
+            "deployment": {
+                "tps": 39.2,
+                "ttft": 0.73
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "mistralai",
+            "name": "mistral-large-pixtral-2411",
+            "architecture": {
+                "type": "dense",
+                "parameters": 123
+            },
+            "warnings": null,
+            "sources": [
+                "https://docs.mistral.ai/getting-started/models/",
+                "https://mistral.ai/news/mistral-large-2407"
+            ],
+            "deployment": {
+                "tps": 39.2,
+                "ttft": 0.73
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "mistralai",
+            "name": "pixtral-large-2411",
+            "architecture": {
+                "type": "dense",
+                "parameters": 123
+            },
+            "warnings": [
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://docs.mistral.ai/getting-started/models/",
+                "https://mistral.ai/news/pixtral-large"
+            ],
+            "deployment": {
+                "tps": 50.4,
+                "ttft": 0.5
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "mistralai",
+            "name": "pixtral-large-latest",
+            "architecture": {
+                "type": "dense",
+                "parameters": 123
+            },
+            "warnings": [
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://docs.mistral.ai/getting-started/models/",
+                "https://mistral.ai/news/pixtral-large"
+            ],
+            "deployment": {
+                "tps": 35.6,
+                "ttft": 0.45
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "mistralai",
+            "name": "voxtral-mini-transcribe-2507",
+            "architecture": {
+                "type": "dense",
+                "parameters": 4.68
+            },
+            "warnings": [
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://docs.mistral.ai/getting-started/models/"
+            ],
+            "deployment": {
+                "tps": 77.6,
+                "ttft": 0.24
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "anthropic",
+            "name": "claude-3-haiku-20240307",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 300,
+                    "active": {
+                        "min": 30,
+                        "max": 90
+                    }
+                }
+            },
+            "warnings": [
+                "model-arch-not-released"
+            ],
+            "sources": [
+                "https://docs.anthropic.com/en/docs/about-claude/models"
+            ],
+            "deployment": {
+                "tps": 74.2,
+                "ttft": 0.53
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "google_genai",
+            "name": "gemma-3-12b-it",
+            "architecture": {
+                "type": "dense",
+                "parameters": 12.2
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://ai.google.dev/gemini-api/docs/models",
+                "https://huggingface.co/google/gemma-3-12b-it"
+            ],
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "google_genai",
+            "name": "gemma-3-1b-it",
+            "architecture": {
+                "type": "dense",
+                "parameters": 1
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://ai.google.dev/gemini-api/docs/models",
+                "https://huggingface.co/google/gemma-3-1b-it"
+            ],
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "google_genai",
+            "name": "gemma-3-27b-it",
+            "architecture": {
+                "type": "dense",
+                "parameters": 27.4
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://ai.google.dev/gemini-api/docs/models",
+                "https://huggingface.co/google/gemma-3-27b-it"
+            ],
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "google_genai",
+            "name": "gemma-3-4b-it",
+            "architecture": {
+                "type": "dense",
+                "parameters": 4.3
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://ai.google.dev/gemini-api/docs/models",
+                "https://huggingface.co/google/gemma-3-4b-it"
+            ],
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "google_genai",
+            "name": "gemma-3n-e2b-it",
+            "architecture": {
+                "type": "dense",
+                "parameters": 5.44
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://ai.google.dev/gemini-api/docs/models",
+                "https://huggingface.co/google/gemma-3n-E2B-it"
+            ],
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "google_genai",
+            "name": "gemma-3n-e4b-it",
+            "architecture": {
+                "type": "dense",
+                "parameters": 7.85
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://ai.google.dev/gemini-api/docs/models",
+                "https://huggingface.co/google/gemma-3n-E4B-it"
+            ],
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "openai",
+            "name": "gpt-4-0125-preview",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 1760,
+                    "active": {
+                        "min": 176,
+                        "max": 528
+                    }
+                }
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://platform.openai.com/docs/models#gpt-4-turbo-and-gpt-4"
+            ],
+            "deployment": {
+                "tps": 12.2,
+                "ttft": 0.74
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "openai",
+            "name": "gpt-4-1106-preview",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 1760,
+                    "active": {
+                        "min": 176,
+                        "max": 528
+                    }
+                }
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://platform.openai.com/docs/models#gpt-4-turbo-and-gpt-4"
+            ],
+            "deployment": {
+                "tps": 6.1,
+                "ttft": 0.65
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "openai",
+            "name": "gpt-4-turbo-preview",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 880,
+                    "active": {
+                        "min": 88,
+                        "max": 264
+                    }
+                }
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://platform.openai.com/docs/models#gpt-4-turbo-and-gpt-4"
+            ],
+            "deployment": {
+                "tps": 30.1,
+                "ttft": 1.05
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "openai",
+            "name": "gpt-4o-audio-preview",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 440,
+                    "active": {
+                        "min": 44,
+                        "max": 132
+                    }
+                }
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://platform.openai.com/docs/models#gpt-4o"
+            ],
+            "deployment": {
+                "tps": 44.1,
+                "ttft": 0.85
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "openai",
+            "name": "gpt-4o-audio-preview-2024-12-17",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 440,
+                    "active": {
+                        "min": 44,
+                        "max": 132
+                    }
+                }
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://platform.openai.com/docs/models#gpt-4o"
+            ],
+            "deployment": {
+                "tps": 44.1,
+                "ttft": 0.85
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "openai",
+            "name": "gpt-4o-audio-preview-2025-06-03",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 440,
+                    "active": {
+                        "min": 44,
+                        "max": 132
+                    }
+                }
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://platform.openai.com/docs/models#gpt-4o"
+            ],
+            "deployment": {
+                "tps": 44.1,
+                "ttft": 0.85
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "openai",
+            "name": "gpt-4o-mini-audio-preview",
+            "architecture": {
+                "type": "dense",
+                "parameters": {
+                    "min": 8,
+                    "max": 28
+                }
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://platform.openai.com/docs/models#gpt-4o-mini"
+            ],
+            "deployment": {
+                "tps": 44.1,
+                "ttft": 0.85
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "openai",
+            "name": "gpt-4o-mini-realtime-preview",
+            "architecture": {
+                "type": "dense",
+                "parameters": {
+                    "min": 8,
+                    "max": 28
+                }
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://platform.openai.com/docs/models#gpt-4o-mini"
+            ],
+            "deployment": {
+                "tps": 34.5,
+                "ttft": 0.51
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "openai",
+            "name": "gpt-4o-mini-realtime-preview-2024-12-17",
+            "architecture": {
+                "type": "dense",
+                "parameters": {
+                    "min": 8,
+                    "max": 28
+                }
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://platform.openai.com/docs/models#gpt-4o-mini"
+            ],
+            "deployment": {
+                "tps": 34.5,
+                "ttft": 0.51
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "openai",
+            "name": "gpt-4o-mini-audio-preview-2024-12-17",
+            "architecture": {
+                "type": "dense",
+                "parameters": {
+                    "min": 8,
+                    "max": 28
+                }
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://platform.openai.com/docs/models#gpt-4o-mini"
+            ],
+            "deployment": {
+                "tps": 34.5,
+                "ttft": 0.51
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "openai",
+            "name": "gpt-4o-realtime-preview",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 440,
+                    "active": {
+                        "min": 44,
+                        "max": 132
+                    }
+                }
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://platform.openai.com/docs/models#gpt-4o"
+            ],
+            "deployment": {
+                "tps": 40.2,
+                "ttft": 0.54
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "openai",
+            "name": "gpt-4o-realtime-preview-2024-12-17",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 440,
+                    "active": {
+                        "min": 44,
+                        "max": 132
+                    }
+                }
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://platform.openai.com/docs/models#gpt-4o"
+            ],
+            "deployment": {
+                "tps": 40.2,
+                "ttft": 0.54
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "openai",
+            "name": "gpt-4o-realtime-preview-2025-06-03",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 440,
+                    "active": {
+                        "min": 44,
+                        "max": 132
+                    }
+                }
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://platform.openai.com/docs/models#gpt-4o"
+            ],
+            "deployment": {
+                "tps": 40.2,
+                "ttft": 0.54
+            },
+            "modality": "text"
+        },
+        {
+            "type": "model",
+            "provider": "stabilityai",
+            "name": "stable-diffusion-2",
+            "architecture": {
+                "type": "dense",
+                "parameters": 0.865
+            },
+            "warnings": null,
+            "sources": [
+                "https://huggingface.co/stabilityai/stable-diffusion-2-1",
+                "https://arxiv.org/abs/2511.17031"
+            ],
+            "diffusion": {
+                "flops_denoise_per_step": 1100000000000,
+                "default_steps": 50,
+                "latent_downscale": 8,
+                "is_video": false,
+                "default_guidance_scale": 7.5,
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.0
+            },
+            "modality": "image"
+        },
+        {
+            "type": "model",
+            "provider": "stabilityai",
+            "name": "stable-diffusion-xl",
+            "architecture": {
+                "type": "dense",
+                "parameters": 2.6
+            },
+            "warnings": null,
+            "sources": [
+                "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0",
+                "https://arxiv.org/abs/2307.01952"
+            ],
+            "diffusion": {
+                "flops_denoise_per_step": 6700000000000,
+                "default_steps": 40,
+                "latent_downscale": 8,
+                "is_video": false,
+                "default_guidance_scale": 7.5,
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.0
+            },
+            "modality": "image"
+        },
+        {
+            "type": "model",
+            "provider": "stabilityai",
+            "name": "stable-diffusion-3.5-large",
+            "architecture": {
+                "type": "dense",
+                "parameters": 8.0
+            },
+            "warnings": null,
+            "sources": [
+                "https://huggingface.co/stabilityai/stable-diffusion-3.5-large",
+                "https://arxiv.org/abs/2511.17031"
+            ],
+            "diffusion": {
+                "flops_denoise_per_step": 65000000000000,
+                "default_steps": 28,
+                "latent_downscale": 8,
+                "is_video": false,
+                "default_guidance_scale": 4.5,
+                "cfg_double_pass": false,
+                "frame_attn_fraction": 0.0
+            },
+            "modality": "image"
+        },
+        {
+            "type": "model",
+            "provider": "black_forest_labs",
+            "name": "flux.1-dev",
+            "architecture": {
+                "type": "dense",
+                "parameters": 12.0
+            },
+            "warnings": null,
+            "sources": [
+                "https://huggingface.co/black-forest-labs/FLUX.1-dev",
+                "https://arxiv.org/abs/2511.17031"
+            ],
+            "diffusion": {
+                "flops_denoise_per_step": 98000000000000,
+                "default_steps": 28,
+                "latent_downscale": 8,
+                "is_video": false,
+                "default_guidance_scale": 3.5,
+                "cfg_double_pass": false,
+                "frame_attn_fraction": 0.0
+            },
+            "modality": "image"
+        },
+        {
+            "type": "model",
+            "provider": "black_forest_labs",
+            "name": "flux.1-schnell",
+            "architecture": {
+                "type": "dense",
+                "parameters": 12.0
+            },
+            "warnings": null,
+            "sources": [
+                "https://huggingface.co/black-forest-labs/FLUX.1-schnell"
+            ],
+            "diffusion": {
+                "flops_denoise_per_step": 98000000000000,
+                "default_steps": 4,
+                "latent_downscale": 8,
+                "is_video": false,
+                "default_guidance_scale": 0.0,
+                "cfg_double_pass": false,
+                "frame_attn_fraction": 0.0
+            },
+            "modality": "image"
+        },
+        {
+            "type": "model",
+            "provider": "huggingface_hub",
+            "name": "cogvideox-2b",
+            "architecture": {
+                "type": "dense",
+                "parameters": 1.8
+            },
+            "warnings": null,
+            "sources": [
+                "https://huggingface.co/THUDM/CogVideoX-2b",
+                "https://arxiv.org/abs/2408.06072"
+            ],
+            "diffusion": {
+                "flops_denoise_per_step": 60000000000000,
+                "default_steps": 50,
+                "latent_downscale": 8,
+                "is_video": true,
+                "default_frames": 49,
+                "default_fps": 8,
+                "default_guidance_scale": 6.0,
+                "cfg_double_pass": false,
+                "frame_attn_fraction": 0.5
+            },
+            "modality": "video"
+        },
+        {
+            "type": "model",
+            "provider": "huggingface_hub",
+            "name": "cogvideox-5b",
+            "architecture": {
+                "type": "dense",
+                "parameters": 5.0
+            },
+            "warnings": null,
+            "sources": [
+                "https://huggingface.co/THUDM/CogVideoX-5b",
+                "https://arxiv.org/abs/2408.06072"
+            ],
+            "diffusion": {
+                "flops_denoise_per_step": 170000000000000,
+                "default_steps": 50,
+                "latent_downscale": 8,
+                "is_video": true,
+                "default_frames": 49,
+                "default_fps": 8,
+                "default_guidance_scale": 6.0,
+                "cfg_double_pass": false,
+                "frame_attn_fraction": 0.5
+            },
+            "modality": "video"
+        },
+        {
+            "type": "model",
+            "provider": "huggingface_hub",
+            "name": "wan2.1-t2v-1.3b",
+            "architecture": {
+                "type": "dense",
+                "parameters": 1.3
+            },
+            "warnings": null,
+            "sources": [
+                "https://huggingface.co/Wan-AI/Wan2.1-T2V-1.3B"
+            ],
+            "diffusion": {
+                "flops_denoise_per_step": 40000000000000,
+                "default_steps": 50,
+                "latent_downscale": 8,
+                "is_video": true,
+                "default_frames": 81,
+                "default_fps": 16,
+                "default_guidance_scale": 5.0,
+                "cfg_double_pass": false,
+                "frame_attn_fraction": 0.54
+            },
+            "modality": "video"
+        },
+        {
+            "type": "model",
+            "provider": "huggingface_hub",
+            "name": "wan2.1-t2v-14b",
+            "architecture": {
+                "type": "dense",
+                "parameters": 14.0
+            },
+            "warnings": null,
+            "sources": [
+                "https://huggingface.co/Wan-AI/Wan2.1-T2V-14B"
+            ],
+            "diffusion": {
+                "flops_denoise_per_step": 440000000000000,
+                "default_steps": 50,
+                "latent_downscale": 8,
+                "is_video": true,
+                "default_frames": 81,
+                "default_fps": 16,
+                "default_guidance_scale": 5.0,
+                "cfg_double_pass": false,
+                "frame_attn_fraction": 0.54
+            },
+            "modality": "video"
+        },
+        {
+            "type": "model",
+            "provider": "huggingface_hub",
+            "name": "ltx-video",
+            "architecture": {
+                "type": "dense",
+                "parameters": 2.0
+            },
+            "warnings": null,
+            "sources": [
+                "https://huggingface.co/Lightricks/LTX-Video"
+            ],
+            "diffusion": {
+                "flops_denoise_per_step": 30000000000000,
+                "default_steps": 40,
+                "latent_downscale": 8,
+                "is_video": true,
+                "default_frames": 121,
+                "default_fps": 24,
+                "default_guidance_scale": 3.5,
+                "cfg_double_pass": false,
+                "frame_attn_fraction": 0.0
+            },
+            "modality": "video"
+        },
+        {
+            "type": "model",
+            "provider": "huggingface_hub",
+            "name": "hunyuanvideo",
+            "architecture": {
+                "type": "dense",
+                "parameters": 13.0
+            },
+            "warnings": null,
+            "sources": [
+                "https://huggingface.co/tencent/HunyuanVideo"
+            ],
+            "diffusion": {
+                "flops_denoise_per_step": 400000000000000,
+                "default_steps": 50,
+                "latent_downscale": 8,
+                "is_video": true,
+                "default_frames": 129,
+                "default_fps": 24,
+                "default_guidance_scale": 1.0,
+                "cfg_double_pass": false,
+                "frame_attn_fraction": 0.64
+            },
+            "modality": "video"
+        },
+        {
+            "type": "model",
+            "provider": "huggingface_hub",
+            "name": "mochi-1",
+            "architecture": {
+                "type": "dense",
+                "parameters": 10.0
+            },
+            "warnings": null,
+            "sources": [
+                "https://huggingface.co/genmo/mochi-1-preview"
+            ],
+            "diffusion": {
+                "flops_denoise_per_step": 300000000000000,
+                "default_steps": 64,
+                "latent_downscale": 8,
+                "is_video": true,
+                "default_frames": 163,
+                "default_fps": 30,
+                "default_guidance_scale": 4.5,
+                "cfg_double_pass": false,
+                "frame_attn_fraction": 0.5
+            },
+            "modality": "video"
+        },
+        {
+            "type": "model",
+            "provider": "openai",
+            "name": "dall-e-3",
+            "architecture": {
+                "type": "dense",
+                "parameters": {
+                    "min": 2.6,
+                    "max": 12.0
+                }
+            },
+            "warnings": [
+                "model-arch-not-released"
+            ],
+            "sources": [
+                "https://platform.openai.com/docs/models#dall-e"
+            ],
+            "diffusion": {
+                "flops_denoise_per_step": {
+                    "min": 6700000000000,
+                    "max": 98000000000000
+                },
+                "default_steps": 40,
+                "latent_downscale": 8,
+                "is_video": false,
+                "default_guidance_scale": 7.5,
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.45
+            },
+            "modality": "image"
+        },
+        {
+            "type": "model",
+            "provider": "google_genai",
+            "name": "imagen-3",
+            "architecture": {
+                "type": "dense",
+                "parameters": {
+                    "min": 2.6,
+                    "max": 12.0
+                }
+            },
+            "warnings": [
+                "model-arch-not-released"
+            ],
+            "sources": [
+                "https://deepmind.google/technologies/imagen-3/"
+            ],
+            "diffusion": {
+                "flops_denoise_per_step": {
+                    "min": 6700000000000,
+                    "max": 98000000000000
+                },
+                "default_steps": 40,
+                "latent_downscale": 8,
+                "is_video": false,
+                "default_guidance_scale": 7.5,
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.45
+            },
+            "modality": "image"
+        },
+        {
+            "type": "model",
+            "provider": "google_genai",
+            "name": "imagen-4",
+            "architecture": {
+                "type": "dense",
+                "parameters": {
+                    "min": 8.0,
+                    "max": 20.0
+                }
+            },
+            "warnings": [
+                "model-arch-not-released"
+            ],
+            "sources": [
+                "https://deepmind.google/technologies/imagen/"
+            ],
+            "diffusion": {
+                "flops_denoise_per_step": {
+                    "min": 65000000000000,
+                    "max": 150000000000000
+                },
+                "default_steps": 40,
+                "latent_downscale": 8,
+                "is_video": false,
+                "default_guidance_scale": 7.5,
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.45
+            },
+            "modality": "image"
+        },
+        {
+            "type": "model",
+            "provider": "midjourney",
+            "name": "midjourney-v6",
+            "architecture": {
+                "type": "dense",
+                "parameters": {
+                    "min": 2.6,
+                    "max": 12.0
+                }
+            },
+            "warnings": [
+                "model-arch-not-released"
+            ],
+            "sources": [
+                "https://docs.midjourney.com/"
+            ],
+            "diffusion": {
+                "flops_denoise_per_step": {
+                    "min": 6700000000000,
+                    "max": 98000000000000
+                },
+                "default_steps": 40,
+                "latent_downscale": 8,
+                "is_video": false,
+                "default_guidance_scale": 7.5,
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.45
+            },
+            "modality": "image"
+        },
+        {
+            "type": "model",
+            "provider": "midjourney",
+            "name": "midjourney-v7",
+            "architecture": {
+                "type": "dense",
+                "parameters": {
+                    "min": 8.0,
+                    "max": 20.0
+                }
+            },
+            "warnings": [
+                "model-arch-not-released"
+            ],
+            "sources": [
+                "https://docs.midjourney.com/"
+            ],
+            "diffusion": {
+                "flops_denoise_per_step": {
+                    "min": 65000000000000,
+                    "max": 150000000000000
+                },
+                "default_steps": 40,
+                "latent_downscale": 8,
+                "is_video": false,
+                "default_guidance_scale": 7.5,
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.45
+            },
+            "modality": "image"
+        },
+        {
+            "type": "model",
+            "provider": "openai",
+            "name": "sora",
+            "architecture": {
+                "type": "dense",
+                "parameters": {
+                    "min": 5.0,
+                    "max": 30.0
+                }
+            },
+            "warnings": [
+                "model-arch-not-released"
+            ],
+            "sources": [
+                "https://openai.com/sora/"
+            ],
+            "diffusion": {
+                "flops_denoise_per_step": {
+                    "min": 170000000000000,
+                    "max": 600000000000000
+                },
+                "default_steps": 50,
+                "latent_downscale": 8,
+                "is_video": true,
+                "default_frames": 120,
+                "default_fps": 24,
+                "default_guidance_scale": 7.5,
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.55
+            },
+            "modality": "video"
+        },
+        {
+            "type": "model",
+            "provider": "openai",
+            "name": "sora-2",
+            "architecture": {
+                "type": "dense",
+                "parameters": {
+                    "min": 10.0,
+                    "max": 40.0
+                }
+            },
+            "warnings": [
+                "model-arch-not-released"
+            ],
+            "sources": [
+                "https://openai.com/sora/"
+            ],
+            "diffusion": {
+                "flops_denoise_per_step": {
+                    "min": 300000000000000,
+                    "max": 900000000000000
+                },
+                "default_steps": 50,
+                "latent_downscale": 8,
+                "is_video": true,
+                "default_frames": 240,
+                "default_fps": 24,
+                "default_guidance_scale": 7.5,
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.55
+            },
+            "modality": "video"
+        },
+        {
+            "type": "model",
+            "provider": "google_genai",
+            "name": "veo-2",
+            "architecture": {
+                "type": "dense",
+                "parameters": {
+                    "min": 5.0,
+                    "max": 30.0
+                }
+            },
+            "warnings": [
+                "model-arch-not-released"
+            ],
+            "sources": [
+                "https://deepmind.google/technologies/veo/"
+            ],
+            "diffusion": {
+                "flops_denoise_per_step": {
+                    "min": 170000000000000,
+                    "max": 600000000000000
+                },
+                "default_steps": 50,
+                "latent_downscale": 8,
+                "is_video": true,
+                "default_frames": 120,
+                "default_fps": 24,
+                "default_guidance_scale": 7.5,
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.55
+            },
+            "modality": "video"
+        },
+        {
+            "type": "model",
+            "provider": "google_genai",
+            "name": "veo-3",
+            "architecture": {
+                "type": "dense",
+                "parameters": {
+                    "min": 10.0,
+                    "max": 40.0
+                }
+            },
+            "warnings": [
+                "model-arch-not-released"
+            ],
+            "sources": [
+                "https://deepmind.google/technologies/veo/"
+            ],
+            "diffusion": {
+                "flops_denoise_per_step": {
+                    "min": 300000000000000,
+                    "max": 900000000000000
+                },
+                "default_steps": 50,
+                "latent_downscale": 8,
+                "is_video": true,
+                "default_frames": 192,
+                "default_fps": 24,
+                "default_guidance_scale": 7.5,
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.55
+            },
+            "modality": "video"
+        },
+        {
+            "type": "model",
+            "provider": "kling",
+            "name": "kling-1.6",
+            "architecture": {
+                "type": "dense",
+                "parameters": {
+                    "min": 5.0,
+                    "max": 30.0
+                }
+            },
+            "warnings": [
+                "model-arch-not-released"
+            ],
+            "sources": [
+                "https://klingai.com/"
+            ],
+            "diffusion": {
+                "flops_denoise_per_step": {
+                    "min": 170000000000000,
+                    "max": 600000000000000
+                },
+                "default_steps": 50,
+                "latent_downscale": 8,
+                "is_video": true,
+                "default_frames": 120,
+                "default_fps": 24,
+                "default_guidance_scale": 7.5,
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.5
+            },
+            "modality": "video"
+        },
+        {
+            "type": "model",
+            "provider": "kling",
+            "name": "kling-2.0",
+            "architecture": {
+                "type": "dense",
+                "parameters": {
+                    "min": 10.0,
+                    "max": 40.0
+                }
+            },
+            "warnings": [
+                "model-arch-not-released"
+            ],
+            "sources": [
+                "https://klingai.com/"
+            ],
+            "diffusion": {
+                "flops_denoise_per_step": {
+                    "min": 300000000000000,
+                    "max": 900000000000000
+                },
+                "default_steps": 50,
+                "latent_downscale": 8,
+                "is_video": true,
+                "default_frames": 120,
+                "default_fps": 24,
+                "default_guidance_scale": 7.5,
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.5
+            },
+            "modality": "video"
+        },
+        {
+            "type": "model",
+            "provider": "runway",
+            "name": "gen-3",
+            "architecture": {
+                "type": "dense",
+                "parameters": {
+                    "min": 5.0,
+                    "max": 30.0
+                }
+            },
+            "warnings": [
+                "model-arch-not-released"
+            ],
+            "sources": [
+                "https://runwayml.com/research/introducing-gen-3-alpha"
+            ],
+            "diffusion": {
+                "flops_denoise_per_step": {
+                    "min": 170000000000000,
+                    "max": 600000000000000
+                },
+                "default_steps": 50,
+                "latent_downscale": 8,
+                "is_video": true,
+                "default_frames": 120,
+                "default_fps": 24,
+                "default_guidance_scale": 7.5,
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.5
+            },
+            "modality": "video"
+        },
+        {
+            "type": "model",
+            "provider": "runway",
+            "name": "gen-4",
+            "architecture": {
+                "type": "dense",
+                "parameters": {
+                    "min": 10.0,
+                    "max": 40.0
+                }
+            },
+            "warnings": [
+                "model-arch-not-released"
+            ],
+            "sources": [
+                "https://runwayml.com/research/introducing-runway-gen-4"
+            ],
+            "diffusion": {
+                "flops_denoise_per_step": {
+                    "min": 300000000000000,
+                    "max": 900000000000000
+                },
+                "default_steps": 50,
+                "latent_downscale": 8,
+                "is_video": true,
+                "default_frames": 120,
+                "default_fps": 24,
+                "default_guidance_scale": 7.5,
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.5
+            },
+            "modality": "video"
+        },
+        {
+            "type": "model",
+            "provider": "luma",
+            "name": "dream-machine",
+            "architecture": {
+                "type": "dense",
+                "parameters": {
+                    "min": 5.0,
+                    "max": 30.0
+                }
+            },
+            "warnings": [
+                "model-arch-not-released"
+            ],
+            "sources": [
+                "https://lumalabs.ai/dream-machine"
+            ],
+            "diffusion": {
+                "flops_denoise_per_step": {
+                    "min": 170000000000000,
+                    "max": 600000000000000
+                },
+                "default_steps": 50,
+                "latent_downscale": 8,
+                "is_video": true,
+                "default_frames": 120,
+                "default_fps": 24,
+                "default_guidance_scale": 7.5,
+                "cfg_double_pass": true,
+                "frame_attn_fraction": 0.5
+            },
+            "modality": "video"
         }
     ]
 }
