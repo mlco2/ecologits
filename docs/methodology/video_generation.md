@@ -22,9 +22,7 @@ To assess the usage impacts of a video generation request, we first estimate the
 
 ### Modeling the generation latency
 
-[//]: # (TODO: Add paper link)
-
-Our latency estimation follows the approach from [Jegham et al. (2026)](#). The main idea is that video generation is mostly compute-bound, so under fixed hardware the generation time is a good proxy for the computational work of the request. In practice, we use model-specific regressions fitted from observed generation latencies, directly derived from the paper.
+Our latency estimation follows the approach from [Jegham et al. (2026)](https://arxiv.org/abs/2607.04553). The main idea is that video generation is mostly compute-bound, so under fixed hardware the generation time is a good proxy for the computational work of the request. In practice, we use model-specific regressions fitted from observed generation latencies, directly derived from the paper.
 
 We denote:
 
@@ -81,9 +79,7 @@ $$
 
 Each video model is mapped to a fixed hardware configuration. The supported configurations currently include NVIDIA DGX GPU servers and TPU servers.
 
-[//]: # (TODO: Add paper link)
-
-We denote by $P_{\text{server}}$ the electrical power of the full machine, including the base server and all installed accelerators. The power consumptions for each server is derived from [Jegham et al. (2026)](#). The server energy consumed during the request is:
+We denote by $P_{\text{server}}$ the electrical power of the full machine, including the base server and all installed accelerators. The power consumptions for each server is derived from [Jegham et al. (2026)](https://arxiv.org/abs/2607.04553). The server energy consumed during the request is:
 
 $$
 E_{\text{server}} = \frac{\Delta T}{3600} \times P_{\text{server}},
@@ -206,9 +202,7 @@ We use provider-level assumptions for the default **deployment location**, **PUE
 
 ## References
 
-[//]: # (TODO: add paper link)
-
-- [Jegham et al. (2026)](#) for video generation latency and power consumption.
+- [Jegham et al. (2026)](https://arxiv.org/abs/2607.04553) for video generation latency and power consumption.
 - [Schneider et al. (2025)](https://arxiv.org/abs/2502.01671) for TPU embodied GWP values.
 - [Boavizta](https://boavizta.org/) and [BoaviztAPI](https://github.com/Boavizta/boaviztapi) for embodied impacts of the modeled hardware configurations.
 - [Our World in Data](https://ourworldindata.org/), [ADEME Base Empreinte®](https://base-empreinte.ademe.fr/), and [World Resource Institute](https://www.wri.org/) for electricity-mix and water-use factors.
