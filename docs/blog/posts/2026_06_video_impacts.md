@@ -36,7 +36,7 @@ One key learning from this work is simple: **the more you ask, the greater the e
 
 The environmental impacts are estimated using a bottom-up methodology, similar to the one we have already published and continue to maintain for text generation. A core part of the method is estimating the direct electricity consumption of the servers and infrastructure that support AI video models.
 
-This is where SAIG's work is being integrated into EcoLogits. They developed benchmarks of open models to understand how generation latency for a single video can be estimated from the requested duration and resolution, as well as the model and infrastructure provider. Their academic paper is still under preparation and will be available soon.
+This is where SAIG's work is being integrated into EcoLogits. They developed benchmarks of open models to understand how generation latency for a single video can be estimated from the requested duration and resolution, as well as the model and infrastructure provider. Their academic paper is now available on arXiv: [Jegham et al. (2026)](https://arxiv.org/abs/2607.04553).
 
 From the estimated electricity consumption and hardware use, we then deduce environmental impacts using a life cycle assessment approach. EcoLogits models provider data-center overhead and locations to estimate greenhouse gas emissions and water consumption during the use phase. It also accounts for hardware manufacturing impacts, reusing work from Boavizta, Hubblo, and academic research on AI hardware life-cycle impacts ([Schneider et al., 2025](https://arxiv.org/abs/2502.01671)).
 
