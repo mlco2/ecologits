@@ -3214,7 +3214,7 @@ I_{\text{request}} &amp;= I_{\text{request}}^{\text{u}} + I_{\text{request}}^{\t
 <h2 id="usage-impacts">Usage impacts</h2>
 <p>To assess the usage impacts of a video generation request, we first estimate the generation latency of the request and the power draw of the hardware configuration used to serve it. We then account for data center overhead through the Power Usage Effectiveness (<abbr title="Power Usage Efficiency">PUE</abbr>) and transform electricity consumption into environmental impacts using country-level electricity-mix factors.</p>
 <h3 id="modeling-the-generation-latency">Modeling the generation latency</h3>
-<p>Our latency estimation follows the approach from <a href="#">Jegham et al. (2026)</a>. The main idea is that video generation is mostly compute-bound, so under fixed hardware the generation time is a good proxy for the computational work of the request. In practice, we use model-specific regressions fitted from observed generation latencies, directly derived from the paper.</p>
+<p>Our latency estimation follows the approach from <a href="https://arxiv.org/abs/2607.04553">Jegham et al. (2026)</a>. The main idea is that video generation is mostly compute-bound, so under fixed hardware the generation time is a good proxy for the computational work of the request. In practice, we use model-specific regressions fitted from observed generation latencies, directly derived from the paper.</p>
 <p>We denote:</p>
 <ul>
 <li><span class="arithmatex">\(W\)</span>: video width in pixels,</li>
@@ -3261,7 +3261,7 @@ n \times F \times (W \times H)^2
 </details>
 <h3 id="modeling-server-and-accelerator-energy-consumption">Modeling server and accelerator energy consumption</h3>
 <p>Each video model is mapped to a fixed hardware configuration. The supported configurations currently include NVIDIA DGX GPU servers and TPU servers.</p>
-<p>We denote by <span class="arithmatex">\(P_{\text{server}}\)</span> the electrical power of the full machine, including the base server and all installed accelerators. The power consumptions for each server is derived from <a href="#">Jegham et al. (2026)</a>. The server energy consumed during the request is:</p>
+<p>We denote by <span class="arithmatex">\(P_{\text{server}}\)</span> the electrical power of the full machine, including the base server and all installed accelerators. The power consumptions for each server is derived from <a href="https://arxiv.org/abs/2607.04553">Jegham et al. (2026)</a>. The server energy consumed during the request is:</p>
 <div class="arithmatex">\[
 E_{\text{server}} = \frac{\Delta T}{3600} \times P_{\text{server}},
 \]</div>
@@ -3433,7 +3433,7 @@ I^{\text{e}}_{\text{request}} =
 </table>
 <h2 id="references">References</h2>
 <ul>
-<li><a href="#">Jegham et al. (2026)</a> for video generation latency and power consumption.</li>
+<li><a href="https://arxiv.org/abs/2607.04553">Jegham et al. (2026)</a> for video generation latency and power consumption.</li>
 <li><a href="https://arxiv.org/abs/2502.01671">Schneider et al. (2025)</a> for TPU embodied <abbr title="Global Warming Potential">GWP</abbr> values.</li>
 <li><a href="https://boavizta.org/">Boavizta</a> and <a href="https://github.com/Boavizta/boaviztapi">BoaviztAPI</a> for embodied impacts of the modeled hardware configurations.</li>
 <li><a href="https://ourworldindata.org/">Our World in Data</a>, <a href="https://base-empreinte.ademe.fr/">ADEME Base Empreinte®</a>, and <a href="https://www.wri.org/">World Resource Institute</a> for electricity-mix and water-use factors.</li>
