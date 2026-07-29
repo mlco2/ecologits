@@ -12,11 +12,13 @@
 [![Python version](https://img.shields.io/pypi/pyversions/ecologits)](https://pypi.org/project/ecologits/)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1VxrpJ5xuWZKQLsSN12kdqUqkppHRct3G?usp=sharing)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15601289.svg)](https://doi.org/10.5281/zenodo.15601289)
-[![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?&logo=discord&logoColor=white)](https://discord.gg/CAecQ2zM4n)
+[![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?&logo=discord&logoColor=white)](https://discord.com/invite/GS9js2XkJR)
 
 Read the full **documentation on [ecologits.ai](https://ecologits.ai/)**.
 
-EcoLogits is part of the **[CodeCarbon](https://codecarbon.io/) non-profit, chat with us on [Discord](https://discord.gg/CAecQ2zM4n)**.
+EcoLogits is part of the **[Code Carbon](https://codecarbon.io/)** non-profit — **built by volunteers and supported by sponsors**. Chat with us on [Discord](https://discord.com/invite/GS9js2XkJR).
+
+> **Local compute?** Use [**CodeCarbon**](https://github.com/mlco2/codecarbon). Also see the other ecologits projects: [**Calculator**](https://calculator.ecologits.ai/) and [**EcoLogits API**](https://github.com/mlco2/ecologits-api). [When to use which →](https://docs.codecarbon.io/latest/explanation/when-to-use/)
 
 
 ## ⚙️ Installation
@@ -53,6 +55,14 @@ print(f"GHG emissions: {response.impacts.gwp.value.mean} kgCO2eq")
 
 See package documentation on [EcoLogits](https://ecologits.ai/)
 
+## Related tools
+
+| Tool | Link |
+|------|------|
+| **EcoLogits API** | [github.com/mlco2/ecologits-api](https://github.com/mlco2/ecologits-api) · [api.ecologits.ai/docs](https://api.ecologits.ai/docs) |
+| **Calculator** | [calculator.ecologits.ai](https://calculator.ecologits.ai/) |
+| **CodeCarbon** | [github.com/mlco2/codecarbon](https://github.com/mlco2/codecarbon) — local compute emissions |
+| **All mlco2 projects** | [github.com/mlco2](https://github.com/mlco2) |
 
 ## 💚 Sponsors
 
@@ -79,6 +89,11 @@ See package documentation on [EcoLogits](https://ecologits.ai/)
 <a href="https://www.culture.gouv.fr/" target="_blank">
 <img src="https://raw.githubusercontent.com/mlco2/ecologits/main/docs/assets/sponsors/ministere_culture.png" alt="Ministère de la Culture" height="100" width="132">
 </a>
+
+Community integrations built on EcoLogits (independent projects):
+
+- [ecologits-statusline](https://github.com/DuarteVi/ecologits-statusline) — Claude Code status line ([Vincent Duarte](https://github.com/DuarteVi))
+- [ecologits-vscode](https://github.com/marmelab/ecologits-vscode) — VS Code status bar ([marmelab](https://github.com/marmelab))
 
 
 ## 💪 Contributing
