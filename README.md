@@ -104,4 +104,3 @@ To get started with setting up a development environment and making a contributi
 ## ⚖️ License
 
 This project is licensed under the terms of the [Mozilla Public License Version 2.0 (MPL-2.0)](https://www.mozilla.org/en-US/MPL/2.0/).
-
