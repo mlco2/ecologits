@@ -16,7 +16,7 @@
 
 Read the full **documentation on [ecologits.ai](https://ecologits.ai/)**.
 
-EcoLogits is part of the **[Code Carbon](https://www.helloasso.com/associations/code-carbon)** non-profit — **built by volunteers and supported by sponsors**. Chat with us on [Discord](https://discord.gg/CAecQ2zM4n).
+EcoLogits is part of the **[Code Carbon](https://codecarbon.io/)** non-profit — **built by volunteers and supported by sponsors**. Chat with us on [Discord](https://discord.gg/CAecQ2zM4n).
 
 > **Local compute?** Use [**CodeCarbon**](https://github.com/mlco2/codecarbon). Also see the other ecologits projects: [**Calculator**](https://calculator.ecologits.ai/) and [**EcoLogits API**](https://github.com/mlco2/ecologits-api). [When to use which →](https://docs.codecarbon.io/latest/explanation/when-to-use/)
 
