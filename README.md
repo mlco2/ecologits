@@ -16,7 +16,9 @@
 
 Read the full **documentation on [ecologits.ai](https://ecologits.ai/)**.
 
-EcoLogits is part of the **[CodeCarbon](https://codecarbon.io/) non-profit, chat with us on [Discord](https://discord.gg/CAecQ2zM4n)**.
+EcoLogits is part of the **[Code Carbon](https://www.helloasso.com/associations/code-carbon)** non-profit — **built by volunteers and supported by sponsors**. Chat with us on [Discord](https://discord.gg/CAecQ2zM4n).
+
+> **Local computing?** Use [**CodeCarbon**](https://github.com/mlco2/codecarbon). Also see the [**Calculator**](https://calculator.ecologits.ai/) and [**EcoLogits API**](https://github.com/mlco2/ecologits-api). [When to use which →](https://docs.codecarbon.io/latest/explanation/when-to-use/)
 
 
 ## ⚙️ Installation
@@ -53,6 +55,14 @@ print(f"GHG emissions: {response.impacts.gwp.value.mean} kgCO2eq")
 
 See package documentation on [EcoLogits](https://ecologits.ai/)
 
+## Related tools
+
+| Tool | Link |
+|------|------|
+| **EcoLogits API** | [github.com/mlco2/ecologits-api](https://github.com/mlco2/ecologits-api) · [api.ecologits.ai/docs](https://api.ecologits.ai/docs) |
+| **Calculator** | [calculator.ecologits.ai](https://calculator.ecologits.ai/) |
+| **CodeCarbon** | [github.com/mlco2/codecarbon](https://github.com/mlco2/codecarbon) — local compute emissions |
+| **All mlco2 projects** | [github.com/mlco2](https://github.com/mlco2) |
 
 ## 💚 Sponsors
 
@@ -80,6 +90,11 @@ See package documentation on [EcoLogits](https://ecologits.ai/)
 <img src="https://raw.githubusercontent.com/mlco2/ecologits/main/docs/assets/sponsors/ministere_culture.png" alt="Ministère de la Culture" height="100" width="132">
 </a>
 
+Community integrations built on EcoLogits (independent projects):
+
+- [ecologits-statusline](https://github.com/DuarteVi/ecologits-statusline) — Claude Code status line ([Vincent Duarte](https://github.com/DuarteVi))
+- [ecologits-vscode](https://github.com/marmelab/ecologits-vscode) — VS Code status bar ([marmelab](https://github.com/marmelab))
+
 
 ## 💪 Contributing
 
@@ -89,3 +104,4 @@ To get started with setting up a development environment and making a contributi
 ## ⚖️ License
 
 This project is licensed under the terms of the [Mozilla Public License Version 2.0 (MPL-2.0)](https://www.mozilla.org/en-US/MPL/2.0/).
+
