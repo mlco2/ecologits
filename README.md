@@ -12,11 +12,11 @@
 [![Python version](https://img.shields.io/pypi/pyversions/ecologits)](https://pypi.org/project/ecologits/)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1VxrpJ5xuWZKQLsSN12kdqUqkppHRct3G?usp=sharing)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15601289.svg)](https://doi.org/10.5281/zenodo.15601289)
-[![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?&logo=discord&logoColor=white)](https://discord.gg/CAecQ2zM4n)
+[![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?&logo=discord&logoColor=white)](https://discord.com/invite/GS9js2XkJR)
 
 Read the full **documentation on [ecologits.ai](https://ecologits.ai/)**.
 
-EcoLogits is part of the **[Code Carbon](https://codecarbon.io/)** non-profit — **built by volunteers and supported by sponsors**. Chat with us on [Discord](https://discord.gg/CAecQ2zM4n).
+EcoLogits is part of the **[Code Carbon](https://codecarbon.io/)** non-profit — **built by volunteers and supported by sponsors**. Chat with us on [Discord](https://discord.com/invite/GS9js2XkJR).
 
 > **Local compute?** Use [**CodeCarbon**](https://github.com/mlco2/codecarbon). Also see the other ecologits projects: [**Calculator**](https://calculator.ecologits.ai/) and [**EcoLogits API**](https://github.com/mlco2/ecologits-api). [When to use which →](https://docs.codecarbon.io/latest/explanation/when-to-use/)
 
