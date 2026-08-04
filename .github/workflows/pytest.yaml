@@ -8,13 +8,18 @@ on:
 jobs:
   pytest:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.10', '3.11', '3.12', '3.13', '3.14']
+    name: pytest (python ${{ matrix.python-version }})
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
       - name: Set up uv
         uses: astral-sh/setup-uv@v7
         with:
-          python-version: '3.13'
+          python-version: ${{ matrix.python-version }}
           enable-cache: true
       - name: Install dependencies
         run: uv sync --locked --all-extras --group dev
