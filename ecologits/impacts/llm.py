@@ -512,6 +512,141 @@ def compute_llm_impacts_dag(
     return results
 
 
+def compute_llm_impacts_measured(
+        it_energy_per_output_token: float,
+        latency_per_output_token: Optional[float],
+        output_token_count: float,
+        gpu_count: int,
+        concurrency: int,
+        if_electricity_mix_adpe: float,
+        if_electricity_mix_pe: float,
+        if_electricity_mix_gwp: float,
+        if_electricity_mix_wue: float,
+        datacenter_pue: ValueOrRange,
+        datacenter_wue: ValueOrRange,
+        ttft: Optional[float] = None,
+        request_latency: Optional[float] = None,
+        gpu_embodied_gwp: Optional[float] = GPU_EMBODIED_IMPACT_GWP,
+        gpu_embodied_adpe: Optional[float] = GPU_EMBODIED_IMPACT_ADPE,
+        gpu_embodied_pe: Optional[float] = GPU_EMBODIED_IMPACT_PE,
+        server_embodied_gwp: Optional[float] = SERVER_EMBODIED_IMPACT_GWP,
+        server_embodied_adpe: Optional[float] = SERVER_EMBODIED_IMPACT_ADPE,
+        server_embodied_pe: Optional[float] = SERVER_EMBODIED_IMPACT_PE,
+        server_lifetime: Optional[float] = HARDWARE_LIFESPAN,
+) -> Impacts:
+    """
+    Compute the impacts of an LLM generation request from a measured reference.
+
+    Substitutes a measured energy figure for the regression that normally
+    estimates it. The substitution happens at `request_it_energy`, not at
+    `gpu_energy`: a whole-machine measurement already contains the non-GPU
+    contribution that `server_energy` models separately, so overriding the
+    combined node is what avoids counting it twice.
+
+    Everything downstream — electricity mix, PUE, water, embodied impacts — is
+    computed exactly as it is for an estimated request.
+
+    Args:
+        it_energy_per_output_token: Measured IT energy per output token in kWh, PUE-free.
+        latency_per_output_token: Measured token generation latency in seconds.
+        output_token_count: Number of generated tokens.
+        gpu_count: Number of GPUs the measured deployment used.
+        concurrency: Requests in flight during the measurement.
+        if_electricity_mix_adpe: ADPe impact factor of electricity consumption in kgSbeq / kWh.
+        if_electricity_mix_pe: PE impact factor of electricity consumption in MJ / kWh.
+        if_electricity_mix_gwp: GWP impact factor of electricity consumption in kgCO2eq / kWh.
+        if_electricity_mix_wue: WCF impact factor of electricity consumption in L / kWh.
+        datacenter_pue: Power Usage Effectiveness of the data center.
+        datacenter_wue: Water Usage Effectiveness of the data center in L/kWh.
+        ttft: Measured time-to-first-token latency in seconds.
+        request_latency: Measured request latency in seconds.
+        gpu_embodied_gwp: GWP embodied impact of a single GPU.
+        gpu_embodied_adpe: ADPe embodied impact of a single GPU.
+        gpu_embodied_pe: PE embodied impact of a single GPU.
+        server_embodied_gwp: GWP embodied impact of the server in kgCO2eq.
+        server_embodied_adpe: ADPe embodied impact of the server in kgSbeq.
+        server_embodied_pe: PE embodied impact of the server in MJ.
+        server_lifetime: Lifetime duration of the server in seconds.
+
+    Returns:
+        The impacts of an LLM generation request.
+    """
+    request_it_energy = it_energy_per_output_token * output_token_count
+
+    if latency_per_output_token is not None:
+        generation_latency = output_token_count * latency_per_output_token + (ttft or 0)
+        if request_latency is not None and request_latency < generation_latency:
+            generation_latency = request_latency
+    elif request_latency is not None:
+        generation_latency = request_latency
+    else:
+        # Without a latency the embodied share cannot be amortized over time.
+        generation_latency = 0.0
+
+    results = dag.execute(
+        # Nodes replaced by the measurement. `dag.execute` skips any task whose
+        # name is already present, so none of the regression assets run.
+        request_it_energy=request_it_energy,
+        generation_latency=generation_latency,
+        gpu_required_count=gpu_count,
+        # Seeded only to keep the regression assets from executing; nothing
+        # downstream reads them once `request_it_energy` is provided, and they
+        # are not part of the returned impacts.
+        gpu_energy=0.0,
+        server_energy=0.0,
+        model_required_memory=0.0,
+        # The measured machine is the server: every one of its GPUs served the
+        # request, so the embodied share is not divided down further.
+        server_gpu_count=gpu_count,
+        # Per-request embodied impact is amortized over the requests that were
+        # actually in flight, which is the measurement's concurrency.
+        batch_size=concurrency,
+        output_token_count=output_token_count,
+        if_electricity_mix_gwp=if_electricity_mix_gwp,
+        if_electricity_mix_adpe=if_electricity_mix_adpe,
+        if_electricity_mix_pe=if_electricity_mix_pe,
+        if_electricity_mix_wue=if_electricity_mix_wue,
+        datacenter_pue=datacenter_pue,
+        datacenter_wue=datacenter_wue,
+        gpu_embodied_gwp=gpu_embodied_gwp,
+        gpu_embodied_adpe=gpu_embodied_adpe,
+        gpu_embodied_pe=gpu_embodied_pe,
+        server_embodied_gwp=server_embodied_gwp,
+        server_embodied_adpe=server_embodied_adpe,
+        server_embodied_pe=server_embodied_pe,
+        server_lifetime=server_lifetime,
+    )
+
+    energy = Energy(value=results["request_energy"])
+    gwp_usage = GWP(value=results["request_usage_gwp"])
+    adpe_usage = ADPe(value=results["request_usage_adpe"])
+    pe_usage = PE(value=results["request_usage_pe"])
+    wcf_usage = WCF(value=results["request_usage_wcf"])
+    gwp_embodied = GWP(value=results["request_embodied_gwp"])
+    adpe_embodied = ADPe(value=results["request_embodied_adpe"])
+    pe_embodied = PE(value=results["request_embodied_pe"])
+
+    return Impacts(
+        energy=energy,
+        gwp=gwp_usage + gwp_embodied,
+        adpe=adpe_usage + adpe_embodied,
+        pe=pe_usage + pe_embodied,
+        wcf=wcf_usage,
+        usage=Usage(
+            energy=energy,
+            gwp=gwp_usage,
+            adpe=adpe_usage,
+            pe=pe_usage,
+            wcf=wcf_usage
+        ),
+        embodied=Embodied(
+            gwp=gwp_embodied,
+            adpe=adpe_embodied,
+            pe=pe_embodied
+        )
+    )
+
+
 def compute_llm_impacts(
         model_active_parameter_count: ValueOrRange,
         model_total_parameter_count: ValueOrRange,

@@ -12,6 +12,7 @@ from ecologits.exceptions import EcoLogitsError
 from ecologits.log import logger
 
 if TYPE_CHECKING:
+    from ecologits.measurement_repository import Deployment
     from ecologits.utils.opentelemetry import OpenTelemetry, OpenTelemetryLabels
 
 
@@ -74,6 +75,18 @@ def init_litellm_instrumentor() -> None:
         instrumentor.instrument()
 
 
+def init_local_instrumentor() -> None:
+    """
+    No-op: the `local` provider patches nothing.
+
+    Self-hosted inference has no vendor client library to instrument. Impacts
+    come from a measured reference, reached either by calling `llm_impacts`
+    directly or through a tracer for whichever client is used to talk to the
+    local endpoint (litellm, for instance).
+    """
+    return
+
+
 _INSTRUMENTS = {
     "openai": init_openai_instrumentor,
     "anthropic": init_anthropic_instrumentor,
@@ -81,7 +94,8 @@ _INSTRUMENTS = {
     "huggingface_hub": init_huggingface_instrumentor,
     "cohere": init_cohere_instrumentor,
     "google_genai": init_google_genai_instrumentor,
-    "litellm": init_litellm_instrumentor
+    "litellm": init_litellm_instrumentor,
+    "local": init_local_instrumentor,
 }
 
 
@@ -116,6 +130,8 @@ class EcoLogits:
         providers: list[str] = field(default_factory=list)
         electricity_mix_zone: str | None = None
         opentelemetry: OpenTelemetry | None = None
+        measurements: str | None = None
+        deployment: Deployment | None = None
 
     config = _Config()
 
@@ -123,7 +139,9 @@ class EcoLogits:
     def init(
         providers: str | list[str] | None = None,
         electricity_mix_zone: str | None = None,
-        opentelemetry_endpoint: str | None = None
+        opentelemetry_endpoint: str | None = None,
+        measurements: str | None = None,
+        deployment: Deployment | None = None
     ) -> None:
         """
         Initialization static method. Will attempt to initialize all providers by default.
@@ -132,6 +150,10 @@ class EcoLogits:
             providers: list of providers to initialize (must select at least one provider).
             electricity_mix_zone: ISO 3166-1 alpha-3 code of the electricity mix zone of the datacenter.
             opentelemetry_endpoint: enable OpenTelemetry with the URL endpoint.
+            measurements: path or URL of a curated snapshot of measured energy references,
+                used by the `local` provider. Fetched once here, never per request.
+            deployment: which measured deployment the `local` provider should use. Set it
+                once here rather than passing hardware through every call site.
         """
         if isinstance(providers, str):
             providers = [providers]
@@ -150,6 +172,17 @@ class EcoLogits:
         EcoLogits.config.electricity_mix_zone = electricity_mix_zone
         EcoLogits.config.providers += providers
         EcoLogits.config.providers = list(set(EcoLogits.config.providers))
+
+        if measurements is not None:
+            # Loaded once, at init. A lookup per LLM call would put a network
+            # round trip inside `client.chat.completions.create`.
+            from ecologits.measurement_repository import load_measurements
+
+            load_measurements(measurements)
+            EcoLogits.config.measurements = measurements
+
+        if deployment is not None:
+            EcoLogits.config.deployment = deployment
 
         if opentelemetry_endpoint is not None:
             if not is_opentelemetry_installed():
