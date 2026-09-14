@@ -136,8 +136,10 @@
             "name": "command-a-plus-05-2026",
             "architecture": {
                 "type": "moe",
-                "parameters": 218,
-                "active_parameters": 25
+                "parameters": {
+                    "total": 218,
+                    "active": 25
+                }
             },
             "warnings": [
                 "model-arch-multimodal"
