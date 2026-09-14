@@ -1,0 +1,28 @@
+{
+    "model_quantization_bits": 16,
+    "gpu_energy_regression": {
+        "alpha": 1.1665273170451914e-06,
+        "beta": -0.011205921025579175,
+        "gamma": 4.052928146734005e-05
+    },
+    "latency_regression": {
+        "alpha": 0.0006785088094353663,
+        "beta": 0.0003119310311688259,
+        "gamma": 0.019473717579473387
+    },
+    "gpu": {
+        "memory_gb": 80,
+        "embodied_gwp": 273,
+        "embodied_adpe": 0.00895,
+        "embodied_pe": 3721
+    },
+    "server": {
+        "gpu_count": 8,
+        "power_kw": 1.2,
+        "embodied_gwp": 5700,
+        "embodied_adpe": 0.37,
+        "embodied_pe": 70000
+    },
+    "hardware_lifespan_seconds": 94608000,
+    "batch_size": 64
+}
