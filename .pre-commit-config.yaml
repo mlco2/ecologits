@@ -19,7 +19,8 @@ repos:
     rev: 'v1.13.0'
     hooks:
       - id: mypy
-  - repo: https://github.com/owenlamont/uv-secure
-    rev: 0.16.0
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.12.17
     hooks:
-      - id: uv-secure
+      - id: uv-audit
+        args: [--locked]
