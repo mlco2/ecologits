@@ -58,6 +58,7 @@ def cohere_chat_wrapper(
         provider=PROVIDER,
         model_name=model_name,
         output_token_count=output_tokens,
+        input_token_count=response.meta.tokens.input_tokens,
         request_latency=request_latency,
         electricity_mix_zone=EcoLogits.config.electricity_mix_zone
     )
@@ -102,6 +103,7 @@ async def cohere_async_chat_wrapper(
         provider=PROVIDER,
         model_name=model_name,
         output_token_count=output_tokens,
+        input_token_count=response.meta.tokens.input_tokens,
         request_latency=request_latency,
         electricity_mix_zone=EcoLogits.config.electricity_mix_zone
     )
@@ -149,6 +151,7 @@ def cohere_stream_chat_wrapper(
                 provider=PROVIDER,
                 model_name=model_name,
                 output_token_count=output_tokens,
+                input_token_count=event.response.meta.tokens.input_tokens,
                 request_latency=request_latency,
                 electricity_mix_zone=EcoLogits.config.electricity_mix_zone
             )
@@ -199,6 +202,7 @@ async def cohere_async_stream_chat_wrapper(
                 provider=PROVIDER,
                 model_name=model_name,
                 output_token_count=output_tokens,
+                input_token_count=event.response.meta.tokens.input_tokens,
                 request_latency=request_latency,
                 electricity_mix_zone=EcoLogits.config.electricity_mix_zone
             )

@@ -66,3 +66,9 @@ def test_value_range_compare(val_1, val_2, op, result):
 def test_value_range_transformation(val_1, val_2, op, exp_result):
     result = op(val_1, val_2)
     assert result.min == exp_result.min and result.max == exp_result.max
+
+
+def test_reflected_true_division():
+    result = 10 / RangeValue(min=2, max=5)
+    assert result.min == 2
+    assert result.max == 5

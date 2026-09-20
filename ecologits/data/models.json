@@ -3349,7 +3349,8 @@
             "deployment": {
                 "tps": 57.2,
                 "ttft": 0.21
-            }
+            },
+            "release_date": "2024-05-01"
         },
         {
             "type": "model",
@@ -3367,7 +3368,8 @@
             "deployment": {
                 "tps": 57.2,
                 "ttft": 0.21
-            }
+            },
+            "release_date": "2024-11-01"
         },
         {
             "type": "model",
@@ -3385,7 +3387,8 @@
             "deployment": {
                 "tps": 39.4,
                 "ttft": 1.04
-            }
+            },
+            "release_date": "2024-12-01"
         },
         {
             "type": "model",
@@ -3403,7 +3406,8 @@
             "deployment": {
                 "tps": 57.2,
                 "ttft": 0.21
-            }
+            },
+            "release_date": "2025-01-01"
         },
         {
             "type": "model",
@@ -3421,7 +3425,8 @@
             "deployment": {
                 "tps": 57.2,
                 "ttft": 0.21
-            }
+            },
+            "release_date": "2025-08-01"
         },
         {
             "type": "model",
@@ -3439,7 +3444,8 @@
             "deployment": {
                 "tps": 57.2,
                 "ttft": 0.21
-            }
+            },
+            "release_date": "2025-08-01"
         },
         {
             "type": "model",
@@ -3456,7 +3462,8 @@
             "deployment": {
                 "tps": 39.4,
                 "ttft": 1.04
-            }
+            },
+            "release_date": "2025-12-01"
         },
         {
             "type": "model",
@@ -3473,7 +3480,8 @@
             "deployment": {
                 "tps": 39.4,
                 "ttft": 1.04
-            }
+            },
+            "release_date": "2025-12-01"
         },
         {
             "type": "model",
@@ -3495,7 +3503,8 @@
             "deployment": {
                 "tps": 39.4,
                 "ttft": 1.04
-            }
+            },
+            "release_date": "2025-07-10"
         },
         {
             "type": "model",
@@ -3517,7 +3526,8 @@
             "deployment": {
                 "tps": 48.1,
                 "ttft": 1.83
-            }
+            },
+            "release_date": "2025-09-01"
         },
         {
             "type": "model",
@@ -3539,7 +3549,8 @@
             "deployment": {
                 "tps": 34.2,
                 "ttft": 0.47
-            }
+            },
+            "release_date": "2025-09-01"
         },
         {
             "type": "model",
@@ -3556,7 +3567,8 @@
             "deployment": {
                 "tps": 98.8,
                 "ttft": 0.29
-            }
+            },
+            "release_date": "2025-09-01"
         },
         {
             "type": "model",
@@ -3573,7 +3585,8 @@
             "deployment": {
                 "tps": 55.9,
                 "ttft": 0.36
-            }
+            },
+            "release_date": "2025-09-01"
         },
         {
             "type": "model",
@@ -3590,7 +3603,8 @@
             "deployment": {
                 "tps": 48.1,
                 "ttft": 0.27
-            }
+            },
+            "release_date": "2025-12-01"
         },
         {
             "type": "model",
@@ -3607,7 +3621,8 @@
             "deployment": {
                 "tps": 48.1,
                 "ttft": 0.27
-            }
+            },
+            "release_date": "2025-12-01"
         },
         {
             "type": "model",
@@ -3625,7 +3640,8 @@
             "deployment": {
                 "tps": 35.0,
                 "ttft": 0.2
-            }
+            },
+            "release_date": "2025-12-01"
         },
         {
             "type": "model",
@@ -3643,7 +3659,8 @@
             "deployment": {
                 "tps": 35.0,
                 "ttft": 0.2
-            }
+            },
+            "release_date": "2025-12-01"
         },
         {
             "type": "model",
@@ -3661,7 +3678,8 @@
             "deployment": {
                 "tps": 42.4,
                 "ttft": 0.23
-            }
+            },
+            "release_date": "2025-12-01"
         },
         {
             "type": "model",
@@ -3679,7 +3697,8 @@
             "deployment": {
                 "tps": 42.4,
                 "ttft": 0.23
-            }
+            },
+            "release_date": "2025-12-01"
         },
         {
             "type": "model",
@@ -3697,7 +3716,8 @@
             "deployment": {
                 "tps": 41.5,
                 "ttft": 0.68
-            }
+            },
+            "release_date": "2025-12-01"
         },
         {
             "type": "model",
@@ -3715,7 +3735,8 @@
             "deployment": {
                 "tps": 35.6,
                 "ttft": 0.54
-            }
+            },
+            "release_date": "2025-12-01"
         },
         {
             "type": "model",
@@ -3737,7 +3758,8 @@
             "deployment": {
                 "tps": 48.1,
                 "ttft": 1.83
-            }
+            },
+            "release_date": "2023-12-11"
         },
         {
             "type": "model",
@@ -3759,7 +3781,8 @@
             "deployment": {
                 "tps": 34.5,
                 "ttft": 0.47
-            }
+            },
+            "release_date": "2025-05-01"
         },
         {
             "type": "model",
@@ -3781,7 +3804,8 @@
             "deployment": {
                 "tps": 34.5,
                 "ttft": 0.47
-            }
+            },
+            "release_date": "2025-08-01"
         },
         {
             "type": "model",
@@ -3801,7 +3825,8 @@
             "deployment": {
                 "tps": 34.5,
                 "ttft": 0.47
-            }
+            },
+            "release_date": "2026-04-01"
         },
         {
             "type": "model",
@@ -3821,7 +3846,8 @@
             "deployment": {
                 "tps": 34.5,
                 "ttft": 0.47
-            }
+            },
+            "release_date": "2025-05-07"
         },
         {
             "type": "model",
@@ -3841,7 +3867,8 @@
             "deployment": {
                 "tps": 48.1,
                 "ttft": 1.83
-            }
+            },
+            "release_date": "2026-04-01"
         },
         {
             "type": "model",
@@ -3861,7 +3888,8 @@
             "deployment": {
                 "tps": 48.1,
                 "ttft": 1.83
-            }
+            },
+            "release_date": "2026-04-01"
         },
         {
             "type": "model",
@@ -3883,7 +3911,8 @@
             "deployment": {
                 "tps": 34.5,
                 "ttft": 0.47
-            }
+            },
+            "release_date": "2026-04-01"
         },
         {
             "type": "model",
@@ -3901,7 +3930,8 @@
             "deployment": {
                 "tps": 116.9,
                 "ttft": 0.46
-            }
+            },
+            "release_date": "2025-06-01"
         },
         {
             "type": "model",
@@ -3922,7 +3952,8 @@
             "deployment": {
                 "tps": 116.9,
                 "ttft": 0.46
-            }
+            },
+            "release_date": "2026-03-01"
         },
         {
             "type": "model",
@@ -3943,7 +3974,8 @@
             "deployment": {
                 "tps": 98.8,
                 "ttft": 0.29
-            }
+            },
+            "release_date": "2026-03-01"
         },
         {
             "type": "model",
@@ -3962,7 +3994,8 @@
             "deployment": {
                 "tps": 98.8,
                 "ttft": 0.29
-            }
+            },
+            "release_date": "2024-07-01"
         },
         {
             "type": "model",
@@ -3981,7 +4014,8 @@
             "deployment": {
                 "tps": 98.8,
                 "ttft": 0.29
-            }
+            },
+            "release_date": "2024-07-01"
         },
         {
             "type": "model",
@@ -3999,7 +4033,8 @@
             "deployment": {
                 "tps": 98.8,
                 "ttft": 0.29
-            }
+            },
+            "release_date": "2023-09-27"
         },
         {
             "type": "model",
@@ -4017,7 +4052,8 @@
             "deployment": {
                 "tps": 81.0,
                 "ttft": 0.3
-            }
+            },
+            "release_date": "2024-07-18"
         },
         {
             "type": "model",
@@ -4035,7 +4071,8 @@
             "deployment": {
                 "tps": 81.0,
                 "ttft": 0.3
-            }
+            },
+            "release_date": "2024-07-18"
         },
         {
             "type": "model",
@@ -4055,7 +4092,8 @@
             "deployment": {
                 "tps": 98.5,
                 "ttft": 0.39
-            }
+            },
+            "release_date": "2024-09-17"
         },
         {
             "type": "model",
@@ -4075,7 +4113,8 @@
             "deployment": {
                 "tps": 48.1,
                 "ttft": 0.27
-            }
+            },
+            "release_date": "2024-09-17"
         },
         {
             "type": "model",
@@ -4095,7 +4134,8 @@
             "deployment": {
                 "tps": 41.5,
                 "ttft": 0.68
-            }
+            },
+            "release_date": "2024-09-17"
         },
         {
             "type": "model",
@@ -4114,7 +4154,8 @@
             "deployment": {
                 "tps": null,
                 "ttft": null
-            }
+            },
+            "release_date": "2025-07-01"
         },
         {
             "type": "model",
@@ -4133,7 +4174,8 @@
             "deployment": {
                 "tps": null,
                 "ttft": null
-            }
+            },
+            "release_date": "2025-09-01"
         },
         {
             "type": "model",
@@ -4152,7 +4194,8 @@
             "deployment": {
                 "tps": null,
                 "ttft": null
-            }
+            },
+            "release_date": "2026-02-01"
         },
         {
             "type": "model",
@@ -4171,7 +4214,8 @@
             "deployment": {
                 "tps": null,
                 "ttft": null
-            }
+            },
+            "release_date": "2026-02-01"
         },
         {
             "type": "model",
@@ -4190,7 +4234,8 @@
             "deployment": {
                 "tps": 79.9,
                 "ttft": 0.31
-            }
+            },
+            "release_date": "2025-07-01"
         },
         {
             "type": "model",
@@ -4209,7 +4254,8 @@
             "deployment": {
                 "tps": 98.8,
                 "ttft": 0.29
-            }
+            },
+            "release_date": "2025-07-15"
         },
         {
             "type": "model",
@@ -4234,7 +4280,8 @@
             "deployment": {
                 "tps": 12.1,
                 "ttft": 1.74
-            }
+            },
+            "release_date": "2025-08-05"
         },
         {
             "type": "model",
@@ -4259,7 +4306,8 @@
             "deployment": {
                 "tps": 15.9,
                 "ttft": 1.99
-            }
+            },
+            "release_date": "2025-05-22"
         },
         {
             "type": "model",
@@ -4284,7 +4332,8 @@
             "deployment": {
                 "tps": 40.4,
                 "ttft": 0.94
-            }
+            },
+            "release_date": "2025-05-22"
         },
         {
             "type": "model",
@@ -4309,7 +4358,8 @@
             "deployment": {
                 "tps": 32.2,
                 "ttft": 1.33
-            }
+            },
+            "release_date": "2025-09-29"
         },
         {
             "type": "model",
@@ -4334,7 +4384,8 @@
             "deployment": {
                 "tps": 41.4,
                 "ttft": 1.56
-            }
+            },
+            "release_date": "2026-02-17"
         },
         {
             "type": "model",
@@ -4356,7 +4407,8 @@
             "deployment": {
                 "tps": 71.1,
                 "ttft": 0.67
-            }
+            },
+            "release_date": "2025-10-15"
         },
         {
             "type": "model",
@@ -4381,7 +4433,8 @@
             "deployment": {
                 "tps": 39.6,
                 "ttft": 1.56
-            }
+            },
+            "release_date": "2025-11-24"
         },
         {
             "type": "model",
@@ -4406,7 +4459,8 @@
             "deployment": {
                 "tps": 37.0,
                 "ttft": 2.19
-            }
+            },
+            "release_date": "2026-02-05"
         },
         {
             "type": "model",
@@ -4456,7 +4510,8 @@
             "deployment": {
                 "tps": 58.0,
                 "ttft": 1.63
-            }
+            },
+            "release_date": "2026-05-28"
         },
         {
             "type": "model",
@@ -4482,7 +4537,8 @@
             "deployment": {
                 "tps": 64.6,
                 "ttft": 1.1
-            }
+            },
+            "release_date": "2025-02-05"
         },
         {
             "type": "model",
@@ -4508,7 +4564,8 @@
             "deployment": {
                 "tps": 64.6,
                 "ttft": 1.1
-            }
+            },
+            "release_date": "2025-02-05"
         },
         {
             "type": "model",
@@ -4531,7 +4588,8 @@
             "deployment": {
                 "tps": 101.0,
                 "ttft": 0.5
-            }
+            },
+            "release_date": "2025-02-25"
         },
         {
             "type": "model",
@@ -4554,7 +4612,8 @@
             "deployment": {
                 "tps": 101.0,
                 "ttft": 0.5
-            }
+            },
+            "release_date": "2025-02-25"
         },
         {
             "type": "model",
@@ -4580,7 +4639,8 @@
             "deployment": {
                 "tps": 64.6,
                 "ttft": 1.1
-            }
+            },
+            "release_date": "2025-06-17"
         },
         {
             "type": "model",
@@ -4606,7 +4666,8 @@
             "deployment": {
                 "tps": 158.5,
                 "ttft": 7.2
-            }
+            },
+            "release_date": "2025-08-26"
         },
         {
             "type": "model",
@@ -4629,7 +4690,8 @@
             "deployment": {
                 "tps": 101.0,
                 "ttft": 0.5
-            }
+            },
+            "release_date": "2025-07-22"
         },
         {
             "type": "model",
@@ -4655,7 +4717,8 @@
             "deployment": {
                 "tps": 89.6,
                 "ttft": 2.28
-            }
+            },
+            "release_date": "2025-06-17"
         },
         {
             "type": "model",
@@ -4681,7 +4744,8 @@
             "deployment": {
                 "tps": 73.9,
                 "ttft": 1.24
-            }
+            },
+            "release_date": "2025-12-17"
         },
         {
             "type": "model",
@@ -4707,7 +4771,8 @@
             "deployment": {
                 "tps": 55.2,
                 "ttft": 22.28
-            }
+            },
+            "release_date": "2025-11-20"
         },
         {
             "type": "model",
@@ -4733,7 +4798,8 @@
             "deployment": {
                 "tps": 73.0,
                 "ttft": 4.32
-            }
+            },
+            "release_date": "2025-11-18"
         },
         {
             "type": "model",
@@ -4831,7 +4897,8 @@
             "deployment": {
                 "tps": 73.0,
                 "ttft": 4.32
-            }
+            },
+            "release_date": "2026-02-19"
         },
         {
             "type": "model",
@@ -4857,7 +4924,8 @@
             "deployment": {
                 "tps": null,
                 "ttft": null
-            }
+            },
+            "release_date": "2026-02-19"
         },
         {
             "type": "model",
@@ -4885,7 +4953,8 @@
             "deployment": {
                 "tps": 130.6,
                 "ttft": 2.72
-            }
+            },
+            "release_date": "2026-05-19"
         },
         {
             "type": "model",
@@ -5055,7 +5124,8 @@
             "deployment": {
                 "tps": 44.3,
                 "ttft": 0.43
-            }
+            },
+            "release_date": "2023-03-01"
         },
         {
             "type": "model",
@@ -5077,7 +5147,8 @@
             "deployment": {
                 "tps": 44.3,
                 "ttft": 0.43
-            }
+            },
+            "release_date": "2024-01-25"
         },
         {
             "type": "model",
@@ -5099,7 +5170,8 @@
             "deployment": {
                 "tps": 44.3,
                 "ttft": 0.43
-            }
+            },
+            "release_date": "2023-11-06"
         },
         {
             "type": "model",
@@ -5121,7 +5193,8 @@
             "deployment": {
                 "tps": 37.2,
                 "ttft": 0.44
-            }
+            },
+            "release_date": "2023-06-13"
         },
         {
             "type": "model",
@@ -5143,7 +5216,8 @@
             "deployment": {
                 "tps": 79.4,
                 "ttft": 0.73
-            }
+            },
+            "release_date": "2023-09-14"
         },
         {
             "type": "model",
@@ -5165,7 +5239,8 @@
             "deployment": {
                 "tps": 79.4,
                 "ttft": 0.73
-            }
+            },
+            "release_date": "2023-09-14"
         },
         {
             "type": "model",
@@ -5191,7 +5266,8 @@
             "deployment": {
                 "tps": 22.4,
                 "ttft": 0.85
-            }
+            },
+            "release_date": "2023-03-14"
         },
         {
             "type": "model",
@@ -5217,7 +5293,8 @@
             "deployment": {
                 "tps": 22.4,
                 "ttft": 0.85
-            }
+            },
+            "release_date": "2023-06-13"
         },
         {
             "type": "model",
@@ -5243,7 +5320,8 @@
             "deployment": {
                 "tps": 14.9,
                 "ttft": 1.17
-            }
+            },
+            "release_date": "2024-04-09"
         },
         {
             "type": "model",
@@ -5269,7 +5347,8 @@
             "deployment": {
                 "tps": 14.9,
                 "ttft": 1.17
-            }
+            },
+            "release_date": "2024-04-09"
         },
         {
             "type": "model",
@@ -5295,7 +5374,8 @@
             "deployment": {
                 "tps": 42.5,
                 "ttft": 0.63
-            }
+            },
+            "release_date": "2025-04-14"
         },
         {
             "type": "model",
@@ -5321,7 +5401,8 @@
             "deployment": {
                 "tps": 42.5,
                 "ttft": 0.63
-            }
+            },
+            "release_date": "2025-04-14"
         },
         {
             "type": "model",
@@ -5344,7 +5425,8 @@
             "deployment": {
                 "tps": 34.4,
                 "ttft": 0.69
-            }
+            },
+            "release_date": "2025-04-14"
         },
         {
             "type": "model",
@@ -5367,7 +5449,8 @@
             "deployment": {
                 "tps": 42.5,
                 "ttft": 0.63
-            }
+            },
+            "release_date": "2025-04-14"
         },
         {
             "type": "model",
@@ -5390,7 +5473,8 @@
             "deployment": {
                 "tps": 26.1,
                 "ttft": 0.48
-            }
+            },
+            "release_date": "2025-04-14"
         },
         {
             "type": "model",
@@ -5413,7 +5497,8 @@
             "deployment": {
                 "tps": 42.5,
                 "ttft": 0.63
-            }
+            },
+            "release_date": "2025-04-14"
         },
         {
             "type": "model",
@@ -5439,7 +5524,8 @@
             "deployment": {
                 "tps": 46.2,
                 "ttft": 0.53
-            }
+            },
+            "release_date": "2024-05-13"
         },
         {
             "type": "model",
@@ -5465,7 +5551,8 @@
             "deployment": {
                 "tps": 47.8,
                 "ttft": 0.35
-            }
+            },
+            "release_date": "2024-05-13"
         },
         {
             "type": "model",
@@ -5491,7 +5578,8 @@
             "deployment": {
                 "tps": 29.1,
                 "ttft": 1.23
-            }
+            },
+            "release_date": "2024-08-06"
         },
         {
             "type": "model",
@@ -5517,7 +5605,8 @@
             "deployment": {
                 "tps": 77.8,
                 "ttft": 0.43
-            }
+            },
+            "release_date": "2024-11-20"
         },
         {
             "type": "model",
@@ -5540,7 +5629,8 @@
             "deployment": {
                 "tps": 33.0,
                 "ttft": 0.6
-            }
+            },
+            "release_date": "2024-07-18"
         },
         {
             "type": "model",
@@ -5563,7 +5653,8 @@
             "deployment": {
                 "tps": 45.5,
                 "ttft": 0.58
-            }
+            },
+            "release_date": "2024-07-18"
         },
         {
             "type": "model",
@@ -5586,7 +5677,8 @@
             "deployment": {
                 "tps": 47.1,
                 "ttft": 1.82
-            }
+            },
+            "release_date": "2025-03-11"
         },
         {
             "type": "model",
@@ -5609,7 +5701,8 @@
             "deployment": {
                 "tps": 47.1,
                 "ttft": 1.82
-            }
+            },
+            "release_date": "2025-03-11"
         },
         {
             "type": "model",
@@ -5632,7 +5725,8 @@
             "deployment": {
                 "tps": null,
                 "ttft": null
-            }
+            },
+            "release_date": "2025-03-20"
         },
         {
             "type": "model",
@@ -5655,7 +5749,8 @@
             "deployment": {
                 "tps": null,
                 "ttft": null
-            }
+            },
+            "release_date": "2025-03-20"
         },
         {
             "type": "model",
@@ -5678,7 +5773,8 @@
             "deployment": {
                 "tps": null,
                 "ttft": null
-            }
+            },
+            "release_date": "2025-12-15"
         },
         {
             "type": "model",
@@ -5701,7 +5797,8 @@
             "deployment": {
                 "tps": 32.9,
                 "ttft": 0.6
-            }
+            },
+            "release_date": "2025-03-20"
         },
         {
             "type": "model",
@@ -5724,7 +5821,8 @@
             "deployment": {
                 "tps": 32.9,
                 "ttft": 0.6
-            }
+            },
+            "release_date": "2025-03-20"
         },
         {
             "type": "model",
@@ -5747,7 +5845,8 @@
             "deployment": {
                 "tps": null,
                 "ttft": null
-            }
+            },
+            "release_date": "2025-12-15"
         },
         {
             "type": "model",
@@ -5773,7 +5872,8 @@
             "deployment": {
                 "tps": 46.0,
                 "ttft": 2.17
-            }
+            },
+            "release_date": "2025-03-11"
         },
         {
             "type": "model",
@@ -5799,7 +5899,8 @@
             "deployment": {
                 "tps": 46.0,
                 "ttft": 2.17
-            }
+            },
+            "release_date": "2025-03-11"
         },
         {
             "type": "model",
@@ -5825,7 +5926,8 @@
             "deployment": {
                 "tps": 53.6,
                 "ttft": 1.57
-            }
+            },
+            "release_date": "2025-08-07"
         },
         {
             "type": "model",
@@ -5851,7 +5953,8 @@
             "deployment": {
                 "tps": 43.8,
                 "ttft": 2.29
-            }
+            },
+            "release_date": "2025-08-07"
         },
         {
             "type": "model",
@@ -5877,7 +5980,8 @@
             "deployment": {
                 "tps": 73.0,
                 "ttft": 1.01
-            }
+            },
+            "release_date": "2025-08-07"
         },
         {
             "type": "model",
@@ -5903,7 +6007,8 @@
             "deployment": {
                 "tps": 53.1,
                 "ttft": 2.32
-            }
+            },
+            "release_date": "2025-09-15"
         },
         {
             "type": "model",
@@ -5926,7 +6031,8 @@
             "deployment": {
                 "tps": 71.0,
                 "ttft": 4.28
-            }
+            },
+            "release_date": "2025-08-07"
         },
         {
             "type": "model",
@@ -5949,7 +6055,8 @@
             "deployment": {
                 "tps": 53.6,
                 "ttft": 1.57
-            }
+            },
+            "release_date": "2025-08-07"
         },
         {
             "type": "model",
@@ -5972,7 +6079,8 @@
             "deployment": {
                 "tps": 96.1,
                 "ttft": 2.29
-            }
+            },
+            "release_date": "2025-08-07"
         },
         {
             "type": "model",
@@ -5995,7 +6103,8 @@
             "deployment": {
                 "tps": 53.6,
                 "ttft": 1.57
-            }
+            },
+            "release_date": "2025-08-07"
         },
         {
             "type": "model",
@@ -6021,7 +6130,8 @@
             "deployment": {
                 "tps": 12.2,
                 "ttft": 59.54
-            }
+            },
+            "release_date": "2025-10-06"
         },
         {
             "type": "model",
@@ -6047,7 +6157,8 @@
             "deployment": {
                 "tps": 12.2,
                 "ttft": 59.54
-            }
+            },
+            "release_date": "2025-10-06"
         },
         {
             "type": "model",
@@ -6073,7 +6184,8 @@
             "deployment": {
                 "tps": 53.6,
                 "ttft": 1.57
-            }
+            },
+            "release_date": "2025-10-14"
         },
         {
             "type": "model",
@@ -6099,7 +6211,8 @@
             "deployment": {
                 "tps": 53.6,
                 "ttft": 1.57
-            }
+            },
+            "release_date": "2025-10-14"
         },
         {
             "type": "model",
@@ -6125,7 +6238,8 @@
             "deployment": {
                 "tps": 60.6,
                 "ttft": 1.85
-            }
+            },
+            "release_date": "2025-11-13"
         },
         {
             "type": "model",
@@ -6151,7 +6265,8 @@
             "deployment": {
                 "tps": 60.6,
                 "ttft": 1.85
-            }
+            },
+            "release_date": "2025-11-13"
         },
         {
             "type": "model",
@@ -6177,7 +6292,8 @@
             "deployment": {
                 "tps": 73.0,
                 "ttft": 1.01
-            }
+            },
+            "release_date": "2025-11-13"
         },
         {
             "type": "model",
@@ -6203,7 +6319,8 @@
             "deployment": {
                 "tps": 59.1,
                 "ttft": 2.15
-            }
+            },
+            "release_date": "2025-11-13"
         },
         {
             "type": "model",
@@ -6229,7 +6346,8 @@
             "deployment": {
                 "tps": 83.9,
                 "ttft": 2.68
-            }
+            },
+            "release_date": "2025-11-19"
         },
         {
             "type": "model",
@@ -6252,7 +6370,8 @@
             "deployment": {
                 "tps": 71.6,
                 "ttft": 1.7
-            }
+            },
+            "release_date": "2025-11-13"
         },
         {
             "type": "model",
@@ -6278,7 +6397,8 @@
             "deployment": {
                 "tps": 43.8,
                 "ttft": 2.29
-            }
+            },
+            "release_date": "2025-12-11"
         },
         {
             "type": "model",
@@ -6304,7 +6424,8 @@
             "deployment": {
                 "tps": 43.8,
                 "ttft": 2.29
-            }
+            },
+            "release_date": "2025-12-11"
         },
         {
             "type": "model",
@@ -6330,7 +6451,8 @@
             "deployment": {
                 "tps": 73.0,
                 "ttft": 1.01
-            }
+            },
+            "release_date": "2025-12-11"
         },
         {
             "type": "model",
@@ -6356,7 +6478,8 @@
             "deployment": {
                 "tps": 58.8,
                 "ttft": 2.04
-            }
+            },
+            "release_date": "2025-12-18"
         },
         {
             "type": "model",
@@ -6382,7 +6505,8 @@
             "deployment": {
                 "tps": 8.1,
                 "ttft": 15.82
-            }
+            },
+            "release_date": "2025-12-11"
         },
         {
             "type": "model",
@@ -6408,7 +6532,8 @@
             "deployment": {
                 "tps": 8.1,
                 "ttft": 15.82
-            }
+            },
+            "release_date": "2025-12-11"
         },
         {
             "type": "model",
@@ -6460,7 +6585,8 @@
             "deployment": {
                 "tps": 48.8,
                 "ttft": 3.01
-            }
+            },
+            "release_date": "2026-02-05"
         },
         {
             "type": "model",
@@ -6486,7 +6612,8 @@
             "deployment": {
                 "tps": 45.5,
                 "ttft": 1.01
-            }
+            },
+            "release_date": "2026-03-05"
         },
         {
             "type": "model",
@@ -6512,7 +6639,8 @@
             "deployment": {
                 "tps": 45.5,
                 "ttft": 1.01
-            }
+            },
+            "release_date": "2026-03-05"
         },
         {
             "type": "model",
@@ -6535,7 +6663,8 @@
             "deployment": {
                 "tps": 73.0,
                 "ttft": 0.67
-            }
+            },
+            "release_date": "2026-03-17"
         },
         {
             "type": "model",
@@ -6558,7 +6687,8 @@
             "deployment": {
                 "tps": 73.0,
                 "ttft": 0.67
-            }
+            },
+            "release_date": "2026-03-17"
         },
         {
             "type": "model",
@@ -6581,7 +6711,8 @@
             "deployment": {
                 "tps": 70.8,
                 "ttft": 0.54
-            }
+            },
+            "release_date": "2026-03-17"
         },
         {
             "type": "model",
@@ -6604,7 +6735,8 @@
             "deployment": {
                 "tps": 70.8,
                 "ttft": 0.54
-            }
+            },
+            "release_date": "2026-03-17"
         },
         {
             "type": "model",
@@ -6630,7 +6762,8 @@
             "deployment": {
                 "tps": 4.0,
                 "ttft": 26.59
-            }
+            },
+            "release_date": "2026-03-05"
         },
         {
             "type": "model",
@@ -6656,7 +6789,8 @@
             "deployment": {
                 "tps": 4.0,
                 "ttft": 26.59
-            }
+            },
+            "release_date": "2026-03-05"
         },
         {
             "type": "model",
@@ -6684,7 +6818,8 @@
             "deployment": {
                 "tps": 40.4,
                 "ttft": 3.38
-            }
+            },
+            "release_date": "2026-04-23"
         },
         {
             "type": "model",
@@ -6712,7 +6847,8 @@
             "deployment": {
                 "tps": 40.4,
                 "ttft": 3.38
-            }
+            },
+            "release_date": "2026-04-23"
         },
         {
             "type": "model",
@@ -6740,7 +6876,8 @@
             "deployment": {
                 "tps": 14.4,
                 "ttft": 46.04
-            }
+            },
+            "release_date": "2026-04-23"
         },
         {
             "type": "model",
@@ -6768,7 +6905,8 @@
             "deployment": {
                 "tps": 14.4,
                 "ttft": 46.04
-            }
+            },
+            "release_date": "2026-04-23"
         },
         {
             "type": "model",
@@ -6794,7 +6932,8 @@
             "deployment": {
                 "tps": 136.6,
                 "ttft": 3.2
-            }
+            },
+            "release_date": "2024-12-17"
         },
         {
             "type": "model",
@@ -6820,7 +6959,8 @@
             "deployment": {
                 "tps": 136.6,
                 "ttft": 3.2
-            }
+            },
+            "release_date": "2024-12-17"
         },
         {
             "type": "model",
@@ -6843,7 +6983,8 @@
             "deployment": {
                 "tps": 170.6,
                 "ttft": 4.13
-            }
+            },
+            "release_date": "2025-01-31"
         },
         {
             "type": "model",
@@ -6866,7 +7007,8 @@
             "deployment": {
                 "tps": 170.6,
                 "ttft": 4.13
-            }
+            },
+            "release_date": "2025-01-31"
         },
         {
             "type": "model",
@@ -6889,7 +7031,8 @@
             "deployment": {
                 "tps": 95.6,
                 "ttft": 3.93
-            }
+            },
+            "release_date": "2025-04-16"
         },
         {
             "type": "model",
@@ -6912,7 +7055,8 @@
             "deployment": {
                 "tps": 95.6,
                 "ttft": 3.93
-            }
+            },
+            "release_date": "2025-04-16"
         },
         {
             "type": "model",
@@ -6935,7 +7079,8 @@
             "deployment": {
                 "tps": 91.9,
                 "ttft": 17.34
-            }
+            },
+            "release_date": "2025-06-26"
         },
         {
             "type": "model",
@@ -6958,7 +7103,8 @@
             "deployment": {
                 "tps": 91.9,
                 "ttft": 17.34
-            }
+            },
+            "release_date": "2025-06-26"
         }
     ]
 }

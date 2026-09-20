@@ -51,6 +51,10 @@ This warning is reported when the selected electricity mix uses the world defaul
 
 This warning is reported when the selected electricity mix uses the world default value for the WUE impact factor. This can happen for countries where GWP data is available, but country-specific WUE data is not.
 
+### `training-not-modeled`
+
+This warning is reported when the [training impacts](../methodology/llm_training.md) cannot be estimated for the request. This happens when the release date of the model is unknown or when the AI compute capacity of the provider is unknown (Cohere, Hugging Face Hub). The `training` field of the [`ImpactsOutput`][tracers.utils.ImpactsOutput] is then `None`, the other impacts are not affected.
+
 
 ## Errors
 

@@ -1,5 +1,5 @@
 from functools import total_ordering
-from typing import TypeVar
+from typing import Optional, TypeVar
 
 from pydantic import BaseModel
 
@@ -206,9 +206,41 @@ class Embodied(Phase):
     pe: PE
 
 
+class Training(Phase):
+    """
+    Training impacts data model.
+
+    Info:
+        Share of the model training impacts (final training run, research and development experiments and training
+        data storage) allocated to the request. Estimated with a top-down approach adapted from the
+        [Impact'IA](https://github.com/SNCF-ImpactIA/ImpactIA) methodology. Reported separately from the usage and
+        embodied phases and not included in the total impacts.
+
+    Attributes:
+        type: training
+        name: Training
+        energy: Energy consumption allocated to the request
+        gwp: Global Warming Potential (GWP) training impact
+        adpe: Abiotic Depletion Potential for Elements (ADPe) training impact
+        pe: Primary Energy (PE) training impact
+        wcf: Water Consumption Footprint (WCF) training impact
+    """
+    type: str = "training"
+    name: str = "Training"
+    energy: Energy
+    gwp: GWP
+    adpe: ADPe
+    pe: PE
+    wcf: WCF
+
+
 class Impacts(BaseModel):
     """
     Impacts data model.
+
+    Info:
+        Total impacts (`energy`, `gwp`, `adpe`, `pe` and `wcf`) are the sum of the usage and embodied phases of the
+        inference. The training phase is reported separately and is not included in the totals.
 
     Attributes:
         energy: Total energy consumption
@@ -218,6 +250,7 @@ class Impacts(BaseModel):
         wcf: Usage-only Water Consumption Footprint (WCF) impact
         usage: Impacts for the usage phase
         embodied: Impacts for the embodied phase
+        training: Impacts allocated from the model training (not included in totals, None when not available)
     """
     energy: Energy
     gwp: GWP
@@ -226,3 +259,4 @@ class Impacts(BaseModel):
     wcf: WCF
     usage: Usage
     embodied: Embodied
+    training: Optional[Training] = None

@@ -50,6 +50,7 @@ def google_genai_content_wrapper(
         provider=PROVIDER,
         model_name=model_name,
         output_token_count=output_tokens,
+        input_token_count=input_tokens,
         request_latency=request_latency,
         electricity_mix_zone=EcoLogits.config.electricity_mix_zone,
     )
@@ -106,6 +107,7 @@ def google_genai_content_stream_wrapper(
                 provider=PROVIDER,
                 model_name=model_name,
                 output_token_count=output_tokens,
+                input_token_count=input_tokens,
                 request_latency=request_latency,
                 electricity_mix_zone=EcoLogits.config.electricity_mix_zone,
             )
@@ -157,6 +159,7 @@ async def google_genai_async_content_wrapper(
         provider=PROVIDER,
         model_name=model_name,
         output_token_count=output_tokens,
+        input_token_count=input_tokens,
         request_latency=request_latency,
         electricity_mix_zone=EcoLogits.config.electricity_mix_zone,
     )
@@ -197,6 +200,7 @@ async def _generator(
                 provider=PROVIDER,
                 model_name=model_name,
                 output_token_count=output_tokens,
+                input_token_count=input_tokens,
                 request_latency=request_latency,
                 electricity_mix_zone=EcoLogits.config.electricity_mix_zone,
             )

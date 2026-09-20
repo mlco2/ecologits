@@ -81,6 +81,12 @@ class ElectricityMixWUEDefaultWarning(WarningMessage):
     message: str = "The electricity mix WUE factor is using the world default value, expect lower precision."
 
 
+class TrainingNotModeledWarning(WarningMessage):
+    code: str = "training-not-modeled"
+    message: str = "The training impacts are not modeled for this model or provider (missing release date or " \
+                   "provider compute capacity), the training phase is not reported."
+
+
 class ModelNotRegisteredError(ErrorMessage):
     code: str = "model-not-registered"
     message: str = "The model is not registered in the model repository."
@@ -97,6 +103,7 @@ _warning_codes: dict[str, type[WarningMessage]] = {
     "electricity-mix-adpe-world": ElectricityMixADPeDefaultWarning,
     "electricity-mix-pe-world": ElectricityMixPEDefaultWarning,
     "electricity-mix-wue-world": ElectricityMixWUEDefaultWarning,
+    "training-not-modeled": TrainingNotModeledWarning,
 }
 
 _error_codes: dict[str, type[ErrorMessage]] = {

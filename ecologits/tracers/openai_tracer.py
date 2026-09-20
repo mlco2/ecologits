@@ -75,6 +75,7 @@ def openai_chat_wrapper_non_stream(
         provider=PROVIDER,
         model_name=model_name,
         output_token_count=response.usage.completion_tokens,
+        input_token_count=response.usage.prompt_tokens,
         request_latency=request_latency,
         electricity_mix_zone=EcoLogits.config.electricity_mix_zone
     )
@@ -116,6 +117,7 @@ def openai_chat_wrapper_stream(  # type: ignore[misc]
             provider=PROVIDER,
             model_name=model_name,
             output_token_count=output_token_count,
+            input_token_count=chunk.usage.prompt_tokens if getattr(chunk, "usage", None) else None,
             request_latency=request_latency,
             electricity_mix_zone=EcoLogits.config.electricity_mix_zone
         )
@@ -181,6 +183,7 @@ async def openai_async_chat_wrapper_base(
         provider=PROVIDER,
         model_name=model_name,
         output_token_count=response.usage.completion_tokens,
+        input_token_count=response.usage.prompt_tokens,
         request_latency=request_latency,
         electricity_mix_zone=EcoLogits.config.electricity_mix_zone
     )
@@ -222,6 +225,7 @@ async def openai_async_chat_wrapper_stream(  # type: ignore[misc]
             provider=PROVIDER,
             model_name=model_name,
             output_token_count=output_token_count,
+            input_token_count=chunk.usage.prompt_tokens if getattr(chunk, "usage", None) else None,
             request_latency=request_latency,
             electricity_mix_zone=EcoLogits.config.electricity_mix_zone
         )
@@ -288,6 +292,7 @@ def openai_responses_wrapper_non_stream(
         provider=PROVIDER,
         model_name=model_name,
         output_token_count=response.usage.output_tokens,
+        input_token_count=response.usage.input_tokens,
         request_latency=request_latency,
         electricity_mix_zone=EcoLogits.config.electricity_mix_zone
     )
@@ -325,6 +330,7 @@ def openai_responses_wrapper_stream(  # type: ignore[misc]
                 provider=PROVIDER,
                 model_name=model_name,
                 output_token_count=output_token_count,
+                input_token_count=event.response.usage.input_tokens,
                 request_latency=request_latency,
                 electricity_mix_zone=EcoLogits.config.electricity_mix_zone
             )
@@ -382,6 +388,7 @@ async def openai_async_responses_wrapper_base(
         provider=PROVIDER,
         model_name=model_name,
         output_token_count=response.usage.output_tokens,
+        input_token_count=response.usage.input_tokens,
         request_latency=request_latency,
         electricity_mix_zone=EcoLogits.config.electricity_mix_zone
     )
@@ -419,6 +426,7 @@ async def openai_async_responses_wrapper_stream(  # type: ignore[misc]
                 provider=PROVIDER,
                 model_name=model_name,
                 output_token_count=output_token_count,
+                input_token_count=event.response.usage.input_tokens,
                 request_latency=request_latency,
                 electricity_mix_zone=EcoLogits.config.electricity_mix_zone
             )

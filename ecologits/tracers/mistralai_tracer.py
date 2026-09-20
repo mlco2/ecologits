@@ -51,6 +51,7 @@ def mistralai_chat_wrapper(
         provider=PROVIDER,
         model_name=response.model,
         output_token_count=response.usage.completion_tokens,
+        input_token_count=response.usage.prompt_tokens,
         request_latency=request_latency,
         electricity_mix_zone=EcoLogits.config.electricity_mix_zone
     )
@@ -98,6 +99,7 @@ def mistralai_chat_wrapper_stream(
             provider=PROVIDER,
             model_name=model_name,
             output_token_count=token_count,
+            input_token_count=chunk.data.usage.prompt_tokens if chunk.data.usage is not None else None,
             request_latency=request_latency,
             electricity_mix_zone=EcoLogits.config.electricity_mix_zone
         )
@@ -146,6 +148,7 @@ async def mistralai_async_chat_wrapper(
         provider=PROVIDER,
         model_name=response.model,
         output_token_count=response.usage.completion_tokens,
+        input_token_count=response.usage.prompt_tokens,
         request_latency=request_latency,
         electricity_mix_zone=EcoLogits.config.electricity_mix_zone
     )
@@ -179,6 +182,7 @@ async def _generator(
             provider=PROVIDER,
             model_name=model_name,
             output_token_count=token_count,
+            input_token_count=chunk.data.usage.prompt_tokens if chunk.data.usage is not None else None,
             request_latency=request_latency,
             electricity_mix_zone=EcoLogits.config.electricity_mix_zone
         )

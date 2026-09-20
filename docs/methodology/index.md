@@ -5,6 +5,7 @@
 The following methodologies are **currently available and implemented in EcoLogits**:
 
 - [x] [LLM Inference](llm_inference.md)
+- [x] [LLM Training](llm_training.md) (experimental, adapted from [Impact'IA](https://github.com/SNCF-ImpactIA/ImpactIA))
 - [x] [Video Generation](video_generation.md)
 
 Upcoming methodologies ([join us](https://discord.gg/CAecQ2zM4n) to help speed up our progress):
@@ -32,7 +33,7 @@ The methodology is grounded in **transparency** and **reproducibility**, utilizi
 
 ## Scope of the methodology
 
-Our methodology focuses on **assessing the environmental impacts of GenAI inference tasks**. That is why we exclude impacts from training, networking and end-used devices, we thoroughly evaluate the impacts associated with hosting and running the model inferences.
+Our methodology focuses on **assessing the environmental impacts of GenAI inference tasks**. We thoroughly evaluate the impacts associated with hosting and running the model inferences, including the network equipment and the building of the data center. We exclude the network outside of the data center and the end-user devices. The impacts of the model training are estimated separately with an [experimental methodology](llm_training.md) and are not included in the total impacts of a request.
 
 <figure markdown="span">
   ![Figure: Energy consumption per output token vs. number of active parameters ](../assets/methodology/llm/figure_boundaries.png)

@@ -105,6 +105,22 @@ For a typical high-end GPU-accelerated cloud instance, we use $W_{\text{server} 
         }' | jq .verbose.avg_power
     ```
 
+#### Modeling network equipment energy consumption
+
+Servers are connected through network equipment inside the data center (firewalls, routers and switches) that consume electricity as well. Following the [Impact'IA](https://github.com/SNCF-ImpactIA/ImpactIA) methodology, we consider that a fixed power, $W_{\text{network}}$, of network equipment is attached to each server, and allocate it to the request the same way as the server power:
+
+$$
+E_{\text{network}}(\Delta T) = \Delta T \times W_{\text{network}} \times \frac{\text{GPU}}{\#\text{GPU}_{\text{installed}}} \times \frac{1}{B}.
+$$
+
+The network power attached to one server is the sum of the power of each equipment weighted by its effective usage ratio (share of the equipment capacity used by one server), $W_{\text{network}} = \sum_i W_i \times r_i \approx 161$ W, with the following values from [ADEME Base Empreinte®](https://base-empreinte.ademe.fr/) and the [ADEME-ARCEP-ARCOM report](https://www.arcep.fr/la-regulation/grands-dossiers-thematiques-transverses/lempreinte-environnementale-du-numerique.html):
+
+| Equipment | Power $W_i$ | Usage ratio $r_i$ |
+|-----------|-------------|-------------------|
+| Firewall  | 90 W        | 0.0358            |
+| Router    | 90 W        | 0.286             |
+| Switch    | 90 W        | 1.468             |
+
 #### Estimating the generation latency
 
 The generation latency, $\Delta T$, is the duration of the inference measure on the server and is independent of networking latency. It is estimated based on real-world statistical metrics from [OpenRouter](https://openrouter.ai) when available and falls back to an alternative approach using the [ML.ENERGY Leaderboard](https://ml.energy/leaderboard/?__theme=light) benchmark, previously mentioned.
@@ -116,6 +132,16 @@ Using these values, we can estimate the generation latency for the entire reques
 $$
 \Delta T(\#T_{\text{out}}) = \min \left\{ \text{TTFT} + \frac{\#T_{\text{out}}}{\text{TPS}}, \Delta T_{\text{request}}\right\}.
 $$
+
+##### Pre-fill latency and input tokens
+
+The pre-fill phase consists in processing the input tokens (the prompt) before generating the first output token, its duration thus depends on the number of input tokens, $\#T_{\text{in}}$. When the number of input tokens is known, we follow the improvement proposed by [Impact'IA](https://github.com/SNCF-ImpactIA/ImpactIA) and model the pre-fill latency as a linear function of the number of input tokens, based on the measurements of [Agrawal et al. (2024)](https://www.usenix.org/conference/osdi24/presentation/agrawal) on Mistral 7B ($\text{TTFT} = 0.062 \text{ ms} \times \#T_{\text{in}} + 17.88 \text{ ms}$). The per-token coefficient is scaled to the target model with the ratio of its median time-to-first-token on OpenRouter to the one of Mistral 7B (0.44 s):
+
+$$
+\text{TTFT}(\#T_{\text{in}}) = 0.062 \text{ ms} \times \frac{\text{TTFT}_{\text{model}}}{0.44 \text{ s}} \times \#T_{\text{in}} + 17.88 \text{ ms}.
+$$
+
+When the time-to-first-token of the model is not available on OpenRouter, the coefficient is scaled with the number of active parameters instead ($P_{\text{active}} / 7.3$). When the number of input tokens is unknown, the median time-to-first-token is used as is.
 
 
 ??? info "Alternative approach using ML.ENERGY benchmark data (will be deprecated)"
@@ -169,10 +195,10 @@ To stay consistent with previous assumptions based on [ML.ENERGY Leaderboard](ht
 
 #### Complete server energy consumption
 
-The total server energy consumption for the request, $E_{\text{server}}$, is computed as follows:
+The total server energy consumption for the request, $E_{\text{server}}$, including the network equipment, is computed as follows:
 
 $$
-E_{\text{server}} = E_{\text{server} \backslash \text{GPU}} + \text{GPU} \times E_{\text{GPU}}.
+E_{\text{server}} = E_{\text{server} \backslash \text{GPU}} + \text{GPU} \times E_{\text{GPU}} + E_{\text{network}}.
 $$
 
 ### Modeling request energy consumption
@@ -254,15 +280,42 @@ I^{\text{e}}_{\text{server}}=\frac{\text{GPU}}{\#\text{GPU}_{\text{installed}}} 
 $$
 
 
+### Modeling network equipment embodied impacts
+
+Following the [Impact'IA](https://github.com/SNCF-ImpactIA/ImpactIA) methodology, we also account for the embodied impacts of the network equipment attached to each server. The embodied impacts of each equipment are weighted by its usage ratio (see [above](#modeling-network-equipment-energy-consumption)), $I^{\text{e}}_{\text{network}} = \sum_i I^{\text{e}}_i \times r_i \approx 660$ kgCO2eq, using the GWP values from the [Resilio DB](https://db.resilio.tech/) reported by Impact'IA:
+
+| Equipment                          | GWP (kgCO2eq) |
+|------------------------------------|---------------|
+| Firewall (Fortinet FortiGate 100E) | $334$         |
+| Router (Juniper PTX10002-36QDD)    | $403$         |
+| Switch (Arista 7050TX3-48C8)       | $363$         |
+
+The lifetime of the network equipment, $\Delta L_{\text{network}}$, is fixed at 5 years.
+
+!!! warning "Network equipment embodied impacts are only modeled for GWP due to a lack of data for ADPe and PE."
+
+### Modeling data center building embodied impacts
+
+The construction of the data center building and of its technical environment (electrical and cooling equipment) also has embodied impacts. We allocate them in proportion to the IT electricity consumption of the request, with a factor $F_{\text{building}} = 0.01$ kgCO2eq per kWh of IT electricity, derived by [Hubblo](https://hubblo.org/) from the ADEME product category rules for cloud services and reported by Impact'IA.
+
+!!! warning "Data center building embodied impacts are only modeled for GWP due to a lack of data for ADPe and PE."
+
 ### Modeling request embodied environmental impacts
 
-To allocate the server embodied impacts to the request, we use an allocation based on the hardware utilization factor, $\frac{\Delta T}{B \times \Delta L}$. In this case, $\Delta L$ represents the lifetime of the server and GPU, which we fix at 3 years ([Ostrouchov et al. (2020)](https://www.osti.gov/servlets/purl/1771896), [tomshardware.com](https://www.tomshardware.com/pc-components/gpus/datacenter-gpu-service-life-can-be-surprisingly-short-only-one-to-three-years-is-expected-according-to-unnamed-google-architect)), and $B$ is the batch size such as above: 
+To allocate the server embodied impacts to the request, we use an allocation based on the hardware utilization factor, $\frac{\Delta T}{B \times \Delta L}$. In this case, $\Delta L$ represents the lifetime of the server and GPU, which we fix at 3 years ([Ostrouchov et al. (2020)](https://www.osti.gov/servlets/purl/1771896), [tomshardware.com](https://www.tomshardware.com/pc-components/gpus/datacenter-gpu-service-life-can-be-surprisingly-short-only-one-to-three-years-is-expected-according-to-unnamed-google-architect)), and $B$ is the batch size such as above. The network equipment embodied impacts are allocated the same way, with the share of the server used by the model, and the data center building embodied impacts are allocated with the IT electricity consumption of the request:
 
 $$
-I^{\text{e}}_{\text{request}}=\frac{\Delta T}{B \times  \Delta L} \times I^{\text{e}}_{\text{server}}.
+I^{\text{e}}_{\text{request}}=\frac{\Delta T}{B \times  \Delta L} \times I^{\text{e}}_{\text{server}} + \frac{\Delta T}{B \times  \Delta L_{\text{network}}} \times \frac{\text{GPU}}{\#\text{GPU}_{\text{installed}}} \times I^{\text{e}}_{\text{network}} + E_{\text{server}} \times F_{\text{building}}.
 $$
+
+The last two terms only apply to the GWP criteria.
 
 !!! warning "Water consumption (WCF) impact is not modeled for the embodied phase due to a lack of data."
+
+
+## Training impacts
+
+The impacts of the training of the model allocated to the request are estimated separately with an experimental methodology adapted from Impact'IA, see the [LLM training methodology](llm_training.md). They are reported in a dedicated `training` phase and are **not included in the total impacts** of the request.
 
 
 ## Supplemental material
@@ -302,6 +355,7 @@ Assuming the **energy consumption** for AI models is done through benchmarking o
 **Limitations:**
 
 * We do not account for the multiple modalities of a model (only text-to-text generation).
+* The energy consumption of the GPU during the pre-fill phase is not modeled explicitly, the number of input tokens only affects the generation latency (thus the server, network and embodied impacts).
 
 ### On hardware
 
@@ -315,8 +369,9 @@ We estimate the **required infrastructure** to run the service in terms of hardw
 **Limitations:**
 
 * We do not account for TPUs or other type of accelerators.
-* We do not account for networking or storage primitives.
+* We do not account for storage primitives, nor for the network outside of the data center.
 * We do not account for infrastructure overheads or utilization factors.
+* Network equipment and data center building embodied impacts are only accounted for GWP.
 
 ### On data centers
 
@@ -354,6 +409,8 @@ We aim at covering the largest scope possible when assessing the environmental i
 - [ML.ENERGY Leaderboard](https://ml.energy/leaderboard/?__theme=light) to estimate GPU energy consumption and latency based on the model architecture and number of output tokens.
 - [Lees-Perasso et al. (2026)](https://librairie.ademe.fr/economie-circulaire-et-dechets/9103-analyse-de-cycle-de-vie-de-gpu-cartes-graphiques-pour-l-intelligence-artificielle.html) and [BoaviztAPI](https://github.com/Boavizta/boaviztapi) to estimate GPU and server embodied impacts and base energy consumption.
 - [Our World in Data](https://ourworldindata.org/), [ADEME Base Empreinte®](https://base-empreinte.ademe.fr/) and [World Resource Institute](https://www.wri.org/) for electricity mix impacts per country.
+- [Impact'IA](https://github.com/SNCF-ImpactIA/ImpactIA) (SNCF, Wavestone, Resilio, 2026) for the pre-fill latency model based on input tokens, the network equipment and the data center building impacts.
+- [Agrawal et al. (2024)](https://www.usenix.org/conference/osdi24/presentation/agrawal) for the relation between pre-fill latency and number of input tokens.
 
 ## :material-bookshelf: Citation
 
