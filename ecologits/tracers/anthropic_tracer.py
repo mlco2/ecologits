@@ -56,6 +56,7 @@ class MessageStream(_MessageStream):
                 provider=PROVIDER,
                 model_name=model_name,
                 output_token_count=output_tokens,
+                input_token_count=input_tokens,
                 request_latency=request_latency,
                 electricity_mix_zone=EcoLogits.config.electricity_mix_zone
             )
@@ -103,6 +104,7 @@ class AsyncMessageStream(_AsyncMessageStream):
                 provider=PROVIDER,
                 model_name=model_name,
                 output_token_count=output_tokens,
+                input_token_count=input_tokens,
                 request_latency=request_latency,
                 electricity_mix_zone=EcoLogits.config.electricity_mix_zone
             )
@@ -193,6 +195,7 @@ def anthropic_chat_wrapper(
         provider=PROVIDER,
         model_name=model_name,
         output_token_count=response.usage.output_tokens,
+        input_token_count=response.usage.input_tokens,
         request_latency=request_latency,
         electricity_mix_zone=EcoLogits.config.electricity_mix_zone
     )
@@ -237,6 +240,7 @@ async def anthropic_async_chat_wrapper(
         provider=PROVIDER,
         model_name=model_name,
         output_token_count=response.usage.output_tokens,
+        input_token_count=response.usage.input_tokens,
         request_latency=request_latency,
         electricity_mix_zone=EcoLogits.config.electricity_mix_zone
     )

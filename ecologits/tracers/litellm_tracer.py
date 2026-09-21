@@ -97,6 +97,7 @@ def litellm_chat_wrapper_stream(  # type: ignore[misc]
                 provider=model_match[0],
                 model_name=model_match[1],
                 output_token_count=token_count,
+                input_token_count=chunk.usage.prompt_tokens if getattr(chunk, "usage", None) else None,
                 request_latency=request_latency,
                 electricity_mix_zone=EcoLogits.config.electricity_mix_zone
             )
@@ -137,6 +138,7 @@ def litellm_chat_wrapper_non_stream(
         provider=model_match[0],
         model_name=model_match[1],
         output_token_count=response.usage.completion_tokens,
+        input_token_count=response.usage.prompt_tokens,
         request_latency=request_latency,
         electricity_mix_zone=EcoLogits.config.electricity_mix_zone
     )
@@ -197,6 +199,7 @@ async def litellm_async_chat_wrapper_base(
         provider=model_match[0],
         model_name=model_match[1],
         output_token_count=response.usage.completion_tokens,
+        input_token_count=response.usage.prompt_tokens,
         request_latency=request_latency,
         electricity_mix_zone=EcoLogits.config.electricity_mix_zone
     )
@@ -237,6 +240,7 @@ async def litellm_async_chat_wrapper_stream(  # type: ignore[misc]
                 provider=model_match[0],
                 model_name=model_match[1],
                 output_token_count=token_count,
+                input_token_count=chunk.usage.prompt_tokens if getattr(chunk, "usage", None) else None,
                 request_latency=request_latency,
                 electricity_mix_zone=EcoLogits.config.electricity_mix_zone
             )

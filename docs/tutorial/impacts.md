@@ -1,6 +1,6 @@
 # Environmental Impacts
 
-Environmental impacts are reported for each request in the **[`ImpactsOutput`][tracers.utils.ImpactsOutput]** that features multiple [impact criteria](#impact-criteria) such as [energy consumption](#energy) or the [global warming potential](#global-warming-potential-gwp) per phase ([usage](#usage) or [embodied](#embodied)) as well as the total impacts. It also contains potential [warnings and errors](warnings_and_errors.md) that can occur during the calculation.
+Environmental impacts are reported for each request in the **[`ImpactsOutput`][tracers.utils.ImpactsOutput]** that features multiple [impact criteria](#impact-criteria) such as [energy consumption](#energy) or the [global warming potential](#global-warming-potential-gwp) per phase ([usage](#usage), [embodied](#embodied) or [training](#training)) as well as the total impacts. It also contains potential [warnings and errors](warnings_and_errors.md) that can occur during the calculation.
 
 !!! note "To learn more on how we estimate the environmental impacts and what are our hypotheses go to the [methodology](../methodology/index.md) section."
 
@@ -11,7 +11,7 @@ The [`ImpactsOutput`][tracers.utils.ImpactsOutput] is structured the following w
 
 ```python
 from ecologits.tracers.utils import ImpactsOutput
-from ecologits.impacts.modeling import ADPe, Embodied, Energy, GWP, PE, Usage
+from ecologits.impacts.modeling import ADPe, Embodied, Energy, GWP, PE, Training, Usage, WCF
 
 
 ImpactsOutput(
@@ -19,25 +19,35 @@ ImpactsOutput(
     gwp=GWP(),          # Total global warming potential (or GHG emissions)
     adpe=ADPe(),        # Total abiotic resource depletion
     pe=PE(),            # Total energy consumed from primary sources
+    wcf=WCF(),          # Total water consumption (usage phase only)
     usage=Usage( # (1)!
         energy=Energy(),
         gwp=GWP(),
         adpe=ADPe(),
         pe=PE(),
+        wcf=WCF(),
     ),
     embodied=Embodied( # (2)!
         gwp=GWP(),
         adpe=ADPe(),
         pe=PE(),
     ),
-    warnings=None, # (3)!
+    training=Training( # (3)!
+        energy=Energy(),
+        gwp=GWP(),
+        adpe=ADPe(),
+        pe=PE(),
+        wcf=WCF(),
+    ),
+    warnings=None, # (4)!
     errors=None
 )
 ```
 
 1. Usage impacts for the electricity consumption impacts. Note that the energy is equal to the "total" energy impact.
 2. Embodied impacts for resource extract, manufacturing and transportation of hardware components allocated to the request. 
-3. List of [`WarningMessage`][status_messages.WarningMessage] and [`ErrorMessage`][status_messages.ErrorMessage].
+3. Training impacts allocated to the request (experimental). They are **not included in the total impacts** and are `None` when they cannot be estimated.
+4. List of [`WarningMessage`][status_messages.WarningMessage] and [`ErrorMessage`][status_messages.ErrorMessage].
 
 
 ### Example of an Impact Value
@@ -180,6 +190,30 @@ The [Embodied][impacts.modeling.Embodied] phase accounts for the upstream enviro
 
 ??? note "Embodied model attributes"
     ::: impacts.modeling.Embodied
+        options:
+            show_root_toc_entry: false
+            show_bases: false
+            show_docstring_description: false
+            docstring_section_style: list
+
+
+### Training
+
+The [Training][impacts.modeling.Training] phase accounts for the impacts of the training of the model (final training run, research and development experiments and training data storage) allocated to the request in proportion to the number of generated tokens. This phase is **experimental** and relies on a top-down estimation adapted from the [Impact'IA](https://github.com/SNCF-ImpactIA/ImpactIA) methodology, see the [LLM training methodology](../methodology/llm_training.md) for the assumptions and limitations.
+
+The training impacts are **reported separately and are not included in the total impacts** (`energy`, `gwp`, `adpe`, `pe` and `wcf`) which only cover the usage and embodied phases of the inference. When the training impacts cannot be estimated (unknown model release date or provider compute capacity) the `training` field is `None` and a [`training-not-modeled`](warnings_and_errors.md#training-not-modeled) warning is reported.
+
+```python
+>>> response.impacts.training.gwp.value
+0.0004    # GHG emissions of the training allocated to the request in kgCO2eq.
+
+>>> total_with_training = response.impacts.gwp + response.impacts.training.gwp  # (1)!
+```
+
+1. Impacts can be added together when they have the same type (criteria), including `RangeValue` intervals.
+
+??? note "Training model attributes"
+    ::: impacts.modeling.Training
         options:
             show_root_toc_entry: false
             show_bases: false

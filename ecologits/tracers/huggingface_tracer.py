@@ -91,6 +91,7 @@ def huggingface_chat_wrapper_non_stream(
         provider=PROVIDER,
         model_name=model_name,
         output_token_count=output_tokens,
+        input_token_count=input_tokens,
         request_latency=request_latency,
         electricity_mix_zone=EcoLogits.config.electricity_mix_zone
     )
@@ -136,6 +137,7 @@ def huggingface_chat_wrapper_stream(
             provider=PROVIDER,
             model_name=model_name,
             output_token_count=output_tokens,
+            input_token_count=input_tokens,
             request_latency=request_latency,
             electricity_mix_zone=EcoLogits.config.electricity_mix_zone
         )
@@ -201,6 +203,7 @@ async def huggingface_async_chat_wrapper_non_stream(
         provider=PROVIDER,
         model_name=model_name,
         output_token_count=output_tokens,
+        input_token_count=input_tokens,
         request_latency=request_latency,
         electricity_mix_zone=EcoLogits.config.electricity_mix_zone
     )
@@ -246,6 +249,7 @@ async def huggingface_async_chat_wrapper_stream(
             provider=PROVIDER,
             model_name=model_name,
             output_token_count=output_tokens,
+            input_token_count=input_tokens,
             request_latency=request_latency,
             electricity_mix_zone=EcoLogits.config.electricity_mix_zone
         )
