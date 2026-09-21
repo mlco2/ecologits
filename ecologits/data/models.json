@@ -3,24 +3,6 @@
         {
             "type": "alias",
             "provider": "anthropic",
-            "name": "claude-opus-4-1",
-            "alias": "claude-opus-4-1-20250805"
-        },
-        {
-            "type": "alias",
-            "provider": "anthropic",
-            "name": "claude-opus-4-0",
-            "alias": "claude-opus-4-20250514"
-        },
-        {
-            "type": "alias",
-            "provider": "anthropic",
-            "name": "claude-sonnet-4-0",
-            "alias": "claude-sonnet-4-20250514"
-        },
-        {
-            "type": "alias",
-            "provider": "anthropic",
             "name": "claude-haiku-4-5",
             "alias": "claude-haiku-4-5-20251001"
         },
@@ -88,8 +70,8 @@
                 "https://huggingface.co/CohereLabs/aya-expanse-32b"
             ],
             "deployment": {
-                "tps": 26.8,
-                "ttft": 0.59
+                "tps": 29.0,
+                "ttft": 335.0
             }
         },
         {
@@ -108,8 +90,8 @@
                 "https://huggingface.co/CohereLabs/aya-vision-32b"
             ],
             "deployment": {
-                "tps": 26.8,
-                "ttft": 0.59
+                "tps": 29.0,
+                "ttft": 335.0
             }
         },
         {
@@ -126,8 +108,8 @@
                 "https://huggingface.co/CohereLabs/c4ai-command-a-03-2025"
             ],
             "deployment": {
-                "tps": 26.8,
-                "ttft": 0.59
+                "tps": 29.0,
+                "ttft": 335.0
             }
         },
         {
@@ -151,8 +133,8 @@
                 "https://cohere.com/blog/command-a-plus"
             ],
             "deployment": {
-                "tps": 26.8,
-                "ttft": 0.59
+                "tps": 29.0,
+                "ttft": 335.0
             }
         },
         {
@@ -169,8 +151,8 @@
                 "https://huggingface.co/CohereLabs/c4ai-command-a-03-2025"
             ],
             "deployment": {
-                "tps": 26.8,
-                "ttft": 0.59
+                "tps": 29.0,
+                "ttft": 335.0
             }
         },
         {
@@ -187,8 +169,8 @@
                 "https://huggingface.co/CohereLabs/c4ai-command-a-03-2025"
             ],
             "deployment": {
-                "tps": 26.8,
-                "ttft": 0.59
+                "tps": 29.0,
+                "ttft": 335.0
             }
         },
         {
@@ -207,8 +189,8 @@
                 "https://huggingface.co/CohereLabs/command-a-vision-07-2025"
             ],
             "deployment": {
-                "tps": 26.8,
-                "ttft": 0.59
+                "tps": 29.0,
+                "ttft": 335.0
             }
         },
         {
@@ -225,8 +207,8 @@
                 "https://huggingface.co/CohereLabs/c4ai-command-r-08-2024"
             ],
             "deployment": {
-                "tps": 47.4,
-                "ttft": 0.22
+                "tps": 30.0,
+                "ttft": 280.0
             }
         },
         {
@@ -243,8 +225,8 @@
                 "https://huggingface.co/CohereLabs/c4ai-command-r-plus-08-2024"
             ],
             "deployment": {
-                "tps": 34.6,
-                "ttft": 0.32
+                "tps": 7.0,
+                "ttft": 318.0
             }
         },
         {
@@ -261,8 +243,8 @@
                 "https://huggingface.co/CohereLabs/c4ai-command-r7b-12-2024"
             ],
             "deployment": {
-                "tps": 55.0,
-                "ttft": 0.24
+                "tps": 56.0,
+                "ttft": 245.0
             }
         },
         {
@@ -279,8 +261,8 @@
                 "https://huggingface.co/CohereLabs/c4ai-command-r7b-12-2024"
             ],
             "deployment": {
-                "tps": 26.8,
-                "ttft": 0.59
+                "tps": 29.0,
+                "ttft": 335.0
             }
         },
         {
@@ -3338,78 +3320,6 @@
         {
             "type": "model",
             "provider": "mistralai",
-            "name": "codestral-2405",
-            "architecture": {
-                "type": "dense",
-                "parameters": 22.2
-            },
-            "warnings": null,
-            "sources": [
-                "https://docs.mistral.ai/getting-started/models/",
-                "https://mistral.ai/news/codestral"
-            ],
-            "deployment": {
-                "tps": 57.2,
-                "ttft": 0.21
-            }
-        },
-        {
-            "type": "model",
-            "provider": "mistralai",
-            "name": "codestral-2411-rc5",
-            "architecture": {
-                "type": "dense",
-                "parameters": 22.2
-            },
-            "warnings": null,
-            "sources": [
-                "https://docs.mistral.ai/getting-started/models/",
-                "https://mistral.ai/news/codestral"
-            ],
-            "deployment": {
-                "tps": 57.2,
-                "ttft": 0.21
-            }
-        },
-        {
-            "type": "model",
-            "provider": "mistralai",
-            "name": "codestral-2412",
-            "architecture": {
-                "type": "dense",
-                "parameters": 22.2
-            },
-            "warnings": null,
-            "sources": [
-                "https://docs.mistral.ai/getting-started/models/",
-                "https://mistral.ai/news/codestral"
-            ],
-            "deployment": {
-                "tps": 39.4,
-                "ttft": 1.04
-            }
-        },
-        {
-            "type": "model",
-            "provider": "mistralai",
-            "name": "codestral-2501",
-            "architecture": {
-                "type": "dense",
-                "parameters": 22.2
-            },
-            "warnings": null,
-            "sources": [
-                "https://docs.mistral.ai/getting-started/models/",
-                "https://mistral.ai/news/codestral"
-            ],
-            "deployment": {
-                "tps": 57.2,
-                "ttft": 0.21
-            }
-        },
-        {
-            "type": "model",
-            "provider": "mistralai",
             "name": "codestral-2508",
             "architecture": {
                 "type": "dense",
@@ -3421,8 +3331,8 @@
                 "https://mistral.ai/news/codestral"
             ],
             "deployment": {
-                "tps": 57.2,
-                "ttft": 0.21
+                "tps": 46.0,
+                "ttft": 400.0
             }
         },
         {
@@ -3439,86 +3349,71 @@
                 "https://mistral.ai/news/codestral"
             ],
             "deployment": {
-                "tps": 57.2,
-                "ttft": 0.21
+                "tps": 46.0,
+                "ttft": 400.0
             }
         },
         {
             "type": "model",
             "provider": "mistralai",
-            "name": "devstral-2512",
+            "name": "glm-5-2",
             "architecture": {
-                "type": "dense",
-                "parameters": 125
+                "type": "moe",
+                "parameters": {
+                    "total": 744,
+                    "active": 40
+                }
             },
             "warnings": null,
             "sources": [
-                "https://docs.mistral.ai/getting-started/models/"
+                "https://docs.mistral.ai/models/zai-glm-5-2",
+                "https://github.com/zai-org/GLM-5"
             ],
             "deployment": {
-                "tps": 39.4,
-                "ttft": 1.04
+                "tps": 119.5,
+                "ttft": 708.25
             }
         },
         {
             "type": "model",
             "provider": "mistralai",
-            "name": "devstral-latest",
+            "name": "labs-leanstral-1-5",
             "architecture": {
-                "type": "dense",
-                "parameters": 125
+                "type": "moe",
+                "parameters": {
+                    "total": 119,
+                    "active": 6.5
+                }
             },
             "warnings": null,
             "sources": [
-                "https://docs.mistral.ai/getting-started/models/"
+                "https://docs.mistral.ai/models/leanstral-1-5",
+                "https://mistral.ai/news/leanstral-1-5/"
             ],
             "deployment": {
-                "tps": 39.4,
-                "ttft": 1.04
+                "tps": null,
+                "ttft": null
             }
         },
         {
             "type": "model",
             "provider": "mistralai",
-            "name": "devstral-medium-latest",
+            "name": "labs-leanstral-1-5-1",
             "architecture": {
-                "type": "dense",
+                "type": "moe",
                 "parameters": {
-                    "min": 70,
-                    "max": 120
+                    "total": 119,
+                    "active": 6.5
                 }
             },
-            "warnings": [
-                "model-arch-not-released"
-            ],
+            "warnings": null,
             "sources": [
-                "https://docs.mistral.ai/getting-started/models/"
+                "https://docs.mistral.ai/models/leanstral-1-5",
+                "https://mistral.ai/news/leanstral-1-5/"
             ],
             "deployment": {
-                "tps": 39.4,
-                "ttft": 1.04
-            }
-        },
-        {
-            "type": "model",
-            "provider": "mistralai",
-            "name": "magistral-medium-2509",
-            "architecture": {
-                "type": "dense",
-                "parameters": {
-                    "min": 70,
-                    "max": 120
-                }
-            },
-            "warnings": [
-                "model-arch-not-released"
-            ],
-            "sources": [
-                "https://docs.mistral.ai/getting-started/models/"
-            ],
-            "deployment": {
-                "tps": 48.1,
-                "ttft": 1.83
+                "tps": null,
+                "ttft": null
             }
         },
         {
@@ -3539,25 +3434,8 @@
                 "https://docs.mistral.ai/getting-started/models/"
             ],
             "deployment": {
-                "tps": 34.2,
-                "ttft": 0.47
-            }
-        },
-        {
-            "type": "model",
-            "provider": "mistralai",
-            "name": "magistral-small-2509",
-            "architecture": {
-                "type": "dense",
-                "parameters": 23.6
-            },
-            "warnings": null,
-            "sources": [
-                "https://docs.mistral.ai/getting-started/models/"
-            ],
-            "deployment": {
-                "tps": 98.8,
-                "ttft": 0.29
+                "tps": 69.8,
+                "ttft": 743.75
             }
         },
         {
@@ -3573,8 +3451,8 @@
                 "https://docs.mistral.ai/getting-started/models/"
             ],
             "deployment": {
-                "tps": 55.9,
-                "ttft": 0.36
+                "tps": 8.8,
+                "ttft": 431.5
             }
         },
         {
@@ -3590,8 +3468,8 @@
                 "https://docs.mistral.ai/getting-started/models/"
             ],
             "deployment": {
-                "tps": 48.1,
-                "ttft": 0.27
+                "tps": 45.0,
+                "ttft": 357.0
             }
         },
         {
@@ -3607,8 +3485,8 @@
                 "https://docs.mistral.ai/getting-started/models/"
             ],
             "deployment": {
-                "tps": 48.1,
-                "ttft": 0.27
+                "tps": 48.0,
+                "ttft": 353.0
             }
         },
         {
@@ -3625,8 +3503,8 @@
                 "https://mistral.ai/news/ministraux"
             ],
             "deployment": {
-                "tps": 35.0,
-                "ttft": 0.2
+                "tps": 29.0,
+                "ttft": 332.0
             }
         },
         {
@@ -3643,8 +3521,8 @@
                 "https://mistral.ai/news/ministraux"
             ],
             "deployment": {
-                "tps": 35.0,
-                "ttft": 0.2
+                "tps": 29.0,
+                "ttft": 332.0
             }
         },
         {
@@ -3661,8 +3539,8 @@
                 "https://mistral.ai/news/ministraux"
             ],
             "deployment": {
-                "tps": 42.4,
-                "ttft": 0.23
+                "tps": 34.5,
+                "ttft": 346.0
             }
         },
         {
@@ -3679,8 +3557,26 @@
                 "https://mistral.ai/news/ministraux"
             ],
             "deployment": {
-                "tps": 42.4,
-                "ttft": 0.23
+                "tps": 34.5,
+                "ttft": 346.0
+            }
+        },
+        {
+            "type": "model",
+            "provider": "mistralai",
+            "name": "mistral-code-fim-latest",
+            "architecture": {
+                "type": "dense",
+                "parameters": 22.2
+            },
+            "warnings": null,
+            "sources": [
+                "https://docs.mistral.ai/getting-started/models/",
+                "https://mistral.ai/news/codestral"
+            ],
+            "deployment": {
+                "tps": 8.8,
+                "ttft": 431.5
             }
         },
         {
@@ -3688,17 +3584,23 @@
             "provider": "mistralai",
             "name": "mistral-large-2512",
             "architecture": {
-                "type": "dense",
-                "parameters": 123
+                "type": "moe",
+                "parameters": {
+                    "total": 675,
+                    "active": 41
+                }
             },
-            "warnings": null,
+            "warnings": [
+                "model-arch-multimodal"
+            ],
             "sources": [
-                "https://docs.mistral.ai/getting-started/models/",
-                "https://mistral.ai/news/mistral-large-2407"
+                "https://docs.mistral.ai/models/mistral-large-3-25-12",
+                "https://mistral.ai/news/mistral-3/",
+                "https://huggingface.co/mistralai/Mistral-Large-3-675B-Instruct-2512"
             ],
             "deployment": {
-                "tps": 41.5,
-                "ttft": 0.68
+                "tps": null,
+                "ttft": null
             }
         },
         {
@@ -3706,17 +3608,23 @@
             "provider": "mistralai",
             "name": "mistral-large-latest",
             "architecture": {
-                "type": "dense",
-                "parameters": 123
+                "type": "moe",
+                "parameters": {
+                    "total": 675,
+                    "active": 41
+                }
             },
-            "warnings": null,
+            "warnings": [
+                "model-arch-multimodal"
+            ],
             "sources": [
-                "https://docs.mistral.ai/getting-started/models/",
-                "https://mistral.ai/news/mistral-large-2407"
+                "https://docs.mistral.ai/models/mistral-large-3-25-12",
+                "https://mistral.ai/news/mistral-3/",
+                "https://huggingface.co/mistralai/Mistral-Large-3-675B-Instruct-2512"
             ],
             "deployment": {
-                "tps": 35.6,
-                "ttft": 0.54
+                "tps": 57.5,
+                "ttft": 1157.75
             }
         },
         {
@@ -3737,52 +3645,8 @@
                 "https://docs.mistral.ai/getting-started/models/"
             ],
             "deployment": {
-                "tps": 48.1,
-                "ttft": 1.83
-            }
-        },
-        {
-            "type": "model",
-            "provider": "mistralai",
-            "name": "mistral-medium-2505",
-            "architecture": {
-                "type": "dense",
-                "parameters": {
-                    "min": 70,
-                    "max": 120
-                }
-            },
-            "warnings": [
-                "model-arch-not-released"
-            ],
-            "sources": [
-                "https://docs.mistral.ai/getting-started/models/"
-            ],
-            "deployment": {
-                "tps": 34.5,
-                "ttft": 0.47
-            }
-        },
-        {
-            "type": "model",
-            "provider": "mistralai",
-            "name": "mistral-medium-2508",
-            "architecture": {
-                "type": "dense",
-                "parameters": {
-                    "min": 70,
-                    "max": 120
-                }
-            },
-            "warnings": [
-                "model-arch-not-released"
-            ],
-            "sources": [
-                "https://docs.mistral.ai/getting-started/models/"
-            ],
-            "deployment": {
-                "tps": 34.5,
-                "ttft": 0.47
+                "tps": 119.5,
+                "ttft": 708.25
             }
         },
         {
@@ -3801,8 +3665,8 @@
                 "https://huggingface.co/mistralai/Mistral-Medium-3.5-128B"
             ],
             "deployment": {
-                "tps": 34.5,
-                "ttft": 0.47
+                "tps": 69.8,
+                "ttft": 743.75
             }
         },
         {
@@ -3821,8 +3685,8 @@
                 "https://huggingface.co/mistralai/Mistral-Medium-3.5-128B"
             ],
             "deployment": {
-                "tps": 34.5,
-                "ttft": 0.47
+                "tps": 69.8,
+                "ttft": 743.75
             }
         },
         {
@@ -3841,8 +3705,8 @@
                 "https://huggingface.co/mistralai/Mistral-Medium-3.5-128B"
             ],
             "deployment": {
-                "tps": 48.1,
-                "ttft": 1.83
+                "tps": 119.5,
+                "ttft": 708.25
             }
         },
         {
@@ -3861,8 +3725,8 @@
                 "https://huggingface.co/mistralai/Mistral-Medium-3.5-128B"
             ],
             "deployment": {
-                "tps": 48.1,
-                "ttft": 1.83
+                "tps": 119.5,
+                "ttft": 708.25
             }
         },
         {
@@ -3883,26 +3747,8 @@
                 "https://docs.mistral.ai/getting-started/models/"
             ],
             "deployment": {
-                "tps": 34.5,
-                "ttft": 0.47
-            }
-        },
-        {
-            "type": "model",
-            "provider": "mistralai",
-            "name": "mistral-small-2506",
-            "architecture": {
-                "type": "dense",
-                "parameters": 23.6
-            },
-            "warnings": null,
-            "sources": [
-                "https://docs.mistral.ai/getting-started/models/",
-                "https://mistral.ai/news/mistral-small-3"
-            ],
-            "deployment": {
-                "tps": 116.9,
-                "ttft": 0.46
+                "tps": 69.8,
+                "ttft": 743.75
             }
         },
         {
@@ -3922,8 +3768,8 @@
                 "https://mistral.ai/news/mistral-small-4"
             ],
             "deployment": {
-                "tps": 116.9,
-                "ttft": 0.46
+                "tps": 66.0,
+                "ttft": 422.0
             }
         },
         {
@@ -3941,196 +3787,6 @@
             "sources": [
                 "https://docs.mistral.ai/getting-started/models/",
                 "https://mistral.ai/news/mistral-small-4"
-            ],
-            "deployment": {
-                "tps": 98.8,
-                "ttft": 0.29
-            }
-        },
-        {
-            "type": "model",
-            "provider": "mistralai",
-            "name": "mistral-tiny-2407",
-            "architecture": {
-                "type": "dense",
-                "parameters": 7.3
-            },
-            "warnings": [
-                "model-arch-not-released"
-            ],
-            "sources": [
-                "https://docs.mistral.ai/getting-started/models/"
-            ],
-            "deployment": {
-                "tps": 98.8,
-                "ttft": 0.29
-            }
-        },
-        {
-            "type": "model",
-            "provider": "mistralai",
-            "name": "mistral-tiny-latest",
-            "architecture": {
-                "type": "dense",
-                "parameters": 7.3
-            },
-            "warnings": [
-                "model-arch-not-released"
-            ],
-            "sources": [
-                "https://docs.mistral.ai/getting-started/models/"
-            ],
-            "deployment": {
-                "tps": 98.8,
-                "ttft": 0.29
-            }
-        },
-        {
-            "type": "model",
-            "provider": "mistralai",
-            "name": "open-mistral-7b",
-            "architecture": {
-                "type": "dense",
-                "parameters": 7.3
-            },
-            "warnings": null,
-            "sources": [
-                "https://docs.mistral.ai/getting-started/models/",
-                "https://mistral.ai/news/announcing-mistral-7b"
-            ],
-            "deployment": {
-                "tps": 98.8,
-                "ttft": 0.29
-            }
-        },
-        {
-            "type": "model",
-            "provider": "mistralai",
-            "name": "open-mistral-nemo",
-            "architecture": {
-                "type": "dense",
-                "parameters": 12.2
-            },
-            "warnings": null,
-            "sources": [
-                "https://docs.mistral.ai/getting-started/models/",
-                "https://mistral.ai/news/mistral-nemo"
-            ],
-            "deployment": {
-                "tps": 81.0,
-                "ttft": 0.3
-            }
-        },
-        {
-            "type": "model",
-            "provider": "mistralai",
-            "name": "open-mistral-nemo-2407",
-            "architecture": {
-                "type": "dense",
-                "parameters": 12.2
-            },
-            "warnings": null,
-            "sources": [
-                "https://docs.mistral.ai/getting-started/models/",
-                "https://mistral.ai/news/mistral-nemo"
-            ],
-            "deployment": {
-                "tps": 81.0,
-                "ttft": 0.3
-            }
-        },
-        {
-            "type": "model",
-            "provider": "mistralai",
-            "name": "pixtral-12b",
-            "architecture": {
-                "type": "dense",
-                "parameters": 12
-            },
-            "warnings": [
-                "model-arch-multimodal"
-            ],
-            "sources": [
-                "https://docs.mistral.ai/getting-started/models/",
-                "https://mistral.ai/news/pixtral-12b"
-            ],
-            "deployment": {
-                "tps": 98.5,
-                "ttft": 0.39
-            }
-        },
-        {
-            "type": "model",
-            "provider": "mistralai",
-            "name": "pixtral-12b-2409",
-            "architecture": {
-                "type": "dense",
-                "parameters": 12
-            },
-            "warnings": [
-                "model-arch-multimodal"
-            ],
-            "sources": [
-                "https://docs.mistral.ai/getting-started/models/",
-                "https://mistral.ai/news/pixtral-12b"
-            ],
-            "deployment": {
-                "tps": 48.1,
-                "ttft": 0.27
-            }
-        },
-        {
-            "type": "model",
-            "provider": "mistralai",
-            "name": "pixtral-12b-latest",
-            "architecture": {
-                "type": "dense",
-                "parameters": 12
-            },
-            "warnings": [
-                "model-arch-multimodal"
-            ],
-            "sources": [
-                "https://docs.mistral.ai/getting-started/models/",
-                "https://mistral.ai/news/pixtral-12b"
-            ],
-            "deployment": {
-                "tps": 41.5,
-                "ttft": 0.68
-            }
-        },
-        {
-            "type": "model",
-            "provider": "mistralai",
-            "name": "voxtral-mini-2507",
-            "architecture": {
-                "type": "dense",
-                "parameters": 4.68
-            },
-            "warnings": [
-                "model-arch-multimodal"
-            ],
-            "sources": [
-                "https://docs.mistral.ai/getting-started/models/"
-            ],
-            "deployment": {
-                "tps": null,
-                "ttft": null
-            }
-        },
-        {
-            "type": "model",
-            "provider": "mistralai",
-            "name": "voxtral-mini-2509",
-            "architecture": {
-                "type": "dense",
-                "parameters": 4.68
-            },
-            "warnings": [
-                "model-arch-multimodal"
-            ],
-            "sources": [
-                "https://docs.mistral.ai/getting-started/models/"
             ],
             "deployment": {
                 "tps": null,
@@ -4152,8 +3808,8 @@
                 "https://docs.mistral.ai/getting-started/models/"
             ],
             "deployment": {
-                "tps": null,
-                "ttft": null
+                "tps": 44.5,
+                "ttft": 527.25
             }
         },
         {
@@ -4171,8 +3827,8 @@
                 "https://docs.mistral.ai/getting-started/models/"
             ],
             "deployment": {
-                "tps": null,
-                "ttft": null
+                "tps": 57.5,
+                "ttft": 1157.75
             }
         },
         {
@@ -4190,8 +3846,8 @@
                 "https://docs.mistral.ai/getting-started/models/"
             ],
             "deployment": {
-                "tps": 79.9,
-                "ttft": 0.31
+                "tps": 44.5,
+                "ttft": 527.25
             }
         },
         {
@@ -4209,133 +3865,146 @@
                 "https://docs.mistral.ai/getting-started/models/"
             ],
             "deployment": {
-                "tps": 98.8,
-                "ttft": 0.29
+                "tps": null,
+                "ttft": null
+            }
+        },
+        {
+            "type": "model",
+            "provider": "mistralai",
+            "name": "zai-glm-5",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 744,
+                    "active": 40
+                }
+            },
+            "warnings": null,
+            "sources": [
+                "https://docs.mistral.ai/models/zai-glm-5-2",
+                "https://github.com/zai-org/GLM-5"
+            ],
+            "deployment": {
+                "tps": 119.5,
+                "ttft": 708.25
+            }
+        },
+        {
+            "type": "model",
+            "provider": "mistralai",
+            "name": "zai-glm-5-2",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 744,
+                    "active": 40
+                }
+            },
+            "warnings": null,
+            "sources": [
+                "https://docs.mistral.ai/models/zai-glm-5-2",
+                "https://github.com/zai-org/GLM-5"
+            ],
+            "deployment": {
+                "tps": 119.5,
+                "ttft": 708.25
+            }
+        },
+        {
+            "type": "model",
+            "provider": "mistralai",
+            "name": "zai-glm-5-3",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 744,
+                    "active": 40
+                }
+            },
+            "warnings": null,
+            "sources": [
+                "https://docs.mistral.ai/models/zai-glm-5-2",
+                "https://github.com/zai-org/GLM-5"
+            ],
+            "deployment": {
+                "tps": 119.5,
+                "ttft": 708.25
+            }
+        },
+        {
+            "type": "model",
+            "provider": "mistralai",
+            "name": "zai-glm-latest",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 744,
+                    "active": 40
+                }
+            },
+            "warnings": null,
+            "sources": [
+                "https://docs.mistral.ai/models/zai-glm-5-2",
+                "https://github.com/zai-org/GLM-5"
+            ],
+            "deployment": {
+                "tps": 57.5,
+                "ttft": 1157.75
             }
         },
         {
             "type": "model",
             "provider": "anthropic",
-            "name": "claude-opus-4-1-20250805",
+            "name": "claude-fable-5",
             "architecture": {
                 "type": "moe",
                 "parameters": {
-                    "total": 2000,
+                    "total": 1340,
                     "active": {
-                        "min": 200,
-                        "max": 600
+                        "min": 134,
+                        "max": 400
                     }
                 }
             },
             "warnings": [
-                "model-arch-not-released"
+                "model-arch-not-released",
+                "model-arch-multimodal"
             ],
             "sources": [
-                "https://docs.anthropic.com/en/docs/about-claude/models"
+                "https://platform.claude.com/docs/en/models/fable-5/overview",
+                "https://platform.claude.com/docs/en/models/overview"
             ],
             "deployment": {
-                "tps": 12.1,
-                "ttft": 1.74
+                "tps": 61.0,
+                "ttft": 4778.0
             }
         },
         {
             "type": "model",
             "provider": "anthropic",
-            "name": "claude-opus-4-20250514",
+            "name": "claude-fable-5-1",
             "architecture": {
                 "type": "moe",
                 "parameters": {
-                    "total": 2000,
+                    "total": 1340,
                     "active": {
-                        "min": 200,
-                        "max": 600
+                        "min": 134,
+                        "max": 400
                     }
                 }
             },
             "warnings": [
-                "model-arch-not-released"
+                "model-arch-not-released",
+                "model-arch-multimodal"
             ],
             "sources": [
-                "https://docs.anthropic.com/en/docs/about-claude/models"
+                "https://platform.claude.com/docs/en/models/fable-5-1/overview",
+                "https://platform.claude.com/docs/en/models/overview"
             ],
             "deployment": {
-                "tps": 15.9,
-                "ttft": 1.99
-            }
-        },
-        {
-            "type": "model",
-            "provider": "anthropic",
-            "name": "claude-sonnet-4-20250514",
-            "architecture": {
-                "type": "moe",
-                "parameters": {
-                    "total": 440,
-                    "active": {
-                        "min": 44,
-                        "max": 132
-                    }
-                }
-            },
-            "warnings": [
-                "model-arch-not-released"
-            ],
-            "sources": [
-                "https://docs.anthropic.com/en/docs/about-claude/models"
-            ],
-            "deployment": {
-                "tps": 40.4,
-                "ttft": 0.94
-            }
-        },
-        {
-            "type": "model",
-            "provider": "anthropic",
-            "name": "claude-sonnet-4-5-20250929",
-            "architecture": {
-                "type": "moe",
-                "parameters": {
-                    "total": 440,
-                    "active": {
-                        "min": 44,
-                        "max": 132
-                    }
-                }
-            },
-            "warnings": [
-                "model-arch-not-released"
-            ],
-            "sources": [
-                "https://docs.anthropic.com/en/docs/about-claude/models"
-            ],
-            "deployment": {
-                "tps": 32.2,
-                "ttft": 1.33
-            }
-        },
-        {
-            "type": "model",
-            "provider": "anthropic",
-            "name": "claude-sonnet-4-6",
-            "architecture": {
-                "type": "moe",
-                "parameters": {
-                    "total": 440,
-                    "active": {
-                        "min": 44,
-                        "max": 132
-                    }
-                }
-            },
-            "warnings": [
-                "model-arch-not-released"
-            ],
-            "sources": [
-                "https://docs.anthropic.com/en/docs/about-claude/models"
-            ],
-            "deployment": {
-                "tps": 41.4,
-                "ttft": 1.56
+                "tps": 46.0,
+                "ttft": 5590.5
             }
         },
         {
@@ -4356,8 +4025,8 @@
                 "https://docs.anthropic.com/en/docs/about-claude/models"
             ],
             "deployment": {
-                "tps": 71.1,
-                "ttft": 0.67
+                "tps": 59.0,
+                "ttft": 548.0
             }
         },
         {
@@ -4381,8 +4050,8 @@
                 "https://docs.anthropic.com/en/docs/about-claude/models"
             ],
             "deployment": {
-                "tps": 39.6,
-                "ttft": 1.56
+                "tps": 13.0,
+                "ttft": 1121.0
             }
         },
         {
@@ -4406,8 +4075,8 @@
                 "https://docs.anthropic.com/en/docs/about-claude/models"
             ],
             "deployment": {
-                "tps": 37.0,
-                "ttft": 2.19
+                "tps": 33.0,
+                "ttft": 2297.0
             }
         },
         {
@@ -4431,8 +4100,8 @@
                 "https://docs.anthropic.com/en/docs/about-claude/models"
             ],
             "deployment": {
-                "tps": 47.4,
-                "ttft": 1.76
+                "tps": 44.0,
+                "ttft": 1215.0
             }
         },
         {
@@ -4456,14 +4125,41 @@
                 "https://docs.anthropic.com/en/docs/about-claude/models"
             ],
             "deployment": {
-                "tps": 58.0,
-                "ttft": 1.63
+                "tps": 98.5,
+                "ttft": 1145.75
             }
         },
         {
             "type": "model",
-            "provider": "google_genai",
-            "name": "gemini-2.0-flash",
+            "provider": "anthropic",
+            "name": "claude-opus-5",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 670,
+                    "active": {
+                        "min": 67,
+                        "max": 200
+                    }
+                }
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://platform.claude.com/docs/en/models/opus-5/overview",
+                "https://platform.claude.com/docs/en/models/overview"
+            ],
+            "deployment": {
+                "tps": 73.0,
+                "ttft": 3374.0
+            }
+        },
+        {
+            "type": "model",
+            "provider": "anthropic",
+            "name": "claude-sonnet-4-5-20250929",
             "architecture": {
                 "type": "moe",
                 "parameters": {
@@ -4475,21 +4171,20 @@
                 }
             },
             "warnings": [
-                "model-arch-not-released",
-                "model-arch-multimodal"
+                "model-arch-not-released"
             ],
             "sources": [
-                "https://ai.google.dev/gemini-api/docs/models"
+                "https://docs.anthropic.com/en/docs/about-claude/models"
             ],
             "deployment": {
-                "tps": 64.6,
-                "ttft": 1.1
+                "tps": 41.0,
+                "ttft": 1161.0
             }
         },
         {
             "type": "model",
-            "provider": "google_genai",
-            "name": "gemini-2.0-flash-001",
+            "provider": "anthropic",
+            "name": "claude-sonnet-4-6",
             "architecture": {
                 "type": "moe",
                 "parameters": {
@@ -4501,26 +4196,28 @@
                 }
             },
             "warnings": [
-                "model-arch-not-released",
-                "model-arch-multimodal"
+                "model-arch-not-released"
             ],
             "sources": [
-                "https://ai.google.dev/gemini-api/docs/models"
+                "https://docs.anthropic.com/en/docs/about-claude/models"
             ],
             "deployment": {
-                "tps": 64.6,
-                "ttft": 1.1
+                "tps": 33.0,
+                "ttft": 1300.0
             }
         },
         {
             "type": "model",
-            "provider": "google_genai",
-            "name": "gemini-2.0-flash-lite",
+            "provider": "anthropic",
+            "name": "claude-sonnet-5",
             "architecture": {
-                "type": "dense",
+                "type": "moe",
                 "parameters": {
-                    "min": 8,
-                    "max": 28
+                    "total": 293,
+                    "active": {
+                        "min": 29,
+                        "max": 88
+                    }
                 }
             },
             "warnings": [
@@ -4528,34 +4225,12 @@
                 "model-arch-multimodal"
             ],
             "sources": [
-                "https://ai.google.dev/gemini-api/docs/models"
+                "https://platform.claude.com/docs/en/models/sonnet-5/overview",
+                "https://platform.claude.com/docs/en/models/overview"
             ],
             "deployment": {
-                "tps": 101.0,
-                "ttft": 0.5
-            }
-        },
-        {
-            "type": "model",
-            "provider": "google_genai",
-            "name": "gemini-2.0-flash-lite-001",
-            "architecture": {
-                "type": "dense",
-                "parameters": {
-                    "min": 8,
-                    "max": 28
-                }
-            },
-            "warnings": [
-                "model-arch-not-released",
-                "model-arch-multimodal"
-            ],
-            "sources": [
-                "https://ai.google.dev/gemini-api/docs/models"
-            ],
-            "deployment": {
-                "tps": 101.0,
-                "ttft": 0.5
+                "tps": 62.0,
+                "ttft": 2349.0
             }
         },
         {
@@ -4580,8 +4255,8 @@
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
             "deployment": {
-                "tps": 64.6,
-                "ttft": 1.1
+                "tps": 92.0,
+                "ttft": 1414.75
             }
         },
         {
@@ -4606,8 +4281,8 @@
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
             "deployment": {
-                "tps": 158.5,
-                "ttft": 7.2
+                "tps": 0.0,
+                "ttft": 12008.0
             }
         },
         {
@@ -4629,8 +4304,8 @@
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
             "deployment": {
-                "tps": 101.0,
-                "ttft": 0.5
+                "tps": 60.0,
+                "ttft": 865.0
             }
         },
         {
@@ -4655,8 +4330,8 @@
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
             "deployment": {
-                "tps": 89.6,
-                "ttft": 2.28
+                "tps": 82.0,
+                "ttft": 2273.75
             }
         },
         {
@@ -4681,8 +4356,8 @@
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
             "deployment": {
-                "tps": 73.9,
-                "ttft": 1.24
+                "tps": 58.0,
+                "ttft": 1513.0
             }
         },
         {
@@ -4707,34 +4382,8 @@
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
             "deployment": {
-                "tps": 55.2,
-                "ttft": 22.28
-            }
-        },
-        {
-            "type": "model",
-            "provider": "google_genai",
-            "name": "gemini-3-pro-preview",
-            "architecture": {
-                "type": "moe",
-                "parameters": {
-                    "total": 1200,
-                    "active": {
-                        "min": 120,
-                        "max": 360
-                    }
-                }
-            },
-            "warnings": [
-                "model-arch-not-released",
-                "model-arch-multimodal"
-            ],
-            "sources": [
-                "https://ai.google.dev/gemini-api/docs/models"
-            ],
-            "deployment": {
-                "tps": 73.0,
-                "ttft": 4.32
+                "tps": null,
+                "ttft": null
             }
         },
         {
@@ -4759,8 +4408,8 @@
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
             "deployment": {
-                "tps": 80.9,
-                "ttft": 13.21
+                "tps": null,
+                "ttft": null
             }
         },
         {
@@ -4782,8 +4431,8 @@
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
             "deployment": {
-                "tps": 115.4,
-                "ttft": 1.48
+                "tps": 83.0,
+                "ttft": 762.0
             }
         },
         {
@@ -4805,8 +4454,8 @@
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
             "deployment": {
-                "tps": 85.1,
-                "ttft": 0.95
+                "tps": null,
+                "ttft": null
             }
         },
         {
@@ -4831,8 +4480,8 @@
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
             "deployment": {
-                "tps": 73.0,
-                "ttft": 4.32
+                "tps": 97.2,
+                "ttft": 2680.75
             }
         },
         {
@@ -4885,8 +4534,112 @@
                 "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/"
             ],
             "deployment": {
-                "tps": 130.6,
-                "ttft": 2.72
+                "tps": 71.0,
+                "ttft": 1664.0
+            }
+        },
+        {
+            "type": "model",
+            "provider": "google_genai",
+            "name": "gemini-3.5-flash-lite",
+            "architecture": {
+                "type": "dense",
+                "parameters": {
+                    "min": 30,
+                    "max": 105
+                }
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://ai.google.dev/gemini-api/docs/models"
+            ],
+            "deployment": {
+                "tps": 54.0,
+                "ttft": 1116.0
+            }
+        },
+        {
+            "type": "model",
+            "provider": "google_genai",
+            "name": "gemini-3.6-flash",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 750,
+                    "active": {
+                        "min": 75,
+                        "max": 200
+                    }
+                }
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://ai.google.dev/gemini-api/docs/models/gemini-3.6-flash",
+                "https://deepmind.google/models/model-cards/gemini-3-6-flash/"
+            ],
+            "deployment": {
+                "tps": 104.5,
+                "ttft": 1882.25
+            }
+        },
+        {
+            "type": "model",
+            "provider": "google_genai",
+            "name": "gemini-3.7-flash",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 750,
+                    "active": {
+                        "min": 75,
+                        "max": 200
+                    }
+                }
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://ai.google.dev/gemini-api/docs/models/gemini-3.6-flash",
+                "https://deepmind.google/models/model-cards/gemini-3-6-flash/"
+            ],
+            "deployment": {
+                "tps": 98.0,
+                "ttft": 2348.0
+            }
+        },
+        {
+            "type": "model",
+            "provider": "google_genai",
+            "name": "gemini-3.8-flash",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 750,
+                    "active": {
+                        "min": 75,
+                        "max": 200
+                    }
+                }
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://ai.google.dev/gemini-api/docs/models/gemini-3.6-flash",
+                "https://deepmind.google/models/model-cards/gemini-3-6-flash/"
+            ],
+            "deployment": {
+                "tps": 58.0,
+                "ttft": 2846.5
             }
         },
         {
@@ -4911,8 +4664,8 @@
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
             "deployment": {
-                "tps": 85.1,
-                "ttft": 0.95
+                "tps": null,
+                "ttft": null
             }
         },
         {
@@ -4934,8 +4687,8 @@
                 "https://ai.google.dev/gemini-api/docs/models"
             ],
             "deployment": {
-                "tps": 130.6,
-                "ttft": 2.72
+                "tps": null,
+                "ttft": null
             }
         },
         {
@@ -4984,8 +4737,8 @@
                 "https://deepmind.google/models/gemma/gemma-4/"
             ],
             "deployment": {
-                "tps": 61.5,
-                "ttft": 0.37
+                "tps": 23.0,
+                "ttft": 2815.0
             }
         },
         {
@@ -5033,8 +4786,8 @@
                 "https://inferencebench.io/models/proprietary/gpt-5-5/"
             ],
             "deployment": {
-                "tps": 73.0,
-                "ttft": 1.01
+                "tps": 55.0,
+                "ttft": 1414.0
             }
         },
         {
@@ -5055,8 +4808,8 @@
                 "https://platform.openai.com/docs/models#gpt-3-5-turbo"
             ],
             "deployment": {
-                "tps": 44.3,
-                "ttft": 0.43
+                "tps": 20.0,
+                "ttft": 736.5
             }
         },
         {
@@ -5077,8 +4830,8 @@
                 "https://platform.openai.com/docs/models#gpt-3-5-turbo"
             ],
             "deployment": {
-                "tps": 44.3,
-                "ttft": 0.43
+                "tps": 20.0,
+                "ttft": 736.5
             }
         },
         {
@@ -5099,8 +4852,8 @@
                 "https://platform.openai.com/docs/models#gpt-3-5-turbo"
             ],
             "deployment": {
-                "tps": 44.3,
-                "ttft": 0.43
+                "tps": 20.0,
+                "ttft": 736.5
             }
         },
         {
@@ -5121,8 +4874,8 @@
                 "https://platform.openai.com/docs/models#gpt-3-5-turbo"
             ],
             "deployment": {
-                "tps": 37.2,
-                "ttft": 0.44
+                "tps": 80.5,
+                "ttft": 759.0
             }
         },
         {
@@ -5143,8 +4896,8 @@
                 "https://platform.openai.com/docs/models#gpt-3-5-turbo"
             ],
             "deployment": {
-                "tps": 79.4,
-                "ttft": 0.73
+                "tps": 43.0,
+                "ttft": 556.0
             }
         },
         {
@@ -5165,8 +4918,8 @@
                 "https://platform.openai.com/docs/models#gpt-3-5-turbo"
             ],
             "deployment": {
-                "tps": 79.4,
-                "ttft": 0.73
+                "tps": 43.0,
+                "ttft": 556.0
             }
         },
         {
@@ -5191,8 +4944,8 @@
                 "https://platform.openai.com/docs/models#gpt-4-turbo-and-gpt-4"
             ],
             "deployment": {
-                "tps": 22.4,
-                "ttft": 0.85
+                "tps": 10.0,
+                "ttft": 551.5
             }
         },
         {
@@ -5217,8 +4970,8 @@
                 "https://platform.openai.com/docs/models#gpt-4-turbo-and-gpt-4"
             ],
             "deployment": {
-                "tps": 22.4,
-                "ttft": 0.85
+                "tps": 10.0,
+                "ttft": 551.5
             }
         },
         {
@@ -5243,8 +4996,8 @@
                 "https://platform.openai.com/docs/models#gpt-4-turbo-and-gpt-4"
             ],
             "deployment": {
-                "tps": 14.9,
-                "ttft": 1.17
+                "tps": 2.5,
+                "ttft": 1085.0
             }
         },
         {
@@ -5269,8 +5022,8 @@
                 "https://platform.openai.com/docs/models#gpt-4-turbo-and-gpt-4"
             ],
             "deployment": {
-                "tps": 14.9,
-                "ttft": 1.17
+                "tps": 2.5,
+                "ttft": 1100.0
             }
         },
         {
@@ -5295,8 +5048,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 42.5,
-                "ttft": 0.63
+                "tps": 44.0,
+                "ttft": 1198.0
             }
         },
         {
@@ -5321,8 +5074,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 42.5,
-                "ttft": 0.63
+                "tps": 44.0,
+                "ttft": 1198.0
             }
         },
         {
@@ -5344,8 +5097,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 34.4,
-                "ttft": 0.69
+                "tps": 41.0,
+                "ttft": 1022.0
             }
         },
         {
@@ -5367,8 +5120,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 42.5,
-                "ttft": 0.63
+                "tps": 44.0,
+                "ttft": 1198.0
             }
         },
         {
@@ -5390,8 +5143,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 26.1,
-                "ttft": 0.48
+                "tps": 36.0,
+                "ttft": 961.0
             }
         },
         {
@@ -5413,8 +5166,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 42.5,
-                "ttft": 0.63
+                "tps": 44.0,
+                "ttft": 1198.0
             }
         },
         {
@@ -5439,8 +5192,8 @@
                 "https://platform.openai.com/docs/models#gpt-4o"
             ],
             "deployment": {
-                "tps": 46.2,
-                "ttft": 0.53
+                "tps": 44.0,
+                "ttft": 672.0
             }
         },
         {
@@ -5465,8 +5218,8 @@
                 "https://platform.openai.com/docs/models#gpt-4o"
             ],
             "deployment": {
-                "tps": 47.8,
-                "ttft": 0.35
+                "tps": 66.0,
+                "ttft": 1579.0
             }
         },
         {
@@ -5491,8 +5244,8 @@
                 "https://platform.openai.com/docs/models#gpt-4o"
             ],
             "deployment": {
-                "tps": 29.1,
-                "ttft": 1.23
+                "tps": 16.0,
+                "ttft": 824.0
             }
         },
         {
@@ -5517,8 +5270,8 @@
                 "https://platform.openai.com/docs/models#gpt-4o"
             ],
             "deployment": {
-                "tps": 77.8,
-                "ttft": 0.43
+                "tps": 38.0,
+                "ttft": 740.5
             }
         },
         {
@@ -5540,8 +5293,8 @@
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
             ],
             "deployment": {
-                "tps": 33.0,
-                "ttft": 0.6
+                "tps": 44.0,
+                "ttft": 613.0
             }
         },
         {
@@ -5563,8 +5316,8 @@
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
             ],
             "deployment": {
-                "tps": 45.5,
-                "ttft": 0.58
+                "tps": 12.0,
+                "ttft": 596.0
             }
         },
         {
@@ -5586,8 +5339,8 @@
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
             ],
             "deployment": {
-                "tps": 47.1,
-                "ttft": 1.82
+                "tps": 44.0,
+                "ttft": 613.0
             }
         },
         {
@@ -5609,8 +5362,8 @@
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
             ],
             "deployment": {
-                "tps": 47.1,
-                "ttft": 1.82
+                "tps": 44.0,
+                "ttft": 613.0
             }
         },
         {
@@ -5632,8 +5385,8 @@
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
             ],
             "deployment": {
-                "tps": null,
-                "ttft": null
+                "tps": 44.0,
+                "ttft": 613.0
             }
         },
         {
@@ -5655,8 +5408,8 @@
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
             ],
             "deployment": {
-                "tps": null,
-                "ttft": null
+                "tps": 44.0,
+                "ttft": 613.0
             }
         },
         {
@@ -5678,8 +5431,8 @@
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
             ],
             "deployment": {
-                "tps": null,
-                "ttft": null
+                "tps": 44.0,
+                "ttft": 613.0
             }
         },
         {
@@ -5701,8 +5454,8 @@
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
             ],
             "deployment": {
-                "tps": 32.9,
-                "ttft": 0.6
+                "tps": 44.0,
+                "ttft": 613.0
             }
         },
         {
@@ -5724,8 +5477,8 @@
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
             ],
             "deployment": {
-                "tps": 32.9,
-                "ttft": 0.6
+                "tps": 44.0,
+                "ttft": 613.0
             }
         },
         {
@@ -5747,8 +5500,8 @@
                 "https://platform.openai.com/docs/models#gpt-4o-mini"
             ],
             "deployment": {
-                "tps": null,
-                "ttft": null
+                "tps": 44.0,
+                "ttft": 613.0
             }
         },
         {
@@ -5773,8 +5526,8 @@
                 "https://platform.openai.com/docs/models#gpt-4o"
             ],
             "deployment": {
-                "tps": 46.0,
-                "ttft": 2.17
+                "tps": 44.0,
+                "ttft": 672.0
             }
         },
         {
@@ -5799,8 +5552,8 @@
                 "https://platform.openai.com/docs/models#gpt-4o"
             ],
             "deployment": {
-                "tps": 46.0,
-                "ttft": 2.17
+                "tps": 44.0,
+                "ttft": 672.0
             }
         },
         {
@@ -5825,8 +5578,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 53.6,
-                "ttft": 1.57
+                "tps": 60.0,
+                "ttft": 3836.5
             }
         },
         {
@@ -5851,8 +5604,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 43.8,
-                "ttft": 2.29
+                "tps": 65.0,
+                "ttft": 2052.0
             }
         },
         {
@@ -5877,8 +5630,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 73.0,
-                "ttft": 1.01
+                "tps": 55.0,
+                "ttft": 1414.0
             }
         },
         {
@@ -5903,8 +5656,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 53.1,
-                "ttft": 2.32
+                "tps": 80.0,
+                "ttft": 2069.5
             }
         },
         {
@@ -5926,8 +5679,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 71.0,
-                "ttft": 4.28
+                "tps": 61.0,
+                "ttft": 6596.0
             }
         },
         {
@@ -5949,8 +5702,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 53.6,
-                "ttft": 1.57
+                "tps": 60.0,
+                "ttft": 3836.5
             }
         },
         {
@@ -5972,8 +5725,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 96.1,
-                "ttft": 2.29
+                "tps": 94.0,
+                "ttft": 1470.0
             }
         },
         {
@@ -5995,8 +5748,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 53.6,
-                "ttft": 1.57
+                "tps": 60.0,
+                "ttft": 3836.5
             }
         },
         {
@@ -6021,8 +5774,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 12.2,
-                "ttft": 59.54
+                "tps": 4.0,
+                "ttft": 414.0
             }
         },
         {
@@ -6047,8 +5800,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 12.2,
-                "ttft": 59.54
+                "tps": 1.0,
+                "ttft": 9680.0
             }
         },
         {
@@ -6073,8 +5826,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 53.6,
-                "ttft": 1.57
+                "tps": 60.0,
+                "ttft": 3836.5
             }
         },
         {
@@ -6099,8 +5852,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 53.6,
-                "ttft": 1.57
+                "tps": 60.0,
+                "ttft": 3836.5
             }
         },
         {
@@ -6125,8 +5878,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 60.6,
-                "ttft": 1.85
+                "tps": 26.0,
+                "ttft": 971.0
             }
         },
         {
@@ -6151,8 +5904,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 60.6,
-                "ttft": 1.85
+                "tps": 26.0,
+                "ttft": 971.0
             }
         },
         {
@@ -6177,8 +5930,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 73.0,
-                "ttft": 1.01
+                "tps": 55.0,
+                "ttft": 1414.0
             }
         },
         {
@@ -6203,8 +5956,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 59.1,
-                "ttft": 2.15
+                "tps": null,
+                "ttft": null
             }
         },
         {
@@ -6229,8 +5982,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 83.9,
-                "ttft": 2.68
+                "tps": null,
+                "ttft": null
             }
         },
         {
@@ -6252,8 +6005,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 71.6,
-                "ttft": 1.7
+                "tps": null,
+                "ttft": null
             }
         },
         {
@@ -6278,8 +6031,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 43.8,
-                "ttft": 2.29
+                "tps": 65.0,
+                "ttft": 2052.0
             }
         },
         {
@@ -6304,8 +6057,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 43.8,
-                "ttft": 2.29
+                "tps": 65.0,
+                "ttft": 2052.0
             }
         },
         {
@@ -6330,8 +6083,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 73.0,
-                "ttft": 1.01
+                "tps": 55.0,
+                "ttft": 1414.0
             }
         },
         {
@@ -6356,8 +6109,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 58.8,
-                "ttft": 2.04
+                "tps": null,
+                "ttft": null
             }
         },
         {
@@ -6382,8 +6135,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 8.1,
-                "ttft": 15.82
+                "tps": 6.0,
+                "ttft": 9624.0
             }
         },
         {
@@ -6408,8 +6161,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 8.1,
-                "ttft": 15.82
+                "tps": 6.0,
+                "ttft": 9624.0
             }
         },
         {
@@ -6434,8 +6187,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 73.0,
-                "ttft": 1.01
+                "tps": 55.0,
+                "ttft": 1414.0
             }
         },
         {
@@ -6460,8 +6213,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 48.8,
-                "ttft": 3.01
+                "tps": 80.0,
+                "ttft": 2069.5
             }
         },
         {
@@ -6486,8 +6239,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 45.5,
-                "ttft": 1.01
+                "tps": 51.0,
+                "ttft": 1242.0
             }
         },
         {
@@ -6512,8 +6265,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 45.5,
-                "ttft": 1.01
+                "tps": 51.0,
+                "ttft": 1242.0
             }
         },
         {
@@ -6536,7 +6289,7 @@
             ],
             "deployment": {
                 "tps": 73.0,
-                "ttft": 0.67
+                "ttft": 1073.5
             }
         },
         {
@@ -6559,7 +6312,7 @@
             ],
             "deployment": {
                 "tps": 73.0,
-                "ttft": 0.67
+                "ttft": 1073.5
             }
         },
         {
@@ -6581,8 +6334,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 70.8,
-                "ttft": 0.54
+                "tps": 83.5,
+                "ttft": 874.0
             }
         },
         {
@@ -6604,8 +6357,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 70.8,
-                "ttft": 0.54
+                "tps": 83.5,
+                "ttft": 874.0
             }
         },
         {
@@ -6630,8 +6383,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 4.0,
-                "ttft": 26.59
+                "tps": 1.0,
+                "ttft": 10137.0
             }
         },
         {
@@ -6656,8 +6409,8 @@
                 "https://platform.openai.com/docs/models"
             ],
             "deployment": {
-                "tps": 4.0,
-                "ttft": 26.59
+                "tps": 1.0,
+                "ttft": 10137.0
             }
         },
         {
@@ -6684,8 +6437,8 @@
                 "https://inferencebench.io/models/proprietary/gpt-5-5/"
             ],
             "deployment": {
-                "tps": 40.4,
-                "ttft": 3.38
+                "tps": 64.0,
+                "ttft": 2620.75
             }
         },
         {
@@ -6712,8 +6465,8 @@
                 "https://inferencebench.io/models/proprietary/gpt-5-5/"
             ],
             "deployment": {
-                "tps": 40.4,
-                "ttft": 3.38
+                "tps": 64.0,
+                "ttft": 2620.75
             }
         },
         {
@@ -6740,8 +6493,8 @@
                 "https://www.swfte.com/research/gpt-5-5"
             ],
             "deployment": {
-                "tps": 14.4,
-                "ttft": 46.04
+                "tps": 4.0,
+                "ttft": 3411.0
             }
         },
         {
@@ -6768,8 +6521,116 @@
                 "https://www.swfte.com/research/gpt-5-5"
             ],
             "deployment": {
-                "tps": 14.4,
-                "ttft": 46.04
+                "tps": 4.0,
+                "ttft": 3411.0
+            }
+        },
+        {
+            "type": "model",
+            "provider": "openai",
+            "name": "gpt-5.6-luna",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 180,
+                    "active": {
+                        "min": 18,
+                        "max": 60
+                    }
+                }
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://openai.com/index/gpt-5-6/",
+                "https://developers.openai.com/api/docs/models/gpt-5.6-luna"
+            ],
+            "deployment": {
+                "tps": 66.0,
+                "ttft": 1980.0
+            }
+        },
+        {
+            "type": "model",
+            "provider": "openai",
+            "name": "gpt-5.6-sol",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 900,
+                    "active": {
+                        "min": 90,
+                        "max": 300
+                    }
+                }
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://openai.com/index/gpt-5-6/",
+                "https://developers.openai.com/api/docs/models/gpt-5.6-sol"
+            ],
+            "deployment": {
+                "tps": 45.0,
+                "ttft": 4391.0
+            }
+        },
+        {
+            "type": "model",
+            "provider": "openai",
+            "name": "gpt-5.6-terra",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 450,
+                    "active": {
+                        "min": 45,
+                        "max": 150
+                    }
+                }
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://openai.com/index/gpt-5-6/",
+                "https://developers.openai.com/api/docs/models/gpt-5.6-terra"
+            ],
+            "deployment": {
+                "tps": 46.0,
+                "ttft": 2196.5
+            }
+        },
+        {
+            "type": "model",
+            "provider": "openai",
+            "name": "gpt-6-astra",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 1500,
+                    "active": {
+                        "min": 150,
+                        "max": 500
+                    }
+                }
+            },
+            "warnings": [
+                "model-arch-not-released",
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://openai.com/index/gpt-6-astra/",
+                "https://developers.openai.com/api/docs/models/gpt-6-astra"
+            ],
+            "deployment": {
+                "tps": 40.0,
+                "ttft": 3097.5
             }
         },
         {
@@ -6794,8 +6655,8 @@
                 "https://platform.openai.com/docs/models#o1"
             ],
             "deployment": {
-                "tps": 136.6,
-                "ttft": 3.2
+                "tps": 4.5,
+                "ttft": 1541.5
             }
         },
         {
@@ -6820,8 +6681,8 @@
                 "https://platform.openai.com/docs/models#o1"
             ],
             "deployment": {
-                "tps": 136.6,
-                "ttft": 3.2
+                "tps": 4.5,
+                "ttft": 1541.5
             }
         },
         {
@@ -6843,8 +6704,8 @@
                 "https://platform.openai.com/docs/models#o3-mini"
             ],
             "deployment": {
-                "tps": 170.6,
-                "ttft": 4.13
+                "tps": 93.0,
+                "ttft": 2551.0
             }
         },
         {
@@ -6866,8 +6727,8 @@
                 "https://platform.openai.com/docs/models#o3-mini"
             ],
             "deployment": {
-                "tps": 170.6,
-                "ttft": 4.13
+                "tps": 93.0,
+                "ttft": 2551.0
             }
         },
         {
@@ -6889,8 +6750,8 @@
                 "https://platform.openai.com/docs/models#o3-mini"
             ],
             "deployment": {
-                "tps": 95.6,
-                "ttft": 3.93
+                "tps": 94.0,
+                "ttft": 4662.0
             }
         },
         {
@@ -6912,8 +6773,8 @@
                 "https://platform.openai.com/docs/models#o3-mini"
             ],
             "deployment": {
-                "tps": 95.6,
-                "ttft": 3.93
+                "tps": 94.0,
+                "ttft": 4662.0
             }
         },
         {
@@ -6935,8 +6796,8 @@
                 "https://platform.openai.com/docs/models#o3-mini"
             ],
             "deployment": {
-                "tps": 91.9,
-                "ttft": 17.34
+                "tps": 94.0,
+                "ttft": 4662.0
             }
         },
         {
@@ -6958,8 +6819,8 @@
                 "https://platform.openai.com/docs/models#o3-mini"
             ],
             "deployment": {
-                "tps": 91.9,
-                "ttft": 17.34
+                "tps": 94.0,
+                "ttft": 4662.0
             }
         }
     ]
