@@ -110,6 +110,25 @@ class TestParsing:
         """
         assert len(MeasurementRepository()) == 0
 
+    def test_degenerate_record_is_skipped_not_fatal(self, tmp_path):
+        """
+        A record with gpu_count=0 or concurrency=0 would divide by zero in the
+        impacts DAG; it is rejected at parse without taking down the snapshot.
+        """
+        path = tmp_path / "m.json"
+        path.write_text(
+            json.dumps(
+                [
+                    {"model_name": MODEL, "it_energy_per_token": 1.0e-07, "concurrency": 8},
+                    {"model_name": "broken", "it_energy_per_token": 1.0e-07, "concurrency": 8, "gpu_count": 0},
+                    {"model_name": "broken-too", "it_energy_per_token": 1.0e-07, "concurrency": 0},
+                ]
+            )
+        )
+        repo = MeasurementRepository.from_json(str(path))
+        assert len(repo) == 1
+        assert repo.list_measurements()[0].model_name == MODEL
+
 
 class TestSelection:
     def test_unknown_model_returns_none(self):
@@ -308,6 +327,13 @@ class TestMeasuredComputation:
         assert impacts.energy.value > 0
         assert impacts.embodied.gwp.value == 0
 
+    def test_zero_gpu_count_raises_a_clear_error(self):
+        """Not a raw ZeroDivisionError from deep inside the embodied assets."""
+        with pytest.raises(ValueError, match="gpu_count"):
+            self._impacts(gpu_count=0)
+        with pytest.raises(ValueError, match="concurrency"):
+            self._impacts(concurrency=0)
+
     def test_measured_and_estimated_paths_agree_in_shape(self):
         """Both paths must produce the same populated impact structure."""
         estimated = compute_llm_impacts(
@@ -458,6 +484,33 @@ class TestLlmImpactsIntegration:
             EcoLogits.config.deployment = original_deployment
 
         assert impacts.energy.value == pytest.approx(1.0e-04)
+
+    def test_concurrency_preference_warning_reaches_the_output(self):
+        """
+        The substituted concurrency can change the figure severalfold, so the
+        caveat must land in `impacts.warnings`, not only in the log.
+        """
+        original = global_measurements.list_measurements()
+        global_measurements.replace_all(
+            [make_measurement(concurrency=1), make_measurement(concurrency=64)]
+        )
+        try:
+            impacts = llm_impacts(
+                provider="local",
+                model_name=MODEL,
+                output_token_count=100,
+                request_latency=5.0,
+            )
+        finally:
+            global_measurements.replace_all(original)
+
+        assert not impacts.has_errors
+        codes = [w.code for w in impacts.warnings]
+        assert "measurement-concurrency-preferred" in codes
+        message = next(
+            w.message for w in impacts.warnings if w.code == "measurement-concurrency-preferred"
+        )
+        assert "64" in message
 
     def test_hosted_providers_are_untouched(self):
         impacts = llm_impacts(

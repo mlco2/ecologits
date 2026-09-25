@@ -81,6 +81,16 @@ class ElectricityMixWUEDefaultWarning(WarningMessage):
     message: str = "The electricity mix WUE factor is using the world default value, expect lower precision."
 
 
+class MeasurementUsedWarning(WarningMessage):
+    code: str = "model-energy-measured"
+    message: str = "Impacts are estimated from a measured energy reference, not the parameter-count regression."
+
+
+class MeasurementConcurrencyPreferredWarning(WarningMessage):
+    code: str = "measurement-concurrency-preferred"
+    message: str = "No concurrency was requested; a measurement was picked by the preferred-concurrency tie-break."
+
+
 class ModelNotRegisteredError(ErrorMessage):
     code: str = "model-not-registered"
     message: str = "The model is not registered in the model repository."
@@ -91,15 +101,29 @@ class ZoneNotRegisteredError(ErrorMessage):
     message: str = "The zone is not registered."
 
 
+class MeasurementNotFoundError(ErrorMessage):
+    code: str = "measurement-not-found"
+    message: str = "No measurement matches the requested model and deployment."
+
+
+class MeasurementAmbiguousError(ErrorMessage):
+    code: str = "measurement-ambiguous"
+    message: str = "Multiple measurements match and none of them can be picked automatically."
+
+
 _warning_codes: dict[str, type[WarningMessage]] = {
     "model-arch-not-released": ModelArchNotReleasedWarning,
     "model-arch-multimodal": ModelArchMultimodalWarning,
     "electricity-mix-adpe-world": ElectricityMixADPeDefaultWarning,
     "electricity-mix-pe-world": ElectricityMixPEDefaultWarning,
     "electricity-mix-wue-world": ElectricityMixWUEDefaultWarning,
+    "model-energy-measured": MeasurementUsedWarning,
+    "measurement-concurrency-preferred": MeasurementConcurrencyPreferredWarning,
 }
 
 _error_codes: dict[str, type[ErrorMessage]] = {
     "model-not-registered": ModelNotRegisteredError,
-    "zone-not-registered": ZoneNotRegisteredError
+    "zone-not-registered": ZoneNotRegisteredError,
+    "measurement-not-found": MeasurementNotFoundError,
+    "measurement-ambiguous": MeasurementAmbiguousError,
 }

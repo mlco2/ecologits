@@ -7,7 +7,9 @@ import urllib.request
 from pathlib import Path
 from typing import Any
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+
+from ecologits.log import logger
 
 # Concurrency of the measurement that best matches EcoLogits' own modelling
 # assumption (`impacts.llm.BATCH_SIZE`). Used only to break ties when the caller
@@ -45,11 +47,11 @@ class Measurement(BaseModel):
     """
 
     model_name: str
-    it_energy_per_token: float
+    it_energy_per_token: float = Field(gt=0)
     latency_per_token: float | None = None
-    concurrency: int
+    concurrency: int = Field(gt=0)
     gpu_model: str | None = None
-    gpu_count: int = 1
+    gpu_count: int = Field(default=1, gt=0)
     engine: str | None = None
     engine_version: str | None = None
     quantization: str | None = None
@@ -80,14 +82,19 @@ class Measurement(BaseModel):
     def from_json(cls, data: dict[str, Any]) -> Measurement:
         # Accepts the carbonserver `/model-benchmarks/export` payload, whose
         # latency field carries its unit in the name.
+        latency = data.get("latency_per_token_s")
+        if latency is None:
+            latency = data.get("latency_per_token")
+        # `is None` rather than `or`: a 0 value must reach validation (and be
+        # rejected there), not silently turn into the default.
+        gpu_count = data.get("gpu_count")
         return cls(
             model_name=data["model_name"],
             it_energy_per_token=float(data["it_energy_per_token"]),
-            latency_per_token=data.get("latency_per_token_s")
-            or data.get("latency_per_token"),
+            latency_per_token=latency,
             concurrency=int(data["concurrency"]),
             gpu_model=data.get("gpu_model"),
-            gpu_count=int(data.get("gpu_count") or 1),
+            gpu_count=int(gpu_count) if gpu_count is not None else 1,
             engine=data.get("engine"),
             engine_version=data.get("engine_version"),
             quantization=data.get("quantization"),
@@ -307,9 +314,13 @@ class MeasurementRepository:
                 payload = response.read().decode("utf-8")
             CACHE_DIR.mkdir(parents=True, exist_ok=True)
             cache_path.write_text(payload, encoding="utf-8")
-        except Exception:
+        except Exception as e:
             if not cache_path.exists():
                 raise
+            logger.warning(
+                f"Could not fetch measurements from `{url}` ({e!r}); "
+                f"falling back to the cached snapshot at `{cache_path}`, which may be stale."
+            )
             payload = cache_path.read_text(encoding="utf-8")
         return cls(cls._parse(json.loads(payload)))
 
@@ -324,7 +335,18 @@ class MeasurementRepository:
         # "measurements" key (a checked-in snapshot file).
         if isinstance(data, dict):
             data = data.get("measurements") or []
-        return [Measurement.from_json(entry) for entry in data]
+        parsed = []
+        for entry in data:
+            try:
+                parsed.append(Measurement.from_json(entry))
+            except (KeyError, TypeError, ValueError) as e:
+                # One degenerate record (missing field, gpu_count=0, ...) must
+                # not take down the whole snapshot; skip it, loudly.
+                logger.warning(
+                    f"Skipping invalid measurement record "
+                    f"`{entry.get('id') if isinstance(entry, dict) else entry!r}`: {e}"
+                )
+        return parsed
 
 
 measurements = MeasurementRepository()

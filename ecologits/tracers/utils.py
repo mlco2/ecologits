@@ -5,11 +5,21 @@ from dataclasses import dataclass
 from pydantic import BaseModel
 
 from ecologits.electricity_mix_repository import electricity_mixes
-from ecologits.impacts.llm import compute_llm_impacts
+from ecologits.impacts.llm import compute_llm_impacts, compute_llm_impacts_measured
 from ecologits.impacts.modeling import GWP, PE, WCF, ADPe, Embodied, Energy, Usage
 from ecologits.log import logger
+from ecologits.measurement_repository import Deployment, measurements
 from ecologits.model_repository import ParametersMoE, models
-from ecologits.status_messages import ErrorMessage, ModelNotRegisteredError, WarningMessage, ZoneNotRegisteredError
+from ecologits.status_messages import (
+    ErrorMessage,
+    MeasurementAmbiguousError,
+    MeasurementConcurrencyPreferredWarning,
+    MeasurementNotFoundError,
+    MeasurementUsedWarning,
+    ModelNotRegisteredError,
+    WarningMessage,
+    ZoneNotRegisteredError,
+)
 from ecologits.utils.range_value import RangeValue
 
 
@@ -59,26 +69,61 @@ class ImpactsOutput(BaseModel):
         self.errors.append(error)
 
 
+def _resolve_electricity_mix(zone: str | None, fallback_zone: str | None = None):
+    """Resolve an electricity mix, returning `(mix, None)` or `(None, error)`."""
+    if zone is None:
+        zone = fallback_zone
+    if zone is None:
+        zone = "WOR"
+    mix = electricity_mixes.find_electricity_mix(zone=zone)
+    if mix is None:
+        error = ZoneNotRegisteredError(message=f"Could not find electricity mix for `{zone}` zone.")
+        logger.warning_once(str(error))
+        return None, error
+    return mix, None
+
+
+def _attach_warnings(impacts: ImpactsOutput, source) -> None:
+    """Log and attach the warnings carried by a repository object (model, mix, ...)."""
+    if source.has_warnings:
+        for w in source.warnings:
+            logger.warning_once(str(w))
+            impacts.add_warning(w)
+
+
 def llm_impacts(
     provider: str,
     model_name: str,
     output_token_count: int,
     request_latency: float,
     electricity_mix_zone: str | None  = None,
+    deployment: Deployment | None = None,
 ) -> ImpactsOutput:
     """
     High-level function to compute the impacts of an LLM generation request.
 
     Args:
-        provider: Name of the provider.
+        provider: Name of the provider. `"local"` computes impacts from a measured
+            energy reference (see `EcoLogits.init(measurements=..., deployment=...)`)
+            instead of the parameter-count regression.
         model_name: Name of the LLM used.
         output_token_count: Number of generated tokens.
         request_latency: Measured request latency in seconds.
         electricity_mix_zone: ISO 3166-1 alpha-3 code of the electricity mix zone (WOR by default).
+        deployment: Which measured deployment to use, for `provider="local"`. Overrides
+            the default set with `EcoLogits.init(deployment=...)` for this call only.
 
     Returns:
         The impacts of an LLM generation request.
     """
+    if provider == "local":
+        return _llm_impacts_measured(
+            model_name=model_name,
+            output_token_count=output_token_count,
+            request_latency=request_latency,
+            electricity_mix_zone=electricity_mix_zone,
+            deployment=deployment,
+        )
 
     model = models.find_model(provider=provider, model_name=model_name)
     if model is None:
@@ -97,15 +142,9 @@ def llm_impacts(
     datacenter_pue = PROVIDER_CONFIG_MAP[provider].datacenter_pue
     datacenter_wue = PROVIDER_CONFIG_MAP[provider].datacenter_wue
 
-    if electricity_mix_zone is None:
-        electricity_mix_zone = datacenter_location
-    if electricity_mix_zone is None:
-        electricity_mix_zone = "WOR"
-    if_electricity_mix = electricity_mixes.find_electricity_mix(zone=electricity_mix_zone)
+    if_electricity_mix, mix_error = _resolve_electricity_mix(electricity_mix_zone, datacenter_location)
     if if_electricity_mix is None:
-        error = ZoneNotRegisteredError(message=f"Could not find electricity mix for `{electricity_mix_zone}` zone.")
-        logger.warning_once(str(error))
-        return ImpactsOutput(errors=[error])
+        return ImpactsOutput(errors=[mix_error])
 
     impacts = compute_llm_impacts(
         model_active_parameter_count=model_active_params,
@@ -123,15 +162,86 @@ def llm_impacts(
     )
     impacts = ImpactsOutput.model_validate(impacts.model_dump())
 
-    if model.has_warnings:
-        for w in model.warnings:
-            logger.warning_once(str(w))
-            impacts.add_warning(w)
+    _attach_warnings(impacts, model)
+    _attach_warnings(impacts, if_electricity_mix)
 
-    if if_electricity_mix.has_warnings:
-        for w in if_electricity_mix.warnings:
-            logger.warning_once(str(w))
-            impacts.add_warning(w)
+    return impacts
+
+
+def _llm_impacts_measured(
+    model_name: str,
+    output_token_count: int,
+    request_latency: float,
+    electricity_mix_zone: str | None,
+    deployment: Deployment | None,
+) -> ImpactsOutput:
+    # Lazy import: `ecologits._ecologits` is the package entry point and may
+    # not be fully initialized yet when this module is first imported.
+    from ecologits._ecologits import EcoLogits
+
+    if deployment is None:
+        deployment = EcoLogits.config.deployment
+
+    selection = measurements.select(model_name, deployment)
+
+    if selection.measurement is None:
+        if selection.is_empty:
+            error = MeasurementNotFoundError(
+                message=f"Could not find a measurement for `{model_name}` matching the requested deployment."
+            )
+        else:
+            error = MeasurementAmbiguousError(
+                message=(
+                    f"Multiple measurements match `{model_name}` and no deployment selector "
+                    f"narrows it down to one: {selection.describe_candidates()}"
+                )
+            )
+        logger.warning_once(str(error))
+        return ImpactsOutput(errors=[error])
+
+    measurement = selection.measurement
+
+    if_electricity_mix, mix_error = _resolve_electricity_mix(electricity_mix_zone)
+    if if_electricity_mix is None:
+        return ImpactsOutput(errors=[mix_error])
+
+    impacts = compute_llm_impacts_measured(
+        it_energy_per_output_token=measurement.it_energy_per_token,
+        latency_per_output_token=measurement.latency_per_token,
+        output_token_count=output_token_count,
+        gpu_count=measurement.gpu_count,
+        concurrency=measurement.concurrency,
+        if_electricity_mix_adpe=if_electricity_mix.adpe,
+        if_electricity_mix_pe=if_electricity_mix.pe,
+        if_electricity_mix_gwp=if_electricity_mix.gwp,
+        if_electricity_mix_wue=if_electricity_mix.wue,
+        # On-premise hardware the caller measured directly: the measurement's
+        # own energy figure already reflects that deployment, so there is no
+        # separate provider PUE/WUE to apply on top of it.
+        datacenter_pue=1.0,
+        datacenter_wue=0.0,
+        request_latency=request_latency,
+    )
+    impacts = ImpactsOutput.model_validate(impacts.model_dump())
+
+    warning = MeasurementUsedWarning(
+        message=f"Impacts are estimated from a measured reference: {measurement.summary}."
+    )
+    logger.warning_once(str(warning))
+    impacts.add_warning(warning)
+
+    if selection.used_concurrency_preference:
+        # Attached to the output, not just logged: the substituted concurrency
+        # can change the energy figure severalfold, and programmatic consumers
+        # only see `impacts.warnings`.
+        preference_warning = MeasurementConcurrencyPreferredWarning(
+            message=f"No concurrency was requested; picked the measurement at concurrency "
+                    f"{measurement.concurrency} to match EcoLogits' own modelling assumption."
+        )
+        logger.warning_once(str(preference_warning))
+        impacts.add_warning(preference_warning)
+
+    _attach_warnings(impacts, if_electricity_mix)
 
     return impacts
 

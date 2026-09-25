@@ -512,6 +512,38 @@ def compute_llm_impacts_dag(
     return results
 
 
+def _impacts_from_dag_results(results: dict[str, Any]) -> Impacts:
+    """Assemble the `Impacts` object from an executed impacts DAG."""
+    energy = Energy(value=results["request_energy"])
+    gwp_usage = GWP(value=results["request_usage_gwp"])
+    adpe_usage = ADPe(value=results["request_usage_adpe"])
+    pe_usage = PE(value=results["request_usage_pe"])
+    wcf_usage = WCF(value=results["request_usage_wcf"])
+    gwp_embodied = GWP(value=results["request_embodied_gwp"])
+    adpe_embodied = ADPe(value=results["request_embodied_adpe"])
+    pe_embodied = PE(value=results["request_embodied_pe"])
+
+    return Impacts(
+        energy=energy,
+        gwp=gwp_usage + gwp_embodied,
+        adpe=adpe_usage + adpe_embodied,
+        pe=pe_usage + pe_embodied,
+        wcf=wcf_usage,
+        usage=Usage(
+            energy=energy,
+            gwp=gwp_usage,
+            adpe=adpe_usage,
+            pe=pe_usage,
+            wcf=wcf_usage
+        ),
+        embodied=Embodied(
+            gwp=gwp_embodied,
+            adpe=adpe_embodied,
+            pe=pe_embodied
+        )
+    )
+
+
 def compute_llm_impacts_measured(
         it_energy_per_output_token: float,
         latency_per_output_token: Optional[float],
@@ -571,6 +603,11 @@ def compute_llm_impacts_measured(
     Returns:
         The impacts of an LLM generation request.
     """
+    if gpu_count <= 0:
+        raise ValueError(f"gpu_count must be positive, got {gpu_count}.")
+    if concurrency <= 0:
+        raise ValueError(f"concurrency must be positive, got {concurrency}.")
+
     request_it_energy = it_energy_per_output_token * output_token_count
 
     if latency_per_output_token is not None:
@@ -617,34 +654,7 @@ def compute_llm_impacts_measured(
         server_lifetime=server_lifetime,
     )
 
-    energy = Energy(value=results["request_energy"])
-    gwp_usage = GWP(value=results["request_usage_gwp"])
-    adpe_usage = ADPe(value=results["request_usage_adpe"])
-    pe_usage = PE(value=results["request_usage_pe"])
-    wcf_usage = WCF(value=results["request_usage_wcf"])
-    gwp_embodied = GWP(value=results["request_embodied_gwp"])
-    adpe_embodied = ADPe(value=results["request_embodied_adpe"])
-    pe_embodied = PE(value=results["request_embodied_pe"])
-
-    return Impacts(
-        energy=energy,
-        gwp=gwp_usage + gwp_embodied,
-        adpe=adpe_usage + adpe_embodied,
-        pe=pe_usage + pe_embodied,
-        wcf=wcf_usage,
-        usage=Usage(
-            energy=energy,
-            gwp=gwp_usage,
-            adpe=adpe_usage,
-            pe=pe_usage,
-            wcf=wcf_usage
-        ),
-        embodied=Embodied(
-            gwp=gwp_embodied,
-            adpe=adpe_embodied,
-            pe=pe_embodied
-        )
-    )
+    return _impacts_from_dag_results(results)
 
 
 def compute_llm_impacts(
@@ -729,31 +739,4 @@ def compute_llm_impacts(
             else:
                 results[field] = res[field]
 
-    energy = Energy(value=results["request_energy"])
-    gwp_usage = GWP(value=results["request_usage_gwp"])
-    adpe_usage = ADPe(value=results["request_usage_adpe"])
-    pe_usage = PE(value=results["request_usage_pe"])
-    wcf_usage = WCF(value=results["request_usage_wcf"])
-    gwp_embodied = GWP(value=results["request_embodied_gwp"])
-    adpe_embodied = ADPe(value=results["request_embodied_adpe"])
-    pe_embodied = PE(value=results["request_embodied_pe"])
-
-    return Impacts(
-        energy=energy,
-        gwp=gwp_usage + gwp_embodied,
-        adpe=adpe_usage + adpe_embodied,
-        pe=pe_usage + pe_embodied,
-        wcf=wcf_usage,
-        usage=Usage(
-            energy=energy,
-            gwp=gwp_usage,
-            adpe=adpe_usage,
-            pe=pe_usage,
-            wcf=wcf_usage
-        ),
-        embodied=Embodied(
-            gwp=gwp_embodied,
-            adpe=adpe_embodied,
-            pe=pe_embodied
-        )
-    )
+    return _impacts_from_dag_results(results)

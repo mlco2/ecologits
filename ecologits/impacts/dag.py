@@ -34,7 +34,9 @@ class DAG:
         for task_name in ts.static_order():
             if task_name in results:  # Skip execution if result already provided
                 continue
-            task = self.__tasks[task_name]
+            task = self.__tasks.get(task_name)
+            if task is None:  # Leaf input that was not provided (only valid when nothing executed reads it)
+                continue
             # Collect results from dependencies or use initial params
             dep_results = {dep: results.get(dep) for dep in self.__dependencies[task_name]}
             # Filter out None values if not all dependencies are met
