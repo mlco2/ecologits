@@ -4818,6 +4818,198 @@
         },
         {
             "type": "model",
+            "provider": "greenpt",
+            "name": "deepseek-v4.1-flash",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 552,
+                    "active": 16
+                }
+            },
+            "warnings": [
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+                "https://api-docs.deepseek.com/news/news260910/"
+            ],
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
+        },
+        {
+            "type": "model",
+            "provider": "greenpt",
+            "name": "glm-5.3-flash",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 320,
+                    "active": 18
+                }
+            },
+            "warnings": [
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://huggingface.co/zai-org/GLM-5.3-Flash"
+            ],
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
+        },
+        {
+            "type": "model",
+            "provider": "greenpt",
+            "name": "glm-5.3",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 744,
+                    "active": 40
+                }
+            },
+            "warnings": null,
+            "sources": [
+                "https://huggingface.co/zai-org/GLM-5.3",
+                "https://github.com/zai-org/GLM-5"
+            ],
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
+        },
+        {
+            "type": "model",
+            "provider": "greenpt",
+            "name": "glm-5.2",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 744,
+                    "active": 40
+                }
+            },
+            "warnings": null,
+            "sources": [
+                "https://huggingface.co/zai-org/GLM-5.2",
+                "https://github.com/zai-org/GLM-5"
+            ],
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
+        },
+        {
+            "type": "model",
+            "provider": "greenpt",
+            "name": "kimi-k3",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 2800,
+                    "active": 104
+                }
+            },
+            "warnings": [
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://huggingface.co/moonshotai/Kimi-K3"
+            ],
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
+        },
+        {
+            "type": "model",
+            "provider": "greenpt",
+            "name": "kimi-k2.7-code",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 1000,
+                    "active": 32
+                }
+            },
+            "warnings": null,
+            "sources": [
+                "https://huggingface.co/moonshotai/Kimi-K2.7-Code"
+            ],
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
+        },
+        {
+            "type": "model",
+            "provider": "greenpt",
+            "name": "minimax-m3",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 428,
+                    "active": 23
+                }
+            },
+            "warnings": [
+                "model-arch-multimodal"
+            ],
+            "sources": [
+                "https://huggingface.co/MiniMaxAI/MiniMax-M3"
+            ],
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
+        },
+        {
+            "type": "model",
+            "provider": "greenpt",
+            "name": "minimax-m2.5",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 229,
+                    "active": 10
+                }
+            },
+            "warnings": null,
+            "sources": [
+                "https://huggingface.co/MiniMaxAI/MiniMax-M2.5",
+                "https://docs.vultr.com/inference-cookbook/cuda/model-guides/minimax-m25"
+            ],
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
+        },
+        {
+            "type": "model",
+            "provider": "greenpt",
+            "name": "qwen3.6-35b-a3b",
+            "architecture": {
+                "type": "moe",
+                "parameters": {
+                    "total": 35,
+                    "active": 3
+                }
+            },
+            "warnings": null,
+            "sources": [
+                "https://huggingface.co/Qwen/Qwen3.6-35B-A3B"
+            ],
+            "deployment": {
+                "tps": null,
+                "ttft": null
+            }
+        },
+        {
+            "type": "model",
             "provider": "openai",
             "name": "chat-latest",
             "architecture": {
