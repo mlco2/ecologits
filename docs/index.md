@@ -140,7 +140,7 @@ People who contribute significantly to the project.
     <img src="https://avatars.githubusercontent.com/u/45042779" alt="Adrien Banse">
     <div class="contributor-info">
       <span class="contributor-name">Adrien Banse</span>
-      <span class="contributor-role">PhD Student</span>
+      <span class="contributor-role">Postdoctoral Researcher</span>
     </div>
   </div>
   <div class="contributor-card">
@@ -154,6 +154,13 @@ People who contribute significantly to the project.
     <img src="https://avatars.githubusercontent.com/u/46927767" alt="Vincent Duarte">
     <div class="contributor-info">
       <span class="contributor-name">Vincent Duarte</span>
+      <span class="contributor-role">Software Engineer</span>
+    </div>
+  </div>
+  <div class="contributor-card">
+    <img src="https://avatars.githubusercontent.com/u/57603029" alt="Charles Sorgho">
+    <div class="contributor-info">
+      <span class="contributor-name">Charles Sorgho</span>
       <span class="contributor-role">Software Engineer</span>
     </div>
   </div>
