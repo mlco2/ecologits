@@ -182,6 +182,59 @@ Light green: 00bf63
   }
 }
 
+/* CodeCarbon keeps its own dark, lime-accented identity in both themes. */
+.project-card.codecarbon {
+  color-scheme: dark;
+  background: #0a0a0a;
+  color: #e5e7eb;
+  border-color: #bffb4f55;
+}
+
+.project-card.codecarbon:hover {
+  box-shadow: 0 4px 16px #bffb4f18;
+}
+
+.project-card.codecarbon .project-card-header {
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.project-card.codecarbon .codecarbon-logo {
+  width: 25px;
+  height: 25px;
+  margin: 0;
+  border-radius: 0;
+  flex-shrink: 0;
+}
+
+.project-card.codecarbon h3,
+.project-card.codecarbon a {
+  color: #bffb4f;
+}
+
+.project-card.codecarbon a:hover {
+  color: #d9ff95;
+}
+
+.project-card.codecarbon .codecarbon-label {
+  margin-left: auto;
+  padding: 0.15rem 0.4rem;
+  border: 1px solid #bffb4f55;
+  border-radius: 4px;
+  color: #bffb4f;
+  font-size: 0.6rem;
+  font-weight: 600;
+}
+
+.project-card.codecarbon .code-snippet {
+  background: #1b1b1b;
+  color: #e5e7eb;
+}
+
+.project-card.codecarbon .copy-button {
+  color: #bffb4f;
+}
+
 @keyframes heart {
   0%, 40%, 80%, 100% {
     transform: scale(1);
