@@ -39,6 +39,7 @@ nav:
       - blog/index.md
   - 'EcoLogits Calculator': 'https://calculator.ecologits.ai/'
   - 'EcoLogits API': 'https://api.ecologits.ai/docs'
+  - 'EcoLogits.js': 'https://www.npmjs.com/package/@ecologits/ecologits.js'
 
 theme:
   name: material
