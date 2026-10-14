@@ -18,7 +18,7 @@ Read the full **documentation on [ecologits.ai](https://ecologits.ai/)**.
 
 EcoLogits is part of the **[Code Carbon](https://codecarbon.io/)** non-profit — **built by volunteers and supported by sponsors**. Chat with us on [Discord](https://discord.com/invite/GS9js2XkJR).
 
-> **Local compute?** Use [**CodeCarbon**](https://github.com/mlco2/codecarbon). Also see the other ecologits projects: [**Calculator**](https://calculator.ecologits.ai/) and [**EcoLogits API**](https://github.com/mlco2/ecologits-api). [When to use which →](https://docs.codecarbon.io/latest/explanation/when-to-use/)
+> **Local compute?** Use [**CodeCarbon**](https://github.com/mlco2/codecarbon). Also see the other ecologits projects: [**Calculator**](https://calculator.ecologits.ai/), [**EcoLogits API**](https://github.com/mlco2/ecologits-api), and [**EcoLogits.js**](https://www.npmjs.com/package/@ecologits/ecologits.js). [When to use which →](https://docs.codecarbon.io/latest/explanation/when-to-use/)
 
 
 ## ⚙️ Installation
@@ -60,6 +60,7 @@ See package documentation on [EcoLogits](https://ecologits.ai/)
 | Tool | Link |
 |------|------|
 | **EcoLogits API** | [github.com/mlco2/ecologits-api](https://github.com/mlco2/ecologits-api) · [api.ecologits.ai/docs](https://api.ecologits.ai/docs) |
+| **EcoLogits.js** | [npm](https://www.npmjs.com/package/@ecologits/ecologits.js) — environmental impact estimates for JavaScript and TypeScript |
 | **Calculator** | [calculator.ecologits.ai](https://calculator.ecologits.ai/) |
 | **CodeCarbon** | [github.com/mlco2/codecarbon](https://github.com/mlco2/codecarbon) — local compute emissions |
 | **All mlco2 projects** | [github.com/mlco2](https://github.com/mlco2) |
