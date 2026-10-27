@@ -159,6 +159,11 @@ PROVIDER_CONFIG_MAP = {
         datacenter_pue=1.09,
         datacenter_wue=0.999,
     ),
+    "greenpt": _ProviderConfig(
+        datacenter_location="FRA",  # Scaleway, Paris (https://www.greenpt.com/sustainability)
+        datacenter_pue=1.25,
+        datacenter_wue=0.25,
+    ),
     "huggingface_hub": _ProviderConfig(
         datacenter_location="USA",
         datacenter_pue=RangeValue(min=1.09, max=1.14),
