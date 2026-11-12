@@ -2,33 +2,9 @@ import math
 from typing import Any, Optional, Union, cast
 
 from ecologits.impacts.dag import DAG
+from ecologits.impacts.hardware_defaults import hardware_defaults
 from ecologits.impacts.modeling import GWP, PE, WCF, ADPe, Embodied, Energy, Impacts, Usage
 from ecologits.utils.range_value import RangeValue, ValueOrRange
-
-MODEL_QUANTIZATION_BITS = 16
-
-GPU_ENERGY_ALPHA = 1.1665273170451914e-06
-GPU_ENERGY_BETA = -0.011205921025579175
-GPU_ENERGY_GAMMA = 4.052928146734005e-05
-
-LATENCY_ALPHA = 0.0006785088094353663
-LATENCY_BETA = 0.0003119310311688259
-LATENCY_GAMMA = 0.019473717579473387
-
-GPU_MEMORY = 80  # GB
-GPU_EMBODIED_IMPACT_GWP = 273
-GPU_EMBODIED_IMPACT_ADPE = 0.00895
-GPU_EMBODIED_IMPACT_PE = 3721
-
-SERVER_GPUS = 8
-SERVER_POWER = 1.2  # kW
-SERVER_EMBODIED_IMPACT_GWP = 5700
-SERVER_EMBODIED_IMPACT_ADPE = 0.37
-SERVER_EMBODIED_IMPACT_PE = 70000
-
-HARDWARE_LIFESPAN = 3 * 365 * 24 * 60 * 60
-
-BATCH_SIZE = 64
 
 dag = DAG()
 
@@ -419,24 +395,24 @@ def compute_llm_impacts_dag(
         if_electricity_mix_wue: float,
         datacenter_pue: ValueOrRange,
         datacenter_wue: ValueOrRange,
-        model_quantization_bits: Optional[int] = MODEL_QUANTIZATION_BITS,
-        gpu_energy_alpha: Optional[float] = GPU_ENERGY_ALPHA,
-        gpu_energy_beta: Optional[float] = GPU_ENERGY_BETA,
-        gpu_energy_gamma: Optional[float] = GPU_ENERGY_GAMMA,
-        latency_alpha: Optional[float] = LATENCY_ALPHA,
-        latency_beta: Optional[float] = LATENCY_BETA,
-        latency_gamma: Optional[float] = LATENCY_GAMMA,
-        gpu_memory: Optional[float] = GPU_MEMORY,
-        gpu_embodied_gwp: Optional[float] = GPU_EMBODIED_IMPACT_GWP,
-        gpu_embodied_adpe: Optional[float] = GPU_EMBODIED_IMPACT_ADPE,
-        gpu_embodied_pe: Optional[float] = GPU_EMBODIED_IMPACT_PE,
-        server_gpu_count: Optional[int] = SERVER_GPUS,
-        server_power: Optional[float] = SERVER_POWER,
-        server_embodied_gwp: Optional[float] = SERVER_EMBODIED_IMPACT_GWP,
-        server_embodied_adpe: Optional[float] = SERVER_EMBODIED_IMPACT_ADPE,
-        server_embodied_pe: Optional[float] = SERVER_EMBODIED_IMPACT_PE,
-        server_lifetime: Optional[float] = HARDWARE_LIFESPAN,
-        batch_size: Optional[float] = BATCH_SIZE,
+        model_quantization_bits: Optional[int] = hardware_defaults.model_quantization_bits,
+        gpu_energy_alpha: Optional[float] = hardware_defaults.gpu_energy_regression.alpha,
+        gpu_energy_beta: Optional[float] = hardware_defaults.gpu_energy_regression.beta,
+        gpu_energy_gamma: Optional[float] = hardware_defaults.gpu_energy_regression.gamma,
+        latency_alpha: Optional[float] = hardware_defaults.latency_regression.alpha,
+        latency_beta: Optional[float] = hardware_defaults.latency_regression.beta,
+        latency_gamma: Optional[float] = hardware_defaults.latency_regression.gamma,
+        gpu_memory: Optional[float] = hardware_defaults.gpu.memory_gb,
+        gpu_embodied_gwp: Optional[float] = hardware_defaults.gpu.embodied_gwp,
+        gpu_embodied_adpe: Optional[float] = hardware_defaults.gpu.embodied_adpe,
+        gpu_embodied_pe: Optional[float] = hardware_defaults.gpu.embodied_pe,
+        server_gpu_count: Optional[int] = hardware_defaults.server.gpu_count,
+        server_power: Optional[float] = hardware_defaults.server.power_kw,
+        server_embodied_gwp: Optional[float] = hardware_defaults.server.embodied_gwp,
+        server_embodied_adpe: Optional[float] = hardware_defaults.server.embodied_adpe,
+        server_embodied_pe: Optional[float] = hardware_defaults.server.embodied_pe,
+        server_lifetime: Optional[float] = hardware_defaults.hardware_lifespan_seconds,
+        batch_size: Optional[float] = hardware_defaults.batch_size,
         tps: Optional[float] = None,
         ttft: Optional[float] = None,
 ) -> dict[str, ValueOrRange]:
