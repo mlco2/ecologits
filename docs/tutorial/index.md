@@ -75,3 +75,32 @@ from ecologits import EcoLogits
 # Select the electricity mix of France
 EcoLogits.init(providers=[...], electricity_mix_zone="FRA")
 ```
+
+
+## Tracking impacts in a block
+
+If you only want to measure part of your code, use `EcoLogits.track_impacts()` instead of initializing EcoLogits for the whole process. Only the requests made inside the block are tracked, and the block gives you the total impacts of these requests.
+
+```python title="Track the impacts of a block of code"
+from ecologits import EcoLogits
+from openai import OpenAI
+
+client = OpenAI()
+
+with EcoLogits.track_impacts() as tracker:
+    client.chat.completions.create(...)
+    client.chat.completions.create(...)
+
+print(f"Energy consumption: {tracker.impacts.energy.value} kWh")
+print(f"GHG emissions: {tracker.impacts.gwp.value} kgCO2eq")
+
+# Impacts of each request
+for impacts in tracker.calls:
+    print(impacts.energy.value)
+```
+
+It also works in async code with `async with EcoLogits.track_impacts() as tracker:`.
+
+The block only covers the current thread or async task, so other work running at the same time in the same process is not tracked. Requests made outside the block are left untouched, unless their provider was enabled with `EcoLogits.init()`. In that case they keep their impacts as usual, and only the requests made inside the block are counted by the tracker.
+
+!!! info "Tracking in a block is currently supported for the OpenAI and Anthropic providers."
