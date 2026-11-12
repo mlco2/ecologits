@@ -2,7 +2,10 @@ import os
 
 import pytest
 from openai import AsyncAzureOpenAI, AsyncOpenAI, AzureOpenAI, OpenAI
+from pydantic import BaseModel
 
+class GreetingDetection(BaseModel):
+    is_greeting: bool
 
 @pytest.mark.vcr
 def test_openai_chat(tracer_init):
@@ -133,6 +136,34 @@ async def test_openai_async_stream_responses(tracer_init):
             assert event.response.impacts.energy.value > 0
         else:
             assert not hasattr(event, "impacts")
+
+
+@pytest.mark.vcr
+def test_openai_responses_parse(tracer_init):
+    """Test parsing of OpenAI responses with GreetingDetection."""
+    client = OpenAI()
+    response = client.responses.parse(
+        model="gpt-5-nano",
+        input=[{"role": "user", "content": "Hello World!"}],
+        text_format=GreetingDetection
+    )
+    assert isinstance(response.output_parsed, GreetingDetection)
+    assert response.impacts.energy.value > 0
+
+
+@pytest.mark.vcr
+@pytest.mark.asyncio
+async def test_openai_async_responses_parse(tracer_init):
+    """Test async parsing of OpenAI responses with GreetingDetection."""
+    client = AsyncOpenAI()
+    response = await client.responses.parse(
+        model="gpt-5-nano",
+        input=[{"role": "user", "content": "Hello World!"}],
+        text_format=GreetingDetection
+    )
+
+    assert isinstance(response.output_parsed, GreetingDetection)
+    assert response.impacts.energy.value > 0
 
 
 @pytest.mark.vcr

@@ -1,11 +1,12 @@
 import time
-from typing import Any, Callable, Union
+from typing import Any, Callable
 
 from openai import AsyncStream, Stream
 from openai.resources.chat import AsyncCompletions, Completions
 from openai.resources.responses.responses import AsyncResponses, Responses
 from openai.types.chat import ChatCompletion as _ChatCompletion
 from openai.types.chat import ChatCompletionChunk as _ChatCompletionChunk
+from openai.types.responses import ParsedResponse as _ParsedResponse
 from openai.types.responses import Response as _Response
 from openai.types.responses import ResponseStreamEvent
 from wrapt import wrap_function_wrapper  # type: ignore[import-untyped]
@@ -37,12 +38,19 @@ class Response(_Response):
     impacts: ImpactsOutput
 
 
+class ParsedResponse(_ParsedResponse):
+    """
+    Wrapper of `openai.types.responses.ParsedResponse` with `ImpactsOutput`
+    """
+    impacts: ImpactsOutput
+
+
 def openai_chat_wrapper(
     wrapped: Callable,
     instance: Completions,
     args: Any,
     kwargs: Any
-) -> Union[ChatCompletion, Stream[ChatCompletionChunk]]:
+) -> ChatCompletion | _ChatCompletion | Stream[ChatCompletionChunk] | Stream[_ChatCompletionChunk]:
     """
     Function that wraps an OpenAI answer with computed impacts
 
@@ -66,7 +74,7 @@ def openai_chat_wrapper_non_stream(
     instance: Completions,      # noqa: ARG001
     args: Any,
     kwargs: Any
-) -> ChatCompletion:
+) -> ChatCompletion | _ChatCompletion:
     timer_start = time.perf_counter()
     response = wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
@@ -90,7 +98,7 @@ def openai_chat_wrapper_non_stream(
                 endpoint="/chat/completions"
             )
 
-        return ChatCompletion(**response.model_dump(), impacts=impacts)
+        return ChatCompletion.model_construct(**dict(response), impacts=impacts)
     else:
         return response
 
@@ -100,7 +108,7 @@ def openai_chat_wrapper_stream(  # type: ignore[misc]
     instance: Completions,      # noqa: ARG001
     args: Any,
     kwargs: Any
-) -> Stream[ChatCompletionChunk]:
+) -> Stream[ChatCompletionChunk] | Stream[_ChatCompletionChunk]:
     timer_start = time.perf_counter()
     stream = wrapped(*args, **kwargs)
     output_token_count = 0
@@ -138,7 +146,7 @@ def openai_chat_wrapper_stream(  # type: ignore[misc]
                     endpoint="/chat/completions"
                 )
 
-            yield ChatCompletionChunk(**chunk.model_dump(), impacts=impacts)
+            yield ChatCompletionChunk.model_construct(**dict(chunk), impacts=impacts)
         else:
             yield chunk
 
@@ -148,7 +156,7 @@ async def openai_async_chat_wrapper(
     instance: AsyncCompletions,
     args: Any,
     kwargs: Any,
-) -> Union[ChatCompletion, AsyncStream[ChatCompletionChunk]]:
+) -> ChatCompletion | _ChatCompletion | AsyncStream[ChatCompletionChunk]:
     """
     Function that wraps an OpenAI answer with computed impacts in async mode
 
@@ -172,7 +180,7 @@ async def openai_async_chat_wrapper_base(
     instance: AsyncCompletions,     # noqa: ARG001
     args: Any,
     kwargs: Any,
-) -> ChatCompletion:
+) -> ChatCompletion | _ChatCompletion:
     timer_start = time.perf_counter()
     response = await wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
@@ -196,7 +204,7 @@ async def openai_async_chat_wrapper_base(
                 endpoint="/chat/completions"
             )
 
-        return ChatCompletion(**response.model_dump(), impacts=impacts)
+        return ChatCompletion.model_construct(**dict(response), impacts=impacts)
     else:
         return response
 
@@ -244,7 +252,7 @@ async def openai_async_chat_wrapper_stream(  # type: ignore[misc]
                     endpoint="/chat/completions"
                 )
 
-            yield ChatCompletionChunk(**chunk.model_dump(), impacts=impacts)
+            yield ChatCompletionChunk.model_construct(**dict(chunk), impacts=impacts)
         else:
             yield chunk
         i += 1
@@ -255,7 +263,7 @@ def openai_responses_wrapper(
     instance: Responses,
     args: Any,
     kwargs: Any
-) -> Union[Response, Stream[ResponseStreamEvent]]:
+) -> Response | _Response | Stream[ResponseStreamEvent]:
     """
     Function that wraps an OpenAI Responses API answer with computed impacts
 
@@ -279,7 +287,7 @@ def openai_responses_wrapper_non_stream(
     instance: Responses,      # noqa: ARG001
     args: Any,
     kwargs: Any
-) -> Response:
+) -> Response | _Response:
     timer_start = time.perf_counter()
     response = wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
@@ -303,7 +311,7 @@ def openai_responses_wrapper_non_stream(
                 endpoint="/responses"
             )
 
-        return Response(**response.model_dump(), impacts=impacts)
+        return Response.model_construct(**dict(response), impacts=impacts)
     else:
         return response
 
@@ -339,7 +347,7 @@ def openai_responses_wrapper_stream(  # type: ignore[misc]
                         model=model_name,
                         endpoint="/responses"
                     )
-                event.response = Response(**event.response.model_dump(), impacts=impacts)
+                event.response = Response.model_construct(**dict(event.response), impacts=impacts)
                 event.impacts = impacts
         yield event
 
@@ -349,7 +357,7 @@ async def openai_async_responses_wrapper(
     instance: AsyncResponses,
     args: Any,
     kwargs: Any,
-) -> Union[Response, AsyncStream[ResponseStreamEvent]]:
+) -> Response | _Response | AsyncStream[ResponseStreamEvent]:
     """
     Function that wraps an OpenAI Responses API answer with computed impacts in async mode
 
@@ -373,7 +381,7 @@ async def openai_async_responses_wrapper_base(
     instance: AsyncResponses,     # noqa: ARG001
     args: Any,
     kwargs: Any,
-) -> Response:
+) -> Response | _Response:
     timer_start = time.perf_counter()
     response = await wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
@@ -396,8 +404,7 @@ async def openai_async_responses_wrapper_base(
                 model=model_name,
                 endpoint="/responses"
             )
-
-        return Response(**response.model_dump(), impacts=impacts)
+        return Response.model_construct(**dict(response), impacts=impacts)
     else:
         return response
 
@@ -433,9 +440,76 @@ async def openai_async_responses_wrapper_stream(  # type: ignore[misc]
                         model=model_name,
                         endpoint="/responses"
                     )
-                event.response = Response(**event.response.model_dump(), impacts=impacts)
+                event.response = Response.model_construct(**dict(event.response), impacts=impacts)
                 event.impacts = impacts
         yield event
+
+
+def openai_responses_parse_wrapper(
+    wrapped: Callable,
+    instance: Responses,  # noqa: ARG001
+    args: Any,
+    kwargs: Any,
+) -> ParsedResponse | _ParsedResponse:
+    timer_start = time.perf_counter()
+    response = wrapped(*args, **kwargs)
+    request_latency = time.perf_counter() - timer_start
+    model_name = response.model
+    impacts = llm_impacts(
+        provider=PROVIDER,
+        model_name=model_name,
+        output_token_count=response.usage.output_tokens,
+        request_latency=request_latency,
+        electricity_mix_zone=EcoLogits.config.electricity_mix_zone,
+    )
+    if impacts is not None:
+        if EcoLogits.config.opentelemetry:
+            EcoLogits.config.opentelemetry.record_request(
+                input_tokens=response.usage.input_tokens,
+                output_tokens=response.usage.output_tokens,
+                request_latency=request_latency,
+                impacts=impacts,
+                provider=PROVIDER,
+                model=model_name,
+                endpoint="/responses/parse",
+            )
+        return ParsedResponse.model_construct(**dict(response), impacts=impacts)
+    else:
+        return response
+
+
+async def openai_async_responses_parse_wrapper(
+    wrapped: Callable,
+    instance: AsyncResponses,  # noqa: ARG001
+    args: Any,
+    kwargs: Any,
+) -> ParsedResponse | _ParsedResponse:
+    timer_start = time.perf_counter()
+    response = await wrapped(*args, **kwargs)
+    request_latency = time.perf_counter() - timer_start
+    model_name = response.model
+    impacts = llm_impacts(
+        provider=PROVIDER,
+        model_name=model_name,
+        output_token_count=response.usage.output_tokens,
+        request_latency=request_latency,
+        electricity_mix_zone=EcoLogits.config.electricity_mix_zone,
+    )
+    if impacts is not None:
+        if EcoLogits.config.opentelemetry:
+            EcoLogits.config.opentelemetry.record_request(
+                input_tokens=response.usage.input_tokens,
+                output_tokens=response.usage.output_tokens,
+                request_latency=request_latency,
+                impacts=impacts,
+                provider=PROVIDER,
+                model=model_name,
+                endpoint="/responses/parse",
+            )
+
+        return ParsedResponse.model_construct(**dict(response), impacts=impacts)
+    else:
+        return response
 
 
 class OpenAIInstrumentor:
@@ -464,6 +538,16 @@ class OpenAIInstrumentor:
                 "name": "AsyncResponses.create",
                 "wrapper": openai_async_responses_wrapper,
             },
+            {
+                "module": "openai.resources.responses.responses",
+                "name": "Responses.parse",
+                "wrapper": openai_responses_parse_wrapper,
+            },
+            {
+                "module": "openai.resources.responses.responses",
+                "name": "AsyncResponses.parse",
+                "wrapper": openai_async_responses_parse_wrapper
+            }
         ]
 
     def instrument(self) -> None:
