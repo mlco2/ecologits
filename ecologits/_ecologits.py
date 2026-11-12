@@ -12,6 +12,7 @@ from ecologits.exceptions import EcoLogitsError
 from ecologits.log import logger
 
 if TYPE_CHECKING:
+    from ecologits.tracking import ImpactsTracker
     from ecologits.utils.opentelemetry import OpenTelemetry, OpenTelemetryLabels
 
 
@@ -83,6 +84,10 @@ _INSTRUMENTS = {
     "google_genai": init_google_genai_instrumentor,
     "litellm": init_litellm_instrumentor
 }
+
+_TRACKABLE_PROVIDERS = ["openai", "anthropic"]
+
+_instrumented_providers: set[str] = set()
 
 
 class EcoLogits:
@@ -206,14 +211,65 @@ class EcoLogits:
 
         return OpenTelemetryLabels(**labels)
 
+    @staticmethod
+    def track_impacts(providers: str | list[str] | None = None) -> ImpactsTracker:
+        """
+        Track the impacts of the LLM calls made inside a block, without enabling tracking for the whole process.
+
+        Calls made outside the block are left untouched unless their provider was enabled with `EcoLogits.init()`.
+        The block only covers the current thread or async task. Supported providers: `openai`, `anthropic`.
+
+        Args:
+            providers: list of providers to track (all supported providers by default).
+
+        Returns:
+            ImpactsTracker instance, to use as a context manager.
+
+        Examples:
+            ```python
+            from ecologits import EcoLogits
+            from openai import OpenAI
+
+            client = OpenAI(api_key="<OPENAI_API_KEY>")
+
+            with EcoLogits.track_impacts() as tracker:
+                response = client.chat.completions.create(
+                    model="gpt-4o-mini",
+                    messages=[{"role": "user", "content": "Tell me a funny joke!"}]
+                )
+
+            print(f"Energy consumption: {tracker.impacts.energy.value} kWh")
+            print(f"GHG emissions: {tracker.impacts.gwp.value} kgCO2eq")
+
+            # or in async mode
+            async with EcoLogits.track_impacts() as tracker:
+                response = await async_client.chat.completions.create(...)
+            ```
+        """
+        if isinstance(providers, str):
+            providers = [providers]
+        if providers is None:
+            providers = _TRACKABLE_PROVIDERS
+
+        for provider in providers:
+            if provider not in _TRACKABLE_PROVIDERS:
+                raise EcoLogitsError(f"Tracking impacts in a block is not supported yet for the `{provider}` provider.")
+
+        init_instruments(providers)
+
+        from ecologits.tracking import ImpactsTracker
+
+        return ImpactsTracker(providers)
+
 
 def init_instruments(providers: list[str]) -> None:
     for provider in providers:
         if provider not in _INSTRUMENTS:
             raise EcoLogitsError(f"Could not find tracer for the `{provider}` provider.")
-        if provider not in EcoLogits.config.providers:
+        if provider not in _instrumented_providers:
             init_func = _INSTRUMENTS[provider]
             init_func()
+            _instrumented_providers.add(provider)
 
 
 def is_opentelemetry_installed() -> bool:

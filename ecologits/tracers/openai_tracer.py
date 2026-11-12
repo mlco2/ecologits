@@ -1,5 +1,5 @@
 import time
-from typing import Any, Callable, Union
+from typing import Any, Callable, Optional, Union
 
 from openai import AsyncStream, Stream
 from openai.resources.chat import AsyncCompletions, Completions
@@ -12,6 +12,7 @@ from wrapt import wrap_function_wrapper  # type: ignore[import-untyped]
 
 from ecologits._ecologits import EcoLogits
 from ecologits.tracers.utils import ImpactsOutput, llm_impacts
+from ecologits.tracking import ImpactsTracker, get_active_trackers, is_tracking_enabled, record_impacts
 
 PROVIDER = "openai"
 
@@ -55,17 +56,21 @@ def openai_chat_wrapper(
     Returns:
         A wrapped `ChatCompletion` or `Stream[ChatCompletionChunk]` with impacts
     """
+    if not is_tracking_enabled(PROVIDER):
+        return wrapped(*args, **kwargs)
+    trackers = get_active_trackers(PROVIDER)
     if kwargs.get("stream", False):
-        return openai_chat_wrapper_stream(wrapped, instance, args, kwargs)
+        return openai_chat_wrapper_stream(wrapped, instance, args, kwargs, trackers)
     else:
-        return openai_chat_wrapper_non_stream(wrapped, instance, args, kwargs)
+        return openai_chat_wrapper_non_stream(wrapped, instance, args, kwargs, trackers)
 
 
 def openai_chat_wrapper_non_stream(
     wrapped: Callable,
     instance: Completions,      # noqa: ARG001
     args: Any,
-    kwargs: Any
+    kwargs: Any,
+    trackers: tuple[ImpactsTracker, ...] = (),
 ) -> ChatCompletion:
     timer_start = time.perf_counter()
     response = wrapped(*args, **kwargs)
@@ -90,6 +95,7 @@ def openai_chat_wrapper_non_stream(
                 endpoint="/chat/completions"
             )
 
+        record_impacts(trackers, impacts)
         return ChatCompletion(**response.model_dump(), impacts=impacts)
     else:
         return response
@@ -99,11 +105,13 @@ def openai_chat_wrapper_stream(  # type: ignore[misc]
     wrapped: Callable,
     instance: Completions,      # noqa: ARG001
     args: Any,
-    kwargs: Any
+    kwargs: Any,
+    trackers: tuple[ImpactsTracker, ...] = (),
 ) -> Stream[ChatCompletionChunk]:
     timer_start = time.perf_counter()
     stream = wrapped(*args, **kwargs)
     output_token_count = 0
+    impacts: Optional[ImpactsOutput] = None
     for i, chunk in enumerate(stream):
         # azure openai has an empty first chunk so we skip it
         if i == 0 and chunk.model == "":
@@ -141,6 +149,8 @@ def openai_chat_wrapper_stream(  # type: ignore[misc]
             yield ChatCompletionChunk(**chunk.model_dump(), impacts=impacts)
         else:
             yield chunk
+    if impacts is not None:
+        record_impacts(trackers, impacts)
 
 
 async def openai_async_chat_wrapper(
@@ -161,10 +171,13 @@ async def openai_async_chat_wrapper(
     Returns:
         A wrapped `ChatCompletion` or `AsyncStream[ChatCompletionChunk]` with impacts
     """
+    if not is_tracking_enabled(PROVIDER):
+        return await wrapped(*args, **kwargs)
+    trackers = get_active_trackers(PROVIDER)
     if kwargs.get("stream", False):
-        return openai_async_chat_wrapper_stream(wrapped, instance, args, kwargs)
+        return openai_async_chat_wrapper_stream(wrapped, instance, args, kwargs, trackers)
     else:
-        return await openai_async_chat_wrapper_base(wrapped, instance, args, kwargs)
+        return await openai_async_chat_wrapper_base(wrapped, instance, args, kwargs, trackers)
 
 
 async def openai_async_chat_wrapper_base(
@@ -172,6 +185,7 @@ async def openai_async_chat_wrapper_base(
     instance: AsyncCompletions,     # noqa: ARG001
     args: Any,
     kwargs: Any,
+    trackers: tuple[ImpactsTracker, ...] = (),
 ) -> ChatCompletion:
     timer_start = time.perf_counter()
     response = await wrapped(*args, **kwargs)
@@ -196,6 +210,7 @@ async def openai_async_chat_wrapper_base(
                 endpoint="/chat/completions"
             )
 
+        record_impacts(trackers, impacts)
         return ChatCompletion(**response.model_dump(), impacts=impacts)
     else:
         return response
@@ -206,11 +221,13 @@ async def openai_async_chat_wrapper_stream(  # type: ignore[misc]
     instance: AsyncCompletions,     # noqa: ARG001
     args: Any,
     kwargs: Any,
+    trackers: tuple[ImpactsTracker, ...] = (),
 ) -> AsyncStream[ChatCompletionChunk]:
     timer_start = time.perf_counter()
     stream = await wrapped(*args, **kwargs)
     i = 0
     output_token_count = 0
+    impacts: Optional[ImpactsOutput] = None
     async for chunk in stream:
         if i == 0 and chunk.model == "":
             continue
@@ -248,6 +265,8 @@ async def openai_async_chat_wrapper_stream(  # type: ignore[misc]
         else:
             yield chunk
         i += 1
+    if impacts is not None:
+        record_impacts(trackers, impacts)
 
 
 def openai_responses_wrapper(
@@ -268,17 +287,21 @@ def openai_responses_wrapper(
     Returns:
         A wrapped `Response` or `Stream[ResponseStreamEvent]` with impacts
     """
+    if not is_tracking_enabled(PROVIDER):
+        return wrapped(*args, **kwargs)
+    trackers = get_active_trackers(PROVIDER)
     if kwargs.get("stream", False):
-        return openai_responses_wrapper_stream(wrapped, instance, args, kwargs)
+        return openai_responses_wrapper_stream(wrapped, instance, args, kwargs, trackers)
     else:
-        return openai_responses_wrapper_non_stream(wrapped, instance, args, kwargs)
+        return openai_responses_wrapper_non_stream(wrapped, instance, args, kwargs, trackers)
 
 
 def openai_responses_wrapper_non_stream(
     wrapped: Callable,
     instance: Responses,      # noqa: ARG001
     args: Any,
-    kwargs: Any
+    kwargs: Any,
+    trackers: tuple[ImpactsTracker, ...] = (),
 ) -> Response:
     timer_start = time.perf_counter()
     response = wrapped(*args, **kwargs)
@@ -303,6 +326,7 @@ def openai_responses_wrapper_non_stream(
                 endpoint="/responses"
             )
 
+        record_impacts(trackers, impacts)
         return Response(**response.model_dump(), impacts=impacts)
     else:
         return response
@@ -312,7 +336,8 @@ def openai_responses_wrapper_stream(  # type: ignore[misc]
     wrapped: Callable,
     instance: Responses,      # noqa: ARG001
     args: Any,
-    kwargs: Any
+    kwargs: Any,
+    trackers: tuple[ImpactsTracker, ...] = (),
 ) -> Stream[ResponseStreamEvent]:
     timer_start = time.perf_counter()
     stream = wrapped(*args, **kwargs)
@@ -341,6 +366,7 @@ def openai_responses_wrapper_stream(  # type: ignore[misc]
                     )
                 event.response = Response(**event.response.model_dump(), impacts=impacts)
                 event.impacts = impacts
+                record_impacts(trackers, impacts)
         yield event
 
 
@@ -362,10 +388,13 @@ async def openai_async_responses_wrapper(
     Returns:
         A wrapped `Response` or `AsyncStream[ResponseStreamEvent]` with impacts
     """
+    if not is_tracking_enabled(PROVIDER):
+        return await wrapped(*args, **kwargs)
+    trackers = get_active_trackers(PROVIDER)
     if kwargs.get("stream", False):
-        return openai_async_responses_wrapper_stream(wrapped, instance, args, kwargs)
+        return openai_async_responses_wrapper_stream(wrapped, instance, args, kwargs, trackers)
     else:
-        return await openai_async_responses_wrapper_base(wrapped, instance, args, kwargs)
+        return await openai_async_responses_wrapper_base(wrapped, instance, args, kwargs, trackers)
 
 
 async def openai_async_responses_wrapper_base(
@@ -373,6 +402,7 @@ async def openai_async_responses_wrapper_base(
     instance: AsyncResponses,     # noqa: ARG001
     args: Any,
     kwargs: Any,
+    trackers: tuple[ImpactsTracker, ...] = (),
 ) -> Response:
     timer_start = time.perf_counter()
     response = await wrapped(*args, **kwargs)
@@ -397,6 +427,7 @@ async def openai_async_responses_wrapper_base(
                 endpoint="/responses"
             )
 
+        record_impacts(trackers, impacts)
         return Response(**response.model_dump(), impacts=impacts)
     else:
         return response
@@ -407,6 +438,7 @@ async def openai_async_responses_wrapper_stream(  # type: ignore[misc]
     instance: AsyncResponses,     # noqa: ARG001
     args: Any,
     kwargs: Any,
+    trackers: tuple[ImpactsTracker, ...] = (),
 ) -> AsyncStream[ResponseStreamEvent]:
     timer_start = time.perf_counter()
     stream = await wrapped(*args, **kwargs)
@@ -435,6 +467,7 @@ async def openai_async_responses_wrapper_stream(  # type: ignore[misc]
                     )
                 event.response = Response(**event.response.model_dump(), impacts=impacts)
                 event.impacts = impacts
+                record_impacts(trackers, impacts)
         yield event
 
 
