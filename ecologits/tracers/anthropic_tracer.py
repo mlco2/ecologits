@@ -37,12 +37,12 @@ class MessageStream(_MessageStream):
     impacts_trackers: tuple[ImpactsTracker, ...] = ()
 
     @override
-    def __stream_text__(self) -> Iterator[str]:  # type: ignore[misc]
+    def __stream__(self) -> Iterator[Any]:  # type: ignore[misc]
         timer_start = time.perf_counter()
         output_tokens = 0
         model_name = None
         input_tokens = 0
-        for chunk in self:
+        for chunk in super().__stream__():
             if type(chunk) is MessageStartEvent:
                 message = chunk.message
                 model_name = message.model
@@ -50,8 +50,7 @@ class MessageStream(_MessageStream):
                 output_tokens += message.usage.output_tokens
             elif type(chunk) is MessageDeltaEvent:
                 output_tokens += chunk.usage.output_tokens
-            elif chunk.type == "content_block_delta" and chunk.delta.type == "text_delta":
-                yield chunk.delta.text
+            yield chunk
         request_latency = time.perf_counter() - timer_start
         if model_name is not None:
             impacts = llm_impacts(
@@ -86,12 +85,12 @@ class AsyncMessageStream(_AsyncMessageStream):
     impacts_trackers: tuple[ImpactsTracker, ...] = ()
 
     @override
-    async def __stream_text__(self) -> AsyncIterator[str]:  # type: ignore[misc]
+    async def __stream__(self) -> AsyncIterator[Any]:  # type: ignore[misc]
         timer_start = time.perf_counter()
         output_tokens = 0
         model_name = None
         input_tokens = 0
-        async for chunk in self:
+        async for chunk in super().__stream__():
             if type(chunk) is MessageStartEvent:
                 message = chunk.message
                 model_name = message.model
@@ -99,8 +98,7 @@ class AsyncMessageStream(_AsyncMessageStream):
                 output_tokens += message.usage.output_tokens
             elif type(chunk) is MessageDeltaEvent:
                 output_tokens += chunk.usage.output_tokens
-            elif chunk.type == "content_block_delta" and chunk.delta.type == "text_delta":
-                yield chunk.delta.text
+            yield chunk
         request_latency = time.perf_counter() - timer_start
         if model_name is not None:
             impacts = llm_impacts(
