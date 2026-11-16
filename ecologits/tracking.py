@@ -3,7 +3,7 @@ from __future__ import annotations
 import operator
 from contextvars import ContextVar, Token
 from functools import reduce
-from typing import TYPE_CHECKING, Any, Optional, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from ecologits.impacts.modeling import Embodied, Usage
 from ecologits.tracers.utils import ImpactsOutput
@@ -41,14 +41,14 @@ class ImpactsTracker:
         self._tokens.append(_active_trackers.set((*_active_trackers.get(), self)))
         return self
 
-    def __exit__(self, exc_type: Optional[type], exc_val: Optional[BaseException], exc_tb: Optional[Any]) -> None:
+    def __exit__(self, exc_type: type | None, exc_val: BaseException | None, exc_tb: Any | None) -> None:
         _active_trackers.reset(self._tokens.pop())
 
     async def __aenter__(self) -> ImpactsTracker:
         return self.__enter__()
 
     async def __aexit__(
-        self, exc_type: Optional[type], exc_val: Optional[BaseException], exc_tb: Optional[Any]
+        self, exc_type: type | None, exc_val: BaseException | None, exc_tb: Any | None
     ) -> None:
         self.__exit__(exc_type, exc_val, exc_tb)
 
@@ -97,7 +97,7 @@ def _sum(values: list[_Impact]) -> _Impact:
     return reduce(operator.add, values)
 
 
-def _sum_present(values: list[Optional[_Impact]]) -> Optional[_Impact]:
+def _sum_present(values: list[_Impact | None]) -> _Impact | None:
     present = [v for v in values if v is not None]
     return _sum(present) if present else None
 
