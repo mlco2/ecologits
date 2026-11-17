@@ -55,9 +55,11 @@ assumptions and limitations.
 
 ## Datacenter assumptions
 
-The default electricity mix is `WOR` (World). Pass `datacenter_location=None` to use
-the provider's default location, or a zone such as `FRA` to select another mix.
-PUE and WUE use provider defaults when omitted or set to `None`.
+Location, PUE, and WUE use provider defaults when omitted or set to `None`.
+For example, the default location is `USA` for OpenAI and `SWE` for Mistral AI.
+Pass `datacenter_location="WOR"` to use the world mix explicitly, or a zone such
+as `FRA` to select another mix. The world mix is also the fallback when the
+provider's default location is unavailable.
 
 All datacenter overrides are keyword-only:
 
