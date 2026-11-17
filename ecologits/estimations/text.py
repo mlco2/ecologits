@@ -32,7 +32,7 @@ def text_impacts(
     provider: str,
     output_tokens: int,
     *,
-    datacenter_location: str | None = "WOR",
+    datacenter_location: str | None = None,
     datacenter_pue: float | RangeValue | None = None,
     datacenter_wue: float | RangeValue | None = None,
 ) -> ImpactsOutput:
@@ -52,8 +52,8 @@ def text_impacts(
         output_tokens: Number of generated tokens, including reasoning tokens
             when applicable. Must be a non-negative integer.
         datacenter_location: Electricity mix zone, using ISO 3166-1 alpha-3 codes
-            or an aggregate zone such as "WOR" (the default). Set to None to use
-            the provider's default location.
+            or an aggregate zone such as "WOR". Uses the provider's default
+            location when omitted or None.
         datacenter_pue: Power Usage Effectiveness of the datacenter. Uses the
             provider default when None.
         datacenter_wue: Water Usage Effectiveness of the datacenter in L/kWh.

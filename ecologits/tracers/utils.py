@@ -77,7 +77,8 @@ def llm_impacts(
         model_name: Name of the LLM used.
         output_token_count: Number of generated tokens.
         request_latency: Measured request latency in seconds, or None to estimate it.
-        electricity_mix_zone: ISO 3166-1 alpha-3 code of the electricity mix zone (WOR by default).
+        electricity_mix_zone: ISO 3166-1 alpha-3 code of the electricity mix zone.
+            Uses the provider's default location when None, falling back to WOR if unavailable.
         datacenter_pue: Power Usage Effectiveness. Uses the provider default when None.
         datacenter_wue: Water Usage Effectiveness in L/kWh. Uses the provider default when None.
 

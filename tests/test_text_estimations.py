@@ -30,7 +30,7 @@ from ecologits.utils.range_value import RangeValue
 def test_text_impacts_matches_tracer_estimation(provider, model_name):
     namespaces = {"google_genai": "google"}
     model_id = model_name if provider == "huggingface_hub" else f"{namespaces.get(provider, provider)}/{model_name}"
-    impacts = text_impacts(model_id, provider, 100, datacenter_location=None)
+    impacts = text_impacts(model_id, provider, 100)
     expected = llm_impacts(provider, model_name, 100, request_latency=math.inf)
 
     assert isinstance(impacts, ImpactsOutput)
@@ -43,16 +43,23 @@ def test_text_impacts_matches_tracer_estimation(provider, model_name):
         assert minimum > 0
 
 
-def test_text_impacts_uses_world_mix_by_default():
-    default = text_impacts("openai/gpt-4.1-nano", "openai", 100)
-    world = text_impacts("openai/gpt-4.1-nano", "openai", 100, datacenter_location="WOR")
-    provider = text_impacts("openai/gpt-4.1-nano", "openai", 100, datacenter_location=None)
-    usa = text_impacts("openai/gpt-4.1-nano", "openai", 100, datacenter_location="USA")
+@pytest.mark.parametrize(
+    ("model_name", "provider", "location"),
+    [
+        ("openai/gpt-4.1-nano", "openai", "USA"),
+        ("mistralai/mistral-small-latest", "mistralai", "SWE"),
+    ],
+)
+def test_text_impacts_uses_provider_location_by_default(model_name, provider, location):
+    default = text_impacts(model_name, provider, 100)
+    world = text_impacts(model_name, provider, 100, datacenter_location="WOR")
+    unspecified = text_impacts(model_name, provider, 100, datacenter_location=None)
+    explicit = text_impacts(model_name, provider, 100, datacenter_location=location)
 
-    assert default == world
-    assert provider == usa
-    assert default.energy == provider.energy
-    assert default.usage.gwp != provider.usage.gwp
+    assert not default.has_errors
+    assert default == unspecified == explicit
+    assert default.energy == world.energy
+    assert default.usage.gwp != world.usage.gwp
 
 
 @pytest.mark.parametrize("pue", [2.4, RangeValue(min=2.4, max=3.6)])
