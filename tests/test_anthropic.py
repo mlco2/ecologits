@@ -102,3 +102,16 @@ async def test_anthropic_async_stream_chat(tracer_init, monkeypatch, consume):
 
     assert tracker.calls == [stream.impacts]
     assert tracker.impacts.energy == stream.impacts.energy
+
+
+@pytest.mark.vcr
+@pytest.mark.default_cassette("test_anthropic_chat.yaml")
+def test_anthropic_chat_with_raw_response(tracer_init):
+    client = Anthropic()
+    raw = client.messages.with_raw_response.create(
+        max_tokens=100,
+        messages=[{"role": "user", "content": "Hello World!"}],
+        model="claude-haiku-4-5",
+    )
+    response = raw.parse()
+    assert len(response.content) > 0

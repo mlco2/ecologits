@@ -181,3 +181,65 @@ async def test_azure_openai_async_stream_chat(tracer_init):
     )
     async for chunk in stream:
         assert chunk.impacts.energy.value >= 0
+
+
+@pytest.mark.vcr
+@pytest.mark.default_cassette("test_openai_chat.yaml")
+def test_openai_chat_with_raw_response(tracer_init):
+    client = OpenAI()
+    raw = client.chat.completions.with_raw_response.create(
+        model="gpt-5-nano",
+        messages=[{"role": "user", "content": "Hello World!"}]
+    )
+    response = raw.parse()
+    assert len(response.choices) > 0
+
+
+@pytest.mark.vcr
+@pytest.mark.default_cassette("test_openai_async_chat.yaml")
+@pytest.mark.asyncio
+async def test_openai_async_chat_with_raw_response(tracer_init):
+    client = AsyncOpenAI()
+    raw = await client.chat.completions.with_raw_response.create(
+        model="gpt-5-nano",
+        messages=[{"role": "user", "content": "Hello World!"}]
+    )
+    response = raw.parse()
+    assert len(response.choices) > 0
+
+
+@pytest.mark.vcr
+@pytest.mark.default_cassette("test_openai_stream_chat.yaml")
+def test_openai_stream_chat_with_raw_response(tracer_init):
+    client = OpenAI()
+    raw = client.chat.completions.with_raw_response.create(
+        model="gpt-5-nano",
+        messages=[{"role": "user", "content": "Hello World!"}],
+        stream=True
+    )
+    chunks = list(raw.parse())
+    assert len(chunks) > 0
+
+
+@pytest.mark.vcr
+@pytest.mark.default_cassette("test_openai_chat.yaml")
+def test_openai_chat_with_streaming_response(tracer_init):
+    client = OpenAI()
+    with client.chat.completions.with_streaming_response.create(
+        model="gpt-5-nano",
+        messages=[{"role": "user", "content": "Hello World!"}]
+    ) as raw:
+        response = raw.parse()
+    assert len(response.choices) > 0
+
+
+@pytest.mark.vcr
+@pytest.mark.default_cassette("test_openai_responses.yaml")
+def test_openai_responses_with_raw_response(tracer_init):
+    client = OpenAI()
+    raw = client.responses.with_raw_response.create(
+        model="gpt-5-nano",
+        input="Hello World!"
+    )
+    response = raw.parse()
+    assert response.output is not None
