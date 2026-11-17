@@ -143,6 +143,24 @@ def test_impacts_video_generation_uses_provider_configuration(monkeypatch):
     assert captured["datacenter_wue"].max == pytest.approx(0.999)
 
 
+@pytest.mark.parametrize(
+    ("model_name", "location"),
+    [("openai/sora-2-pro", "USA"), ("klingai/kling-v1.6", "SGP")],
+)
+def test_video_impacts_uses_provider_location_by_default(model_name, location):
+    kwargs = {"model_name": model_name, "resolution": "720p", "duration": 5}
+    default = video_estimations.video_impacts(**kwargs)
+    unspecified = video_estimations.video_impacts(**kwargs, datacenter_location=None)
+    explicit = video_estimations.video_impacts(**kwargs, datacenter_location=location)
+    world = video_estimations.video_impacts(**kwargs, datacenter_location="WOR")
+
+    assert not default.has_errors
+    assert default == unspecified == explicit
+    assert default.energy == world.energy
+    assert default.embodied == world.embodied
+    assert default.usage.gwp != world.usage.gwp
+
+
 def test_impacts_video_generation_uses_datacenter_location_when_provided():
     impacts = video_estimations.video_impacts(
         model_name="runway/gen-4.5",

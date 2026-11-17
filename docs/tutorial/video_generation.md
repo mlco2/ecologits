@@ -140,6 +140,10 @@ The default is `True`, which matches video models that generate audio with the v
 
 By default, EcoLogits uses provider-level assumptions for the model deployment location, PUE, and WUE. This keeps the function simple when you do not know where the provider served the request.
 
+Omitting `datacenter_location` or setting it to `None` selects the provider's configured
+location, such as `USA` for OpenAI and `SGP` for Kling AI. Pass
+`datacenter_location="WOR"` explicitly to use the world electricity mix.
+
 ```python
 impacts = video_impacts(
     model_name="bytedance/seedance-1.5-pro",
