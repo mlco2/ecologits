@@ -210,7 +210,7 @@ class EcoLogits:
         return OpenTelemetryLabels(**labels)
 
     @staticmethod
-    def track_impacts(providers: str | list[str] | None = None) -> ImpactsTracker:
+    def track_impacts(providers: str | list[str]) -> ImpactsTracker:
         """
         Track the impacts of the LLM calls made inside a block, without enabling tracking for the whole process.
 
@@ -218,7 +218,7 @@ class EcoLogits:
         The block only covers the current thread or async task.
 
         Args:
-            providers: list of providers to track (all providers by default).
+            providers: list of providers to track (must select at least one provider).
 
         Returns:
             ImpactsTracker instance, to use as a context manager.
@@ -230,7 +230,7 @@ class EcoLogits:
 
             client = OpenAI(api_key="<OPENAI_API_KEY>")
 
-            with EcoLogits.track_impacts() as tracker:
+            with EcoLogits.track_impacts(providers=["openai"]) as tracker:
                 response = client.chat.completions.create(
                     model="gpt-4o-mini",
                     messages=[{"role": "user", "content": "Tell me a funny joke!"}]
@@ -240,14 +240,14 @@ class EcoLogits:
             print(f"GHG emissions: {tracker.impacts.gwp.value} kgCO2eq")
 
             # or in async mode
-            async with EcoLogits.track_impacts() as tracker:
+            async with EcoLogits.track_impacts(providers=["openai"]) as tracker:
                 response = await async_client.chat.completions.create(...)
             ```
         """
         if isinstance(providers, str):
             providers = [providers]
-        if providers is None:
-            providers = list(_INSTRUMENTS.keys())
+        if not providers:
+            raise EcoLogitsError("You must select at least one provider to track impacts in a block.")
 
         init_instruments(providers)
 

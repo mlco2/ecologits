@@ -72,7 +72,7 @@ def anthropic_chat(client):
 
 
 def test_empty_tracker():
-    with EcoLogits.track_impacts() as tracker:
+    with EcoLogits.track_impacts(providers="openai") as tracker:
         pass
     assert tracker.calls == []
     assert tracker.impacts.energy is None
@@ -84,11 +84,16 @@ def test_unknown_provider():
         EcoLogits.track_impacts(providers=["unknown"])
 
 
+def test_no_providers():
+    with pytest.raises(EcoLogitsError):
+        EcoLogits.track_impacts(providers=[])
+
+
 @pytest.mark.vcr
 @pytest.mark.default_cassette(OPENAI_CHAT)
 def test_openai_chat(no_global_init):
     client = OpenAI()
-    with EcoLogits.track_impacts() as tracker:
+    with EcoLogits.track_impacts(providers="openai") as tracker:
         response = openai_chat(client)
     assert len(tracker.calls) == 1
     assert tracker.calls[0] == response.impacts
@@ -101,7 +106,7 @@ def test_openai_chat(no_global_init):
 def test_calls_outside_block_are_not_tracked(no_global_init):
     client = OpenAI()
     before = openai_chat(client)
-    with EcoLogits.track_impacts() as tracker:
+    with EcoLogits.track_impacts(providers="openai") as tracker:
         inside = openai_chat(client)
     after = openai_chat(client)
 
@@ -115,7 +120,7 @@ def test_calls_outside_block_are_not_tracked(no_global_init):
 @pytest.mark.default_cassette(OPENAI_CHAT)
 def test_calls_outside_block_still_tracked_with_init(tracer_init):
     client = OpenAI()
-    with EcoLogits.track_impacts() as tracker:
+    with EcoLogits.track_impacts(providers="openai") as tracker:
         openai_chat(client)
     outside = openai_chat(client)
 
@@ -127,7 +132,7 @@ def test_calls_outside_block_still_tracked_with_init(tracer_init):
 @pytest.mark.default_cassette(OPENAI_CHAT)
 def test_impacts_are_summed(no_global_init):
     client = OpenAI()
-    with EcoLogits.track_impacts() as tracker:
+    with EcoLogits.track_impacts(providers="openai") as tracker:
         first = openai_chat(client)
         second = openai_chat(client)
 
@@ -142,9 +147,9 @@ def test_impacts_are_summed(no_global_init):
 @pytest.mark.default_cassette(OPENAI_CHAT)
 def test_nested_blocks(no_global_init):
     client = OpenAI()
-    with EcoLogits.track_impacts() as outer:
+    with EcoLogits.track_impacts(providers="openai") as outer:
         openai_chat(client)
-        with EcoLogits.track_impacts() as inner:
+        with EcoLogits.track_impacts(providers="openai") as inner:
             openai_chat(client)
 
     assert len(inner.calls) == 1
@@ -168,7 +173,7 @@ def test_tracker_only_counts_its_providers(no_global_init):
 def test_other_threads_are_not_tracked(no_global_init):
     client = OpenAI()
     results = []
-    with EcoLogits.track_impacts() as tracker:
+    with EcoLogits.track_impacts(providers="openai") as tracker:
         thread = threading.Thread(target=lambda: results.append(openai_chat(client)))
         thread.start()
         thread.join()
@@ -183,7 +188,7 @@ def test_other_threads_are_not_tracked(no_global_init):
 @pytest.mark.asyncio
 async def test_openai_async_chat(no_global_init):
     client = AsyncOpenAI()
-    async with EcoLogits.track_impacts() as tracker:
+    async with EcoLogits.track_impacts(providers="openai") as tracker:
         response = await openai_chat(client)
     assert len(tracker.calls) == 1
     assert tracker.impacts.energy == response.impacts.energy
@@ -193,7 +198,7 @@ async def test_openai_async_chat(no_global_init):
 @pytest.mark.default_cassette(OPENAI_STREAM_CHAT)
 def test_openai_stream_chat(no_global_init):
     client = OpenAI()
-    with EcoLogits.track_impacts() as tracker:
+    with EcoLogits.track_impacts(providers="openai") as tracker:
         stream = client.chat.completions.create(
             model="gpt-5-nano",
             messages=[{"role": "user", "content": "Hello World!"}],
@@ -209,7 +214,7 @@ def test_openai_stream_chat(no_global_init):
 @pytest.mark.default_cassette(OPENAI_STREAM_CHAT)
 def test_stream_read_after_block_is_still_tracked(no_global_init):
     client = OpenAI()
-    with EcoLogits.track_impacts() as tracker:
+    with EcoLogits.track_impacts(providers="openai") as tracker:
         stream = client.chat.completions.create(
             model="gpt-5-nano",
             messages=[{"role": "user", "content": "Hello World!"}],
@@ -225,7 +230,7 @@ def test_stream_read_after_block_is_still_tracked(no_global_init):
 @pytest.mark.default_cassette(OPENAI_RESPONSES)
 def test_openai_responses(no_global_init):
     client = OpenAI()
-    with EcoLogits.track_impacts() as tracker:
+    with EcoLogits.track_impacts(providers="openai") as tracker:
         response = client.responses.create(model="gpt-5-nano", input="Hello World!")
     assert len(tracker.calls) == 1
     assert tracker.impacts.energy == response.impacts.energy
@@ -286,7 +291,7 @@ def test_anthropic_chat(no_global_init):
 @pytest.mark.asyncio
 async def test_anthropic_async_stream_chat(no_global_init):
     client = AsyncAnthropic()
-    async with EcoLogits.track_impacts() as tracker:
+    async with EcoLogits.track_impacts(providers="anthropic") as tracker:
         async with client.messages.stream(
             max_tokens=100,
             messages=[{"role": "user", "content": "Hello World!"}],
@@ -391,7 +396,7 @@ def test_huggingface_hub_stream_chat(no_global_init):
 @pytest.mark.default_cassette(LITELLM_CHAT)
 def test_litellm_chat(no_global_init):
     outside = litellm.completion(model="mistral/mistral-small", messages=[{"content": "Hello World!", "role": "user"}])
-    with EcoLogits.track_impacts() as tracker:
+    with EcoLogits.track_impacts(providers="litellm") as tracker:
         response = litellm.completion(
             model="mistral/mistral-small",
             messages=[{"content": "Hello World!", "role": "user"}]
