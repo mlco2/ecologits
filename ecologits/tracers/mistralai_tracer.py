@@ -1,5 +1,5 @@
 import time
-from collections.abc import AsyncGenerator, Iterable
+from collections.abc import AsyncGenerator, Iterable, Iterator
 from typing import Any, Callable
 
 from mistralai import Mistral
@@ -10,6 +10,7 @@ from wrapt import wrap_function_wrapper  # type: ignore[import-untyped]
 
 from ecologits._ecologits import EcoLogits
 from ecologits.tracers.utils import ImpactsOutput, llm_impacts
+from ecologits.tracking import ImpactsTracker, get_active_trackers, is_tracking_enabled, record_impacts
 
 PROVIDER = "mistralai"
 
@@ -44,6 +45,9 @@ def mistralai_chat_wrapper(
     Returns:
         A wrapped `ChatCompletionResponse` with impacts
     """
+    if not is_tracking_enabled(PROVIDER):
+        return wrapped(*args, **kwargs)
+    trackers = get_active_trackers(PROVIDER)
     timer_start = time.perf_counter()
     response = wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
@@ -66,6 +70,7 @@ def mistralai_chat_wrapper(
                 endpoint="/chat/completions"
             )
 
+        record_impacts(trackers, impacts)
         return ChatCompletionResponse(**response.model_dump(), impacts=impacts)
     else:
         return response
@@ -86,9 +91,21 @@ def mistralai_chat_wrapper_stream(
     Returns:
         A wrapped `Iterable[CompletionEvent]` with impacts
     """
+    if not is_tracking_enabled(PROVIDER):
+        return wrapped(*args, **kwargs)
+    return _stream_generator(wrapped, args, kwargs, get_active_trackers(PROVIDER))
+
+
+def _stream_generator(
+    wrapped: Callable,
+    args: Any,
+    kwargs: Any,
+    trackers: tuple[ImpactsTracker, ...]
+) -> Iterator[CompletionEvent]:
     timer_start = time.perf_counter()
     stream = wrapped(*args, **kwargs)
     token_count = 0
+    impacts: ImpactsOutput | None = None
     for i, chunk in enumerate(stream):
         if i > 0 and chunk.data.choices[0].finish_reason is None:
             token_count += 1
@@ -119,6 +136,8 @@ def mistralai_chat_wrapper_stream(
             yield chunk
         else:
             yield chunk
+    if impacts is not None:
+        record_impacts(trackers, impacts)
 
 
 async def mistralai_async_chat_wrapper(
@@ -139,6 +158,9 @@ async def mistralai_async_chat_wrapper(
     Returns:
         A wrapped `ChatCompletionResponse` with impacts
     """
+    if not is_tracking_enabled(PROVIDER):
+        return await wrapped(*args, **kwargs)
+    trackers = get_active_trackers(PROVIDER)
     timer_start = time.perf_counter()
     response = await wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
@@ -161,15 +183,18 @@ async def mistralai_async_chat_wrapper(
                 endpoint="/chat/completions"
             )
 
+        record_impacts(trackers, impacts)
         return ChatCompletionResponse(**response.model_dump(), impacts=impacts)
     else:
         return response
 
 async def _generator(
     stream: AsyncGenerator[CompletionEvent, None],
-    timer_start: float
+    timer_start: float,
+    trackers: tuple[ImpactsTracker, ...] = ()
 ) -> AsyncGenerator[CompletionEvent, None]:
     token_count = 0
+    impacts: ImpactsOutput | None = None
     async for chunk in stream:
         if chunk.data.usage is not None:
             token_count = chunk.data.usage.completion_tokens
@@ -200,6 +225,8 @@ async def _generator(
             yield chunk
         else:
             yield chunk
+    if impacts is not None:
+        record_impacts(trackers, impacts)
 
 
 async def mistralai_async_chat_wrapper_stream(
@@ -220,9 +247,12 @@ async def mistralai_async_chat_wrapper_stream(
     Returns:
         A wrapped `AsyncGenerator[CompletionEvent, None]` with impacts
     """
+    if not is_tracking_enabled(PROVIDER):
+        return await wrapped(*args, **kwargs)
+    trackers = get_active_trackers(PROVIDER)
     timer_start = time.perf_counter()
     stream = await wrapped(*args, **kwargs)
-    return _generator(stream, timer_start)
+    return _generator(stream, timer_start, trackers)
 
 
 class MistralAIInstrumentor:
