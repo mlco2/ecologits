@@ -85,8 +85,6 @@ _INSTRUMENTS = {
     "litellm": init_litellm_instrumentor
 }
 
-_TRACKABLE_PROVIDERS = ["openai", "anthropic"]
-
 _instrumented_providers: set[str] = set()
 
 
@@ -217,10 +215,10 @@ class EcoLogits:
         Track the impacts of the LLM calls made inside a block, without enabling tracking for the whole process.
 
         Calls made outside the block are left untouched unless their provider was enabled with `EcoLogits.init()`.
-        The block only covers the current thread or async task. Supported providers: `openai`, `anthropic`.
+        The block only covers the current thread or async task.
 
         Args:
-            providers: list of providers to track (all supported providers by default).
+            providers: list of providers to track (all providers by default).
 
         Returns:
             ImpactsTracker instance, to use as a context manager.
@@ -249,11 +247,7 @@ class EcoLogits:
         if isinstance(providers, str):
             providers = [providers]
         if providers is None:
-            providers = _TRACKABLE_PROVIDERS
-
-        for provider in providers:
-            if provider not in _TRACKABLE_PROVIDERS:
-                raise EcoLogitsError(f"Tracking impacts in a block is not supported yet for the `{provider}` provider.")
+            providers = list(_INSTRUMENTS.keys())
 
         init_instruments(providers)
 

@@ -8,6 +8,7 @@ from wrapt import wrap_function_wrapper  # type: ignore[import-untyped]
 
 from ecologits import EcoLogits
 from ecologits.tracers.utils import ImpactsOutput, llm_impacts
+from ecologits.tracking import ImpactsTracker, get_active_trackers, is_tracking_enabled, record_impacts
 
 PROVIDER = "google_genai"
 
@@ -37,6 +38,9 @@ def google_genai_content_wrapper(
     Returns:
         A wrapped `GenerateContentResponse` with impacts
     """
+    if not is_tracking_enabled(PROVIDER):
+        return wrapped(*args, **kwargs)
+    trackers = get_active_trackers(PROVIDER)
     timer_start = time.perf_counter()
     response = wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
@@ -65,6 +69,7 @@ def google_genai_content_wrapper(
                 endpoint=f"/v1beta/models/{model_name}:generateContent"
             )
 
+        record_impacts(trackers, impacts)
         return GenerateContentResponse(**response.model_dump(), impacts=impacts)
     else:
         return response
@@ -88,6 +93,17 @@ def google_genai_content_stream_wrapper(
     Yields:
         A wrapped `GenerateContentResponse` with impacts
     """
+    if not is_tracking_enabled(PROVIDER):
+        return wrapped(*args, **kwargs)
+    return _stream_generator(wrapped, args, kwargs, get_active_trackers(PROVIDER))
+
+
+def _stream_generator(
+    wrapped: Callable,
+    args: Any,
+    kwargs: Any,
+    trackers: tuple[ImpactsTracker, ...]
+) -> Iterator[GenerateContentResponse]:
     timer_start = time.perf_counter()
     stream = wrapped(*args, **kwargs)
     for chunk in stream:
@@ -121,6 +137,7 @@ def google_genai_content_stream_wrapper(
                         endpoint=f"/v1beta/models/{model_name}:generateContent"
                     )
 
+                record_impacts(trackers, impacts)
                 yield GenerateContentResponse(**chunk.model_dump(), impacts=impacts)
             else:
                 yield GenerateContentResponse(**chunk.model_dump(), impacts=None)
@@ -144,6 +161,9 @@ async def google_genai_async_content_wrapper(
     Returns:
         A wrapped `GenerateContentResponse` with impacts
     """
+    if not is_tracking_enabled(PROVIDER):
+        return await wrapped(*args, **kwargs)
+    trackers = get_active_trackers(PROVIDER)
     timer_start = time.perf_counter()
     response = await wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
@@ -172,6 +192,7 @@ async def google_genai_async_content_wrapper(
                 endpoint=f"/v1beta/models/{model_name}:generateContent"
             )
 
+        record_impacts(trackers, impacts)
         return GenerateContentResponse(**response.model_dump(), impacts=impacts)
     else:
         return response
@@ -180,7 +201,8 @@ async def google_genai_async_content_wrapper(
 async def _generator(
     stream: AsyncIterator[GenerateContentResponse],
     timer_start: float,
-    model_name: str
+    model_name: str,
+    trackers: tuple[ImpactsTracker, ...] = ()
 ) -> AsyncIterator[GenerateContentResponse]:
     async for chunk in stream:
         if chunk.candidates[0].finish_reason is None:
@@ -212,6 +234,7 @@ async def _generator(
                         endpoint=f"/v1beta/models/{model_name}:generateContent"
                     )
 
+                record_impacts(trackers, impacts)
                 yield GenerateContentResponse(**chunk.model_dump(), impacts=impacts)
             else:
                 yield GenerateContentResponse(**chunk.model_dump(), impacts=None)
@@ -235,9 +258,12 @@ async def google_genai_async_content_stream_wrapper(
     Yields:
         A wrapped `GenerateContentResponse` with impacts
     """
+    if not is_tracking_enabled(PROVIDER):
+        return await wrapped(*args, **kwargs)
+    trackers = get_active_trackers(PROVIDER)
     timer_start = time.perf_counter()
     stream = await wrapped(*args, **kwargs)
-    return _generator(stream, timer_start=timer_start, model_name=kwargs["model"])
+    return _generator(stream, timer_start=timer_start, model_name=kwargs["model"], trackers=trackers)
 
 
 class GoogleGenaiInstrumentor:
