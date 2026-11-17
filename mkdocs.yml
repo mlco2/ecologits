@@ -14,6 +14,7 @@ nav:
   - 'Tutorial':
       - 'Introduction': tutorial/index.md
       - 'Environmental Impacts': tutorial/impacts.md
+      - 'Text Generation': tutorial/text_generation.md
       - 'Video Generation': tutorial/video_generation.md
       - 'Warnings and Errors': tutorial/warnings_and_errors.md
       - 'Supported providers': tutorial/providers.md
