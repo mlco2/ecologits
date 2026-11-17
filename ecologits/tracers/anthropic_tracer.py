@@ -14,6 +14,7 @@ from wrapt import wrap_function_wrapper  # type: ignore[import-untyped]
 
 from ecologits._ecologits import EcoLogits
 from ecologits.tracers.utils import ImpactsOutput, llm_impacts
+from ecologits.tracking import ImpactsTracker, get_active_trackers, is_tracking_enabled, record_impacts
 
 PROVIDER = "anthropic"
 
@@ -33,14 +34,15 @@ class MessageStream(_MessageStream):
     Wrapper of `anthropic.lib.streaming.MessageStream` with `ImpactsOutput`
     """
     impacts: Optional[ImpactsOutput] = None
+    impacts_trackers: tuple[ImpactsTracker, ...] = ()
 
     @override
-    def __stream_text__(self) -> Iterator[str]:  # type: ignore[misc]
+    def __stream__(self) -> Iterator[Any]:  # type: ignore[misc]
         timer_start = time.perf_counter()
         output_tokens = 0
         model_name = None
         input_tokens = 0
-        for chunk in self:
+        for chunk in super().__stream__():
             if type(chunk) is MessageStartEvent:
                 message = chunk.message
                 model_name = message.model
@@ -48,8 +50,7 @@ class MessageStream(_MessageStream):
                 output_tokens += message.usage.output_tokens
             elif type(chunk) is MessageDeltaEvent:
                 output_tokens += chunk.usage.output_tokens
-            elif chunk.type == "content_block_delta" and chunk.delta.type == "text_delta":
-                yield chunk.delta.text
+            yield chunk
         request_latency = time.perf_counter() - timer_start
         if model_name is not None:
             impacts = llm_impacts(
@@ -60,6 +61,7 @@ class MessageStream(_MessageStream):
                 electricity_mix_zone=EcoLogits.config.electricity_mix_zone
             )
             self.impacts = impacts
+            record_impacts(self.impacts_trackers, impacts)
 
             if impacts is not None \
                 and EcoLogits.config.opentelemetry:
@@ -80,14 +82,15 @@ class AsyncMessageStream(_AsyncMessageStream):
     Wrapper of `anthropic.lib.streaming.AsyncMessageStream` with `ImpactsOutput`
     """
     impacts: Optional[ImpactsOutput] = None
+    impacts_trackers: tuple[ImpactsTracker, ...] = ()
 
     @override
-    async def __stream_text__(self) -> AsyncIterator[str]:  # type: ignore[misc]
+    async def __stream__(self) -> AsyncIterator[Any]:  # type: ignore[misc]
         timer_start = time.perf_counter()
         output_tokens = 0
         model_name = None
         input_tokens = 0
-        async for chunk in self:
+        async for chunk in super().__stream__():
             if type(chunk) is MessageStartEvent:
                 message = chunk.message
                 model_name = message.model
@@ -95,8 +98,7 @@ class AsyncMessageStream(_AsyncMessageStream):
                 output_tokens += message.usage.output_tokens
             elif type(chunk) is MessageDeltaEvent:
                 output_tokens += chunk.usage.output_tokens
-            elif chunk.type == "content_block_delta" and chunk.delta.type == "text_delta":
-                yield chunk.delta.text
+            yield chunk
         request_latency = time.perf_counter() - timer_start
         if model_name is not None:
             impacts = llm_impacts(
@@ -107,6 +109,7 @@ class AsyncMessageStream(_AsyncMessageStream):
                 electricity_mix_zone=EcoLogits.config.electricity_mix_zone
             )
             self.impacts = impacts
+            record_impacts(self.impacts_trackers, impacts)
 
             if impacts is not None \
                 and EcoLogits.config.opentelemetry:
@@ -127,13 +130,17 @@ class MessageStreamManager(Generic[MessageStreamT]):
     Re-writing of Anthropic's `MessageStreamManager` with wrapped `MessageStream`
     """
 
-    def __init__(self, api_request: Callable[[], Any], output_format: Any) -> None:
+    def __init__(
+        self, api_request: Callable[[], Any], output_format: Any, trackers: tuple[ImpactsTracker, ...] = ()
+    ) -> None:
         self.__api_request = api_request
         self.__output_format = output_format
+        self.__trackers = trackers
 
     def __enter__(self) -> MessageStream:
         raw_stream = self.__api_request()
         self.__stream = MessageStream(raw_stream, output_format=self.__output_format)
+        self.__stream.impacts_trackers = self.__trackers
         return self.__stream
 
     def __exit__(
@@ -150,13 +157,17 @@ class AsyncMessageStreamManager(Generic[AsyncMessageStreamT]):
     """
     Re-writing of Anthropic's `AsyncMessageStreamManager` with wrapped `AsyncMessageStream`
     """
-    def __init__(self, api_request: Awaitable[Any], output_format: Any) -> None:
+    def __init__(
+        self, api_request: Awaitable[Any], output_format: Any, trackers: tuple[ImpactsTracker, ...] = ()
+    ) -> None:
         self.__api_request = api_request
         self.__output_format = output_format
+        self.__trackers = trackers
 
     async def __aenter__(self) -> AsyncMessageStream:
         raw_stream = await self.__api_request
         self.__stream = AsyncMessageStream(raw_stream, output_format=self.__output_format)
+        self.__stream.impacts_trackers = self.__trackers
         return self.__stream
 
     async def __aexit__(
@@ -184,6 +195,9 @@ def anthropic_chat_wrapper(
     Returns:
         A wrapped `Message` with impacts
     """
+    if not is_tracking_enabled(PROVIDER):
+        return wrapped(*args, **kwargs)
+    trackers = get_active_trackers(PROVIDER)
 
     timer_start = time.perf_counter()
     response = wrapped(*args, **kwargs)
@@ -208,6 +222,7 @@ def anthropic_chat_wrapper(
                 endpoint="/messages"
             )
 
+        record_impacts(trackers, impacts)
         return Message(**response.model_dump(), impacts=impacts)
     else:
         return response
@@ -228,6 +243,9 @@ async def anthropic_async_chat_wrapper(
     Returns:
         A wrapped `Message` with impacts
     """
+    if not is_tracking_enabled(PROVIDER):
+        return await wrapped(*args, **kwargs)
+    trackers = get_active_trackers(PROVIDER)
 
     timer_start = time.perf_counter()
     response = await wrapped(*args, **kwargs)
@@ -252,6 +270,7 @@ async def anthropic_async_chat_wrapper(
                 endpoint="/messages"
             )
 
+        record_impacts(trackers, impacts)
         return Message(**response.model_dump(), impacts=impacts)
     else:
         return response
@@ -273,9 +292,11 @@ def anthropic_stream_chat_wrapper(
         A wrapped `MessageStreamManager` with impacts
     """
     response = wrapped(*args, **kwargs)
+    if not is_tracking_enabled(PROVIDER):
+        return response
     api_request = response._MessageStreamManager__api_request  # noqa: SLF001
     output_format = response._MessageStreamManager__output_format  # noqa: SLF001
-    return MessageStreamManager(api_request, output_format)
+    return MessageStreamManager(api_request, output_format, get_active_trackers(PROVIDER))
 
 
 def anthropic_async_stream_chat_wrapper(
@@ -294,9 +315,11 @@ def anthropic_async_stream_chat_wrapper(
         A wrapped `AsyncMessageStreamManager` with impacts
     """
     response = wrapped(*args, **kwargs)
+    if not is_tracking_enabled(PROVIDER):
+        return response
     api_request = response._AsyncMessageStreamManager__api_request  # noqa: SLF001
     output_format = response._AsyncMessageStreamManager__output_format  # noqa: SLF001
-    return AsyncMessageStreamManager(api_request, output_format)
+    return AsyncMessageStreamManager(api_request, output_format, get_active_trackers(PROVIDER))
 
 
 class AnthropicInstrumentor:
