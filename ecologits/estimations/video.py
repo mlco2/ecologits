@@ -33,7 +33,7 @@ def video_impacts(
         resolution: str,
         duration: float,
         with_audio: bool = True,
-        datacenter_location: str | None = "WOR",
+        datacenter_location: str | None = None,
         datacenter_pue: float | RangeValue | None = None,
         datacenter_wue: float | RangeValue | None = None,
 ) -> ImpactsOutput:
@@ -48,7 +48,8 @@ def video_impacts(
             as a string (e.g., "1920x1080" or "1080p").
         duration: The length of the video to generate, specified in seconds.
         with_audio: Whether the video generation also includes audio.
-        datacenter_location: ISO 3166-1 alpha-3 code of the datacenter location (WOR by default).
+        datacenter_location: ISO 3166-1 alpha-3 code of the datacenter location.
+            Uses the provider default when omitted or None; pass "WOR" for the world mix.
         datacenter_pue: Power Usage Effectiveness of the datacenter. Uses the provider default when omitted.
         datacenter_wue: Water Usage Effectiveness of the datacenter in L/kWh. Uses the provider default when omitted.
 
