@@ -9,6 +9,7 @@ from cohere import AsyncClient, Client
 from google import genai
 from huggingface_hub import InferenceClient
 from openai import AsyncOpenAI, OpenAI
+from pydantic import BaseModel
 
 from ecologits import EcoLogits
 from ecologits.exceptions import EcoLogitsError
@@ -17,6 +18,8 @@ OPENAI_CHAT = "test_openai/test_openai_chat.yaml"
 OPENAI_ASYNC_CHAT = "test_openai/test_openai_async_chat.yaml"
 OPENAI_STREAM_CHAT = "test_openai/test_openai_stream_chat.yaml"
 OPENAI_RESPONSES = "test_openai/test_openai_responses.yaml"
+OPENAI_RESPONSES_PARSE = "test_openai/test_openai_responses_parse.yaml"
+OPENAI_ASYNC_RESPONSES_PARSE = "test_openai/test_openai_async_responses_parse.yaml"
 ANTHROPIC_CHAT = "test_anthropic/test_anthropic_chat.yaml"
 ANTHROPIC_ASYNC_STREAM_CHAT = "test_anthropic/test_anthropic_async_stream_chat.yaml"
 MISTRALAI_ASYNC_CHAT = "test_mistralai/test_mistralai_async_chat.yaml"
@@ -45,6 +48,18 @@ def openai_chat(client):
     return client.chat.completions.create(
         model="gpt-5-nano",
         messages=[{"role": "user", "content": "Hello World!"}]
+    )
+
+
+class GreetingDetection(BaseModel):
+    is_greeting: bool
+
+
+def openai_responses_parse(client):
+    return client.responses.parse(
+        model="gpt-5-nano",
+        input=[{"role": "user", "content": "Hello World!"}],
+        text_format=GreetingDetection,
     )
 
 
@@ -219,6 +234,43 @@ def test_openai_responses(no_global_init):
         response = client.responses.create(model="gpt-5-nano", input="Hello World!")
     assert len(tracker.calls) == 1
     assert tracker.impacts.energy == response.impacts.energy
+
+
+@pytest.mark.vcr
+@pytest.mark.default_cassette(OPENAI_RESPONSES_PARSE)
+def test_openai_responses_parse(no_global_init):
+    client = OpenAI()
+    with EcoLogits.track_impacts() as tracker:
+        response = openai_responses_parse(client)
+
+    assert isinstance(response.output_parsed, GreetingDetection)
+    assert tracker.calls == [response.impacts]
+
+
+@pytest.mark.vcr(allow_playback_repeats=True)
+@pytest.mark.default_cassette(OPENAI_RESPONSES_PARSE)
+def test_parsed_responses_outside_block_are_not_tracked(no_global_init):
+    client = OpenAI()
+    before = openai_responses_parse(client)
+    with EcoLogits.track_impacts() as tracker:
+        inside = openai_responses_parse(client)
+    after = openai_responses_parse(client)
+
+    assert not hasattr(before, "impacts")
+    assert not hasattr(after, "impacts")
+    assert tracker.calls == [inside.impacts]
+
+
+@pytest.mark.vcr
+@pytest.mark.default_cassette(OPENAI_ASYNC_RESPONSES_PARSE)
+@pytest.mark.asyncio
+async def test_openai_async_responses_parse(no_global_init):
+    client = AsyncOpenAI()
+    async with EcoLogits.track_impacts() as tracker:
+        response = await openai_responses_parse(client)
+
+    assert isinstance(response.output_parsed, GreetingDetection)
+    assert tracker.calls == [response.impacts]
 
 
 @pytest.mark.vcr(allow_playback_repeats=True)
