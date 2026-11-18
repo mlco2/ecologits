@@ -330,17 +330,17 @@ Light green: 00bf63
 }
 
 
-/* External link icon for nav items */
+/* External link icon for nav items. Instant navigation makes internal hrefs absolute, so skip the site's own hosts. */
 
-.md-tabs__link[href^="http"],
-.md-nav__link[href^="http"] {
+.md-tabs__link[href^="http"]:not([href*="//ecologits.ai/"], [href*="//localhost"], [href*="//127.0.0.1"]),
+.md-nav__link[href^="http"]:not([href*="//ecologits.ai/"], [href*="//localhost"], [href*="//127.0.0.1"]) {
   display: inline-flex;
   align-items: center;
   gap: 0.4em;
 }
 
-.md-tabs__link[href^="http"]::after,
-.md-nav__link[href^="http"]::after {
+.md-tabs__link[href^="http"]:not([href*="//ecologits.ai/"], [href*="//localhost"], [href*="//127.0.0.1"])::after,
+.md-nav__link[href^="http"]:not([href*="//ecologits.ai/"], [href*="//localhost"], [href*="//127.0.0.1"])::after {
   content: "";
   display: block;
   width: 1em;
