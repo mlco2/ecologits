@@ -240,7 +240,7 @@ def test_openai_responses(no_global_init):
 @pytest.mark.default_cassette(OPENAI_RESPONSES_PARSE)
 def test_openai_responses_parse(no_global_init):
     client = OpenAI()
-    with EcoLogits.track_impacts() as tracker:
+    with EcoLogits.track_impacts(providers="openai") as tracker:
         response = openai_responses_parse(client)
 
     assert isinstance(response.output_parsed, GreetingDetection)
@@ -252,7 +252,7 @@ def test_openai_responses_parse(no_global_init):
 def test_parsed_responses_outside_block_are_not_tracked(no_global_init):
     client = OpenAI()
     before = openai_responses_parse(client)
-    with EcoLogits.track_impacts() as tracker:
+    with EcoLogits.track_impacts(providers="openai") as tracker:
         inside = openai_responses_parse(client)
     after = openai_responses_parse(client)
 
@@ -266,7 +266,7 @@ def test_parsed_responses_outside_block_are_not_tracked(no_global_init):
 @pytest.mark.asyncio
 async def test_openai_async_responses_parse(no_global_init):
     client = AsyncOpenAI()
-    async with EcoLogits.track_impacts() as tracker:
+    async with EcoLogits.track_impacts(providers="openai") as tracker:
         response = await openai_responses_parse(client)
 
     assert isinstance(response.output_parsed, GreetingDetection)
