@@ -161,7 +161,7 @@ Integrating EcoLogits with your applications does not alter the standard outputs
 
 ## Video Generation
 
-Video generation impacts are estimated with the [`video_impacts`][estimations.video.video_impacts] function. This is independent from the Google Gemini client tracer: call it with the same model, resolution, and duration that you use for the video generation request.
+Video generation impacts are estimated with the [`video_impacts`][ecologits.estimations.video.video_impacts] function. This is independent from the Google Gemini client tracer: call it with the same model, resolution, and duration that you use for the video generation request.
 
 Supported Google video models:
 

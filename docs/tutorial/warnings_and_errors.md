@@ -2,7 +2,7 @@
 
 EcoLogits may encounter situations where the calculation of environmental impacts has **high risk of inaccuracies or uncertainties** (reported as **warnings**), or where the calculation **fails** due to certain reasons like misconfiguration (reported as **errors**).
 
-Warnings and errors are reported in the [`ImpactsOutput`][tracers.utils.ImpactsOutput] pydantic model within the `warnings` and `errors` fields respectively. Each warning or error contains a `code` (all listed below) and a `message` explaining the issue.
+Warnings and errors are reported in the [`ImpactsOutput`][ecologits.tracers.utils.ImpactsOutput] pydantic model within the `warnings` and `errors` fields respectively. Each warning or error contains a `code` (all listed below) and a `message` explaining the issue.
 
 !!! note "Silent reporting of warnings and errors"
 

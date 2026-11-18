@@ -1,0 +1,29 @@
+name: build-docs
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          python-version: '3.13'
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --locked --only-group docs
+
+      - name: Build docs
+        run: uv run zensical build -f mkdocs.yml --clean --strict
+
+      - name: Check documentation links
+        run: uv run python scripts/check_docs_links.py site

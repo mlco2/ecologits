@@ -2,7 +2,7 @@
 
 The :seedling: **EcoLogits** library tracks the energy consumption and environmental impacts of generative AI models accessed through APIs and their official client libraries. 
 
-It achieves this by **patching the Python client libraries**, ensuring that each API request is wrapped with an impact calculation function. This function computes the **environmental impact based on several request features**, such as the **chosen model**, the **number of tokens generated**, and the **request's latency**. The resulting data is then encapsulated in an [`ImpactsOutput`][tracers.utils.ImpactsOutput] object, which is added to the response, containing the environmental impacts for a specific request.
+It achieves this by **patching the Python client libraries**, ensuring that each API request is wrapped with an impact calculation function. This function computes the **environmental impact based on several request features**, such as the **chosen model**, the **number of tokens generated**, and the **request's latency**. The resulting data is then encapsulated in an [`ImpactsOutput`][ecologits.tracers.utils.ImpactsOutput] object, which is added to the response, containing the environmental impacts for a specific request.
 
 
 <div class="grid cards" markdown>

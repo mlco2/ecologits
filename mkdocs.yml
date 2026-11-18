@@ -1,7 +1,11 @@
 site_name: EcoLogits
-site_url: https://ecologits.ai/
+site_description: Track and estimate the environmental impacts of generative AI models - Official Documentation
+# Docs are served under /latest/ (scripts/deploy-docs.sh); canonical and sitemap URLs use this path.
+site_url: https://ecologits.ai/latest/
 repo_name: mlco2/ecologits
 repo_url: https://github.com/mlco2/ecologits
+edit_uri: edit/main/docs/
+copyright: "&copy; EcoLogits"
 
 nav:
   - 'Home': index.md
@@ -34,7 +38,6 @@ nav:
       - 'Proprietary models': methodology/proprietary_models.md
       - 'LLM Inference': methodology/llm_inference.md
       - 'Video Generation': methodology/video_generation.md
-  - 'API Reference': reference/
   - 'Blog':
       - blog/index.md
   - 'EcoLogits Calculator': 'https://calculator.ecologits.ai/'
@@ -42,36 +45,56 @@ nav:
   - 'EcoLogits.js': 'https://www.npmjs.com/package/@ecologits/ecologits.js'
 
 theme:
-  name: material
-  custom_dir: docs/theme
+  custom_dir: overrides
   logo: assets/leaf.svg
   favicon: assets/leaf.svg
   font:
     text: Roboto
   palette:
-    - scheme: ecologits
+    - media: "(prefers-color-scheme: light)"
+      scheme: ecologits
       primary: custom
       accent: custom
       toggle:
-        icon: material/lightbulb-outline
+        icon: lucide/sun
         name: Switch to dark mode
-    - scheme: slate
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
       toggle:
-        icon: material/lightbulb
+        icon: lucide/moon
         name: Switch to light mode
   features:
-    - navigation.tabs
-    - navigation.sections
-    - content.tabs.link
-    - content.code.copy
-    - content.code.annotate
-    - content.tooltips
     - announce.dismiss
+    - content.action.copy
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+    - content.code.copy
+    - content.code.select
+    - content.footnote.tooltips
+    - content.tabs.link
+    - content.tooltips
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.preview
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.path
+    - navigation.top
+    - navigation.footer
+    - search.highlight
+    - toc.follow
+  icon:
+    github: mlco2/ecologits
 
 extra:
   version:
     alias: true
     provider: mike
+    default: latest
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/mlco2
@@ -104,15 +127,12 @@ plugins:
       cards_layout_options:
         background_color: "#0b3b36"
   - autorefs
-  - gen-files:
-      scripts:
-        - docs/scripts/gen_references.py
-  - literate-nav:
-      nav_file: SUMMARY.md
+  - api-autonav:
+      modules: [ecologits]
   - mkdocstrings:
       handlers:
         python:
-          paths: [ ecologits ]
+          paths: [ . ]
           options:
             members_order: source
             docstring_style: google
@@ -121,9 +141,32 @@ plugins:
             merge_init_into_class: yes
             inherited_members: true
   - mike:
-      alias_type: symlink
       canonical_version: latest
   - blog
+  - glightbox
+  - privacy:
+      # The default fetches every optional theme library (about 9 MB). KaTeX stays on
+      # cdnjs: it loads its fonts relative to its own URL, which a copied script breaks.
+      assets_include:
+        - unpkg.com/glightbox@*
+        - fonts.googleapis.com/*
+        - fonts.gstatic.com/*
+  - meta-descriptions
+  - llmstxt:
+      base_url: https://ecologits.ai/latest/
+      sections:
+        Get started:
+          - index.md
+          - get_started.md
+          - why.md
+          - faq.md
+          - contributing.md
+        Tutorial:
+          - tutorial/*.md
+        Providers:
+          - tutorial/providers/*.md
+        Methodology:
+          - methodology/*.md
 
 markdown_extensions:
   - abbr
@@ -133,13 +176,22 @@ markdown_extensions:
   - admonition
   - def_list
   - footnotes
+  - toc:
+      permalink: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.tilde
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      emoji_index: !!python/name:zensical.extensions.emoji.twemoji
+      emoji_generator: !!python/name:zensical.extensions.emoji.to_svg
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span

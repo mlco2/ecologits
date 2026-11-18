@@ -183,7 +183,7 @@ Below are simple examples demonstrating how to use LLM models with **EcoLogits**
 
 ### Impacts output in a nutshell 
 
-**[`ImpactsOutput`][tracers.utils.ImpactsOutput]** object is returned for each request made to supported clients. It gathers, **[environmental impacts](tutorial/impacts.md)** and potential **[warnings and errors](tutorial/warnings_and_errors.md)**.
+**[`ImpactsOutput`][ecologits.tracers.utils.ImpactsOutput]** object is returned for each request made to supported clients. It gathers, **[environmental impacts](tutorial/impacts.md)** and potential **[warnings and errors](tutorial/warnings_and_errors.md)**.
 
 EcoLogits aims to give a comprehensive view of the environmental footprint of generative AI models at **inference**. Impacts are reported in total, but also **per life cycle phases**:
 
