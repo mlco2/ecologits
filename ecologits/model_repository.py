@@ -74,7 +74,7 @@ class Model(BaseModel):
         sources = []
         if "warnings" in data and data["warnings"] is not None:
             warnings = [WarningMessage.from_code(code) for code in data["warnings"]]
-        if "source" in data and data["sources"] is not None:
+        if "sources" in data and data["sources"] is not None:
             sources = data["sources"]
         deployment = None
         if "deployment" in data and data["deployment"] is not None:

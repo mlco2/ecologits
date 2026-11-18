@@ -31,6 +31,12 @@ def test_ambiguous_names():
     assert models.find_model(provider="openai", model_name="gpt-35-turbo").name == "gpt-35-turbo"
 
 
+def test_model_sources_are_loaded():
+    models = ModelRepository.from_json()
+    model = models.find_model(provider="openai", model_name="gpt-4o")
+    assert model.sources == ["https://platform.openai.com/docs/models#gpt-4o"]
+
+
 def test_add_custom_model():
     models = ModelRepository()
     custom_model_data = {
