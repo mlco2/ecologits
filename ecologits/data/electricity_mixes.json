@@ -314,7 +314,7 @@
             "name": "CAF",
             "adpe": 1.349e-08,
             "pe": 2.5871,
-            "gwp": 0.0,
+            "gwp": 0.024,
             "wue": 3.908,
             "warnings": [
                 "electricity-mix-adpe-world",
