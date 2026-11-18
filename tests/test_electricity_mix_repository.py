@@ -30,6 +30,11 @@ def test_find_unknown_zone() -> None:
     assert electricity_mixes.find_electricity_mix(zone="AAA") is None
 
 
+def test_no_zone_has_zero_gwp() -> None:
+    electricity_mixes = ElectricityMixRepository.from_json().list_electricity_mixes()
+    assert [em.zone for em in electricity_mixes if em.gwp <= 0] == []
+
+
 def test_list_electricity_mixes() -> None:
     em1 = ElectricityMix(zone="AAA", adpe=0., pe=0., gwp=0., wue=0.)
     em2 = ElectricityMix(zone="BBB", adpe=1., pe=1., gwp=1., wue=1.)
