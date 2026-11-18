@@ -4,7 +4,7 @@
 
     Kling AI does not disclose detailed information about model architecture and inference infrastructure. Thus, the environmental impacts are estimated with a very low precision.
 
-This guide focuses on estimating video generation impacts for Kling AI models with the [`video_impacts`][estimations.video.video_impacts] function.
+This guide focuses on estimating video generation impacts for Kling AI models with the [`video_impacts`][ecologits.estimations.video.video_impacts] function.
 
 
 ## Video Generation

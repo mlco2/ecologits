@@ -70,14 +70,14 @@ If you've made any changes to the documentation (including changes to function s
 ```shell
 # Build documentation
 make docs
-# If you have changed the documentation, make sure it builds successfully.
+# Fails on any build warning or broken link.
 ```
 
 You can also serve the documentation locally.
 
 ```shell
 # Serve the documentation at localhost:8000
-uv run mkdocs serve
+make serve-docs
 ```
 
 ### Code formatting and pre-commit
@@ -99,7 +99,7 @@ When your pull request is ready for review, add a comment with the message "plea
 
 ## Documentation style
 
-Documentation is written in Markdown and built using [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/). API documentation is build from docstrings using [mkdocstrings](https://mkdocstrings.github.io/).
+Documentation is written in Markdown and built using [Zensical](https://zensical.org/). API documentation is built from docstrings using [mkdocstrings](https://mkdocstrings.github.io/).
 
 ### Code documentation
 

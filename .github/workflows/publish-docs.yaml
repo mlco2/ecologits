@@ -8,35 +8,42 @@ on:
       - '**'
 
 permissions:
-  contents: write
+  contents: read
+
+concurrency:
+  group: publish-docs
+  cancel-in-progress: false
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # push to gh-pages
     steps:
-      - name: Checkout gh-pages
-        uses: actions/checkout@v4
-        with:
-          ref: gh-pages
-
       - name: Check out repository
         uses: actions/checkout@v4
-      - name: Configure Git Credentials
-        run: |
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
       - name: Set up uv
         uses: astral-sh/setup-uv@v7
         with:
           python-version: '3.13'
           enable-cache: true
+
       - name: Install dependencies
         run: uv sync --locked --only-group docs
+
+      - name: Build docs
+        run: uv run zensical build -f mkdocs.yml --clean --strict
+
+      - name: Check documentation links
+        run: uv run python scripts/check_docs_links.py site
 
       # deploy github pages (dev)
       - name: Deploy GitHub Pages (dev)
         if: "github.ref == 'refs/heads/main'"
-        run: uv run mike deploy -b gh-pages dev --push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: scripts/deploy-docs.sh dev
 
       # deploy github pages (release)
       - if: startsWith(github.ref, 'refs/tags/')
@@ -48,4 +55,6 @@ jobs:
 
       - name: Deploy GitHub Pages (release)
         if: startsWith(github.ref, 'refs/tags/')
-        run: uv run mike deploy -b gh-pages ${{ steps.check-version.outputs.VERSION_MAJOR_MINOR }} latest --update-aliases --push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: scripts/deploy-docs.sh ${{ steps.check-version.outputs.VERSION_MAJOR_MINOR }} latest

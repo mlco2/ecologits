@@ -31,9 +31,8 @@ Do not force-push `gh-pages`.
 2. Wait for the `publish-docs` workflow to publish `dev`.
 3. Publish the same docs as the versioned `latest` docs.
     ```shell
-    git fetch origin gh-pages
-    git branch -f gh-pages origin/gh-pages
-    uv run mike deploy -b gh-pages <MAJOR.MINOR> latest --update-aliases --push
+    make docs
+    scripts/deploy-docs.sh <MAJOR.MINOR> latest
     git fetch origin gh-pages
     git show origin/gh-pages:versions.json
     ```

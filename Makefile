@@ -17,8 +17,8 @@ pre-commit:
 
 .PHONY: docs
 docs:
-	uv run mkdocs build
+	uv run --only-group docs zensical build -f mkdocs.yml --strict && uv run --only-group docs python scripts/check_docs_links.py site
 
 .PHONY: serve-docs
 serve-docs:
-	uv run mkdocs serve
+	uv run --only-group docs zensical serve -f mkdocs.yml

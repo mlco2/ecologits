@@ -144,8 +144,9 @@ venv.bak/
 # Rope project settings
 .ropeproject
 
-# mkdocs documentation
+# documentation build (zensical) and deploy workdir
 /site
+/.deploy-docs-workdir
 
 # mypy
 .mypy_cache/

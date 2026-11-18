@@ -35,7 +35,7 @@ Partial support for Anthropic streams, see full documentation: [Anthropic provid
 
 ## Video Generation
 
-Video generation impact estimation uses the [`video_impacts`][estimations.video.video_impacts] function. It does not require installing provider-specific SDK extras.
+Video generation impact estimation uses the [`video_impacts`][ecologits.estimations.video.video_impacts] function. It does not require installing provider-specific SDK extras.
 
 | Provider | Video impact estimation | Guide |
 |----------|:-----------------------:|-------|

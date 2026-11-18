@@ -1,13 +1,13 @@
 # Environmental Impacts
 
-Environmental impacts are reported for each request in the **[`ImpactsOutput`][tracers.utils.ImpactsOutput]** that features multiple [impact criteria](#impact-criteria) such as [energy consumption](#energy) or the [global warming potential](#global-warming-potential-gwp) per phase ([usage](#usage) or [embodied](#embodied)) as well as the total impacts. It also contains potential [warnings and errors](warnings_and_errors.md) that can occur during the calculation.
+Environmental impacts are reported for each request in the **[`ImpactsOutput`][ecologits.tracers.utils.ImpactsOutput]** that features multiple [impact criteria](#impact-criteria) such as [energy consumption](#energy) or the [global warming potential](#global-warming-potential-gwp) per phase ([usage](#usage) or [embodied](#embodied)) as well as the total impacts. It also contains potential [warnings and errors](warnings_and_errors.md) that can occur during the calculation.
 
 !!! note "To learn more on how we estimate the environmental impacts and what are our hypotheses go to the [methodology](../methodology/index.md) section."
 
 
 ## Impacts Output
 
-The [`ImpactsOutput`][tracers.utils.ImpactsOutput] is structured the following way:
+The [`ImpactsOutput`][ecologits.tracers.utils.ImpactsOutput] is structured the following way:
 
 ```python
 from ecologits.tracers.utils import ImpactsOutput
@@ -37,12 +37,12 @@ ImpactsOutput(
 
 1. Usage impacts for the electricity consumption impacts. Note that the energy is equal to the "total" energy impact.
 2. Embodied impacts for resource extract, manufacturing and transportation of hardware components allocated to the request. 
-3. List of [`WarningMessage`][status_messages.WarningMessage] and [`ErrorMessage`][status_messages.ErrorMessage].
+3. List of [`WarningMessage`][ecologits.status_messages.WarningMessage] and [`ErrorMessage`][ecologits.status_messages.ErrorMessage].
 
 
 ### Example of an Impact Value
 
-The impact objects named [`Energy`][impacts.modeling.Energy], [`GWP`][impacts.modeling.GWP], [`ADPe`][impacts.modeling.ADPe] or [`PE`][impacts.modeling.PE] all share the following structure:
+The impact objects named [`Energy`][ecologits.impacts.modeling.Energy], [`GWP`][ecologits.impacts.modeling.GWP], [`ADPe`][ecologits.impacts.modeling.ADPe] or [`PE`][ecologits.impacts.modeling.PE] all share the following structure:
 
 ```python
 from ecologits.impacts.modeling import BaseImpact
@@ -70,7 +70,7 @@ You can retrieve the GWP impact value from a request with the following:
 
 ### Example with a `RangeValue`
 
-Impact values can also be represented as **intervals with the [`RangeValue`][utils.range_value.RangeValue]** object. They are used to give an estimate range of possible values between a `min` and a `max`. 
+Impact values can also be represented as **intervals with the [`RangeValue`][ecologits.utils.range_value.RangeValue]** object. They are used to give an estimate range of possible values between a `min` and a `max`. 
 
 !!! info "About `RangeValue` intervals" 
 
@@ -83,7 +83,7 @@ Example of an impact with a `RangeValue`:
 RangeValue(min=0.16, max=0.48) # in kgCO2eq (1)
 ```
 
-1. [`RangeValue`][utils.range_value.RangeValue] are used to define intervals. It corresponds to the 95% confidence interval of our approximation.
+1. [`RangeValue`][ecologits.utils.range_value.RangeValue] are used to define intervals. It corresponds to the 95% confidence interval of our approximation.
 
 
 ## Impact Criteria
@@ -94,10 +94,10 @@ To evaluate the impact of human activities on the planet or on the climate we us
 
 ### Energy
 
-The [`Energy`][impacts.modeling.Energy] criterion refers to the **direct electricity consumption of GPUs, server and other equipments from the data center**. As defined the energy criteria is not an environmental impact, but it is used to estimate other impacts in the [usage phase](#usage). This criterion is expressed in **kilowatt-hour (kWh)**.
+The [`Energy`][ecologits.impacts.modeling.Energy] criterion refers to the **direct electricity consumption of GPUs, server and other equipments from the data center**. As defined the energy criteria is not an environmental impact, but it is used to estimate other impacts in the [usage phase](#usage). This criterion is expressed in **kilowatt-hour (kWh)**.
 
 ??? note "Energy model attributes"
-    ::: impacts.modeling.Energy
+    ::: ecologits.impacts.modeling.Energy
         options:
             show_root_toc_entry: false
             show_bases: false
@@ -107,14 +107,14 @@ The [`Energy`][impacts.modeling.Energy] criterion refers to the **direct electri
 
 ### Global Warming Potential (GWP)
 
-The Global Warming Potential ([`GWP`][impacts.modeling.GWP]) criterion is an index **measuring how much heat is absorbed by greenhouse gases in the atmosphere compared to carbon dioxide**. This criterion is expressed in **kilogram of carbon dioxide equivalent (kgCO2eq)**.
+The Global Warming Potential ([`GWP`][ecologits.impacts.modeling.GWP]) criterion is an index **measuring how much heat is absorbed by greenhouse gases in the atmosphere compared to carbon dioxide**. This criterion is expressed in **kilogram of carbon dioxide equivalent (kgCO2eq)**.
 
 *[carbon dioxide]: Carbon Dioxide chemical formula is CO2
 
 Learn more: [wikipedia.org :octicons-link-external-16:](https://en.wikipedia.org/wiki/Global_warming_potential)
 
 ??? note "GWP model attributes"
-    ::: impacts.modeling.GWP
+    ::: ecologits.impacts.modeling.GWP
         options:
             show_root_toc_entry: false
             show_bases: false
@@ -124,14 +124,14 @@ Learn more: [wikipedia.org :octicons-link-external-16:](https://en.wikipedia.org
 
 ### Abiotic Depletion Potential for Elements (ADPe)
 
-The Abiotic Depletion Potential – elements ([`ADPe`][impacts.modeling.ADPe]) criterion represents the **reduction of non-renewable and non-living (abiotic) resources such as metals and minerals**. This criterion is expressed in **kilogram of antimony equivalent (kgSbeq)**.
+The Abiotic Depletion Potential – elements ([`ADPe`][ecologits.impacts.modeling.ADPe]) criterion represents the **reduction of non-renewable and non-living (abiotic) resources such as metals and minerals**. This criterion is expressed in **kilogram of antimony equivalent (kgSbeq)**.
 
 *[antimony]: Antimony symbol is Sb
 
 Learn more: [sciencedirect.com :octicons-link-external-16:](https://www.sciencedirect.com/topics/engineering/abiotic-depletion-potential)
 
 ??? note "ADPe model attributes"
-    ::: impacts.modeling.ADPe
+    ::: ecologits.impacts.modeling.ADPe
         options:
             show_root_toc_entry: false
             show_bases: false
@@ -140,12 +140,12 @@ Learn more: [sciencedirect.com :octicons-link-external-16:](https://www.scienced
 
 ### Primary Energy (PE)
 
-The Primary Energy ([`PE`][impacts.modeling.PE]) criterion represents the amount of **energy consumed from natural sources such as raw fuels and other forms of energy, including waste**. This criterion is expressed in **megajoule (MJ)**. 
+The Primary Energy ([`PE`][ecologits.impacts.modeling.PE]) criterion represents the amount of **energy consumed from natural sources such as raw fuels and other forms of energy, including waste**. This criterion is expressed in **megajoule (MJ)**. 
 
 Learn more: [wikipedia.org :octicons-link-external-16:](https://en.wikipedia.org/wiki/Primary_energy)
 
 ??? note "PE model attributes"
-    ::: impacts.modeling.PE
+    ::: ecologits.impacts.modeling.PE
         options:
             show_root_toc_entry: false
             show_bases: false
@@ -162,12 +162,12 @@ Another **pitfall in environmental impact assessment is to only look at the usag
 
 ### Usage
 
-The [`Usage`][impacts.modeling.Usage] phase accounts for the environmental impacts while using AI models. We report all criteria in addition to direct energy consumption for this phase. 
+The [`Usage`][ecologits.impacts.modeling.Usage] phase accounts for the environmental impacts while using AI models. We report all criteria in addition to direct energy consumption for this phase. 
 
 Note that we use the worldwide average [electricity mix](#electricity-mix) impact factor by default. 
 
 ??? note "Usage model attributes"
-    ::: impacts.modeling.Usage
+    ::: ecologits.impacts.modeling.Usage
         options:
             show_root_toc_entry: false
             show_bases: false
@@ -176,10 +176,10 @@ Note that we use the worldwide average [electricity mix](#electricity-mix) impac
 
 ### Embodied
 
-The [Embodied][impacts.modeling.Embodied] phase accounts for the upstream environmental impacts such as resource extraction, manufacturing and transportation allocated to the request. We report all criteria (excluding energy consumption) for this phase.
+The [Embodied][ecologits.impacts.modeling.Embodied] phase accounts for the upstream environmental impacts such as resource extraction, manufacturing and transportation allocated to the request. We report all criteria (excluding energy consumption) for this phase.
 
 ??? note "Embodied model attributes"
-    ::: impacts.modeling.Embodied
+    ::: ecologits.impacts.modeling.Embodied
         options:
             show_root_toc_entry: false
             show_bases: false

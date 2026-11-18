@@ -1,6 +1,6 @@
 # Video Generation
 
-EcoLogits can estimate the environmental impacts of video generation requests with the [`video_impacts`][estimations.video.video_impacts] function.
+EcoLogits can estimate the environmental impacts of video generation requests with the [`video_impacts`][ecologits.estimations.video.video_impacts] function.
 
 This is useful when you call a video generation API and want to attach impact estimates to the request metadata, logs, analytics, or product reporting. You only need the model name, requested resolution, and requested duration.
 
@@ -24,7 +24,7 @@ print(impacts.energy.value)
 print(impacts.gwp.value)
 ```
 
-The function returns an [`ImpactsOutput`][tracers.utils.ImpactsOutput], the same object used by EcoLogits provider integrations. It contains total impacts, usage impacts, embodied impacts, and possible warnings or errors.
+The function returns an [`ImpactsOutput`][ecologits.tracers.utils.ImpactsOutput], the same object used by EcoLogits provider integrations. It contains total impacts, usage impacts, embodied impacts, and possible warnings or errors.
 
 ```python
 print(impacts.energy.value)       # Direct electricity consumption, in kWh
@@ -37,7 +37,7 @@ print(impacts.usage.gwp.value)    # Usage phase only
 print(impacts.embodied.gwp.value) # Embodied phase only
 ```
 
-Video impact values are usually [`RangeValue`][utils.range_value.RangeValue] intervals. You can access the `mean`, `min`, and `max` values directly:
+Video impact values are usually [`RangeValue`][ecologits.utils.range_value.RangeValue] intervals. You can access the `mean`, `min`, and `max` values directly:
 
 ```python
 print(impacts.gwp.value.mean) # Central estimate

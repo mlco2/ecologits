@@ -45,7 +45,7 @@ EcoLogits will automatically report the following metrics when OpenTelemetry is 
 
 !!! warning "Different units for impact metrics"
     
-    Notice that the units used for impacts differ from the original [`ImpactsOutput`][tracers.utils.ImpactsOutput] object, in order to respect [OpenTelemetry guidelines](https://opentelemetry.io/docs/specs/semconv/general/metrics/#units).
+    Notice that the units used for impacts differ from the original [`ImpactsOutput`][ecologits.tracers.utils.ImpactsOutput] object, in order to respect [OpenTelemetry guidelines](https://opentelemetry.io/docs/specs/semconv/general/metrics/#units).
 
 
 | Metric name                         | Type    | Description                                         |
@@ -70,7 +70,7 @@ By default, EcoLogits will report three labels:
 
 ### Configure custom labels
 
-It is possible to add custom labels to any request using the [`EcoLogits.label`][_ecologits.EcoLogits.label] method.
+It is possible to add custom labels to any request using the [`EcoLogits.label`][ecologits._ecologits.EcoLogits.label] method.
 
 #### With a context manager
 
