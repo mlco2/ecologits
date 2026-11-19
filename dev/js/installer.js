@@ -1,4 +1,6 @@
-document.addEventListener('DOMContentLoaded', function() {
+document$.subscribe(() => {
+  if (!document.getElementById('install-command')) return;
+
   const checkboxes = document.querySelectorAll('input.provider-option[type="checkbox"]');
   const commandOutput = document.getElementById('install-command');
 

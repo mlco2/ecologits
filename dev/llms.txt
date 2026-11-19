@@ -1,0 +1,50 @@
+# EcoLogits
+
+> Track and estimate the environmental impacts of generative AI models - Official Documentation
+
+## Get started
+
+- [Home](<https://ecologits.ai/latest/index.md>)
+- [Welcome to EcoLogits](<https://ecologits.ai/latest/get_started/index.md>)
+- [Why use EcoLogits](<https://ecologits.ai/latest/why/index.md>)
+- [FAQ](<https://ecologits.ai/latest/faq/index.md>)
+- [Contributing](<https://ecologits.ai/latest/contributing/index.md>)
+
+## Tutorial
+
+- [Environmental Impacts](<https://ecologits.ai/latest/tutorial/impacts/index.md>)
+- [Introduction](<https://ecologits.ai/latest/tutorial/index.md>)
+- [OpenTelemetry](<https://ecologits.ai/latest/tutorial/opentelemetry/index.md>)
+- [Supported providers](<https://ecologits.ai/latest/tutorial/providers/index.md>)
+- [Anthropic](<https://ecologits.ai/latest/tutorial/providers/anthropic/index.md>)
+- [ByteDance](<https://ecologits.ai/latest/tutorial/providers/bytedance/index.md>)
+- [Cohere](<https://ecologits.ai/latest/tutorial/providers/cohere/index.md>)
+- [Google Gemini](<https://ecologits.ai/latest/tutorial/providers/google_genai/index.md>)
+- [Hugging Face Hub](<https://ecologits.ai/latest/tutorial/providers/huggingface_hub/index.md>)
+- [Kling AI](<https://ecologits.ai/latest/tutorial/providers/klingai/index.md>)
+- [LiteLLM](<https://ecologits.ai/latest/tutorial/providers/litellm/index.md>)
+- [Mistral AI](<https://ecologits.ai/latest/tutorial/providers/mistralai/index.md>)
+- [OpenAI](<https://ecologits.ai/latest/tutorial/providers/openai/index.md>)
+- [Runway](<https://ecologits.ai/latest/tutorial/providers/runway/index.md>)
+- [Video Generation](<https://ecologits.ai/latest/tutorial/video_generation/index.md>)
+- [Warnings and Errors](<https://ecologits.ai/latest/tutorial/warnings_and_errors/index.md>)
+
+## Providers
+
+- [Anthropic](<https://ecologits.ai/latest/tutorial/providers/anthropic/index.md>)
+- [ByteDance](<https://ecologits.ai/latest/tutorial/providers/bytedance/index.md>)
+- [Cohere](<https://ecologits.ai/latest/tutorial/providers/cohere/index.md>)
+- [Google Gemini](<https://ecologits.ai/latest/tutorial/providers/google_genai/index.md>)
+- [Hugging Face Hub](<https://ecologits.ai/latest/tutorial/providers/huggingface_hub/index.md>)
+- [Kling AI](<https://ecologits.ai/latest/tutorial/providers/klingai/index.md>)
+- [LiteLLM](<https://ecologits.ai/latest/tutorial/providers/litellm/index.md>)
+- [Mistral AI](<https://ecologits.ai/latest/tutorial/providers/mistralai/index.md>)
+- [OpenAI](<https://ecologits.ai/latest/tutorial/providers/openai/index.md>)
+- [Runway](<https://ecologits.ai/latest/tutorial/providers/runway/index.md>)
+
+## Methodology
+
+- [Introduction](<https://ecologits.ai/latest/methodology/index.md>)
+- [LLM Inference](<https://ecologits.ai/latest/methodology/llm_inference/index.md>)
+- [Proprietary models](<https://ecologits.ai/latest/methodology/proprietary_models/index.md>)
+- [Video Generation](<https://ecologits.ai/latest/methodology/video_generation/index.md>)
