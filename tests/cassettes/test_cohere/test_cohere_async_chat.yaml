@@ -1,79 +1,82 @@
 interactions:
 - request:
-    body: '{"message":"Hello!","model":"command-r-08-2024","max_tokens":100,"stream":false}'
+    body: '{"message":"Hello!","model":"command-r7b-12-2024","max_tokens":100,"stream":false}'
     headers:
-      Accept:
+      accept:
       - '*/*'
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      Content-Length:
-      - '80'
-      Host:
-      - api.cohere.com
-      User-Agent:
-      - cohere/5.21.1
-      X-Fern-Language:
-      - Python
-      X-Fern-Platform:
-      - darwin/24.6.0
-      X-Fern-Runtime:
-      - python/3.10.19
-      X-Fern-SDK-Name:
-      - cohere
-      X-Fern-SDK-Version:
-      - 5.21.1
+      content-length:
+      - '82'
       content-type:
       - application/json
+      host:
+      - api.cohere.com
+      user-agent:
+      - cohere/5.21.1
+      x-fern-language:
+      - Python
+      x-fern-platform:
+      - darwin/24.6.0
+      x-fern-runtime:
+      - python/3.11.9
+      x-fern-sdk-name:
+      - cohere
+      x-fern-sdk-version:
+      - 5.21.1
     method: POST
     uri: https://api.cohere.com/v1/chat
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAA/4yO0UrzQBCFXyWd611Ik80mm5ufXylUUCpar0TCJJk2i3G37G7UEvLuUqVVKIJ3
-        M2e+OeeM4MjvrPFU6RZKSEkVebqZ87yuJReykLxAjHkuRBZLkahcEjAI9B6ghCX1vY1CR45m0dK+
-        RQ2a6CpC77UP0d4OUbAt7v8Bgy0Zchi0NV9BUmYqUyh4LUXChYxTrrJU8TpPRYGUtC02wKDpMFSd
-        9sG6PZSPIzjbE5TwcL+4AwYv5D1u6VhlBhM7IZfL/+uL1fqc+kvh6YnBRhvtu8oRemsOhqub2+vF
-        evHpGBDKEXCnq1dyXh+AEU4jzGFiUOu+p7YajA7+cNZmN4Qq2GcyHsqEgR3CT2UeTwyOyxke//LQ
-        YNNR+62pZJo+AgAA//+PZmbV1wEAAA==
+        eyJyZXNwb25zZV9pZCI6IjVlZDcwZGRhLTgxZWEtNGRlYS1iY2FlLTFmMTFlZWE4ODFkNyIsInRl
+        eHQiOiJIZWxsbyEgSG93IGNhbiBJIGFzc2lzdCB5b3UgdG9kYXk/IiwiZ2VuZXJhdGlvbl9pZCI6
+        ImZiYmIyODE1LWUzYTEtNDg1NC1iZTZiLWMxNDU1ZmYxNWFkZSIsImNoYXRfaGlzdG9yeSI6W3si
+        cm9sZSI6IlVTRVIiLCJtZXNzYWdlIjoiSGVsbG8hIn0seyJyb2xlIjoiQ0hBVEJPVCIsIm1lc3Nh
+        Z2UiOiJIZWxsbyEgSG93IGNhbiBJIGFzc2lzdCB5b3UgdG9kYXk/In1dLCJmaW5pc2hfcmVhc29u
+        IjoiQ09NUExFVEUiLCJtZXRhIjp7ImFwaV92ZXJzaW9uIjp7InZlcnNpb24iOiIxIn0sImJpbGxl
+        ZF91bml0cyI6eyJpbnB1dF90b2tlbnMiOjIsIm91dHB1dF90b2tlbnMiOjl9LCJ0b2tlbnMiOnsi
+        aW5wdXRfdG9rZW5zIjo0OTcsIm91dHB1dF90b2tlbnMiOjEyfSwiY2FjaGVkX3Rva2VucyI6NDk2
+        fX0=
     headers:
-      Alt-Svc:
-      - h3=":443"; ma=2592000
-      Transfer-Encoding:
-      - chunked
-      Via:
-      - 1.1 google
       access-control-expose-headers:
       - X-Debug-Trace-ID
+      alt-svc:
+      - h3=":443"; ma=2592000
       cache-control:
       - no-cache, no-store, no-transform, must-revalidate, private, max-age=0
-      content-encoding:
-      - gzip
+      content-length:
+      - '458'
       content-type:
       - application/json
       date:
-      - Tue, 02 Jun 2026 17:48:14 GMT
+      - Thu, 19 Nov 2026 19:20:35 GMT
       expires:
       - Thu, 01 Jan 1970 00:00:00 GMT
       num_chars:
-      - '1183'
+      - '2584'
       num_tokens:
-      - '12'
+      - '11'
       pragma:
       - no-cache
       server:
       - envoy
+      transfer-encoding:
+      - chunked
       vary:
       - Origin,Accept-Encoding
+      via:
+      - 1.1 google
       x-accel-expires:
       - '0'
       x-debug-trace-id:
-      - 1523dc48d7ebabd9507eca0ec468433a
+      - a4923e08de2ddc74ba2bc2a2364d5ef0
       x-endpoint-monthly-call-limit:
       - '1000'
       x-envoy-upstream-service-time:
-      - '393'
+      - '257'
       x-trial-endpoint-call-limit:
       - '20'
       x-trial-endpoint-call-remaining:

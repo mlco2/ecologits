@@ -1,111 +1,131 @@
 interactions:
 - request:
-    body: '{"input":"Hello World!","model":"gpt-5-nano"}'
+    body: '{"input":"Hello World!","model":"gpt-6-luna"}'
     headers:
-      Accept:
+      accept:
       - application/json
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      Content-Length:
+      content-length:
       - '45'
-      Content-Type:
+      content-type:
       - application/json
-      Host:
+      host:
       - api.openai.com
-      User-Agent:
-      - OpenAI/Python 1.109.1
-      X-Stainless-Arch:
+      user-agent:
+      - OpenAI/Python 2.24.0
+      x-stainless-arch:
       - x64
-      X-Stainless-Async:
+      x-stainless-async:
       - 'false'
-      X-Stainless-Lang:
+      x-stainless-lang:
       - python
-      X-Stainless-OS:
+      x-stainless-os:
       - MacOS
-      X-Stainless-Package-Version:
-      - 1.109.1
-      X-Stainless-Runtime:
-      - CPython
-      X-Stainless-Runtime-Version:
-      - 3.10.19
+      x-stainless-package-version:
+      - 2.24.0
+      x-stainless-raw-response:
+      - 'true'
       x-stainless-read-timeout:
       - '600'
       x-stainless-retry-count:
       - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.11.9
     method: POST
     uri: https://api.openai.com/v1/responses
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAA/3VVTY/jNgy9z6/Qei87QBIon46zi/bQy04PRYE59DAZGLJNJ2pkyauPzASD/PdS
-        cuzYneQQxCZF8vFRfP54ICTiRbQhkQZTp3Q5n82n02S+WswyCjNKV0mWLGcxK7Jpvp4mNIG8iJc0
-        XuXxYrGkSTTyKVT2L+S2TaOkgcaea2AWipR53zSO5/FyliwXwWcss874mFxVtQA81wRlLD/stHLS
-        4yqZMNCYuRBc7tD2ga9oqNkJtI8v4AhC1fiCjnNTuE05LL2aBS9orXykdEIEQ6nhlwOZn9IaJBP2
-        hE46ocHHZZssLcAyLkw/kktjtcstx6b79oq9p8rZ2tnUqgN8dlqlRJozMUxXqQKE72lX2/FyLJlU
-        4xmdLcd0PabxheyQFg+9BB4aNq5zNPenmM2n8cJPMWN0uoppEZfLZF4kDfEhiT3V0MyRGSU9353L
-        uKpi2lPz8hps59EtAJXZ3UWwpkDnDYIFXa9X5WwRJ7SMIf6MoAJj2A569e9cmODMlbQgr6z0gQ3S
-        tkOBd9tFhwNMSoUVLoN8eR04hdrVWmU3PCER5v0JQqgv5C+eA7GKVACWnJSbkJ/qjeRMkieyB1Gj
-        r2Cn38lT6b1bN6PTRAMRwLRnm2CVnWZVhc8jDEAXw98vx/MDCSXIP0qLgsA78xwYwiVhpIQ3Ipjc
-        OSTMbLZyK8fk75PdK7nBjFzab9sG4KgJ/7KNHv2ZP9mRPeea13ZDkEGjBEyw1Tun/9iQr7gNwhVA
-        fhhbcDXZ/4YALKkYl9+OiheP5KMpWH7Kgaiix+9Eg3VaEvqdnFsEiNFlguckF8yYps2my4/W42eP
-        f75EU+zZYpXdyyvSszO+6vPJWKgmON5JACDkjS6wqC+7lQ395I0heEYKXpZINT63JBKl0W5qyHmJ
-        dS0zhxGxmA0HS5gsyFMzOjR4ScDT3E6i7l6cL0/dVYk0UuuvCTbIsRm8qQ/twXAI1UyjGIAYCgNq
-        S6N+NQorChTcECh0HblyJm21Nw2L2GkKXqmqtpgy30N6gNNdH44GOcAF6J+4CkEnvFCWSttmRwvu
-        qsse9QTCR3dabFgJ9oSgfPKSw0B5DegjrkxqeavlJXOiWU3ceKWhzwJOGGUeZSCYpxcCLit4QYfY
-        KnZ9761+ONdXrugIOlOGBzrbZjrczSD2CuGFyTmros5xVQJ8rdOePtDOWPcxaidzdiE3KrhhmWg/
-        eC7oXNcAl4OvRjL6bO59ibouwwyLaxwddPr/b1Gyorc8txJ3N+AaHa/Wg+wWlVP0kycdi84MB15h
-        gYJZ5iucH87/AR7RDPmCCAAA
+        ewogICJhY2Nlc3NfcHJvZ3JhbXMiOiBudWxsLAogICJiYWNrZ3JvdW5kIjogZmFsc2UsCiAgImJp
+        bGxpbmciOiB7CiAgICAicGF5ZXIiOiAiZGV2ZWxvcGVyIgogIH0sCiAgImNvbXBsZXRlZF9hdCI6
+        IDE3OTUxMTU5NzcsCiAgImNyZWF0ZWRfYXQiOiAxNzk1MTE1OTc3LAogICJlcnJvciI6IG51bGws
+        CiAgImZyZXF1ZW5jeV9wZW5hbHR5IjogMC4wLAogICJpZCI6ICJyZXNwXzA1ZjY3YTE1ZjFhYWFh
+        MTkwMDZhZmY0YmM4NzdiMDg3ZDI5OWZlYzFlZjYxNWQ4ZjZjIiwKICAiaW1hZ2UiOiB7CiAgICAi
+        Y29udGV4dF9jb21wcmVzc2lvbiI6ICJkaXNhYmxlZCIKICB9LAogICJpbmNvbXBsZXRlX2RldGFp
+        bHMiOiBudWxsLAogICJpbnB1dF90cmFuc2Zvcm1hdGlvbnMiOiBbXSwKICAiaW5zdHJ1Y3Rpb25z
+        IjogbnVsbCwKICAibWF4X291dHB1dF90b2tlbnMiOiBudWxsLAogICJtYXhfdG9vbF9jYWxscyI6
+        IG51bGwsCiAgIm1vZGVsIjogImdwdC02LWx1bmEiLAogICJtb2RlcmF0aW9uIjogbnVsbCwKICAi
+        b2JqZWN0IjogInJlc3BvbnNlIiwKICAib3V0cHV0IjogWwogICAgewogICAgICAiY29udGVudCI6
+        IFsKICAgICAgICB7CiAgICAgICAgICAiYW5ub3RhdGlvbnMiOiBbXSwKICAgICAgICAgICJsb2dw
+        cm9icyI6IFtdLAogICAgICAgICAgInRleHQiOiAiSGVsbG8hIEhvdyBjYW4gSSBoZWxwIHlvdSB0
+        b2RheT8iLAogICAgICAgICAgInR5cGUiOiAib3V0cHV0X3RleHQiCiAgICAgICAgfQogICAgICBd
+        LAogICAgICAiaWQiOiAibXNnXzA1ZjY3YTE1ZjFhYWFhMTkwMDZhZmY0YmM5NjgzNDg3ZDI4MzEx
+        YmNhMDhmMTcyZWZmIiwKICAgICAgInBoYXNlIjogImZpbmFsX2Fuc3dlciIsCiAgICAgICJyb2xl
+        IjogImFzc2lzdGFudCIsCiAgICAgICJzdGF0dXMiOiAiY29tcGxldGVkIiwKICAgICAgInR5cGUi
+        OiAibWVzc2FnZSIKICAgIH0KICBdLAogICJwYXJhbGxlbF90b29sX2NhbGxzIjogdHJ1ZSwKICAi
+        cHJlc2VuY2VfcGVuYWx0eSI6IDAuMCwKICAicHJldmlvdXNfcmVzcG9uc2VfaWQiOiBudWxsLAog
+        ICJwcm9tcHRfY2FjaGVfa2V5IjogbnVsbCwKICAicHJvbXB0X2NhY2hlX3JldGVudGlvbiI6ICIy
+        NGgiLAogICJyZWFzb25pbmciOiB7CiAgICAiY29udGV4dCI6ICJhbGxfdHVybnMiLAogICAgImVm
+        Zm9ydCI6ICJtZWRpdW0iLAogICAgIm1vZGUiOiAic3RhbmRhcmQiLAogICAgInN1bW1hcnkiOiBu
+        dWxsCiAgfSwKICAic2FmZXR5X2lkZW50aWZpZXIiOiBudWxsLAogICJzZXJ2aWNlX3RpZXIiOiAi
+        ZGVmYXVsdCIsCiAgInN0YXR1cyI6ICJjb21wbGV0ZWQiLAogICJzdG9yZSI6IHRydWUsCiAgInRl
+        bXBlcmF0dXJlIjogMS4wLAogICJ0ZXh0IjogewogICAgImZvcm1hdCI6IHsKICAgICAgInR5cGUi
+        OiAidGV4dCIKICAgIH0sCiAgICAidmVyYm9zaXR5IjogIm1lZGl1bSIKICB9LAogICJ0b29sX2No
+        b2ljZSI6ICJhdXRvIiwKICAidG9vbF91c2FnZSI6IHsKICAgICJpbWFnZV9nZW4iOiB7CiAgICAg
+        ICJpbnB1dF90b2tlbnMiOiAwLAogICAgICAiaW5wdXRfdG9rZW5zX2RldGFpbHMiOiB7CiAgICAg
+        ICAgImltYWdlX3Rva2VucyI6IDAsCiAgICAgICAgInRleHRfdG9rZW5zIjogMAogICAgICB9LAog
+        ICAgICAib3V0cHV0X3Rva2VucyI6IDAsCiAgICAgICJvdXRwdXRfdG9rZW5zX2RldGFpbHMiOiB7
+        CiAgICAgICAgImltYWdlX3Rva2VucyI6IDAsCiAgICAgICAgInRleHRfdG9rZW5zIjogMAogICAg
+        ICB9LAogICAgICAidG90YWxfdG9rZW5zIjogMAogICAgfSwKICAgICJ3ZWJfc2VhcmNoIjogewog
+        ICAgICAibnVtX3JlcXVlc3RzIjogMAogICAgfQogIH0sCiAgInRvb2xzIjogW10sCiAgInRvcF9s
+        b2dwcm9icyI6IDAsCiAgInRvcF9wIjogMC45OCwKICAidHJ1bmNhdGlvbiI6ICJkaXNhYmxlZCIs
+        CiAgInVzYWdlIjogewogICAgImlucHV0X3Rva2VucyI6IDksCiAgICAiaW5wdXRfdG9rZW5zX2Rl
+        dGFpbHMiOiB7CiAgICAgICJjYWNoZV93cml0ZV90b2tlbnMiOiAwLAogICAgICAiY2FjaGVfd3Jp
+        dGVfdG9rZW5zX2RldGFpbHMiOiB7CiAgICAgICAgInR0bF8xMmhfdG9rZW5zIjogMCwKICAgICAg
+        ICAidHRsXzMwbV90b2tlbnMiOiAwCiAgICAgIH0sCiAgICAgICJjYWNoZWRfdG9rZW5zIjogMAog
+        ICAgfSwKICAgICJvdXRwdXRfdG9rZW5zIjogMTMsCiAgICAib3V0cHV0X3Rva2Vuc19kZXRhaWxz
+        IjogewogICAgICAicmVhc29uaW5nX3Rva2VucyI6IDAKICAgIH0sCiAgICAidG90YWxfdG9rZW5z
+        IjogMjIKICB9LAogICJ1c2VyIjogbnVsbCwKICAibWV0YWRhdGEiOiB7fQp9
     headers:
-      CF-RAY:
-      - 9ddc3b1f38ec717e-DUS
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json
-      Date:
-      - Tue, 17 Mar 2026 13:09:22 GMT
-      Server:
-      - cloudflare
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Transfer-Encoding:
-      - chunked
-      X-Content-Type-Options:
-      - nosniff
+      access-control-expose-headers:
+      - X-Request-ID, Server-Timing-Total, X-OpenAI-Inference-Capacity-Reason
+      - CF-Ray
+      - CF-Ray
       alt-svc:
       - h3=":443"; ma=86400
       cf-cache-status:
       - DYNAMIC
-      openai-organization:
-      - user-9oylvgpazsbmej0gab9qijx2
+      cf-ray:
+      - a5d191446836a68a-ARN
+      connection:
+      - keep-alive
+      content-length:
+      - '2268'
+      content-type:
+      - application/json
+      date:
+      - Thu, 19 Nov 2026 19:19:38 GMT
       openai-processing-ms:
-      - '7261'
-      openai-project:
-      - proj_QkVRGiZ5uKMuNJjWlg8AbyxI
+      - '1821'
       openai-version:
       - '2020-10-01'
-      set-cookie:
-      - __cf_bm=zujdYd8aQoJYvtyaBnWYZ4kG7hBzIJkk5j5.o0_oyxk-1773752954.7531824-1.0.1.1-_4WlGrdLg5ku1gr_K5ySoxfsisjAG._d.pmJP_rVB9qDGRmunUfL0HHhJFkUZWaCsgECkwPZ7spyJW5yAhM0stCVyJXrwiYCClvI4TxXtVulgCg825_phZbkmbtuU1i7;
-        HttpOnly; Secure; Path=/; Domain=api.openai.com; Expires=Tue, 17 Mar 2026
-        13:39:22 GMT
+      server:
+      - cloudflare
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      transfer-encoding:
+      - chunked
+      x-content-type-options:
+      - nosniff
       x-ratelimit-limit-requests:
-      - '5000'
+      - '10000'
       x-ratelimit-limit-tokens:
-      - '2000000'
+      - '10000000'
       x-ratelimit-remaining-requests:
-      - '4999'
+      - '9999'
       x-ratelimit-remaining-tokens:
-      - '1999257'
+      - '10000000'
       x-ratelimit-reset-requests:
-      - 12ms
+      - 6ms
       x-ratelimit-reset-tokens:
-      - 22ms
+      - 0s
       x-request-id:
-      - req_34f300655a95423ea24895d41028577a
+      - req_3ea37c00a2034e0d88492376db7ed36a
     status:
       code: 200
       message: OK

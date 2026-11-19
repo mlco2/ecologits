@@ -13,7 +13,7 @@ def test_anthropic_chat(tracer_init):
     response = client.messages.create(
         max_tokens=100,
         messages=[{"role": "user", "content": "Hello World!"}],
-        model="claude-haiku-4-5",
+        model="claude-haiku-5-5",
     )
     assert len(response.content) > 0
     assert response.impacts.energy.value > 0
@@ -26,7 +26,7 @@ async def test_anthropic_async_chat(tracer_init):
     response = await client.messages.create(
         max_tokens=100,
         messages=[{"role": "user", "content": "Hello World!"}],
-        model="claude-haiku-4-5",
+        model="claude-haiku-5-5",
     )
     assert len(response.content) > 0
     assert response.impacts.energy.value > 0
@@ -43,7 +43,7 @@ def test_anthropic_stream_chat(tracer_init, monkeypatch, consume):
     with EcoLogits.track_impacts(providers="anthropic") as tracker, client.messages.stream(
         max_tokens=100,
         messages=[{"role": "user", "content": "Hello World!"}],
-        model="claude-haiku-4-5",
+        model="claude-haiku-5-5",
     ) as stream:
         if consume == "text_stream":
             assert "".join(stream.text_stream)
@@ -80,7 +80,7 @@ async def test_anthropic_async_stream_chat(tracer_init, monkeypatch, consume):
     async with EcoLogits.track_impacts(providers="anthropic") as tracker, client.messages.stream(
         max_tokens=100,
         messages=[{"role": "user", "content": "Hello World!"}],
-        model="claude-haiku-4-5",
+        model="claude-haiku-5-5",
     ) as stream:
         if consume == "text_stream":
             assert "".join([text async for text in stream.text_stream])
@@ -111,7 +111,7 @@ def test_anthropic_chat_with_raw_response(tracer_init):
     raw = client.messages.with_raw_response.create(
         max_tokens=100,
         messages=[{"role": "user", "content": "Hello World!"}],
-        model="claude-haiku-4-5",
+        model="claude-haiku-5-5",
     )
     response = raw.parse()
     assert len(response.content) > 0
