@@ -3,6 +3,7 @@ from anthropic import Anthropic
 from openai import OpenAI
 
 from ecologits import EcoLogits
+from ecologits.model_repository import ModelRepository
 
 
 @pytest.mark.vcr
@@ -57,7 +58,15 @@ def test_init_with_different_providers():
 
 
 @pytest.mark.vcr
-def test_init_with_different_mixes():
+def test_init_with_different_mixes(monkeypatch):
+    # Keep the recorded response usable independently of the live model inventory.
+    repository = ModelRepository()
+    repository.add_model({
+        "provider": "openai",
+        "name": "gpt-4.1-nano-2025-04-14",
+        "architecture": {"type": "dense", "parameters": {"min": 10, "max": 37}},
+    })
+    monkeypatch.setattr("ecologits.tracers.utils.models", repository)
     seed = 0 # Define seed for having the same answers
 
     EcoLogits.init(providers="openai") # USA's mix for OpenAI (default)
