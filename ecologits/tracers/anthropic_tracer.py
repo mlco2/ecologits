@@ -13,7 +13,7 @@ from typing_extensions import override
 from wrapt import wrap_function_wrapper  # type: ignore[import-untyped]
 
 from ecologits._ecologits import EcoLogits
-from ecologits.tracers.utils import ImpactsOutput, llm_impacts
+from ecologits.tracers.utils import ImpactsOutput, is_raw_response_request, llm_impacts
 from ecologits.tracking import ImpactsTracker, get_active_trackers, is_tracking_enabled, record_impacts
 
 PROVIDER = "anthropic"
@@ -195,7 +195,7 @@ def anthropic_chat_wrapper(
     Returns:
         A wrapped `Message` with impacts
     """
-    if not is_tracking_enabled(PROVIDER):
+    if is_raw_response_request(kwargs) or not is_tracking_enabled(PROVIDER):
         return wrapped(*args, **kwargs)
     trackers = get_active_trackers(PROVIDER)
 
@@ -243,7 +243,7 @@ async def anthropic_async_chat_wrapper(
     Returns:
         A wrapped `Message` with impacts
     """
-    if not is_tracking_enabled(PROVIDER):
+    if is_raw_response_request(kwargs) or not is_tracking_enabled(PROVIDER):
         return await wrapped(*args, **kwargs)
     trackers = get_active_trackers(PROVIDER)
 

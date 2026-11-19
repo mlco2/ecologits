@@ -10,6 +10,7 @@ from wrapt import wrap_function_wrapper  # type: ignore[import-untyped]
 
 from ecologits._ecologits import EcoLogits
 from ecologits.tracers.utils import ImpactsOutput, llm_impacts
+from ecologits.tracking import ImpactsTracker, get_active_trackers, is_tracking_enabled, record_impacts
 
 PROVIDER = "cohere"
 
@@ -49,6 +50,9 @@ def cohere_chat_wrapper(
     Returns:
         A wrapped `NonStreamedChatResponse` with impacts
     """
+    if not is_tracking_enabled(PROVIDER):
+        return wrapped(*args, **kwargs)
+    trackers = get_active_trackers(PROVIDER)
     timer_start = time.perf_counter()
     response = wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
@@ -73,6 +77,7 @@ def cohere_chat_wrapper(
                 endpoint="/chat"
             )
 
+        record_impacts(trackers, impacts)
         return NonStreamedChatResponse(**response.dict(), impacts=impacts)
     else:
         return response
@@ -93,6 +98,9 @@ async def cohere_async_chat_wrapper(
     Returns:
         A wrapped `NonStreamedChatResponse` with impacts
     """
+    if not is_tracking_enabled(PROVIDER):
+        return await wrapped(*args, **kwargs)
+    trackers = get_active_trackers(PROVIDER)
     timer_start = time.perf_counter()
     response = await wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
@@ -117,6 +125,7 @@ async def cohere_async_chat_wrapper(
                 endpoint="/chat"
             )
 
+        record_impacts(trackers, impacts)
         return NonStreamedChatResponse(**response.dict(), impacts=impacts)
     else:
         return response
@@ -137,7 +146,17 @@ def cohere_stream_chat_wrapper(
     Returns:
         A wrapped `Iterator[StreamedChatResponse]` with impacts
     """
+    if not is_tracking_enabled(PROVIDER):
+        return wrapped(*args, **kwargs)
+    return _stream_generator(wrapped, args, kwargs, get_active_trackers(PROVIDER))
 
+
+def _stream_generator(
+    wrapped: Callable,
+    args: Any,
+    kwargs: Any,
+    trackers: tuple[ImpactsTracker, ...]
+) -> Iterator[StreamedChatResponse]:
     model_name = kwargs.get("model", "command-r")
     timer_start = time.perf_counter()
     stream = wrapped(*args, **kwargs)
@@ -165,6 +184,7 @@ def cohere_stream_chat_wrapper(
                         endpoint="/chat"
                     )
 
+                record_impacts(trackers, impacts)
                 yield StreamEndStreamedChatResponse(**event.dict(), impacts=impacts)
             else:
                 yield event
@@ -172,7 +192,7 @@ def cohere_stream_chat_wrapper(
             yield event
 
 
-async def cohere_async_stream_chat_wrapper(
+def cohere_async_stream_chat_wrapper(
     wrapped: Callable, instance: AsyncClient, args: Any, kwargs: Any # noqa: ARG001
 ) -> AsyncIterator[StreamedChatResponse]:
     """
@@ -187,7 +207,17 @@ async def cohere_async_stream_chat_wrapper(
     Returns:
         A wrapped `AsyncIterator[StreamedChatResponse]` with impacts
     """
+    if not is_tracking_enabled(PROVIDER):
+        return wrapped(*args, **kwargs)
+    return _async_stream_generator(wrapped, args, kwargs, get_active_trackers(PROVIDER))
 
+
+async def _async_stream_generator(
+    wrapped: Callable,
+    args: Any,
+    kwargs: Any,
+    trackers: tuple[ImpactsTracker, ...]
+) -> AsyncIterator[StreamedChatResponse]:
     model_name = kwargs.get("model", "command-r")
     timer_start = time.perf_counter()
     stream = wrapped(*args, **kwargs)
@@ -214,6 +244,7 @@ async def cohere_async_stream_chat_wrapper(
                         endpoint="/chat"
                     )
 
+                record_impacts(trackers, impacts)
                 yield StreamEndStreamedChatResponse(**event.dict(), impacts=impacts)
             else:
                 yield event

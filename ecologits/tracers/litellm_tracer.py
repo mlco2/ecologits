@@ -11,6 +11,9 @@ from wrapt import wrap_function_wrapper  # type: ignore[import-untyped]
 from ecologits._ecologits import EcoLogits
 from ecologits.model_repository import models
 from ecologits.tracers.utils import ImpactsOutput, llm_impacts
+from ecologits.tracking import ImpactsTracker, get_active_trackers, is_tracking_enabled, record_impacts
+
+PROVIDER = "litellm"
 
 
 class ChatCompletion(ModelResponse):
@@ -70,22 +73,26 @@ def litellm_chat_wrapper(
     Returns:
         A wrapped `ChatCompletion` or `CustomStreamWrapper` with impacts
     """
-
+    if not is_tracking_enabled(PROVIDER):
+        return wrapped(*args, **kwargs)
+    trackers = get_active_trackers(PROVIDER)
     if kwargs.get("stream", False):
-        return litellm_chat_wrapper_stream(wrapped, instance, args, kwargs)
+        return litellm_chat_wrapper_stream(wrapped, instance, args, kwargs, trackers)
     else:
-        return litellm_chat_wrapper_non_stream(wrapped, instance, args, kwargs)
+        return litellm_chat_wrapper_non_stream(wrapped, instance, args, kwargs, trackers)
 
 
 def litellm_chat_wrapper_stream(  # type: ignore[misc]
     wrapped: Callable,
     instance: Completions,      # noqa: ARG001
     args: Any,
-    kwargs: Any
+    kwargs: Any,
+    trackers: tuple[ImpactsTracker, ...] = ()
 ) -> CustomStreamWrapper:
     timer_start = time.perf_counter()
     stream = wrapped(*args, **kwargs)
     token_count = 0
+    impacts: ImpactsOutput | None = None
     for i, chunk in enumerate(stream):
         if i > 0 and chunk.choices[0].finish_reason is None:
             token_count += 1
@@ -119,13 +126,16 @@ def litellm_chat_wrapper_stream(  # type: ignore[misc]
                 yield chunk
         else:
             yield chunk
+    if impacts is not None:
+        record_impacts(trackers, impacts)
 
 
 def litellm_chat_wrapper_non_stream(
     wrapped: Callable,
     instance: Completions,      # noqa: ARG001
     args: Any,
-    kwargs: Any
+    kwargs: Any,
+    trackers: tuple[ImpactsTracker, ...] = ()
 ) -> ChatCompletion:
     timer_start = time.perf_counter()
     response = wrapped(*args, **kwargs)
@@ -152,6 +162,7 @@ def litellm_chat_wrapper_non_stream(
                 endpoint="/chat/completions"
             )
 
+        record_impacts(trackers, impacts)
         return ChatCompletion(**response.model_dump(), impacts=impacts)
     else:
         return response
@@ -175,17 +186,21 @@ async def litellm_async_chat_wrapper(
     Returns:
         A wrapped `ChatCompletion` or `CustomStreamWrapper` with impacts
     """
+    if not is_tracking_enabled(PROVIDER):
+        return await wrapped(*args, **kwargs)
+    trackers = get_active_trackers(PROVIDER)
     if kwargs.get("stream", False):
-        return litellm_async_chat_wrapper_stream(wrapped, instance, args, kwargs)
+        return litellm_async_chat_wrapper_stream(wrapped, instance, args, kwargs, trackers)
     else:
-        return await litellm_async_chat_wrapper_base(wrapped, instance, args, kwargs)
+        return await litellm_async_chat_wrapper_base(wrapped, instance, args, kwargs, trackers)
 
 
 async def litellm_async_chat_wrapper_base(
     wrapped: Callable,
     instance: AsyncCompletions,      # noqa: ARG001
     args: Any,
-    kwargs: Any
+    kwargs: Any,
+    trackers: tuple[ImpactsTracker, ...] = ()
 ) -> ChatCompletion:
     timer_start = time.perf_counter()
     response = await wrapped(*args, **kwargs)
@@ -212,6 +227,7 @@ async def litellm_async_chat_wrapper_base(
                 endpoint="/chat/completions"
             )
 
+        record_impacts(trackers, impacts)
         return ChatCompletion(**response.model_dump(), impacts=impacts)
     else:
         return response
@@ -221,12 +237,14 @@ async def litellm_async_chat_wrapper_stream(  # type: ignore[misc]
     wrapped: Callable,
     instance: AsyncCompletions,      # noqa: ARG001
     args: Any,
-    kwargs: Any
+    kwargs: Any,
+    trackers: tuple[ImpactsTracker, ...] = ()
 ) -> CustomStreamWrapper:
     timer_start = time.perf_counter()
     stream = await wrapped(*args, **kwargs)
     i = 0
     token_count = 0
+    impacts: ImpactsOutput | None = None
     async for chunk in stream:
         if i > 0 and chunk.choices[0].finish_reason is None:
             token_count += 1
@@ -260,6 +278,8 @@ async def litellm_async_chat_wrapper_stream(  # type: ignore[misc]
         else:
             yield chunk
         i += 1
+    if impacts is not None:
+        record_impacts(trackers, impacts)
 
 
 class LiteLLMInstrumentor:

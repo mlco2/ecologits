@@ -87,7 +87,7 @@ from openai import OpenAI
 
 client = OpenAI()
 
-with EcoLogits.track_impacts() as tracker:
+with EcoLogits.track_impacts(providers=["openai"]) as tracker:
     client.chat.completions.create(...)
     client.chat.completions.create(...)
 
@@ -99,8 +99,13 @@ for impacts in tracker.calls:
     print(impacts.energy.value)
 ```
 
-It also works in async code with `async with EcoLogits.track_impacts() as tracker:`.
+It also works in async code with `async with EcoLogits.track_impacts(providers=["openai"]) as tracker:`.
 
 The block only covers the current thread or async task, so other work running at the same time in the same process is not tracked. Requests made outside the block are left untouched, unless their provider was enabled with `EcoLogits.init()`. In that case they keep their impacts as usual, and only the requests made inside the block are counted by the tracker.
 
-!!! info "Tracking in a block is currently supported for the OpenAI and Anthropic providers."
+You must select the providers to track, with the same names as in `EcoLogits.init()`. To track several of them in the same block:
+
+```python
+with EcoLogits.track_impacts(providers=["openai", "mistralai"]) as tracker:
+    ...
+```

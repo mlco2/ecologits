@@ -12,7 +12,7 @@ from openai.types.responses import ResponseStreamEvent
 from wrapt import wrap_function_wrapper  # type: ignore[import-untyped]
 
 from ecologits._ecologits import EcoLogits
-from ecologits.tracers.utils import ImpactsOutput, llm_impacts
+from ecologits.tracers.utils import ImpactsOutput, is_raw_response_request, llm_impacts
 from ecologits.tracking import ImpactsTracker, get_active_trackers, is_tracking_enabled, record_impacts
 
 PROVIDER = "openai"
@@ -64,7 +64,7 @@ def openai_chat_wrapper(
     Returns:
         A wrapped `ChatCompletion` or `Stream[ChatCompletionChunk]` with impacts
     """
-    if not is_tracking_enabled(PROVIDER):
+    if is_raw_response_request(kwargs) or not is_tracking_enabled(PROVIDER):
         return wrapped(*args, **kwargs)
     trackers = get_active_trackers(PROVIDER)
     if kwargs.get("stream", False):
@@ -179,7 +179,7 @@ async def openai_async_chat_wrapper(
     Returns:
         A wrapped `ChatCompletion` or `AsyncStream[ChatCompletionChunk]` with impacts
     """
-    if not is_tracking_enabled(PROVIDER):
+    if is_raw_response_request(kwargs) or not is_tracking_enabled(PROVIDER):
         return await wrapped(*args, **kwargs)
     trackers = get_active_trackers(PROVIDER)
     if kwargs.get("stream", False):
@@ -295,7 +295,7 @@ def openai_responses_wrapper(
     Returns:
         A wrapped `Response` or `Stream[ResponseStreamEvent]` with impacts
     """
-    if not is_tracking_enabled(PROVIDER):
+    if is_raw_response_request(kwargs) or not is_tracking_enabled(PROVIDER):
         return wrapped(*args, **kwargs)
     trackers = get_active_trackers(PROVIDER)
     if kwargs.get("stream", False):
@@ -396,7 +396,7 @@ async def openai_async_responses_wrapper(
     Returns:
         A wrapped `Response` or `AsyncStream[ResponseStreamEvent]` with impacts
     """
-    if not is_tracking_enabled(PROVIDER):
+    if is_raw_response_request(kwargs) or not is_tracking_enabled(PROVIDER):
         return await wrapped(*args, **kwargs)
     trackers = get_active_trackers(PROVIDER)
     if kwargs.get("stream", False):

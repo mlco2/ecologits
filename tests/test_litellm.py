@@ -60,3 +60,14 @@ async def test_litellm_async_stream_chat(tracer_init):
     )
     async for chunk in stream:
         assert chunk.impacts.energy.value >= 0
+
+
+@pytest.mark.vcr
+@pytest.mark.default_cassette("../test_openai/test_openai_chat.yaml")
+def test_litellm_chat_openai_model(tracer_init):
+    response = litellm.completion(
+        model="openai/gpt-5-nano",
+        messages=[{"role": "user", "content": "Hello World!"}]
+    )
+    assert len(response.choices) > 0
+    assert response.impacts.energy.value > 0

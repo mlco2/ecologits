@@ -11,6 +11,7 @@ from wrapt import wrap_function_wrapper  # type: ignore[import-untyped]
 
 from ecologits._ecologits import EcoLogits
 from ecologits.tracers.utils import ImpactsOutput, llm_impacts
+from ecologits.tracking import ImpactsTracker, get_active_trackers, is_tracking_enabled, record_impacts
 
 PROVIDER = "huggingface_hub"
 HF_INFERENCE_URL_PREFIXES = (
@@ -65,18 +66,21 @@ def huggingface_chat_wrapper(
     Returns:
         A wrapped `ChatCompletionOutput` or `Iterable[ChatCompletionStreamOutput]` with impacts
     """
-
+    if not is_tracking_enabled(PROVIDER):
+        return wrapped(*args, **kwargs)
+    trackers = get_active_trackers(PROVIDER)
     if kwargs.get("stream", False):
-        return huggingface_chat_wrapper_stream(wrapped, instance, args, kwargs)
+        return huggingface_chat_wrapper_stream(wrapped, instance, args, kwargs, trackers)
     else:
-        return huggingface_chat_wrapper_non_stream(wrapped, instance, args, kwargs)
+        return huggingface_chat_wrapper_non_stream(wrapped, instance, args, kwargs, trackers)
 
 
 def huggingface_chat_wrapper_non_stream(
     wrapped: Callable,
     instance: InferenceClient,
     args: Any,
-    kwargs: Any
+    kwargs: Any,
+    trackers: tuple[ImpactsTracker, ...] = ()
 ) -> ChatCompletionOutput:
     timer_start = time.perf_counter()
     response = wrapped(*args, **kwargs)
@@ -106,6 +110,7 @@ def huggingface_chat_wrapper_non_stream(
                 endpoint="/chat/completions"
             )
 
+        record_impacts(trackers, impacts)
         return ChatCompletionOutput(**asdict(response), impacts=impacts)
     else:
         return response
@@ -115,7 +120,8 @@ def huggingface_chat_wrapper_stream(
     wrapped: Callable,
     instance: InferenceClient,
     args: Any,
-    kwargs: Any
+    kwargs: Any,
+    trackers: tuple[ImpactsTracker, ...] = ()
 ) -> Iterable[ChatCompletionStreamOutput]:
     encoder = tiktoken.get_encoding("cl100k_base")
     prompt_text = "".join([m["content"] for m in kwargs["messages"]])
@@ -124,6 +130,7 @@ def huggingface_chat_wrapper_stream(
     timer_start = time.perf_counter()
     stream = wrapped(*args, **kwargs)
     output_tokens = 0
+    impacts: ImpactsOutput | None = None
     for chunk in stream:
         output_tokens += 1
         request_latency = time.perf_counter() - timer_start
@@ -155,6 +162,8 @@ def huggingface_chat_wrapper_stream(
             yield ChatCompletionStreamOutput(**asdict(chunk), impacts=impacts)
         else:
             yield chunk
+    if impacts is not None:
+        record_impacts(trackers, impacts)
 
 
 async def huggingface_async_chat_wrapper(
@@ -175,18 +184,21 @@ async def huggingface_async_chat_wrapper(
     Returns:
         A wrapped `ChatCompletionOutput` or `AsyncIterable[ChatCompletionStreamOutput]]` with impacts
     """
-
+    if not is_tracking_enabled(PROVIDER):
+        return await wrapped(*args, **kwargs)
+    trackers = get_active_trackers(PROVIDER)
     if kwargs.get("stream", False):
-        return huggingface_async_chat_wrapper_stream(wrapped, instance, args, kwargs)
+        return huggingface_async_chat_wrapper_stream(wrapped, instance, args, kwargs, trackers)
     else:
-        return await huggingface_async_chat_wrapper_non_stream(wrapped, instance, args, kwargs)
+        return await huggingface_async_chat_wrapper_non_stream(wrapped, instance, args, kwargs, trackers)
 
 
 async def huggingface_async_chat_wrapper_non_stream(
     wrapped: Callable,
     instance: AsyncInferenceClient,
     args: Any,
-    kwargs: Any
+    kwargs: Any,
+    trackers: tuple[ImpactsTracker, ...] = ()
 ) -> ChatCompletionOutput:
     timer_start = time.perf_counter()
     response = await wrapped(*args, **kwargs)
@@ -216,6 +228,7 @@ async def huggingface_async_chat_wrapper_non_stream(
                 endpoint="/chat/completions"
             )
 
+        record_impacts(trackers, impacts)
         return ChatCompletionOutput(**asdict(response), impacts=impacts)
     else:
         return response
@@ -225,7 +238,8 @@ async def huggingface_async_chat_wrapper_stream(
     wrapped: Callable,
     instance: AsyncInferenceClient,
     args: Any,
-    kwargs: Any
+    kwargs: Any,
+    trackers: tuple[ImpactsTracker, ...] = ()
 ) -> AsyncIterable[ChatCompletionStreamOutput]:
     encoder = tiktoken.get_encoding("cl100k_base")
     prompt_text = "".join([m["content"] for m in kwargs["messages"]])
@@ -234,6 +248,7 @@ async def huggingface_async_chat_wrapper_stream(
     timer_start = time.perf_counter()
     stream = await wrapped(*args, **kwargs)
     output_tokens = 0
+    impacts: ImpactsOutput | None = None
     async for chunk in stream:
         output_tokens += 1
         request_latency = time.perf_counter() - timer_start
@@ -265,6 +280,8 @@ async def huggingface_async_chat_wrapper_stream(
             yield ChatCompletionStreamOutput(**asdict(chunk), impacts=impacts)
         else:
             yield chunk
+    if impacts is not None:
+        record_impacts(trackers, impacts)
 
 
 class HuggingfaceInstrumentor:

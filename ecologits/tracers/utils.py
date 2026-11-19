@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import Any
 
 from pydantic import BaseModel
 
@@ -11,6 +12,25 @@ from ecologits.log import logger
 from ecologits.model_repository import ParametersMoE, models
 from ecologits.status_messages import ErrorMessage, ModelNotRegisteredError, WarningMessage, ZoneNotRegisteredError
 from ecologits.utils.range_value import RangeValue
+
+RAW_RESPONSE_HEADER = "X-Stainless-Raw-Response"
+
+
+def is_raw_response_request(kwargs: dict[str, Any]) -> bool:
+    """
+    Check if a request was made with `with_raw_response` or `with_streaming_response`.
+
+    The OpenAI and Anthropic clients add the `X-Stainless-Raw-Response` header to these requests and return the raw
+    HTTP response instead of the parsed model, so there is nothing to add impacts to.
+
+    Args:
+        kwargs: Keyword arguments of the request.
+
+    Returns:
+        True if the client returns the raw HTTP response for this request.
+    """
+    extra_headers = kwargs.get("extra_headers") or {}
+    return RAW_RESPONSE_HEADER in extra_headers
 
 
 class ImpactsOutput(BaseModel):
