@@ -57,8 +57,7 @@ EcoLogits relies on key libraries to provide essential functionalities:
 </span>
 
 <p><strong>Run this command</strong></p>
-<pre><code id="install-command"></code></pre>
-<script src="js/installer.js"></script>
+<pre><code id="install-command">pip install ecologits[openai]</code></pre>
 
 For detailed instructions on each provider, refer to the complete list of [supported providers and features](tutorial/providers.md). It is also possible to install EcoLogits without any provider.
 
