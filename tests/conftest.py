@@ -13,7 +13,7 @@ def environment():
     set_envvar_if_unset("ANTHROPIC_API_KEY", "test-api-key")
     set_envvar_if_unset("MISTRAL_API_KEY", "test-api-key")
     set_envvar_if_unset("OPENAI_API_KEY", "test-api-key")
-    set_envvar_if_unset("CO_API_KEY", "test-api-key")
+    set_envvar_if_unset("CO_API_KEY", os.getenv("COHERE_API_KEY", "test-api-key"))
     set_envvar_if_unset("GOOGLE_API_KEY", "test-api-key")
     set_envvar_if_unset("HF_TOKEN", "hf_test-token")
     set_envvar_if_unset("AZURE_OPENAI_API_KEY", "test-api-key")
@@ -29,12 +29,18 @@ def set_envvar_if_unset(name: str, value: str):
 
 @pytest.fixture(scope="session")
 def vcr_config():
-    return {"filter_headers": [
-        "authorization",
-        "api-key",
-        "x-api-key",
-        "x-goog-api-key"
-    ]}
+    return {
+        "decode_compressed_response": True,
+        "before_record_response": scrub_response_headers,
+        "filter_headers": ["authorization", "api-key", "x-api-key", "x-goog-api-key"],
+    }
+
+
+def scrub_response_headers(response):
+    for header in list(response["headers"]):
+        if header.lower() in {"set-cookie", "openai-organization", "openai-project"}:
+            del response["headers"][header]
+    return response
 
 
 @pytest.fixture(scope="session")

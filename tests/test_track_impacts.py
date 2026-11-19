@@ -46,7 +46,7 @@ def no_global_init(monkeypatch):
 
 def openai_chat(client):
     return client.chat.completions.create(
-        model="gpt-5-nano",
+        model="gpt-6-luna",
         messages=[{"role": "user", "content": "Hello World!"}]
     )
 
@@ -57,7 +57,7 @@ class GreetingDetection(BaseModel):
 
 def openai_responses_parse(client):
     return client.responses.parse(
-        model="gpt-5-nano",
+        model="gpt-6-luna",
         input=[{"role": "user", "content": "Hello World!"}],
         text_format=GreetingDetection,
     )
@@ -67,7 +67,7 @@ def anthropic_chat(client):
     return client.messages.create(
         max_tokens=100,
         messages=[{"role": "user", "content": "Hello World!"}],
-        model="claude-haiku-4-5",
+        model="claude-haiku-5-5",
     )
 
 
@@ -200,7 +200,7 @@ def test_openai_stream_chat(no_global_init):
     client = OpenAI()
     with EcoLogits.track_impacts(providers="openai") as tracker:
         stream = client.chat.completions.create(
-            model="gpt-5-nano",
+            model="gpt-6-luna",
             messages=[{"role": "user", "content": "Hello World!"}],
             stream=True
         )
@@ -216,7 +216,7 @@ def test_stream_read_after_block_is_still_tracked(no_global_init):
     client = OpenAI()
     with EcoLogits.track_impacts(providers="openai") as tracker:
         stream = client.chat.completions.create(
-            model="gpt-5-nano",
+            model="gpt-6-luna",
             messages=[{"role": "user", "content": "Hello World!"}],
             stream=True
         )
@@ -231,7 +231,7 @@ def test_stream_read_after_block_is_still_tracked(no_global_init):
 def test_openai_responses(no_global_init):
     client = OpenAI()
     with EcoLogits.track_impacts(providers="openai") as tracker:
-        response = client.responses.create(model="gpt-5-nano", input="Hello World!")
+        response = client.responses.create(model="gpt-6-luna", input="Hello World!")
     assert len(tracker.calls) == 1
     assert tracker.impacts.energy == response.impacts.energy
 
@@ -295,7 +295,7 @@ async def test_anthropic_async_stream_chat(no_global_init):
         async with client.messages.stream(
             max_tokens=100,
             messages=[{"role": "user", "content": "Hello World!"}],
-            model="claude-haiku-4-5",
+            model="claude-haiku-5-5",
         ) as stream:
             async for _ in stream.text_stream:
                 pass
@@ -308,10 +308,10 @@ async def test_anthropic_async_stream_chat(no_global_init):
 @pytest.mark.default_cassette(MISTRALAI_ASYNC_CHAT)
 @pytest.mark.asyncio
 async def test_mistralai_async_chat(no_global_init):
-    client = mistralai.Mistral()
+    client = mistralai.Mistral(api_key=os.environ["MISTRAL_API_KEY"])
     async with EcoLogits.track_impacts(providers="mistralai") as tracker:
         response = await client.chat.complete_async(
-            messages=[{"role": "user", "content": "Hello World!"}], model="mistral-tiny-latest"
+            messages=[{"role": "user", "content": "Hello World!"}], model="ministral-3b-2512"
         )
     assert len(tracker.calls) == 1
     assert tracker.impacts.energy == response.impacts.energy
@@ -320,13 +320,13 @@ async def test_mistralai_async_chat(no_global_init):
 @pytest.mark.vcr(allow_playback_repeats=True)
 @pytest.mark.default_cassette(MISTRALAI_STREAM_CHAT)
 def test_mistralai_stream_chat(no_global_init):
-    client = mistralai.Mistral()
+    client = mistralai.Mistral(api_key=os.environ["MISTRAL_API_KEY"])
     outside = list(client.chat.stream(
-        messages=[{"role": "user", "content": "Hello World!"}], model="mistral-tiny-latest"
+        messages=[{"role": "user", "content": "Hello World!"}], model="ministral-3b-2512"
     ))
     with EcoLogits.track_impacts(providers="mistralai") as tracker:
         stream = client.chat.stream(
-            messages=[{"role": "user", "content": "Hello World!"}], model="mistral-tiny-latest"
+            messages=[{"role": "user", "content": "Hello World!"}], model="ministral-3b-2512"
         )
     chunks = list(stream)
 
@@ -339,9 +339,9 @@ def test_mistralai_stream_chat(no_global_init):
 @pytest.mark.default_cassette(COHERE_STREAM_CHAT)
 def test_cohere_stream_chat(no_global_init):
     client = Client()
-    outside = list(client.chat_stream(message="Tell me a short story", model="command-r-08-2024", max_tokens=100))
+    outside = list(client.chat_stream(message="Tell me a short story", model="command-r7b-12-2024", max_tokens=100))
     with EcoLogits.track_impacts(providers="cohere") as tracker:
-        stream = client.chat_stream(message="Tell me a short story", model="command-r-08-2024", max_tokens=100)
+        stream = client.chat_stream(message="Tell me a short story", model="command-r7b-12-2024", max_tokens=100)
     events = list(stream)
 
     assert not hasattr(outside[-1], "impacts")
@@ -355,7 +355,7 @@ def test_cohere_stream_chat(no_global_init):
 async def test_cohere_async_stream_chat(no_global_init):
     client = AsyncClient()
     async with EcoLogits.track_impacts(providers="cohere") as tracker:
-        stream = client.chat_stream(message="Tell me a short story", model="command-r-08-2024", max_tokens=100)
+        stream = client.chat_stream(message="Tell me a short story", model="command-r7b-12-2024", max_tokens=100)
     events = [event async for event in stream]
 
     assert len(tracker.calls) == 1
@@ -395,10 +395,10 @@ def test_huggingface_hub_stream_chat(no_global_init):
 @pytest.mark.vcr(allow_playback_repeats=True)
 @pytest.mark.default_cassette(LITELLM_CHAT)
 def test_litellm_chat(no_global_init):
-    outside = litellm.completion(model="mistral/mistral-small", messages=[{"content": "Hello World!", "role": "user"}])
+    outside = litellm.completion(model="mistral/ministral-3b-2512", messages=[{"content": "Hello World!", "role": "user"}])
     with EcoLogits.track_impacts(providers="litellm") as tracker:
         response = litellm.completion(
-            model="mistral/mistral-small",
+            model="mistral/ministral-3b-2512",
             messages=[{"content": "Hello World!", "role": "user"}]
         )
 
@@ -412,7 +412,7 @@ def test_litellm_chat(no_global_init):
 def test_litellm_stream_chat(no_global_init):
     with EcoLogits.track_impacts(providers="litellm") as tracker:
         stream = litellm.completion(
-            model="mistral/mistral-small",
+            model="mistral/ministral-3b-2512",
             messages=[{"role": "user", "content": "Hello World!"}],
             stream=True
         )

@@ -7,7 +7,7 @@ from ecologits.tracers.litellm_tracer import litellm_match_model
 @pytest.mark.parametrize("model_name,expected_tuple", [
     ("gpt-4o", ("openai", "gpt-4o")),
     ("mistral/mistral-large-latest", ("mistralai", "mistral-large-latest")),
-    ("command-r-08-2024", ("cohere", "command-r-08-2024")),
+    ("command-r7b-12-2024", ("cohere", "command-r7b-12-2024")),
     ("huggingface/meta-llama/Llama-2-7b", ("huggingface_hub", "meta-llama/Llama-2-7b")),
     ("gemini/gemini-2.5-pro", ("google_genai", "gemini-2.5-pro")),
     ("gemini/gemini-2.5-flash", ("google_genai", "gemini-2.5-flash")),
@@ -20,7 +20,7 @@ def test_litellm_match_model(model_name, expected_tuple):
 @pytest.mark.vcr
 def test_litellm_chat(tracer_init):
     response = litellm.completion(
-        model="mistral/mistral-small",
+        model="mistral/ministral-3b-2512",
         messages=[{"content": "Hello World!", "role": "user"}]
     )
     assert len(response.choices) > 0
@@ -32,7 +32,7 @@ def test_litellm_chat(tracer_init):
 @pytest.mark.asyncio
 async def test_litellm_async_chat(tracer_init):
     response = await litellm.acompletion(
-        model="mistral/mistral-small",
+        model="mistral/ministral-3b-2512",
         messages=[{"role": "user", "content": "Hello World!"}]
     )
     assert len(response.choices) > 0
@@ -42,7 +42,7 @@ async def test_litellm_async_chat(tracer_init):
 @pytest.mark.vcr
 def test_litellm_stream_chat(tracer_init):
     stream = litellm.completion(
-        model="mistral/mistral-small",
+        model="mistral/ministral-3b-2512",
         messages=[{"role": "user", "content": "Hello World!"}],
         stream=True
     )
@@ -54,7 +54,7 @@ def test_litellm_stream_chat(tracer_init):
 @pytest.mark.asyncio
 async def test_litellm_async_stream_chat(tracer_init):
     stream = await litellm.acompletion(
-        model="mistral/mistral-small",
+        model="mistral/ministral-3b-2512",
         messages=[{"role": "user", "content": "Hello World!"}],
         stream=True
     )
@@ -66,7 +66,7 @@ async def test_litellm_async_stream_chat(tracer_init):
 @pytest.mark.default_cassette("../test_openai/test_openai_chat.yaml")
 def test_litellm_chat_openai_model(tracer_init):
     response = litellm.completion(
-        model="openai/gpt-5-nano",
+        model="openai/gpt-6-luna",
         messages=[{"role": "user", "content": "Hello World!"}]
     )
     assert len(response.choices) > 0
