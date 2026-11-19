@@ -1,38 +1,37 @@
-/*:root {*/
-/*  --md-primary-fg-color: #0b3b36;*/
-/*  !*--md-primary-fg-color: #0b3b36;*!*/
-/*  !*--md-primary-fg-color--light: #ff0000;*!*/
-/*  !*--md-primary-fg-color--dark: #ffea00;*!*/
-/*  --md-primary-bg-color--light: #0b3b36*/
-/*}*/
-
 /*
 Dark green: 0b3b36
 Light green: 00bf63
 */
 
-
-[data-md-color-scheme="ecologits"] {
-  --md-primary-fg-color: #0b3b36;
+/* Green accents in both palettes, with subtly tinted dark surfaces. */
+[data-md-color-scheme="default"] {
+  --md-code-bg-color: #f7fbf8;
+  --md-primary-fg-color: #00914b;
   --md-typeset-a-color: #00914b;
-  --md-accent-fg-color: #00bf63;
+  --md-accent-fg-color: #00914b;
+  --md-accent-fg-color--transparent: #00914b14;
   --md-primary-fg-color--dark: #062522;
 }
 
-[data-md-color-scheme="ecologits"] img[src$="#only-dark"],
-[data-md-color-scheme="ecologits"] img[src$="#gh-dark-mode-only"] {
+[data-md-color-scheme="default"] img[src$="#only-dark"],
+[data-md-color-scheme="default"] img[src$="#gh-dark-mode-only"] {
   display: none; /* Hide dark images in light mode */
 }
 
 [data-md-color-scheme="slate"] {
-  --md-primary-fg-color: #0b3b36;
-  --md-hue: 200;
+  --md-primary-fg-color: #00bf63;
+  --md-hue: 155;
+  --md-default-bg-color: #101914;
+  --md-default-bg-color--light: #101914e6;
+  --md-default-bg-color--lighter: #10191480;
+  --md-default-bg-color--lightest: #10191440;
+  --md-code-bg-color: #18251e;
   --md-default-fg-color: hsla(var(--md-hue), 15%, 95%, 1);
-  --md-typeset-a-color: #00bf63 !important;
-  --md-accent-fg-color: #008343;
+  --md-typeset-a-color: #00bf63;
+  --md-accent-fg-color: #00bf63;
+  --md-accent-fg-color--transparent: #00bf6320;
   --md-primary-fg-color--dark: #062522;
 }
-
 
 /* Home page */
 
@@ -56,10 +55,8 @@ Light green: 00bf63
 
 .project-cards {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
-  /*margin-top: 6rem;*/
-  /*margin-bottom: 4rem;*/
   max-width: 1000px;
 }
 
@@ -68,7 +65,8 @@ Light green: 00bf63
   padding: 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  min-width: 0;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -120,16 +118,15 @@ Light green: 00bf63
 
 .code-snippet-container {
   position: relative;
-  /*margin-top: auto;*/
-  /*margin: 0;*/
 }
 
 .project-card .code-snippet {
-  background-color: #f4f4f4;
+  background-color: var(--md-code-bg-color);
+  color: var(--md-code-fg-color);
   border-radius: 6px;
   padding: 0.5rem 2.5rem 0.5rem 0.5rem;
   font-family: monospace;
-  word-break: break-all;
+  overflow-wrap: anywhere;
   text-align: left;
   font-size: 0.8rem;
 }
@@ -177,9 +174,6 @@ Light green: 00bf63
       border-color: #484848;
   }
 
-  .project-card .code-snippet {
-      background-color: #293034;
-  }
 }
 
 /* CodeCarbon keeps its own dark, lime-accented identity in both themes. */
@@ -247,7 +241,6 @@ Light green: 00bf63
   animation: heart 1000ms infinite;
 }
 
-
 /* Contributors grid */
 
 .contributors-grid {
@@ -301,7 +294,6 @@ Light green: 00bf63
   }
 }
 
-
 /* Get started page */
 
 .provider-item {
@@ -322,13 +314,11 @@ Light green: 00bf63
 
 .provider-item label {
   padding: 1px 4px 1px 0;
-  /*padding-right: 4px;*/
 }
 
 .provider-item input {
   accent-color: var(--md-accent-fg-color);
 }
-
 
 /* External link icon for nav items. Instant navigation makes internal hrefs absolute, so skip the site's own hosts. */
 
@@ -353,4 +343,16 @@ Light green: 00bf63
   mask-size: contain;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
+}
+
+/* Respect motion preferences in the custom homepage components as well. */
+@media (prefers-reduced-motion: reduce) {
+  .heart { animation: none; }
+  .project-card { transition: none; }
+  .project-card:hover { transform: none; }
+}
+
+.provider-item:focus-within {
+  outline: 2px solid var(--md-accent-fg-color);
+  outline-offset: 2px;
 }

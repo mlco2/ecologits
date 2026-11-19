@@ -45,6 +45,7 @@ nav:
   - 'EcoLogits.js': 'https://www.npmjs.com/package/@ecologits/ecologits.js'
 
 theme:
+  variant: modern
   custom_dir: overrides
   logo: assets/leaf.svg
   favicon: assets/leaf.svg
@@ -52,7 +53,7 @@ theme:
     text: Roboto
   palette:
     - media: "(prefers-color-scheme: light)"
-      scheme: ecologits
+      scheme: default
       primary: custom
       accent: custom
       toggle:
@@ -60,6 +61,8 @@ theme:
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
+      primary: custom
+      accent: custom
       toggle:
         icon: lucide/moon
         name: Switch to light mode

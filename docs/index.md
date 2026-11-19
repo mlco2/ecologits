@@ -7,8 +7,8 @@ hide:
 #
 
 <figure class="hero-logo" markdown="span">
-  ![EcoLogits](assets/logo_light.png#only-light){ width="500" }
-  ![EcoLogits](assets/logo_dark.png#only-dark){ width="500" }
+  ![EcoLogits](assets/logo_light.png#only-light){ .off-glb width="500" }
+  ![EcoLogits](assets/logo_dark.png#only-dark){ .off-glb width="500" }
   <figcaption>
     <p class="hero-logo__tagline">Estimate and track the environmental footprint of GenAI models at inference.</p>
     <p class="hero-logo__team">Made with 💚 by <a href="https://codecarbon.io/">CodeCarbon</a> non-profit.</p>
@@ -35,7 +35,7 @@ hide:
         </div>
         <div class="card-content">
             <a href="https://calculator.ecologits.ai/" target="_blank">
-                <img src="assets/calculator_screenshot.png" alt="Calculator Icon">
+                <img class="off-glb" src="assets/calculator_screenshot.png" alt="Calculator Icon">
             </a>
             <p>A <b>user-friendly web tool</b> for estimating the environmental footprint of AI models with just a few clicks.</p>
             <p><a href="https://calculator.ecologits.ai/" target="_blank">Visit EcoLogits Calculator <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"></path></svg></span></a></p>
@@ -50,7 +50,7 @@ hide:
             <p>A <b>Python library</b> to track environmental impacts of AI requests made through official client SDKs.<br><a href="get_started/">Learn more <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"></path></svg></span></a></p>
             <div class="code-snippet-container">
                 <div class="code-snippet">pip install ecologits</div>
-                <button class="copy-button" onclick="copyToClipboard(this)">
+                <button aria-label="Copy EcoLogits install command" class="copy-button" onclick="copyToClipboard(this)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                         <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -68,7 +68,7 @@ hide:
             <p>A <b>JavaScript and TypeScript library</b> to estimate the environmental impacts of generative AI.<br><a href="https://www.npmjs.com/package/@ecologits/ecologits.js" target="_blank">Learn more <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"></path></svg></span></a></p>
             <div class="code-snippet-container">
                 <div class="code-snippet">npm install @ecologits/ecologits.js</div>
-                <button class="copy-button" onclick="copyToClipboard(this)">
+                <button aria-label="Copy EcoLogits.js install command" class="copy-button" onclick="copyToClipboard(this)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                         <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -86,7 +86,7 @@ hide:
             <p>An <b>API service</b> enabling integrations of our impact assessment methodology into your applications.<br><a href="https://api.ecologits.ai/docs" target="_blank">Learn more <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2m6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.75.75 0 0 1-1.042-.018.75.75 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1"></path></svg></span></a></p>
             <div class="code-snippet-container">
                 <div class="code-snippet">curl https://api.ecologits.ai/v1beta</div>
-                <button class="copy-button" onclick="copyToClipboard(this)">
+                <button aria-label="Copy EcoLogits API request command" class="copy-button" onclick="copyToClipboard(this)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                         <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -97,7 +97,7 @@ hide:
     </div>
     <div class="project-card codecarbon">
         <div class="project-card-header">
-            <img class="codecarbon-logo" src="assets/codecarbon-logo.svg" alt="" width="25" height="25">
+            <img class="off-glb codecarbon-logo" src="assets/codecarbon-logo.svg" alt="" width="25" height="25">
             <h3>CodeCarbon</h3>
             <span class="codecarbon-label">Local compute</span>
         </div>
@@ -123,42 +123,42 @@ People who contribute significantly to the project.
 
 <div class="contributors-grid">
   <div class="contributor-card">
-    <img src="https://avatars.githubusercontent.com/u/35747570" alt="Samuel Rincé">
+    <a href="https://github.com/samuelrince"><img class="off-glb" src="https://avatars.githubusercontent.com/u/35747570" alt="Samuel Rincé"></a>
     <div class="contributor-info">
       <span class="contributor-name">Samuel Rincé</span>
       <span class="contributor-role">AI Engineer</span>
     </div>
   </div>
   <div class="contributor-card">
-    <img src="https://avatars.githubusercontent.com/u/280668843?v=4" alt="Claire Saignol">
+    <a href="https://github.com/Claire6675"><img class="off-glb" src="https://avatars.githubusercontent.com/u/280668843?v=4" alt="Claire Saignol"></a>
     <div class="contributor-info">
       <span class="contributor-name">Claire Saignol</span>
       <span class="contributor-role">Sustainability Manager</span>
     </div>
   </div>
   <div class="contributor-card">
-    <img src="https://avatars.githubusercontent.com/u/45042779" alt="Adrien Banse">
+    <a href="https://github.com/adrienbanse"><img class="off-glb" src="https://avatars.githubusercontent.com/u/45042779" alt="Adrien Banse"></a>
     <div class="contributor-info">
       <span class="contributor-name">Adrien Banse</span>
       <span class="contributor-role">Postdoctoral Researcher</span>
     </div>
   </div>
   <div class="contributor-card">
-    <img src="https://avatars.githubusercontent.com/u/12235628" alt="Valentin Defour">
+    <a href="https://github.com/vdwow"><img class="off-glb" src="https://avatars.githubusercontent.com/u/12235628" alt="Valentin Defour"></a>
     <div class="contributor-info">
       <span class="contributor-name">Valentin Defour</span>
       <span class="contributor-role">Data Scientist</span>
     </div>
   </div>
   <div class="contributor-card">
-    <img src="https://avatars.githubusercontent.com/u/46927767" alt="Vincent Duarte">
+    <a href="https://github.com/DuarteVi"><img class="off-glb" src="https://avatars.githubusercontent.com/u/46927767" alt="Vincent Duarte"></a>
     <div class="contributor-info">
       <span class="contributor-name">Vincent Duarte</span>
       <span class="contributor-role">Software Engineer</span>
     </div>
   </div>
   <div class="contributor-card">
-    <img src="https://avatars.githubusercontent.com/u/57603029" alt="Charles Sorgho">
+    <a href="https://github.com/Atepir"><img class="off-glb" src="https://avatars.githubusercontent.com/u/57603029" alt="Charles Sorgho"></a>
     <div class="contributor-info">
       <span class="contributor-name">Charles Sorgho</span>
       <span class="contributor-role">Software Engineer</span>
@@ -174,32 +174,32 @@ Organizations who make this project possible.
 <div class="grid cards" markdown>
   <div class="row">
     <a href="https://resilio-solutions.com/" target="_blank">
-      <img src="assets/sponsors/resilio.png" width="200">
+      <img class="off-glb" src="assets/sponsors/resilio.png" width="200">
     </a>
   </div>
   <div class="row">
     <a href="https://www.terra-cognita.ai/" target="_blank">
-      <img src="assets/sponsors/terra_cognita.png" width="200">
+      <img class="off-glb" src="assets/sponsors/terra_cognita.png" width="200">
     </a>
   </div>
   <div class="row">
     <a href="https://sopht.com/" target="_blank">
-      <img src="assets/sponsors/sopht.png" width="200">
+      <img class="off-glb" src="assets/sponsors/sopht.png" width="200">
     </a>
   </div>
   <div class="row">
     <a href="https://www.avanade.com/" target="_blank">
-      <img src="assets/sponsors/avanade.png" width="200">
+      <img class="off-glb" src="assets/sponsors/avanade.png" width="200">
     </a>
   </div>
   <div class="row">
     <a href="https://www.theodo.com/" target="_blank">
-      <img src="assets/sponsors/theodo.png" width="200">
+      <img class="off-glb" src="assets/sponsors/theodo.png" width="200">
     </a>
   </div>
   <div class="row">
     <a href="https://www.culture.gouv.fr/fr" target="_blank">
-      <img src="assets/sponsors/ministere_culture.png" width="200">
+      <img class="off-glb" src="assets/sponsors/ministere_culture.png" width="200">
     </a>
   </div>
 </div>
