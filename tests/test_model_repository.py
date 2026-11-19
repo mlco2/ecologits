@@ -10,7 +10,7 @@ def test_create_empty_repository():
 def test_create_model_repository_default():
     models = ModelRepository.from_json()
     assert isinstance(models, ModelRepository)
-    assert models.find_model(provider="openai", model_name="gpt-3.5-turbo") is not None
+    assert models.find_model(provider="openai", model_name="gpt-4o") is not None
 
 
 def test_find_unknown_provider():
@@ -25,10 +25,10 @@ def test_find_unknown_model_name():
 
 def test_ambiguous_names():
     models = ModelRepository.from_json()
-    assert models.find_model(provider="openai", model_name="gpt-4").name == "gpt-4"
-    assert models.find_model(provider="openai", model_name="gpt-4-turbo").name == "gpt-4-turbo"
+    assert models.find_model(provider="openai", model_name="gpt-4.1").name == "gpt-4.1"
+    assert models.find_model(provider="openai", model_name="gpt-4.1-mini").name == "gpt-4.1-mini"
     assert models.find_model(provider="openai", model_name="gpt-4o").name == "gpt-4o"
-    assert models.find_model(provider="openai", model_name="gpt-35-turbo").name == "gpt-35-turbo"
+    assert models.find_model(provider="anthropic", model_name="claude-haiku-4-5").name == "claude-haiku-4-5"
 
 
 def test_model_sources_are_loaded():
