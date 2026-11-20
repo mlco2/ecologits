@@ -223,7 +223,7 @@ def anthropic_chat_wrapper(
             )
 
         record_impacts(trackers, impacts)
-        return Message(**response.model_dump(), impacts=impacts)
+        return Message.model_construct(**dict(response), impacts=impacts)
     else:
         return response
 
@@ -271,7 +271,7 @@ async def anthropic_async_chat_wrapper(
             )
 
         record_impacts(trackers, impacts)
-        return Message(**response.model_dump(), impacts=impacts)
+        return Message.model_construct(**dict(response), impacts=impacts)
     else:
         return response
 
