@@ -23,6 +23,18 @@ pip install ecologits[litellm]
 This installation command ensures that EcoLogits is set up with the specific libraries required to interface seamlessly with LiteLLM's Python client.
 
 
+## Model names
+
+EcoLogits finds the model from the name in the LiteLLM response, such as `gpt-4o` or `mistral/mistral-large-latest`. It looks for:
+
+1. The exact model name, including the known aliases.
+2. The `-latest` version of the name. For example, `mistral-small` becomes `mistral-small-latest`.
+3. The name without host details, such as Bedrock regions, vendor prefixes and version suffixes. For example, `us.anthropic.claude-opus-4-6-v1` becomes `claude-opus-4-6`.
+4. The most similar registered model, but only if the version, size and date numbers are the same. For example, `databricks-meta-llama-3-1-8b-instruct` becomes `meta-llama/Meta-Llama-3.1-8B-Instruct`, but `llama-3-70b` does not become `Llama-2-70b`. The impacts then get a [`model-name-fuzzy-match`](../warnings_and_errors.md#model-name-fuzzy-match) warning.
+
+If no model matches, the impacts have no values and get a [`model-not-registered`](../warnings_and_errors.md#model-not-registered) error.
+
+
 ## Chat Completions
 
 ### Example

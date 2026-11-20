@@ -17,6 +17,66 @@ def test_litellm_match_model(model_name, expected_tuple):
     assert litellm_match_model(model_name) == expected_tuple
 
 
+# Host names come from litellm.model_cost (LiteLLM 1.103.8).
+@pytest.mark.parametrize("model_name,expected_tuple", [
+    ("meta-llama/Llama-2-7b", ("huggingface_hub", "meta-llama/Llama-2-7b")),
+    ("mistralai/Mistral-7B-Instruct-v0.1", ("huggingface_hub", "mistralai/Mistral-7B-Instruct-v0.1")),
+    ("anthropic/claude-haiku-4-5-20251001", ("anthropic", "claude-haiku-4-5-20251001")),
+    ("mistral-small", ("mistralai", "mistral-small-latest")),
+    ("mistral/mistral-small", ("mistralai", "mistral-small-latest")),
+    ("us.anthropic.claude-opus-4-6-v1", ("anthropic", "claude-opus-4-6")),
+    ("anthropic.claude-haiku-4-5@20251001", ("anthropic", "claude-haiku-4-5-20251001")),
+    ("databricks-meta-llama-3-1-8b-instruct", ("huggingface_hub", "meta-llama/Meta-Llama-3.1-8B-Instruct")),
+    ("Meta-Llama-3.1-70B-Instruct-Turbo", ("huggingface_hub", "meta-llama/Meta-Llama-3.1-70B-Instruct")),
+])
+def test_litellm_match_model_exact_alias_host_and_guarded_fuzzy(model_name, expected_tuple):
+    assert litellm_match_model(model_name) == expected_tuple
+
+
+@pytest.mark.parametrize("model_name", [
+    "openai/my-finetune",
+    "openai/some-unknown-model",
+    "anthropic/claude-made-up-9",
+    "openai/glm-5.3",
+    "anthropic/claude-fable",
+    "glm-5",
+    "o3-2025-04-16",
+    "google.gemma-3-12b-it",
+    "meta/llama-3-70b",
+    "mistral.ministral-3-8b-instruct",
+])
+def test_litellm_match_model_unknown_or_other_version_is_none(model_name):
+    assert litellm_match_model(model_name) is None
+
+
+@pytest.mark.parametrize("stream", [False, True])
+def test_litellm_unknown_model_reports_model_not_registered(tracer_init, stream):
+    response = litellm.completion(
+        model="anthropic/claude-made-up-9",
+        messages=[{"role": "user", "content": "Hello World!"}],
+        mock_response="Hello there!",
+        stream=stream,
+    )
+    last = list(response)[-1] if stream else response
+    assert last.impacts.energy is None
+    assert [e.code for e in last.impacts.errors] == ["model-not-registered"]
+
+
+@pytest.mark.parametrize("model_name,fuzzy", [
+    ("databricks/databricks-meta-llama-3-1-8b-instruct", True),
+    ("gpt-4o", False),
+])
+def test_litellm_fuzzy_match_adds_warning(tracer_init, model_name, fuzzy):
+    response = litellm.completion(
+        model=model_name,
+        messages=[{"role": "user", "content": "Hello World!"}],
+        mock_response="Hello there!",
+    )
+    assert response.impacts.energy is not None
+    codes = [w.code for w in response.impacts.warnings or []]
+    assert ("model-name-fuzzy-match" in codes) is fuzzy
+
+
 @pytest.mark.vcr
 def test_litellm_chat(tracer_init):
     response = litellm.completion(

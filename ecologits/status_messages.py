@@ -66,6 +66,11 @@ class ModelArchMultimodalWarning(WarningMessage):
     message: str = "The model architecture is multimodal, expect lower precision."
 
 
+class ModelNameFuzzyMatchWarning(WarningMessage):
+    code: str = "model-name-fuzzy-match"
+    message: str = "The model name was matched to a similar registered model, expect lower precision."
+
+
 class ElectricityMixADPeDefaultWarning(WarningMessage):
     code: str = "electricity-mix-adpe-world"
     message: str = "The electricity mix ADPe factor is using the world default value, expect lower precision."
@@ -94,6 +99,7 @@ class ZoneNotRegisteredError(ErrorMessage):
 _warning_codes: dict[str, type[WarningMessage]] = {
     "model-arch-not-released": ModelArchNotReleasedWarning,
     "model-arch-multimodal": ModelArchMultimodalWarning,
+    "model-name-fuzzy-match": ModelNameFuzzyMatchWarning,
     "electricity-mix-adpe-world": ElectricityMixADPeDefaultWarning,
     "electricity-mix-pe-world": ElectricityMixPEDefaultWarning,
     "electricity-mix-wue-world": ElectricityMixWUEDefaultWarning,
