@@ -41,7 +41,7 @@ This warning is reported when the model is multimodal. EcoLogits uses energy ben
 
 ### `model-name-fuzzy-match`
 
-This warning is reported when the LiteLLM integration cannot find the exact model name and uses the most similar registered model instead. The version, size and date numbers in both names are the same, but the models can still be different (for example a fine-tuned variant). See [Model names](providers/litellm.md#model-names).
+This warning is reported when the LiteLLM integration cannot find the exact model name and uses a guess instead: the `-latest` version of the name, or the most similar registered model with the same numbers in its name. The guess can still be a different model, for example `o4-mini` can match `gpt-4o-mini`. See [Model names](providers/litellm.md#model-names).
 
 ### `electricity-mix-adpe-world`
 

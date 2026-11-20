@@ -32,48 +32,51 @@ class ChatCompletionChunk(ModelResponse):
     impacts: ImpactsOutput
 
 
-# LiteLLM provider prefixes whose name differs from the EcoLogits provider.
-_LITELLM_PREFIXES = {"mistral": "mistralai", "gemini": "google_genai", "huggingface": "huggingface_hub"}
 _PROVIDERS = [p.value for p in Providers]
 _model_choices = [f"{m.provider.value}/{m.name}" for m in models.list_models()]
+# Bedrock region and vendor prefixes (`us-gov.`, `anthropic.`); model names have a digit before any dot.
+_HOST_PREFIX = re.compile(r"^(?:[a-z-]+\.)+")
 
 
-def _host_normalize(name: str) -> str:
-    """Remove host decorations, e.g. `us.anthropic.claude-opus-4-6-v1` -> `claude-opus-4-6`."""
-    name = re.sub(r"^(us|eu|apac|global|jp|au|ca)\.", "", name)
-    name = re.sub(r"^(anthropic|meta|mistral|cohere|amazon|ai21|deepseek|openai|google|qwen|writer|zai)\.", "", name)
-    name = name.replace("@", "-")
-    return re.sub(r"(-v\d+)?(-\d+)?(:\d+)?$", "", name) if re.search(r"(-v\d+|:\d+)$", name) else name
+def _host_variants(name: str) -> list[str]:
+    """Names without host details, e.g. `us.anthropic.claude-opus-4-6-v1` -> `claude-opus-4-6`."""
+    name = _HOST_PREFIX.sub("", name)
+    return [name, name.replace("@", "-"), name.split("@")[0], re.sub(r"(-v\d+)?(-\d+)?:\d+$|-v\d+$", "", name)]
 
 
 def _numbers(name: str) -> list[str]:
-    return sorted(re.findall(r"\d+", _host_normalize(name.rsplit("/", 1)[-1])))
+    return sorted(re.findall(r"\d+", name))
 
 
-def _exact(providers: list[str], name: str) -> Optional[tuple[str, str]]:
-    found = [(p, name) for p in providers if models.find_model(p, name) is not None]
+def _exact(name: str) -> Optional[tuple[str, str]]:
+    found = [(p, name) for p in _PROVIDERS if models.find_model(p, name) is not None]
     return found[0] if len(found) == 1 else None
 
 
-def _match(model_name: str) -> Optional[tuple[str, str, bool]]:
-    """Return (provider, model_name, is_fuzzy) for a LiteLLM model name, or None."""
-    prefix, _, rest = model_name.partition("/")
-    provider = _LITELLM_PREFIXES.get(prefix, prefix)
-    lookups = [([provider], rest)] if rest and provider in _PROVIDERS else []
-    # Hugging Face ids keep their organisation; OpenAI-compatible hosts reuse the `openai/` prefix.
-    lookups += [(_PROVIDERS, model_name)] + ([(_PROVIDERS, rest)] if rest else [])
-    for providers, name in lookups:
-        for candidate in (name, f"{name}-latest", _host_normalize(name)):
-            match = _exact(providers, candidate)
-            if match is not None:
+def _match(model_name: Optional[str]) -> Optional[tuple[str, str, bool]]:
+    """Return (provider, model_name, is_guess) for a LiteLLM model name, or None."""
+    if not model_name:
+        return None
+    # Hugging Face ids keep their organisation; `openai/` also prefixes other OpenAI-compatible hosts.
+    names = [model_name] + ([rest] if (rest := model_name.partition("/")[2]) else [])
+    for name in names:
+        for candidate in _host_variants(name):
+            if (match := _exact(candidate)) is not None:
                 return (*match, False)
+    for name in names:
+        if (match := _exact(f"{name}-latest")) is not None:
+            return (*match, True)
+    tail = model_name.rsplit("/", 1)[-1]
+    if not _numbers(tail):
+        return None
     fuzzy = process.extractOne(
         query=model_name, choices=_model_choices, scorer=fuzz.token_sort_ratio, score_cutoff=51
     )
     if fuzzy is not None:
         provider, name = fuzzy[0].split("/", 1)
-        # Most wrong fuzzy matches swap a version, size or date, so these numbers must be equal.
-        if _numbers(model_name) == _numbers(name):
+        target = _numbers(name.rsplit("/", 1)[-1])
+        # A different version, size or date is a different model, so the numbers must be equal.
+        if target in (_numbers(_host_variants(tail)[0]), _numbers(_host_variants(tail)[-1])):
             return provider, name, True
     return None
 
@@ -82,10 +85,10 @@ def litellm_match_model(model_name: str) -> Optional[tuple[str, str]]:
     """
     Match according provider and model from a litellm model_name.
 
-    Looks up the exact model name (aliases included), then `<name>-latest`, then the name
-    without host decorations (Bedrock region and vendor prefixes, version suffixes). As a
-    last step it uses fuzzy matching, but only when the version, size and date numbers are
-    the same. Other names return None.
+    Looks up the exact model name (aliases included), then the name without host details
+    (Bedrock region and vendor prefixes, version suffixes, Vertex `@` versions), then
+    `<name>-latest`. As a last step it uses fuzzy matching, but only when the name has
+    numbers and they are the same in both names. Other names return None.
 
     Args:
         model_name: Name of the model as used in litellm.
