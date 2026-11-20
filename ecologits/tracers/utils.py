@@ -83,8 +83,11 @@ def llm_impacts(
     provider: str,
     model_name: str,
     output_token_count: int,
-    request_latency: float,
+    request_latency: float | None,
     electricity_mix_zone: str | None  = None,
+    *,
+    datacenter_pue: float | RangeValue | None = None,
+    datacenter_wue: float | RangeValue | None = None,
 ) -> ImpactsOutput:
     """
     High-level function to compute the impacts of an LLM generation request.
@@ -93,8 +96,11 @@ def llm_impacts(
         provider: Name of the provider.
         model_name: Name of the LLM used.
         output_token_count: Number of generated tokens.
-        request_latency: Measured request latency in seconds.
-        electricity_mix_zone: ISO 3166-1 alpha-3 code of the electricity mix zone (WOR by default).
+        request_latency: Measured request latency in seconds, or None to estimate it.
+        electricity_mix_zone: ISO 3166-1 alpha-3 code of the electricity mix zone.
+            Uses the provider's default location when None, falling back to WOR if unavailable.
+        datacenter_pue: Power Usage Effectiveness. Uses the provider default when None.
+        datacenter_wue: Water Usage Effectiveness in L/kWh. Uses the provider default when None.
 
     Returns:
         The impacts of an LLM generation request.
@@ -114,8 +120,10 @@ def llm_impacts(
         model_active_params = model.architecture.parameters
 
     datacenter_location = PROVIDER_CONFIG_MAP[provider].datacenter_location
-    datacenter_pue = PROVIDER_CONFIG_MAP[provider].datacenter_pue
-    datacenter_wue = PROVIDER_CONFIG_MAP[provider].datacenter_wue
+    if datacenter_pue is None:
+        datacenter_pue = PROVIDER_CONFIG_MAP[provider].datacenter_pue
+    if datacenter_wue is None:
+        datacenter_wue = PROVIDER_CONFIG_MAP[provider].datacenter_wue
 
     if electricity_mix_zone is None:
         electricity_mix_zone = datacenter_location
@@ -143,15 +151,9 @@ def llm_impacts(
     )
     impacts = ImpactsOutput.model_validate(impacts.model_dump())
 
-    if model.has_warnings:
-        for w in model.warnings:
-            logger.warning_once(str(w))
-            impacts.add_warning(w)
-
-    if if_electricity_mix.has_warnings:
-        for w in if_electricity_mix.warnings:
-            logger.warning_once(str(w))
-            impacts.add_warning(w)
+    for warning in model.warnings + if_electricity_mix.warnings:
+        logger.warning_once(str(warning))
+        impacts.add_warning(warning)
 
     return impacts
 
