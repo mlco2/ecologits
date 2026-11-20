@@ -1204,6 +1204,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#model-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Model names
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#chat-completions" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -3021,6 +3032,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#model-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Model names
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#chat-completions" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -3188,6 +3210,16 @@
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>ecologits<span class="o">[</span>litellm<span class="o">]</span>
 </span></code></pre></div>
 <p>This installation command ensures that EcoLogits is set up with the specific libraries required to interface seamlessly with LiteLLM's Python client.</p>
+<h2 id="model-names">Model names<a class="headerlink" href="#model-names" title="Permanent link">&para;</a></h2>
+<p>EcoLogits finds the model from the name in the LiteLLM response, such as <code>gpt-4o</code> or <code>mistral/mistral-large-latest</code>. It looks for:</p>
+<ol>
+<li>The exact model name, including the known aliases.</li>
+<li>The name without host details: Bedrock regions, vendor prefixes and version suffixes, and Vertex <code>@</code> versions. For example, <code>us.anthropic.claude-opus-4-6-v1</code> becomes <code>claude-opus-4-6</code>, and <code>mistral-medium-3@001</code> becomes <code>mistral-medium-3</code>.</li>
+<li>The <code>-latest</code> version of the name. For example, <code>mistral-small</code> becomes <code>mistral-small-latest</code>.</li>
+<li>The most similar registered model, but only if the name contains numbers and the numbers in both names are the same. For example, <code>databricks-meta-llama-3-1-8b-instruct</code> becomes <code>meta-llama/Meta-Llama-3.1-8B-Instruct</code>, but <code>meta/llama-3-70b</code> does not become <code>Llama-2-70b</code>.</li>
+</ol>
+<p>Steps 3 and 4 are guesses, so the impacts get a <a href="../../warnings_and_errors/#model-name-fuzzy-match"><code>model-name-fuzzy-match</code></a> warning. If no model matches, the impacts have no values and get a <a href="../../warnings_and_errors/#model-not-registered"><code>model-not-registered</code></a> error.</p>
+<p>Before this lookup order, any name that was similar enough got the impacts of a registered model, with no warning. Some names that got impacts that way now get the <code>model-not-registered</code> error instead.</p>
 <h2 id="chat-completions">Chat Completions<a class="headerlink" href="#chat-completions" title="Permanent link">&para;</a></h2>
 <h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
 <p>Integrating EcoLogits with your applications does not alter the standard outputs from the API responses. Instead, it enriches them by adding the <code>Impacts</code> object, which contains detailed environmental impact data. <strong>Make sure you have the api key of the provider used in an .env file.</strong> Make sure you call the litellm generation function as "litellm.completion" and not just "completion".</p>

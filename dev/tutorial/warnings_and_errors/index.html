@@ -928,6 +928,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#model-name-fuzzy-match" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>model-name-fuzzy-match</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#electricity-mix-adpe-world" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -3103,6 +3114,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#model-name-fuzzy-match" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>model-name-fuzzy-match</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#electricity-mix-adpe-world" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -3298,6 +3320,8 @@
 <p>This warning is reported when the model architecture is not disclosed by the provider. Thus, the estimation of environmental impacts is based on a assumption of the model architecture (e.g. dense or mixture of experts, number of parameters).</p>
 <h3 id="model-arch-multimodal"><code>model-arch-multimodal</code><a class="headerlink" href="#model-arch-multimodal" title="Permanent link">&para;</a></h3>
 <p>This warning is reported when the model is multimodal. EcoLogits uses energy benchmarking data from open source LLMs that can only generate text. Models that can generate (or use as input) data from other modalities such as image, audio or video are currently not fully supported.</p>
+<h3 id="model-name-fuzzy-match"><code>model-name-fuzzy-match</code><a class="headerlink" href="#model-name-fuzzy-match" title="Permanent link">&para;</a></h3>
+<p>This warning is reported when the LiteLLM integration cannot find the exact model name and uses a guess instead: the <code>-latest</code> version of the name, or the most similar registered model with the same numbers in its name. The guess can still be a different model, for example <code>o4-mini</code> can match <code>gpt-4o-mini</code>. See <a href="../providers/litellm/#model-names">Model names</a>.</p>
 <h3 id="electricity-mix-adpe-world"><code>electricity-mix-adpe-world</code><a class="headerlink" href="#electricity-mix-adpe-world" title="Permanent link">&para;</a></h3>
 <p>This warning is reported when the selected electricity mix uses the world default value for the <abbr title="Abiotic Depletion Potential for Elements">ADPe</abbr> impact factor. This can happen for countries where <abbr title="Global Warming Potential">GWP</abbr> data is available, but country-specific <abbr title="Abiotic Depletion Potential for Elements">ADPe</abbr> data is not.</p>
 <h3 id="electricity-mix-pe-world"><code>electricity-mix-pe-world</code><a class="headerlink" href="#electricity-mix-pe-world" title="Permanent link">&para;</a></h3>

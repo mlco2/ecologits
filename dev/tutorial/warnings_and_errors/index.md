@@ -40,6 +40,10 @@ This warning is reported when the model architecture is not disclosed by the pro
 
 This warning is reported when the model is multimodal. EcoLogits uses energy benchmarking data from open source LLMs that can only generate text. Models that can generate (or use as input) data from other modalities such as image, audio or video are currently not fully supported.
 
+### `model-name-fuzzy-match`
+
+This warning is reported when the LiteLLM integration cannot find the exact model name and uses a guess instead: the `-latest` version of the name, or the most similar registered model with the same numbers in its name. The guess can still be a different model, for example `o4-mini` can match `gpt-4o-mini`. See [Model names](<https://ecologits.ai/latest/tutorial/providers/litellm/index.md#model-names>).
+
 ### `electricity-mix-adpe-world`
 
 This warning is reported when the selected electricity mix uses the world default value for the ADPe impact factor. This can happen for countries where GWP data is available, but country-specific ADPe data is not.
