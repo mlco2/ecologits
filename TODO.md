@@ -1,2 +1,0 @@
-- Typing annotations on function returns as the returned value doesn't necessarily include impacts 
-- Commit messages longer than 50 characters
