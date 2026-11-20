@@ -78,7 +78,7 @@ def cohere_chat_wrapper(
             )
 
         record_impacts(trackers, impacts)
-        return NonStreamedChatResponse(**response.dict(), impacts=impacts)
+        return NonStreamedChatResponse.model_construct(**response.dict(), impacts=impacts)
     else:
         return response
 
@@ -126,7 +126,7 @@ async def cohere_async_chat_wrapper(
             )
 
         record_impacts(trackers, impacts)
-        return NonStreamedChatResponse(**response.dict(), impacts=impacts)
+        return NonStreamedChatResponse.model_construct(**response.dict(), impacts=impacts)
     else:
         return response
 
@@ -185,7 +185,7 @@ def _stream_generator(
                     )
 
                 record_impacts(trackers, impacts)
-                yield StreamEndStreamedChatResponse(**event.dict(), impacts=impacts)
+                yield StreamEndStreamedChatResponse.model_construct(**event.dict(), impacts=impacts)
             else:
                 yield event
         else:
@@ -245,7 +245,7 @@ async def _async_stream_generator(
                     )
 
                 record_impacts(trackers, impacts)
-                yield StreamEndStreamedChatResponse(**event.dict(), impacts=impacts)
+                yield StreamEndStreamedChatResponse.model_construct(**event.dict(), impacts=impacts)
             else:
                 yield event
         else:
