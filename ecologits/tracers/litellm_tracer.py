@@ -176,7 +176,7 @@ def litellm_chat_wrapper_stream(  # type: ignore[misc]
                     endpoint="/chat/completions"
                 )
 
-            yield ChatCompletionChunk(**chunk.model_dump(), impacts=impacts)
+            yield ChatCompletionChunk.model_construct(**dict(chunk), impacts=impacts)
         else:
             yield chunk
     if impacts is not None:
@@ -207,7 +207,7 @@ def litellm_chat_wrapper_non_stream(
             )
 
         record_impacts(trackers, impacts)
-        return ChatCompletion(**response.model_dump(), impacts=impacts)
+        return ChatCompletion.model_construct(**dict(response), impacts=impacts)
     else:
         return response
 
@@ -263,7 +263,7 @@ async def litellm_async_chat_wrapper_base(
             )
 
         record_impacts(trackers, impacts)
-        return ChatCompletion(**response.model_dump(), impacts=impacts)
+        return ChatCompletion.model_construct(**dict(response), impacts=impacts)
     else:
         return response
 
@@ -299,7 +299,7 @@ async def litellm_async_chat_wrapper_stream(  # type: ignore[misc]
                     endpoint="/chat/completions"
                 )
 
-            yield ChatCompletionChunk(**chunk.model_dump(), impacts=impacts)
+            yield ChatCompletionChunk.model_construct(**dict(chunk), impacts=impacts)
         else:
             yield chunk
         i += 1

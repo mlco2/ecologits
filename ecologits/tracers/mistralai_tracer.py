@@ -71,7 +71,7 @@ def mistralai_chat_wrapper(
             )
 
         record_impacts(trackers, impacts)
-        return ChatCompletionResponse(**response.model_dump(), impacts=impacts)
+        return ChatCompletionResponse.model_construct(**dict(response), impacts=impacts)
     else:
         return response
 
@@ -132,7 +132,7 @@ def _stream_generator(
                     endpoint="/chat/completions"
                 )
 
-            chunk.data = CompletionChunk(**chunk.data.model_dump(), impacts=impacts)
+            chunk.data = CompletionChunk.model_construct(**dict(chunk.data), impacts=impacts)
             yield chunk
         else:
             yield chunk
@@ -184,7 +184,7 @@ async def mistralai_async_chat_wrapper(
             )
 
         record_impacts(trackers, impacts)
-        return ChatCompletionResponse(**response.model_dump(), impacts=impacts)
+        return ChatCompletionResponse.model_construct(**dict(response), impacts=impacts)
     else:
         return response
 
@@ -221,7 +221,7 @@ async def _generator(
                     endpoint="/chat/completions"
                 )
 
-            chunk.data = CompletionChunk(**chunk.data.model_dump(), impacts=impacts)
+            chunk.data = CompletionChunk.model_construct(**dict(chunk.data), impacts=impacts)
             yield chunk
         else:
             yield chunk
