@@ -8,6 +8,7 @@ from ecologits.estimations import text_impacts
 impacts = text_impacts(
     model_name="openai/gpt-4.1-nano",
     provider="openai",
+    input_tokens=2000,
     output_tokens=1000,
 )
 
@@ -42,14 +43,33 @@ An unknown model/provider pair or electricity mix zone returns a result with
 
 ## Tokens and latency
 
-`output_tokens` must be a non-negative integer. Include generated reasoning tokens
-when the provider reports them separately from the visible response. Invalid token
-counts raise `ValueError`.
+`input_tokens` is required and must include all input tokens, including tokens read
+from or written to the provider's prompt cache. `output_tokens` includes generated
+reasoning tokens when the provider reports them separately from the visible response.
+Both counts must be non-negative integers.
+
+`cache_read_tokens` and `cache_write_tokens` are optional, keyword-only counts of
+input tokens reused from or written to the provider's prompt cache by this request.
+They default to `None` for unknown or unreported usage; use `0` for an observed zero.
+When provided, they must be non-negative integers, and their sum must not exceed
+`input_tokens`. Invalid counts, including booleans, raise `ValueError`.
+
+For example, `input_tokens=10000`, `cache_read_tokens=8000`, and
+`cache_write_tokens=1500` describe 8,000 reused tokens, 1,500 newly processed tokens
+written to the cache, and 500 other input tokens. Cache writes still require input
+processing.
+
+Normalize provider usage before passing these counts. Anthropic's `input_tokens`
+excludes cache reads and writes, so add `cache_read_input_tokens` and
+`cache_creation_input_tokens` to obtain the total. OpenAI's input total and Gemini's
+prompt total already include cached tokens.
 
 The estimator uses the same calculations and model assumptions as the automatic
 provider integrations. It estimates generation latency from registered throughput
 and time to first token when available, falling back to the latency regression.
-It does not require measured request latency. Input tokens are not modeled.
+It does not require measured request latency. **Input tokens and prompt caching do
+not affect estimates yet.** These arguments prepare the interface for future
+methodology. A warning is logged once when a positive input count is supplied.
 See the [LLM inference methodology](../methodology/llm_inference.md) for the modeling
 assumptions and limitations.
 
@@ -69,6 +89,7 @@ from ecologits.utils.range_value import RangeValue
 impacts = text_impacts(
     model_name="openai/gpt-4.1-nano",
     provider="openai",
+    input_tokens=2000,
     output_tokens=1000,
     datacenter_location="FRA",
     datacenter_pue=RangeValue(min=1.1, max=1.2),
