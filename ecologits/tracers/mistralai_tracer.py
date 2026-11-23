@@ -9,7 +9,7 @@ from mistralai.models import CompletionEvent
 from wrapt import wrap_function_wrapper  # type: ignore[import-untyped]
 
 from ecologits._ecologits import EcoLogits
-from ecologits.tracers.utils import ImpactsOutput, llm_impacts
+from ecologits.tracers.utils import ImpactsOutput, _llm_impacts
 from ecologits.tracking import ImpactsTracker, get_active_trackers, is_tracking_enabled, record_impacts
 
 PROVIDER = "mistralai"
@@ -51,7 +51,7 @@ def mistralai_chat_wrapper(
     timer_start = time.perf_counter()
     response = wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
-    impacts = llm_impacts(
+    impacts = _llm_impacts(
         provider=PROVIDER,
         model_name=response.model,
         output_token_count=response.usage.completion_tokens,
@@ -111,7 +111,7 @@ def _stream_generator(
             token_count += 1
         request_latency = time.perf_counter() - timer_start
         model_name = chunk.data.model
-        impacts = llm_impacts(
+        impacts = _llm_impacts(
             provider=PROVIDER,
             model_name=model_name,
             output_token_count=token_count,
@@ -164,7 +164,7 @@ async def mistralai_async_chat_wrapper(
     timer_start = time.perf_counter()
     response = await wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
-    impacts = llm_impacts(
+    impacts = _llm_impacts(
         provider=PROVIDER,
         model_name=response.model,
         output_token_count=response.usage.completion_tokens,
@@ -200,7 +200,7 @@ async def _generator(
             token_count = chunk.data.usage.completion_tokens
         request_latency = time.perf_counter() - timer_start
         model_name = chunk.data.model
-        impacts = llm_impacts(
+        impacts = _llm_impacts(
             provider=PROVIDER,
             model_name=model_name,
             output_token_count=token_count,

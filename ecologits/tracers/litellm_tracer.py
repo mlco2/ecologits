@@ -12,7 +12,7 @@ from wrapt import wrap_function_wrapper  # type: ignore[import-untyped]
 from ecologits._ecologits import EcoLogits
 from ecologits.model_repository import Providers, models
 from ecologits.status_messages import ModelNameFuzzyMatchWarning
-from ecologits.tracers.utils import ImpactsOutput, llm_impacts
+from ecologits.tracers.utils import ImpactsOutput, _llm_impacts
 from ecologits.tracking import ImpactsTracker, get_active_trackers, is_tracking_enabled, record_impacts
 
 PROVIDER = "litellm"
@@ -106,7 +106,7 @@ def _litellm_impacts(
     request_latency: float
 ) -> tuple[tuple[str, str], ImpactsOutput]:
     provider, name, fuzzy = _match(model_name) or (PROVIDER, model_name, False)
-    impacts = llm_impacts(
+    impacts = _llm_impacts(
         provider=provider,
         model_name=name,
         output_token_count=output_token_count,

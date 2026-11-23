@@ -7,7 +7,7 @@ from google.genai.types import GenerateContentResponse as _GenerateContentRespon
 from wrapt import wrap_function_wrapper  # type: ignore[import-untyped]
 
 from ecologits import EcoLogits
-from ecologits.tracers.utils import ImpactsOutput, llm_impacts
+from ecologits.tracers.utils import ImpactsOutput, _llm_impacts
 from ecologits.tracking import ImpactsTracker, get_active_trackers, is_tracking_enabled, record_impacts
 
 PROVIDER = "google_genai"
@@ -50,7 +50,7 @@ def google_genai_content_wrapper(
         response.usage_metadata.candidates_token_count
         + (response.usage_metadata.thoughts_token_count or 0)
     )
-    impacts = llm_impacts(
+    impacts = _llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
         output_token_count=output_tokens,
@@ -118,7 +118,7 @@ def _stream_generator(
                 chunk.usage_metadata.candidates_token_count
                 + (chunk.usage_metadata.thoughts_token_count or 0)
             )
-            impacts = llm_impacts(
+            impacts = _llm_impacts(
                 provider=PROVIDER,
                 model_name=model_name,
                 output_token_count=output_tokens,
@@ -173,7 +173,7 @@ async def google_genai_async_content_wrapper(
         response.usage_metadata.candidates_token_count
         + (response.usage_metadata.thoughts_token_count or 0)
     )
-    impacts = llm_impacts(
+    impacts = _llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
         output_token_count=output_tokens,
@@ -215,7 +215,7 @@ async def _generator(
                 chunk.usage_metadata.candidates_token_count
                 + (chunk.usage_metadata.thoughts_token_count or 0)
             )
-            impacts = llm_impacts(
+            impacts = _llm_impacts(
                 provider=PROVIDER,
                 model_name=model_name,
                 output_token_count=output_tokens,

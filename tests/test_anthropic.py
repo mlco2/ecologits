@@ -37,8 +37,8 @@ async def test_anthropic_async_chat(tracer_init):
 @pytest.mark.parametrize("consume", ["text_stream", "events", "get_final_message", "get_final_text", "until_done"])
 def test_anthropic_stream_chat(tracer_init, monkeypatch, consume):
     client = Anthropic()
-    compute_impacts = Mock(wraps=anthropic_tracer.llm_impacts)
-    monkeypatch.setattr(anthropic_tracer, "llm_impacts", compute_impacts)
+    compute_impacts = Mock(wraps=anthropic_tracer._llm_impacts)
+    monkeypatch.setattr(anthropic_tracer, "_llm_impacts", compute_impacts)
 
     with EcoLogits.track_impacts(providers="anthropic") as tracker, client.messages.stream(
         max_tokens=100,
@@ -74,8 +74,8 @@ def test_anthropic_stream_chat(tracer_init, monkeypatch, consume):
 @pytest.mark.asyncio
 async def test_anthropic_async_stream_chat(tracer_init, monkeypatch, consume):
     client = AsyncAnthropic()
-    compute_impacts = Mock(wraps=anthropic_tracer.llm_impacts)
-    monkeypatch.setattr(anthropic_tracer, "llm_impacts", compute_impacts)
+    compute_impacts = Mock(wraps=anthropic_tracer._llm_impacts)
+    monkeypatch.setattr(anthropic_tracer, "_llm_impacts", compute_impacts)
 
     async with EcoLogits.track_impacts(providers="anthropic") as tracker, client.messages.stream(
         max_tokens=100,

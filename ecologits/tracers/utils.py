@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import warnings
 from dataclasses import dataclass
 from typing import Any
 
@@ -79,7 +80,7 @@ class ImpactsOutput(BaseModel):
         self.errors.append(error)
 
 
-def llm_impacts(
+def _llm_impacts(
     provider: str,
     model_name: str,
     output_token_count: int,
@@ -156,6 +157,44 @@ def llm_impacts(
         impacts.add_warning(warning)
 
     return impacts
+
+
+def llm_impacts(
+    provider: str,
+    model_name: str,
+    output_token_count: int,
+    request_latency: float | None,
+    electricity_mix_zone: str | None = None,
+    *,
+    datacenter_pue: float | RangeValue | None = None,
+    datacenter_wue: float | RangeValue | None = None,
+) -> ImpactsOutput:
+    """Compute LLM impacts using the deprecated tracer utility interface.
+
+    Deprecated:
+        Use `ecologits.estimations.text_impacts` for standalone text generation
+        estimates. See the text generation tutorial for argument mappings.
+
+    Preserves the original arguments and calculations, including measured request
+    latency. The replacement estimates latency and requires total input tokens and
+    a namespaced model identifier, so migration may change the resulting estimates.
+    """
+    warnings.warn(
+        "ecologits.tracers.utils.llm_impacts is deprecated; "
+        "use ecologits.estimations.text_impacts instead. "
+        "See the text generation tutorial for migration details.",
+        DeprecationWarning,
+        stacklevel=2,
+    )
+    return _llm_impacts(
+        provider=provider,
+        model_name=model_name,
+        output_token_count=output_token_count,
+        request_latency=request_latency,
+        electricity_mix_zone=electricity_mix_zone,
+        datacenter_pue=datacenter_pue,
+        datacenter_wue=datacenter_wue,
+    )
 
 
 @dataclass
