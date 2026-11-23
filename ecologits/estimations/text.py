@@ -54,7 +54,7 @@ def text_impacts(
 
     Args:
         model_name: Namespaced model identifier, independent of its host (e.g.
-            "openai/gpt-4.1-nano" or "mistralai/Mistral-7B-v0.1"). Registered
+            "openai/gpt-6-luna" or "mistralai/Mistral-7B-v0.1"). Registered
             aliases use the same namespace. Bare model names are not supported.
         provider: Hosting provider registered in EcoLogits: "openai", "anthropic",
             "cohere", "google_genai", "huggingface_hub", or "mistralai".

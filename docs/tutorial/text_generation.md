@@ -6,7 +6,7 @@ Estimate impacts for a text generation request without calling a provider API:
 from ecologits.estimations import text_impacts
 
 impacts = text_impacts(
-    model_name="openai/gpt-4.1-nano",
+    model_name="openai/gpt-6-luna",
     provider="openai",
     input_tokens=2000,
     output_tokens=1000,
@@ -25,9 +25,9 @@ usage, and embodied impacts, plus warnings and errors. Values can be numbers or
 ## Models and providers
 
 `model_name` identifies the model with a developer namespace, independently of
-`provider`, which identifies its host. For example, use `openai/gpt-4.1-nano`
+`provider`, which identifies its host. For example, use `openai/gpt-6-luna`
 with `provider="openai"`, or `mistralai/Mistral-7B-v0.1` with
-`provider="huggingface_hub"`. Bare names such as `gpt-4.1-nano` are not accepted.
+`provider="huggingface_hub"`. Bare names such as `gpt-6-luna` are not accepted.
 Registered aliases use the same namespace, for example `mistralai/mistral-small-latest`.
 
 The current registry supports the namespaces `openai`, `anthropic`, `cohere`,
@@ -87,7 +87,7 @@ All datacenter overrides are keyword-only:
 from ecologits.utils.range_value import RangeValue
 
 impacts = text_impacts(
-    model_name="openai/gpt-4.1-nano",
+    model_name="openai/gpt-6-luna",
     provider="openai",
     input_tokens=2000,
     output_tokens=1000,
