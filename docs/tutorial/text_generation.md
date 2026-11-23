@@ -163,5 +163,5 @@ if impacts.has_warnings:
 
 Warnings indicate model assumptions or fallback values; errors mean no estimate
 could be computed. Unknown model/provider pairs or electricity mix zones return
-errors in the result. Invalid token counts, including booleans, raise `ValueError`.
+errors in the result. Invalid token counts raise `ValueError`.
 See [Warnings and Errors](warnings_and_errors.md) for details.
