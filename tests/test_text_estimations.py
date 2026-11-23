@@ -11,7 +11,7 @@ from ecologits.status_messages import (
     ModelNotRegisteredError,
     ZoneNotRegisteredError,
 )
-from ecologits.tracers.utils import ImpactsOutput, llm_impacts
+from ecologits.tracers.utils import ImpactsOutput, _llm_impacts
 from ecologits.utils.range_value import RangeValue
 
 
@@ -31,7 +31,7 @@ def test_text_impacts_matches_tracer_estimation(provider, model_name):
     namespaces = {"google_genai": "google"}
     model_id = model_name if provider == "huggingface_hub" else f"{namespaces.get(provider, provider)}/{model_name}"
     impacts = text_impacts(model_id, provider, 1000, 100)
-    expected = llm_impacts(provider, model_name, 100, request_latency=math.inf)
+    expected = _llm_impacts(provider, model_name, 100, request_latency=math.inf)
 
     assert isinstance(impacts, ImpactsOutput)
     assert not impacts.has_errors

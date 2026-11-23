@@ -99,3 +99,63 @@ impacts = text_impacts(
 
 Check `impacts.has_warnings` and `impacts.has_errors` before using the estimates.
 Warnings from model assumptions and electricity mix fallback factors are preserved.
+
+## Migrating from llm_impacts
+
+`ecologits.tracers.utils.llm_impacts` is deprecated. Use
+`ecologits.estimations.text_impacts` for standalone text generation estimates.
+The old function remains available with its original signature and calculations,
+including support for measured request latency. Calling it emits a Python
+`DeprecationWarning` at the caller's location. Automatic provider tracing and the
+new estimation function use the internal implementation directly and do not emit
+this deprecation warning.
+
+Update your arguments as follows:
+
+| Old `llm_impacts` argument | New `text_impacts` argument |
+| --- | --- |
+| `provider` | `provider` (the hosting provider) |
+| `model_name="gpt-6-luna"` | `model_name="openai/gpt-6-luna"` (include the developer namespace) |
+| `output_token_count` | `output_tokens` |
+| `electricity_mix_zone` | `datacenter_location` |
+| `datacenter_pue`, `datacenter_wue` | Same names; remain keyword-only |
+| No input token argument | Required `input_tokens`, including cache reads and writes |
+| `request_latency` | No equivalent; the estimator calculates latency internally |
+
+Prefer keywords when migrating: the positional order changes from
+`provider, model_name, output_token_count, request_latency, electricity_mix_zone`
+to `model_name, provider, input_tokens, output_tokens`, followed by keyword-only
+cache counts and datacenter overrides.
+
+For example, replace:
+
+```python
+from ecologits.tracers.utils import llm_impacts
+
+impacts = llm_impacts(
+    provider="openai",
+    model_name="gpt-6-luna",
+    output_token_count=1000,
+    request_latency=None,
+    electricity_mix_zone="FRA",
+)
+```
+
+with:
+
+```python
+from ecologits.estimations import text_impacts
+
+impacts = text_impacts(
+    model_name="openai/gpt-6-luna",
+    provider="openai",
+    input_tokens=2000,  # Supply the actual total input count for your request.
+    output_tokens=1000,
+    datacenter_location="FRA",
+)
+```
+
+If you previously supplied measured `request_latency`, migrating can change your
+estimates because `text_impacts` estimates latency instead. The deprecated
+function continues to honor measured latency during the transition. Input and
+cache counts are currently validated but do not affect estimates.

@@ -1,7 +1,7 @@
 from ecologits.log import logger
 from ecologits.model_repository import models
 from ecologits.status_messages import ModelNotRegisteredError
-from ecologits.tracers.utils import ImpactsOutput, llm_impacts
+from ecologits.tracers.utils import ImpactsOutput, _llm_impacts
 from ecologits.utils.range_value import RangeValue
 
 # Compatibility with the current provider-specific registry. These namespaces
@@ -105,7 +105,7 @@ def text_impacts(
         logger.warning_once(str(error))
         return ImpactsOutput(errors=[error])
 
-    return llm_impacts(
+    return _llm_impacts(
         provider=provider,
         model_name=registered_name,
         output_token_count=output_tokens,

@@ -8,11 +8,11 @@ from ecologits.status_messages import (
     WarningMessage,
     ZoneNotRegisteredError,
 )
-from ecologits.tracers.utils import llm_impacts
+from ecologits.tracers.utils import _llm_impacts
 
 
 def test_warnings() -> None:
-    impacts = llm_impacts(
+    impacts = _llm_impacts(
         provider="openai",
         model_name="gpt-4o-mini",
         output_token_count=10,
@@ -25,7 +25,7 @@ def test_warnings() -> None:
 
 
 def test_electricity_mix_warnings() -> None:
-    impacts = llm_impacts(
+    impacts = _llm_impacts(
         provider="openai",
         model_name="gpt-4o-mini",
         output_token_count=10,
@@ -40,7 +40,7 @@ def test_electricity_mix_warnings() -> None:
 
 
 def test_electricity_mix_no_warnings() -> None:
-    impacts = llm_impacts(
+    impacts = _llm_impacts(
         provider="openai",
         model_name="gpt-4o-mini",
         output_token_count=10,
@@ -59,7 +59,7 @@ def test_electricity_mix_warning_codes() -> None:
 
 
 def test_model_error() -> None:
-    impacts = llm_impacts(
+    impacts = _llm_impacts(
         provider="openai",
         model_name="unknown-model",
         output_token_count=10,
@@ -71,7 +71,7 @@ def test_model_error() -> None:
 
 
 def test_zone_error() -> None:
-    impacts = llm_impacts(
+    impacts = _llm_impacts(
         provider="openai",
         model_name="gpt-4o-mini",
         output_token_count=10,

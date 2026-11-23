@@ -12,7 +12,7 @@ from openai.types.responses import ResponseStreamEvent
 from wrapt import wrap_function_wrapper  # type: ignore[import-untyped]
 
 from ecologits._ecologits import EcoLogits
-from ecologits.tracers.utils import ImpactsOutput, is_raw_response_request, llm_impacts
+from ecologits.tracers.utils import ImpactsOutput, _llm_impacts, is_raw_response_request
 from ecologits.tracking import ImpactsTracker, get_active_trackers, is_tracking_enabled, record_impacts
 
 PROVIDER = "openai"
@@ -84,7 +84,7 @@ def openai_chat_wrapper_non_stream(
     response = wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
     model_name = response.model
-    impacts = llm_impacts(
+    impacts = _llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
         output_token_count=response.usage.completion_tokens,
@@ -128,7 +128,7 @@ def openai_chat_wrapper_stream(  # type: ignore[misc]
             output_token_count += 1
         request_latency = time.perf_counter() - timer_start
         model_name = chunk.model
-        impacts = llm_impacts(
+        impacts = _llm_impacts(
             provider=PROVIDER,
             model_name=model_name,
             output_token_count=output_token_count,
@@ -199,7 +199,7 @@ async def openai_async_chat_wrapper_base(
     response = await wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
     model_name = response.model
-    impacts = llm_impacts(
+    impacts = _llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
         output_token_count=response.usage.completion_tokens,
@@ -243,7 +243,7 @@ async def openai_async_chat_wrapper_stream(  # type: ignore[misc]
             output_token_count += 1
         request_latency = time.perf_counter() - timer_start
         model_name = chunk.model
-        impacts = llm_impacts(
+        impacts = _llm_impacts(
             provider=PROVIDER,
             model_name=model_name,
             output_token_count=output_token_count,
@@ -315,7 +315,7 @@ def openai_responses_wrapper_non_stream(
     response = wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
     model_name = response.model
-    impacts = llm_impacts(
+    impacts = _llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
         output_token_count=response.usage.output_tokens,
@@ -354,7 +354,7 @@ def openai_responses_wrapper_stream(  # type: ignore[misc]
             request_latency = time.perf_counter() - timer_start
             model_name = event.response.model
             output_token_count = event.response.usage.output_tokens
-            impacts = llm_impacts(
+            impacts = _llm_impacts(
                 provider=PROVIDER,
                 model_name=model_name,
                 output_token_count=output_token_count,
@@ -416,7 +416,7 @@ async def openai_async_responses_wrapper_base(
     response = await wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
     model_name = response.model
-    impacts = llm_impacts(
+    impacts = _llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
         output_token_count=response.usage.output_tokens,
@@ -454,7 +454,7 @@ async def openai_async_responses_wrapper_stream(  # type: ignore[misc]
             request_latency = time.perf_counter() - timer_start
             model_name = event.response.model
             output_token_count = event.response.usage.output_tokens
-            impacts = llm_impacts(
+            impacts = _llm_impacts(
                 provider=PROVIDER,
                 model_name=model_name,
                 output_token_count=output_token_count,
@@ -491,7 +491,7 @@ def openai_responses_parse_wrapper(
     response = wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
     model_name = response.model
-    impacts = llm_impacts(
+    impacts = _llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
         output_token_count=response.usage.output_tokens,
@@ -528,7 +528,7 @@ async def openai_async_responses_parse_wrapper(
     response = await wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
     model_name = response.model
-    impacts = llm_impacts(
+    impacts = _llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
         output_token_count=response.usage.output_tokens,
