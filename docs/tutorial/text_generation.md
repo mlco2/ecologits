@@ -18,9 +18,9 @@ if not impacts.has_errors:
     print(impacts.wcf.value)     # L
 ```
 
-The function returns an [`ImpactsOutput`][tracers.utils.ImpactsOutput] with total,
+The function returns an [`ImpactsOutput`][ecologits.tracers.utils.ImpactsOutput] with total,
 usage, and embodied impacts, plus warnings and errors. Values can be numbers or
-[`RangeValue`][utils.range_value.RangeValue] intervals with `min`, `max`, and `mean`.
+[`RangeValue`][ecologits.utils.range_value.RangeValue] intervals with `min`, `max`, and `mean`.
 
 ## Models and providers
 
