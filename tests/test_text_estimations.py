@@ -73,6 +73,28 @@ def test_text_impacts_datacenter_overrides(pue):
     assert overridden.embodied == baseline.embodied
 
 
+@pytest.mark.parametrize(
+    ("name", "value"),
+    [
+        ("datacenter_pue", 0.99),
+        ("datacenter_wue", -1),
+        ("datacenter_pue", True),
+        ("datacenter_wue", math.nan),
+        ("datacenter_pue", math.inf),
+        ("datacenter_pue", RangeValue(min=0.9, max=1.2)),
+        ("datacenter_wue", RangeValue(min=0, max=math.inf)),
+    ],
+)
+def test_text_impacts_rejects_invalid_datacenter_override(name, value):
+    with pytest.raises(ValueError, match=name):
+        text_impacts("openai/gpt-6-luna", "openai", 1000, 100, **{name: value})
+
+
+def test_text_impacts_accepts_minimum_datacenter_overrides():
+    impacts = text_impacts("openai/gpt-6-luna", "openai", 1000, 100, datacenter_pue=1, datacenter_wue=0)
+    assert not impacts.has_errors
+
+
 def test_text_impacts_zero_wue_and_range_wue():
     dry = text_impacts("openai/gpt-6-luna", "openai", 1000, 100, datacenter_wue=0)
     wet = text_impacts("openai/gpt-6-luna", "openai", 1000, 100, datacenter_wue=RangeValue(min=1, max=2))

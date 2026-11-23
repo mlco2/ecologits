@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import math
 import warnings
 from dataclasses import dataclass
 from typing import Any
@@ -80,6 +81,20 @@ class ImpactsOutput(BaseModel):
         self.errors.append(error)
 
 
+def _validate_datacenter_override(name: str, value: float | RangeValue | None, minimum: int) -> None:
+    if value is None:
+        return
+    values = (value.min, value.max) if isinstance(value, RangeValue) else (value,)
+    for number in values:
+        if (
+            isinstance(number, bool)
+            or not isinstance(number, (int, float))
+            or not math.isfinite(number)
+            or number < minimum
+        ):
+            raise ValueError(f"{name} must be finite and at least {minimum}.")
+
+
 def _llm_impacts(
     provider: str,
     model_name: str,
@@ -107,6 +122,8 @@ def _llm_impacts(
         The impacts of an LLM generation request.
     """
 
+    _validate_datacenter_override("datacenter_pue", datacenter_pue, 1)
+    _validate_datacenter_override("datacenter_wue", datacenter_wue, 0)
     model = models.find_model(provider=provider, model_name=model_name)
     if model is None:
         error = ModelNotRegisteredError(message=f"Could not find model `{model_name}` for {provider} provider.")

@@ -97,6 +97,9 @@ All overrides are keyword-only:
 | `datacenter_pue` | Power Usage Effectiveness, as a number or `RangeValue`. |
 | `datacenter_wue` | Water Usage Effectiveness in L/kWh, as a number or `RangeValue`. |
 
+PUE must be finite and at least 1. WUE must be finite and at least 0.
+These bounds apply to both endpoints of a range. Invalid overrides raise `ValueError`.
+
 Default locations include `USA` for OpenAI and `SWE` for Mistral AI. The world mix
 is the fallback when the provider's location is unavailable.
 

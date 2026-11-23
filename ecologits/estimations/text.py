@@ -72,10 +72,10 @@ def text_impacts(
         datacenter_location: Electricity mix zone, using ISO 3166-1 alpha-3 codes
             or an aggregate zone such as "WOR". Uses the provider's default
             location when omitted or None.
-        datacenter_pue: Power Usage Effectiveness of the datacenter. Uses the
-            provider default when None.
+        datacenter_pue: Power Usage Effectiveness of the datacenter. Values must
+            be finite and at least 1. Uses the provider default when None.
         datacenter_wue: Water Usage Effectiveness of the datacenter in L/kWh.
-            Uses the provider default when None.
+            Values must be finite and at least 0. Uses the provider default when None.
 
     Returns:
         Total, usage, and embodied impacts with model and electricity mix warnings.
@@ -83,7 +83,8 @@ def text_impacts(
 
     Raises:
         ValueError: If a token count is not a non-negative integer, or the sum
-            of known cache reads and writes exceeds input_tokens.
+            of known cache reads and writes exceeds input_tokens, or a datacenter
+            PUE or WUE override is invalid.
     """
     _validate_token_count("input_tokens", input_tokens)
     _validate_token_count("output_tokens", output_tokens)
