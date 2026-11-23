@@ -18,7 +18,7 @@ from ecologits.utils.range_value import RangeValue
 @pytest.mark.parametrize(
     ("provider", "model_name"),
     [
-        ("openai", "gpt-4.1-nano"),
+        ("openai", "gpt-6-luna"),
         ("mistralai", "mistral-small-latest"),
         ("anthropic", "claude-haiku-4-5"),
         ("google_genai", "gemini-2.5-flash"),
@@ -46,7 +46,7 @@ def test_text_impacts_matches_tracer_estimation(provider, model_name):
 @pytest.mark.parametrize(
     ("model_name", "provider", "location"),
     [
-        ("openai/gpt-4.1-nano", "openai", "USA"),
+        ("openai/gpt-6-luna", "openai", "USA"),
         ("mistralai/mistral-small-latest", "mistralai", "SWE"),
     ],
 )
@@ -64,8 +64,8 @@ def test_text_impacts_uses_provider_location_by_default(model_name, provider, lo
 
 @pytest.mark.parametrize("pue", [2.4, RangeValue(min=2.4, max=3.6)])
 def test_text_impacts_datacenter_overrides(pue):
-    baseline = text_impacts("openai/gpt-4.1-nano", "openai", 1000, 100, datacenter_pue=1.2)
-    overridden = text_impacts("openai/gpt-4.1-nano", "openai", 1000, 100, datacenter_pue=pue, datacenter_wue=0)
+    baseline = text_impacts("openai/gpt-6-luna", "openai", 1000, 100, datacenter_pue=1.2)
+    overridden = text_impacts("openai/gpt-6-luna", "openai", 1000, 100, datacenter_pue=pue, datacenter_wue=0)
 
     assert overridden.energy.value.min == pytest.approx(baseline.energy.value.min * 2)
     max_multiplier = 3 if isinstance(pue, RangeValue) else 2
@@ -74,8 +74,8 @@ def test_text_impacts_datacenter_overrides(pue):
 
 
 def test_text_impacts_zero_wue_and_range_wue():
-    dry = text_impacts("openai/gpt-4.1-nano", "openai", 1000, 100, datacenter_wue=0)
-    wet = text_impacts("openai/gpt-4.1-nano", "openai", 1000, 100, datacenter_wue=RangeValue(min=1, max=2))
+    dry = text_impacts("openai/gpt-6-luna", "openai", 1000, 100, datacenter_wue=0)
+    wet = text_impacts("openai/gpt-6-luna", "openai", 1000, 100, datacenter_wue=RangeValue(min=1, max=2))
 
     assert wet.energy == dry.energy
     assert wet.gwp == dry.gwp
@@ -117,7 +117,7 @@ def test_text_impacts_uses_registered_throughput(monkeypatch):
 def test_text_impacts_rejects_invalid_token_counts(name, tokens):
     kwargs = {"input_tokens": 1000, "output_tokens": 100, name: tokens}
     with pytest.raises(ValueError, match=f"{name} must be a non-negative integer"):
-        text_impacts("openai/gpt-4.1-nano", "openai", **kwargs)
+        text_impacts("openai/gpt-6-luna", "openai", **kwargs)
 
 
 @pytest.mark.parametrize("name", ["input_tokens", "output_tokens"])
@@ -125,16 +125,16 @@ def test_text_impacts_rejects_missing_required_token_counts(name):
     kwargs = {"input_tokens": 1000, "output_tokens": 100}
     del kwargs[name]
     with pytest.raises(TypeError, match=name):
-        text_impacts("openai/gpt-4.1-nano", "openai", **kwargs)
+        text_impacts("openai/gpt-6-luna", "openai", **kwargs)
 
     kwargs[name] = None
     with pytest.raises(ValueError, match=f"{name} must be a non-negative integer"):
-        text_impacts("openai/gpt-4.1-nano", "openai", **kwargs)
+        text_impacts("openai/gpt-6-luna", "openai", **kwargs)
 
 
 def test_text_impacts_cache_counts_require_keywords():
     with pytest.raises(TypeError):
-        text_impacts("openai/gpt-4.1-nano", "openai", 1000, 100, 800, 150)
+        text_impacts("openai/gpt-6-luna", "openai", 1000, 100, 800, 150)
 
 
 @pytest.mark.parametrize(
@@ -153,9 +153,9 @@ def test_text_impacts_cache_counts_require_keywords():
 def test_text_impacts_accepts_token_counts_without_changing_estimates(
     input_tokens, cache_read_tokens, cache_write_tokens,
 ):
-    baseline = text_impacts("openai/gpt-4.1-nano", "openai", 0, 100)
+    baseline = text_impacts("openai/gpt-6-luna", "openai", 0, 100)
     impacts = text_impacts(
-        "openai/gpt-4.1-nano", "openai", input_tokens, 100,
+        "openai/gpt-6-luna", "openai", input_tokens, 100,
         cache_read_tokens=cache_read_tokens,
         cache_write_tokens=cache_write_tokens,
     )
@@ -171,7 +171,7 @@ def test_text_impacts_accepts_token_counts_without_changing_estimates(
 def test_text_impacts_rejects_cache_counts_exceeding_input(input_tokens, cache_read_tokens, cache_write_tokens):
     with pytest.raises(ValueError, match="must not exceed input_tokens"):
         text_impacts(
-            "openai/gpt-4.1-nano", "openai", input_tokens, 100,
+            "openai/gpt-6-luna", "openai", input_tokens, 100,
             cache_read_tokens=cache_read_tokens,
             cache_write_tokens=cache_write_tokens,
         )
@@ -181,10 +181,10 @@ def test_text_impacts_rejects_cache_counts_exceeding_input(input_tokens, cache_r
     ("provider", "model_name"),
     [
         ("openai", "openai/unknown-model"),
-        ("azure", "openai/gpt-4.1-nano"),
-        ("aws", "openai/gpt-4.1-nano"),
-        ("openai", "anthropic/gpt-4.1-nano"),
-        ("openai", "gpt-4.1-nano"),
+        ("azure", "openai/gpt-6-luna"),
+        ("aws", "openai/gpt-6-luna"),
+        ("openai", "anthropic/gpt-6-luna"),
+        ("openai", "gpt-6-luna"),
     ],
 )
 def test_text_impacts_unknown_model_or_provider(provider, model_name):
@@ -197,7 +197,7 @@ def test_text_impacts_unknown_model_or_provider(provider, model_name):
 
 
 def test_text_impacts_unknown_zone():
-    impacts = text_impacts("openai/gpt-4.1-nano", "openai", 1000, 100, datacenter_location="UNKNOWN")
+    impacts = text_impacts("openai/gpt-6-luna", "openai", 1000, 100, datacenter_location="UNKNOWN")
 
     assert impacts.has_errors
     assert isinstance(impacts.errors[0], ZoneNotRegisteredError)
@@ -205,7 +205,7 @@ def test_text_impacts_unknown_zone():
 
 
 def test_text_impacts_preserves_model_and_electricity_warnings():
-    model = models.find_model("openai", "gpt-4.1-nano")
+    model = models.find_model("openai", "gpt-6-luna")
     impacts = text_impacts(f"openai/{model.name}", "openai", 1000, 100, datacenter_location="ABW")
 
     assert not impacts.has_errors
