@@ -26,6 +26,7 @@
 - [Mistral AI](<https://ecologits.ai/latest/tutorial/providers/mistralai/index.md>)
 - [OpenAI](<https://ecologits.ai/latest/tutorial/providers/openai/index.md>)
 - [Runway](<https://ecologits.ai/latest/tutorial/providers/runway/index.md>)
+- [Text Generation](<https://ecologits.ai/latest/tutorial/text_generation/index.md>)
 - [Video Generation](<https://ecologits.ai/latest/tutorial/video_generation/index.md>)
 - [Warnings and Errors](<https://ecologits.ai/latest/tutorial/warnings_and_errors/index.md>)
 

@@ -61,6 +61,9 @@
         <loc>https://ecologits.ai/latest/reference/ecologits/estimations/</loc>
       </url>
       <url>
+        <loc>https://ecologits.ai/latest/reference/ecologits/estimations/text/</loc>
+      </url>
+      <url>
         <loc>https://ecologits.ai/latest/reference/ecologits/estimations/video/</loc>
       </url>
       <url>
@@ -170,6 +173,9 @@
       </url>
       <url>
         <loc>https://ecologits.ai/latest/tutorial/providers/runway/</loc>
+      </url>
+      <url>
+        <loc>https://ecologits.ai/latest/tutorial/text_generation/</loc>
       </url>
       <url>
         <loc>https://ecologits.ai/latest/tutorial/video_generation/</loc>
