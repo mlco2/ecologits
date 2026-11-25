@@ -5,7 +5,6 @@ import litellm
 import pytest
 from anthropic import Anthropic, AsyncAnthropic
 from cohere import AsyncClient, Client
-from google import genai
 from huggingface_hub import InferenceClient
 from mistralai.client import Mistral
 from openai import AsyncOpenAI, OpenAI
@@ -364,11 +363,11 @@ async def test_cohere_async_stream_chat(no_global_init):
 
 @pytest.mark.vcr(allow_playback_repeats=True)
 @pytest.mark.default_cassette(GOOGLE_GENAI_CONTENT_STREAM)
-def test_google_genai_content_stream(no_global_init):
-    client = genai.Client()
-    outside = list(client.models.generate_content_stream(model="gemini-2.5-flash-lite", contents="Tell me a joke!"))
+def test_google_genai_content_stream(no_global_init, google_genai_client):
+    models = google_genai_client.models
+    outside = list(models.generate_content_stream(model="gemini-2.5-flash-lite", contents="Tell me a joke!"))
     with EcoLogits.track_impacts(providers="google_genai") as tracker:
-        stream = client.models.generate_content_stream(model="gemini-2.5-flash-lite", contents="Tell me a joke!")
+        stream = models.generate_content_stream(model="gemini-2.5-flash-lite", contents="Tell me a joke!")
     chunks = list(stream)
 
     assert not hasattr(outside[-1], "impacts")

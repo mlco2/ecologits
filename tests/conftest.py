@@ -43,6 +43,15 @@ def scrub_response_headers(response):
     return response
 
 
+@pytest.fixture
+def google_genai_client():
+    from google import genai
+
+    # The Gemini cassettes were recorded against the v1beta API.
+    with genai.Client(http_options={"api_version": "v1beta"}) as client:
+        yield client
+
+
 @pytest.fixture(scope="session")
 def tracer_init():
     EcoLogits.init(providers=[
