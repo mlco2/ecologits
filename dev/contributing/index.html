@@ -3417,6 +3417,11 @@
 <h2 id="pull-requests">Pull Requests<a class="headerlink" href="#pull-requests" title="Permanent link">&para;</a></h2>
 <p>Getting started and creating a Pull Request is a straightforward process. Since EcoLogits is regularly updated, you can expect to see your contributions incorporated into the project within a matter of days or weeks.</p>
 <p>For non-trivial changes, please create an issue to discuss your proposal before submitting pull request. This ensures we can review and refine your idea before implementation.</p>
+<div class="admonition warning">
+<p class="admonition-title">Pull requests on data files are not accepted</p>
+<p>We do not accept pull requests that modify JSON data files, such as <code>ecologits/data/models.json</code> or <code>ecologits/data/electricity_mixes.json</code>. These files are managed in an internal repository with an automated update and export pipeline, so any manual change would be overwritten.</p>
+<p>To request a new model, a new provider or any other data update, please <a href="https://github.com/mlco2/ecologits/issues/new/choose">open an issue</a>. If you want to contribute to the data yourself, ping us on <a href="https://discord.gg/CAecQ2zM4n">Discord</a> to get access to the internal repository.</p>
+</div>
 <h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
 <p>You'll need to meet the following requirements:</p>
 <ul>
