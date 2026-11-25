@@ -19,9 +19,7 @@ if not impacts.has_errors:
     print(impacts.wcf.value)     # L
 ```
 
-The function returns an [`ImpactsOutput`][ecologits.tracers.utils.ImpactsOutput] with total,
-usage, and embodied impacts, plus warnings and errors. Values can be numbers or
-[`RangeValue`][ecologits.utils.range_value.RangeValue] intervals with `min`, `max`, and `mean`.
+The function returns an [`ImpactsOutput`][ecologits.tracers.utils.ImpactsOutput] with total, usage, and embodied impacts, plus warnings and errors. Values can be numbers or [`RangeValue`][ecologits.utils.range_value.RangeValue] intervals with `min`, `max`, and `mean`.
 
 ??? warning "Migrating from `llm_impacts`"
 
@@ -32,19 +30,15 @@ usage, and embodied impacts, plus warnings and errors. Values can be numbers or
     - Supply `input_tokens`, optionnally including cache reads and writes.
     - Rename `output_token_count` to `output_tokens` and `electricity_mix_zone` to `datacenter_location`.
     - The positional arguments are `model_name, input_tokens, output_tokens`. Pass `provider` by keyword if needed.
+    - `request_latency` is optional and keyword-only. Pass your measured latency to keep the same estimates.
 
-    `text_impacts` estimates latency internally and does not accept `request_latency`,
-    so migrating from measured latency can change your estimates. The deprecated
-    function continues to work with its original arguments and calculations,
-    emitting a `DeprecationWarning` when called.
+    The deprecated function continues to work with its original arguments and calculations, emitting a `DeprecationWarning` when called.
 
 ## Main parameters
 
 ### Model and provider
 
-Pass a namespaced model ID, such as `openai/gpt-6-luna` or `zai/glm-5.2`. The optional
-`provider` keyword selects the hosting service: `"openai"`, `"anthropic"`, `"cohere"`,
-`"google"`, or `"mistralai"`. Each model/provider pair must be registered.
+Pass a namespaced model ID, such as `openai/gpt-6-luna` or `zai/glm-5.2`. The optional `provider` keyword selects the hosting service: `"openai"`, `"anthropic"`, `"cohere"`, `"google"`, or `"mistralai"`. Each model/provider pair must be registered.
 
 !!! warning "Hugging Face is not supported yet"
 
@@ -55,48 +49,36 @@ Pass a namespaced model ID, such as `openai/gpt-6-luna` or `zai/glm-5.2`. The op
 | `openai/gpt-6-luna` | Omitted or `"openai"` | OpenAI |
 | `zai/glm-5.2` | `"mistralai"` | GLM served by Mistral |
 
-When `provider` is omitted, models in the `openai`, `anthropic`, `cohere`, `google`,
-and `mistralai` namespaces use their developer's own API. Otherwise, pass the provider
-explicitly. An unsupported combination, including Azure or OpenRouter, returns a
-structured error. Estimates use the registered deployment assumptions across service tiers.
+When `provider` is omitted, models in the `openai`, `anthropic`, `cohere`, `google`, and `mistralai` namespaces use their developer's own API. Otherwise, pass the provider explicitly. An unsupported combination, including Azure or OpenRouter, returns a structured error. Estimates use the registered deployment assumptions across service tiers.
 
 ### Input tokens and caching
 
-`input_tokens` is the total input count, including tokens read from or written to
-the provider's prompt cache. It is required and must be a non-negative integer.
+`input_tokens` is the total input count, including tokens read from or written to the provider's prompt cache. It is required and must be a non-negative integer.
 
 The optional, keyword-only cache counts are subsets of `input_tokens`:
 
 - `cache_read_tokens`: tokens whose computed state was reused from the cache.
 - `cache_write_tokens`: tokens written to the cache by this request.
 
-They default to `None` for unreported usage; use `0` for an observed zero. Both must
-be non-negative integers, and their combined known count must not exceed `input_tokens`.
-For example, 2,000 input tokens can include 1,500 cache reads and 200 cache writes.
+They default to `None` for unreported usage; use `0` for an observed zero. Both must be non-negative integers, and their combined known count must not exceed `input_tokens`. For example, 2,000 input tokens can include 1,500 cache reads and 200 cache writes.
 
-Normalize provider usage first: Anthropic's `input_tokens` excludes cache reads and
-writes, so add `cache_read_input_tokens` and `cache_creation_input_tokens`.
-OpenAI's input total and Gemini's prompt total already include cached tokens.
+Normalize provider usage first: Anthropic's `input_tokens` excludes cache reads and writes, so add `cache_read_input_tokens` and `cache_creation_input_tokens`. OpenAI's input total and Gemini's prompt total already include cached tokens.
 
 !!! warning "Input tokens and caching are not modeled yet"
 
-    These parameters are validated but do not affect estimates yet. A warning is
-    logged once when a positive input count is supplied.
+    These parameters are validated but do not affect estimates yet. A warning is logged once when a positive input count is supplied.
 
 ### Output tokens
 
-`output_tokens` is the number of generated tokens, including reasoning tokens when
-reported separately. It is required and must be a non-negative integer.
+`output_tokens` is the number of generated tokens, including reasoning tokens when reported separately. It is required and must be a non-negative integer.
 
-Generation latency is estimated from registered throughput and time to first token,
-falling back to the latency regression. No measured request latency is required.
+Generation latency is estimated from registered throughput and time to first token, falling back to the latency regression. No measured request latency is required.
 
 ## Extra parameters
 
 ### Data center configuration
 
-Location, PUE, and WUE use provider defaults when omitted or set to `None`.
-All overrides are keyword-only:
+Location, PUE, and WUE use provider defaults when omitted or set to `None`. All overrides are keyword-only:
 
 | Parameter | Description |
 | --- | --- |
@@ -104,9 +86,7 @@ All overrides are keyword-only:
 | `datacenter_pue` | Power Usage Effectiveness, as a number or `RangeValue`. |
 | `datacenter_wue` | Water Usage Effectiveness in L/kWh, as a number or `RangeValue`. |
 
-PUE must be finite and at least 1. WUE must be finite and at least 0.
-These bounds apply to both endpoints of a range. Invalid overrides raise `ValueError`.
-Explicit values always take precedence over provider defaults.
+PUE must be finite and at least 1. WUE must be finite and at least 0. These bounds apply to both endpoints of a range. Invalid overrides raise `ValueError`. Explicit values always take precedence over provider defaults.
 
 ```python
 from ecologits.utils.range_value import RangeValue
@@ -122,10 +102,22 @@ impacts = text_impacts(
 )
 ```
 
+### Request latency
+
+If you measured the request, pass `request_latency` in seconds to improve precision. The estimated generation latency is capped by this value, so it lowers the estimate when the request was faster than expected. It must be a finite positive number.
+
+```python
+impacts = text_impacts(
+    model_name="openai/gpt-6-luna",
+    input_tokens=2000,
+    output_tokens=1000,
+    request_latency=4.2,  # seconds
+)
+```
+
 ## Integration pattern
 
-Make a request with the OpenAI SDK, then pass the returned model and token usage
-to `text_impacts`. This example requires `OPENAI_API_KEY` to be configured.
+Make a request with the OpenAI SDK, then pass the returned model and token usage to `text_impacts`. This example requires `OPENAI_API_KEY` to be configured.
 
 ```python
 from openai import OpenAI
@@ -169,7 +161,4 @@ if impacts.has_warnings:
         print(warning.message)
 ```
 
-Warnings indicate model assumptions or fallback values; errors mean no estimate
-could be computed. Unknown model/provider pairs or electricity mix zones return
-errors in the result. Invalid token counts raise `ValueError`.
-See [Warnings and Errors](warnings_and_errors.md) for details.
+Warnings indicate model assumptions or fallback values; errors mean no estimate could be computed. Unknown model/provider pairs or electricity mix zones return errors in the result. Invalid token counts raise `ValueError`. See [Warnings and Errors](warnings_and_errors.md) for details.

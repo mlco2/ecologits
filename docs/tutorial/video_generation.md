@@ -19,17 +19,13 @@ if not impacts.has_errors:
     print(impacts.wcf.value)     # L
 ```
 
-The function returns an [`ImpactsOutput`][ecologits.tracers.utils.ImpactsOutput] with total,
-usage, and embodied impacts, plus warnings and errors. Values can be numbers or
-[`RangeValue`][ecologits.utils.range_value.RangeValue] intervals with `min`, `max`, and `mean`.
+The function returns an [`ImpactsOutput`][ecologits.tracers.utils.ImpactsOutput] with total, usage, and embodied impacts, plus warnings and errors. Values can be numbers or [`RangeValue`][ecologits.utils.range_value.RangeValue] intervals with `min`, `max`, and `mean`.
 
 ## Main parameters
 
 ### Model and provider
 
-`model_name` identifies the model with its developer namespace, such as
-`google/veo-3.1`. The provider is determined from the registered model; there is
-no separate `provider` argument.
+`model_name` identifies the model with its developer namespace, such as `google/veo-3.1`. The provider is determined from the registered model; there is no separate `provider` argument.
 
 EcoLogits can estimate impacts for these registered video models:
 
@@ -46,8 +42,7 @@ EcoLogits can estimate impacts for these registered video models:
 
 ### Resolution
 
-`resolution` is the requested video size. Use a named resolution or explicit
-width and height, such as `resolution="1024x576"`:
+`resolution` is the requested video size. Use a named resolution or explicit width and height, such as `resolution="1024x576"`:
 
 | Name | Size |
 | --- | --- |
@@ -57,21 +52,17 @@ width and height, such as `resolution="1024x576"`:
 
 ### Duration
 
-`duration` is the requested video length in seconds. Longer videos usually have
-higher impacts because they require more generated frames.
+`duration` is the requested video length in seconds. Longer videos usually have higher impacts because they require more generated frames.
 
 ## Extra parameters
 
 ### Audio generation
 
-`with_audio` defaults to `True`. Set `with_audio=False` when generating video
-without audio. The adjustment depends on the model; models without native audio
-support use the same estimate either way.
+`with_audio` defaults to `True`. Set `with_audio=False` when generating video without audio. The adjustment depends on the model; models without native audio support use the same estimate either way.
 
 ### Data center configuration
 
-Location, PUE, and WUE use provider defaults when omitted or set to `None`.
-You can override them when you have information about the serving environment:
+Location, PUE, and WUE use provider defaults when omitted or set to `None`. You can override them when you have information about the serving environment:
 
 | Parameter | Description |
 | --- | --- |
@@ -96,10 +87,7 @@ impacts = video_impacts(
 
 ## Integration pattern
 
-Make a request with the [Google Gen AI SDK](https://github.com/googleapis/python-genai#veo),
-then pass the same generation settings to `video_impacts` once the video is ready.
-This example requires Google Cloud credentials, project, and location to be configured.
-The SDK model `veo-3.1-generate-001` corresponds to EcoLogits' `google/veo-3.1`.
+Make a request with the [Google Gen AI SDK](https://github.com/googleapis/python-genai#veo), then pass the same generation settings to `video_impacts` once the video is ready. This example requires Google Cloud credentials, project, and location to be configured. The SDK model `veo-3.1-generate-001` corresponds to EcoLogits' `google/veo-3.1`.
 
 ```python
 import time
@@ -154,7 +142,4 @@ if impacts.has_warnings:
         print(warning.message)
 ```
 
-Warnings indicate fallback values; errors mean no estimate could be computed.
-Unknown models or electricity mix zones return errors in the result. Unsupported
-or incorrectly formatted resolutions raise `ValueError`.
-See [Warnings and Errors](warnings_and_errors.md) for details.
+Warnings indicate fallback values; errors mean no estimate could be computed. Unknown models or electricity mix zones return errors in the result. Unsupported or incorrectly formatted resolutions raise `ValueError`. See [Warnings and Errors](warnings_and_errors.md) for details.
