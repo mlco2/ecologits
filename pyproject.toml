@@ -46,7 +46,7 @@ dependencies = [
 openai = ["openai>=2.0.0,<4.0.0"]
 mistralai = ["mistralai>=1.5.0,<2.0.0"]
 anthropic = ["anthropic>=0.45.2,<1.0.0"]
-cohere = ["cohere>=5.13.12,<6.0.0"]
+cohere = ["cohere>=5.13.12,<8.0.0"]
 huggingface-hub = [
     "huggingface-hub>=0.28.1,<2.0.0",
     "tiktoken>=0.8.0,<0.13.0",

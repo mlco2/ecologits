@@ -27,18 +27,23 @@ jobs:
       - name: Run tests
         run: uv run pytest tests/
 
-  openai-compatibility:
+  sdk-compatibility:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        openai: ["openai==2.0.0", "openai>=2,<3"]
-    name: OpenAI compatibility (${{ matrix.openai }})
+        include:
+          - { provider: openai, sdk: "openai==2.0.0" }
+          - { provider: openai, sdk: "openai>=2,<3" }
+          - { provider: cohere, sdk: "cohere==5.13.12" }
+          - { provider: cohere, sdk: "cohere>=5.13.12,<6" }
+          - { provider: cohere, sdk: "cohere>=6,<7" }
+    name: SDK compatibility (${{ matrix.sdk }})
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v7
         with:
           python-version: "3.11"
           enable-cache: true
-      - name: Run OpenAI integration tests
-        run: uv run --isolated --locked --extra openai --extra opentelemetry --with '${{ matrix.openai }}' python -m pytest tests/test_openai*.py
+      - name: Run provider integration tests
+        run: uv run --isolated --locked --extra '${{ matrix.provider }}' --extra opentelemetry --with '${{ matrix.sdk }}' python -m pytest tests/test_${{ matrix.provider }}*.py
