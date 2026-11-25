@@ -7,7 +7,7 @@ from google.genai.types import GenerateContentResponse as _GenerateContentRespon
 from wrapt import wrap_function_wrapper  # type: ignore[import-untyped]
 
 from ecologits import EcoLogits
-from ecologits.tracers.utils import ImpactsOutput, llm_impacts
+from ecologits.tracers.utils import ImpactsOutput, _llm_impacts
 from ecologits.tracking import ImpactsTracker, get_active_trackers, is_tracking_enabled, record_impacts
 
 PROVIDER = "google_genai"
@@ -50,7 +50,7 @@ def google_genai_content_wrapper(
         response.usage_metadata.candidates_token_count
         + (response.usage_metadata.thoughts_token_count or 0)
     )
-    impacts = llm_impacts(
+    impacts = _llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
         output_token_count=output_tokens,
@@ -70,7 +70,7 @@ def google_genai_content_wrapper(
             )
 
         record_impacts(trackers, impacts)
-        return GenerateContentResponse(**response.model_dump(), impacts=impacts)
+        return GenerateContentResponse.model_construct(**dict(response), impacts=impacts)
     else:
         return response
 
@@ -108,7 +108,7 @@ def _stream_generator(
     stream = wrapped(*args, **kwargs)
     for chunk in stream:
         if chunk.candidates[0].finish_reason is None:
-            yield GenerateContentResponse(**chunk.model_dump(), impacts=None)
+            yield GenerateContentResponse.model_construct(**dict(chunk), impacts=None)
 
         else:
             request_latency = time.perf_counter() - timer_start
@@ -118,7 +118,7 @@ def _stream_generator(
                 chunk.usage_metadata.candidates_token_count
                 + (chunk.usage_metadata.thoughts_token_count or 0)
             )
-            impacts = llm_impacts(
+            impacts = _llm_impacts(
                 provider=PROVIDER,
                 model_name=model_name,
                 output_token_count=output_tokens,
@@ -138,9 +138,9 @@ def _stream_generator(
                     )
 
                 record_impacts(trackers, impacts)
-                yield GenerateContentResponse(**chunk.model_dump(), impacts=impacts)
+                yield GenerateContentResponse.model_construct(**dict(chunk), impacts=impacts)
             else:
-                yield GenerateContentResponse(**chunk.model_dump(), impacts=None)
+                yield GenerateContentResponse.model_construct(**dict(chunk), impacts=None)
 
 
 async def google_genai_async_content_wrapper(
@@ -173,7 +173,7 @@ async def google_genai_async_content_wrapper(
         response.usage_metadata.candidates_token_count
         + (response.usage_metadata.thoughts_token_count or 0)
     )
-    impacts = llm_impacts(
+    impacts = _llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
         output_token_count=output_tokens,
@@ -193,7 +193,7 @@ async def google_genai_async_content_wrapper(
             )
 
         record_impacts(trackers, impacts)
-        return GenerateContentResponse(**response.model_dump(), impacts=impacts)
+        return GenerateContentResponse.model_construct(**dict(response), impacts=impacts)
     else:
         return response
 
@@ -206,7 +206,7 @@ async def _generator(
 ) -> AsyncIterator[GenerateContentResponse]:
     async for chunk in stream:
         if chunk.candidates[0].finish_reason is None:
-            yield GenerateContentResponse(**chunk.model_dump(), impacts=None)
+            yield GenerateContentResponse.model_construct(**dict(chunk), impacts=None)
 
         else:
             request_latency = time.perf_counter() - timer_start
@@ -215,7 +215,7 @@ async def _generator(
                 chunk.usage_metadata.candidates_token_count
                 + (chunk.usage_metadata.thoughts_token_count or 0)
             )
-            impacts = llm_impacts(
+            impacts = _llm_impacts(
                 provider=PROVIDER,
                 model_name=model_name,
                 output_token_count=output_tokens,
@@ -235,9 +235,9 @@ async def _generator(
                     )
 
                 record_impacts(trackers, impacts)
-                yield GenerateContentResponse(**chunk.model_dump(), impacts=impacts)
+                yield GenerateContentResponse.model_construct(**dict(chunk), impacts=impacts)
             else:
-                yield GenerateContentResponse(**chunk.model_dump(), impacts=None)
+                yield GenerateContentResponse.model_construct(**dict(chunk), impacts=None)
 
 
 async def google_genai_async_content_stream_wrapper(

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import math
+import warnings
 from dataclasses import dataclass
 from typing import Any
 
@@ -79,12 +81,29 @@ class ImpactsOutput(BaseModel):
         self.errors.append(error)
 
 
-def llm_impacts(
+def _validate_datacenter_override(name: str, value: float | RangeValue | None, minimum: int) -> None:
+    if value is None:
+        return
+    values = (value.min, value.max) if isinstance(value, RangeValue) else (value,)
+    for number in values:
+        if (
+            isinstance(number, bool)
+            or not isinstance(number, (int, float))
+            or not math.isfinite(number)
+            or number < minimum
+        ):
+            raise ValueError(f"{name} must be finite and at least {minimum}.")
+
+
+def _llm_impacts(
     provider: str,
     model_name: str,
     output_token_count: int,
-    request_latency: float,
+    request_latency: float | None,
     electricity_mix_zone: str | None  = None,
+    *,
+    datacenter_pue: float | RangeValue | None = None,
+    datacenter_wue: float | RangeValue | None = None,
 ) -> ImpactsOutput:
     """
     High-level function to compute the impacts of an LLM generation request.
@@ -93,13 +112,18 @@ def llm_impacts(
         provider: Name of the provider.
         model_name: Name of the LLM used.
         output_token_count: Number of generated tokens.
-        request_latency: Measured request latency in seconds.
-        electricity_mix_zone: ISO 3166-1 alpha-3 code of the electricity mix zone (WOR by default).
+        request_latency: Measured request latency in seconds, or None to estimate it.
+        electricity_mix_zone: ISO 3166-1 alpha-3 code of the electricity mix zone.
+            Uses the provider's default location when None, falling back to WOR if unavailable.
+        datacenter_pue: Power Usage Effectiveness. Uses the provider default when None.
+        datacenter_wue: Water Usage Effectiveness in L/kWh. Uses the provider default when None.
 
     Returns:
         The impacts of an LLM generation request.
     """
 
+    _validate_datacenter_override("datacenter_pue", datacenter_pue, 1)
+    _validate_datacenter_override("datacenter_wue", datacenter_wue, 0)
     model = models.find_model(provider=provider, model_name=model_name)
     if model is None:
         error = ModelNotRegisteredError(message=f"Could not find model `{model_name}` for {provider} provider.")
@@ -114,8 +138,10 @@ def llm_impacts(
         model_active_params = model.architecture.parameters
 
     datacenter_location = PROVIDER_CONFIG_MAP[provider].datacenter_location
-    datacenter_pue = PROVIDER_CONFIG_MAP[provider].datacenter_pue
-    datacenter_wue = PROVIDER_CONFIG_MAP[provider].datacenter_wue
+    if datacenter_pue is None:
+        datacenter_pue = PROVIDER_CONFIG_MAP[provider].datacenter_pue
+    if datacenter_wue is None:
+        datacenter_wue = PROVIDER_CONFIG_MAP[provider].datacenter_wue
 
     if electricity_mix_zone is None:
         electricity_mix_zone = datacenter_location
@@ -143,17 +169,49 @@ def llm_impacts(
     )
     impacts = ImpactsOutput.model_validate(impacts.model_dump())
 
-    if model.has_warnings:
-        for w in model.warnings:
-            logger.warning_once(str(w))
-            impacts.add_warning(w)
-
-    if if_electricity_mix.has_warnings:
-        for w in if_electricity_mix.warnings:
-            logger.warning_once(str(w))
-            impacts.add_warning(w)
+    for warning in model.warnings + if_electricity_mix.warnings:
+        logger.warning_once(str(warning))
+        impacts.add_warning(warning)
 
     return impacts
+
+
+def llm_impacts(
+    provider: str,
+    model_name: str,
+    output_token_count: int,
+    request_latency: float | None,
+    electricity_mix_zone: str | None = None,
+    *,
+    datacenter_pue: float | RangeValue | None = None,
+    datacenter_wue: float | RangeValue | None = None,
+) -> ImpactsOutput:
+    """Compute LLM impacts using the deprecated tracer utility interface.
+
+    Deprecated:
+        Use `ecologits.estimations.text_impacts` for standalone text generation
+        estimates. See the text generation tutorial for argument mappings.
+
+    Preserves the original arguments and calculations, including measured request
+    latency. The replacement estimates latency and requires total input tokens and
+    a namespaced model identifier, so migration may change the resulting estimates.
+    """
+    warnings.warn(
+        "ecologits.tracers.utils.llm_impacts is deprecated; "
+        "use ecologits.estimations.text_impacts instead. "
+        "See the text generation tutorial for migration details.",
+        DeprecationWarning,
+        stacklevel=2,
+    )
+    return _llm_impacts(
+        provider=provider,
+        model_name=model_name,
+        output_token_count=output_token_count,
+        request_latency=request_latency,
+        electricity_mix_zone=electricity_mix_zone,
+        datacenter_pue=datacenter_pue,
+        datacenter_wue=datacenter_wue,
+    )
 
 
 @dataclass

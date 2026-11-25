@@ -119,13 +119,13 @@ RESPONSES_KINDS = [
 @pytest.fixture
 def used_models(monkeypatch):
     used = []
-    real_llm_impacts = openai_tracer.llm_impacts
+    real_llm_impacts = openai_tracer._llm_impacts
 
     def spy(**kwargs):
         used.append(kwargs["model_name"])
         return real_llm_impacts(**kwargs)
 
-    monkeypatch.setattr(openai_tracer, "llm_impacts", spy)
+    monkeypatch.setattr(openai_tracer, "_llm_impacts", spy)
     return used
 
 

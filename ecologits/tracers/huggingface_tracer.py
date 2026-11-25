@@ -10,7 +10,7 @@ from huggingface_hub import ChatCompletionStreamOutput as _ChatCompletionStreamO
 from wrapt import wrap_function_wrapper  # type: ignore[import-untyped]
 
 from ecologits._ecologits import EcoLogits
-from ecologits.tracers.utils import ImpactsOutput, llm_impacts
+from ecologits.tracers.utils import ImpactsOutput, _llm_impacts
 from ecologits.tracking import ImpactsTracker, get_active_trackers, is_tracking_enabled, record_impacts
 
 PROVIDER = "huggingface_hub"
@@ -91,7 +91,7 @@ def huggingface_chat_wrapper_non_stream(
     if model_name is None:
         return response
 
-    impacts = llm_impacts(
+    impacts = _llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
         output_token_count=output_tokens,
@@ -139,7 +139,7 @@ def huggingface_chat_wrapper_stream(
             yield chunk
             continue
 
-        impacts = llm_impacts(
+        impacts = _llm_impacts(
             provider=PROVIDER,
             model_name=model_name,
             output_token_count=output_tokens,
@@ -209,7 +209,7 @@ async def huggingface_async_chat_wrapper_non_stream(
     if model_name is None:
         return response
 
-    impacts = llm_impacts(
+    impacts = _llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
         output_token_count=output_tokens,
@@ -257,7 +257,7 @@ async def huggingface_async_chat_wrapper_stream(
             yield chunk
             continue
 
-        impacts = llm_impacts(
+        impacts = _llm_impacts(
             provider=PROVIDER,
             model_name=model_name,
             output_token_count=output_tokens,

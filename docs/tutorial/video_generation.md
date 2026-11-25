@@ -1,59 +1,36 @@
 # Video Generation
 
-EcoLogits can estimate the environmental impacts of video generation requests with the [`video_impacts`][ecologits.estimations.video.video_impacts] function.
+EcoLogits can estimate the environmental impacts of **video generation** requests with the [`video_impacts`][ecologits.estimations.video.video_impacts] function. To learn how this estimation is made, read the [video generation methodology](../methodology/video_generation.md).
 
-This is useful when you call a video generation API and want to attach impact estimates to the request metadata, logs, analytics, or product reporting. You only need the model name, requested resolution, and requested duration.
-
-!!! note "This page focuses on usage"
-
-    To learn how the estimation is modeled, read the [video generation methodology](../methodology/video_generation.md).
-
-
-## Quickstart
+Estimates are computed locally, without making an API request. Use the model, resolution, and duration from a request you’ve already made.
 
 ```python
 from ecologits.estimations import video_impacts
 
 impacts = video_impacts(
-    model_name="openai/sora-2-pro",
+    model_name="google/veo-3.1",
     resolution="1080p",
-    duration=10,
+    duration=8,
 )
 
-print(impacts.energy.value)
-print(impacts.gwp.value)
+if not impacts.has_errors:
+    print(impacts.energy.value)  # kWh
+    print(impacts.gwp.value)     # kgCO2eq
+    print(impacts.wcf.value)     # L
 ```
 
-The function returns an [`ImpactsOutput`][ecologits.tracers.utils.ImpactsOutput], the same object used by EcoLogits provider integrations. It contains total impacts, usage impacts, embodied impacts, and possible warnings or errors.
+The function returns an [`ImpactsOutput`][ecologits.tracers.utils.ImpactsOutput] with total, usage, and embodied impacts, plus warnings and errors. Values can be numbers or [`RangeValue`][ecologits.utils.range_value.RangeValue] intervals with `min`, `max`, and `mean`.
 
-```python
-print(impacts.energy.value)       # Direct electricity consumption, in kWh
-print(impacts.gwp.value)          # Global warming potential, in kgCO2eq
-print(impacts.adpe.value)         # Abiotic resource depletion, in kgSbeq
-print(impacts.pe.value)           # Primary energy, in MJ
-print(impacts.wcf.value)          # Water consumption footprint, in L
+## Main parameters
 
-print(impacts.usage.gwp.value)    # Usage phase only
-print(impacts.embodied.gwp.value) # Embodied phase only
-```
+### Model and provider
 
-Video impact values are usually [`RangeValue`][ecologits.utils.range_value.RangeValue] intervals. You can access the `mean`, `min`, and `max` values directly:
+`model_name` identifies the model with its developer namespace, such as `google/veo-3.1`. The provider is determined from the registered model; there is no separate `provider` argument.
 
-```python
-print(impacts.gwp.value.mean) # Central estimate
-print(impacts.gwp.value.min)  # Lower bound
-print(impacts.gwp.value.max)  # Upper bound
-```
-
-
-## Function Inputs
-
-### `model_name`
-
-Use one of the video model identifiers supported by EcoLogits:
+EcoLogits can estimate impacts for these registered video models:
 
 | Provider | Models |
-|----------|--------|
+| --- | --- |
 | Alibaba | `alibaba/wan2.1`, `alibaba/wan2.2` |
 | ByteDance | `bytedance/seedance-1.0`, `bytedance/seedance-1.5-pro` |
 | Google | `google/veo-3.0`, `google/veo-3.0-fast`, `google/veo-3.1`, `google/veo-3.1-fast` |
@@ -63,196 +40,99 @@ Use one of the video model identifiers supported by EcoLogits:
 | Runway | `runway/gen-4.5` |
 | Tencent | `tencent/hunyuanvideo`, `tencent/hunyuanvideo-1.5` |
 
-If the model is unknown, EcoLogits returns an `ImpactsOutput` with an error instead of raising an exception.
+### Resolution
 
-```python
-impacts = video_impacts(
-    model_name="unknown/model",
-    resolution="720p",
-    duration=5,
-)
-
-if impacts.has_errors:
-    print(impacts.errors)
-```
-
-### `resolution`
-
-You can use a named resolution:
-
-```python
-video_impacts(
-    model_name="google/veo-3.1",
-    resolution="720p",
-    duration=8,
-)
-```
-
-Supported named resolutions are:
+`resolution` is the requested video size. Use a named resolution or explicit width and height, such as `resolution="1024x576"`:
 
 | Name | Size |
-|------|------|
+| --- | --- |
 | `720p` | 1280 x 720 |
 | `1080p` | 1920 x 1080 |
 | `4k` | 3840 x 2160 |
 
-You can also pass an explicit `widthxheight` value:
+### Duration
 
-```python
-video_impacts(
-    model_name="runway/gen-4.5",
-    resolution="1024x576",
-    duration=5,
-)
-```
+`duration` is the requested video length in seconds. Longer videos usually have higher impacts because they require more generated frames.
 
-### `duration`
+## Extra parameters
 
-Pass the requested video duration in seconds:
+### Audio generation
 
-```python
-video_impacts(
-    model_name="klingai/kling-v3",
-    resolution="1080p",
-    duration=6,
-)
-```
+`with_audio` defaults to `True`. Set `with_audio=False` when generating video without audio. The adjustment depends on the model; models without native audio support use the same estimate either way.
 
-Longer videos usually have higher impacts because they require more generated frames.
+### Data center configuration
 
-### `with_audio`
+Location, PUE, and WUE use provider defaults when omitted or set to `None`. You can override them when you have information about the serving environment:
 
-Set `with_audio=False` when the request generates video without audio:
+| Parameter | Description |
+| --- | --- |
+| `datacenter_location` | Electricity mix zone, such as `FRA`. Use `WOR` explicitly for the world mix. |
+| `datacenter_pue` | Power Usage Effectiveness, as a number or `RangeValue`. |
+| `datacenter_wue` | Water Usage Effectiveness in L/kWh, as a number or `RangeValue`. |
 
-```python
-video_impacts(
-    model_name="google/veo-3.0",
-    resolution="1080p",
-    duration=8,
-    with_audio=False,
-)
-```
-
-The default is `True`, which matches video models that generate audio with the video.
-
-
-## Data Center Defaults
-
-By default, EcoLogits uses provider-level assumptions for the model deployment location, PUE, and WUE. This keeps the function simple when you do not know where the provider served the request.
-
-```python
-impacts = video_impacts(
-    model_name="bytedance/seedance-1.5-pro",
-    resolution="720p",
-    duration=5,
-)
-```
-
-If you have better information for your context, you can override these values.
-
-### Location
-
-Use `datacenter_location` to select the electricity mix used for usage impacts:
-
-```python
-impacts = video_impacts(
-    model_name="runway/gen-4.5",
-    resolution="1080p",
-    duration=10,
-    datacenter_location="USA",
-)
-```
-
-Available zones follow ISO 3166-1 alpha-3 codes, with extra aggregate zones such as `WOR` for World and `EEE` for Europe. When a zone is unknown, EcoLogits returns an `ImpactsOutput` with an error.
-
-### PUE and WUE
-
-Use `datacenter_pue` and `datacenter_wue` when you know the serving environment:
-
-```python
-impacts = video_impacts(
-    model_name="openai/sora-2-pro",
-    resolution="1080p",
-    duration=10,
-    datacenter_location="USA",
-    datacenter_pue=1.2,
-    datacenter_wue=0.569,
-)
-```
-
-You can also pass ranges:
+Default locations include `USA` for Google and `SGP` for Kling AI.
 
 ```python
 from ecologits.utils.range_value import RangeValue
 
 impacts = video_impacts(
-    model_name="runway/gen-4.5",
+    model_name="google/veo-3.1",
     resolution="1080p",
-    duration=10,
-    datacenter_pue=RangeValue(min=1.09, max=1.14),
-    datacenter_wue=RangeValue(min=0.13, max=0.999),
+    duration=8,
+    datacenter_location="FRA",
+    datacenter_pue=RangeValue(min=1.1, max=1.2),
+    datacenter_wue=0.5,  # L/kWh
 )
 ```
 
+## Integration pattern
 
-## Integration Pattern
-
-The simplest integration is to compute impacts from the same request parameters you send to your video provider.
+Make a request with the [Google Gen AI SDK](https://github.com/googleapis/python-genai#veo), then pass the same generation settings to `video_impacts` once the video is ready. This example requires Google Cloud credentials, project, and location to be configured. The SDK model `veo-3.1-generate-001` corresponds to EcoLogits' `google/veo-3.1`.
 
 ```python
+import time
+
+from google import genai
+from google.genai import types
+
 from ecologits.estimations import video_impacts
 
-model = "openai/sora-2-pro"
-resolution = "1080p"
-duration = 10
-
-# response = client.videos.generate(
-#     model=model,
-#     prompt="A city street at sunrise",
-#     resolution=resolution,
-#     duration=duration,
-# )
-
-impacts = video_impacts(
-    model_name=model,
-    resolution=resolution,
-    duration=duration,
-)
-```
-
-Then serialize the result if you want to store it in logs, traces, or a database:
-
-```python
-impact_payload = impacts.model_dump(mode="json")
-```
-
-Or attach it to your own response payload:
-
-```python
-return {
-    # "video_id": response.id,
-    "model": model,
-    "resolution": resolution,
-    "duration": duration,
-    "impacts": impact_payload,
-}
-```
-
-This keeps the estimation close to the request parameters that matter without depending on a provider-specific response shape.
-
-
-## Handling Warnings and Errors
-
-Always check warnings and errors before using estimates in automated reporting.
-
-```python
-impacts = video_impacts(
-    model_name="runway/gen-4.5",
+client = genai.Client(vertexai=True)
+config = types.GenerateVideosConfig(
+    number_of_videos=1,
     resolution="1080p",
-    duration=10,
-    datacenter_location="ABW",
+    duration_seconds=8,
+    generate_audio=True,
+)
+operation = client.models.generate_videos(
+    model="veo-3.1-generate-001",
+    prompt="A city street at sunrise.",
+    config=config,
 )
 
+while not operation.done:
+    time.sleep(10)
+    operation = client.operations.get(operation)
+
+if operation.error or not operation.response or not operation.response.generated_videos:
+    raise RuntimeError("Video generation did not return a video.")
+
+impacts = video_impacts(
+    model_name="google/veo-3.1",
+    resolution=config.resolution,
+    duration=config.duration_seconds,
+    with_audio=config.generate_audio,
+)
+
+if not impacts.has_errors:
+    payload = {"operation": operation.name, "impacts": impacts.model_dump(mode="json")}
+```
+
+## Handling warnings and errors
+
+Check warnings and errors before using estimates in reporting:
+
+```python
 if impacts.has_errors:
     for error in impacts.errors:
         print(error.message)
@@ -262,4 +142,4 @@ if impacts.has_warnings:
         print(warning.message)
 ```
 
-Warnings usually mean EcoLogits completed the estimation but had to use a fallback value for part of the calculation. Errors mean the estimate could not be computed.
+Warnings indicate fallback values; errors mean no estimate could be computed. Unknown models or electricity mix zones return errors in the result. Unsupported or incorrectly formatted resolutions raise `ValueError`. See [Warnings and Errors](warnings_and_errors.md) for details.

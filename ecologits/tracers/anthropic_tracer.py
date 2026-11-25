@@ -13,7 +13,7 @@ from typing_extensions import override
 from wrapt import wrap_function_wrapper  # type: ignore[import-untyped]
 
 from ecologits._ecologits import EcoLogits
-from ecologits.tracers.utils import ImpactsOutput, is_raw_response_request, llm_impacts
+from ecologits.tracers.utils import ImpactsOutput, _llm_impacts, is_raw_response_request
 from ecologits.tracking import ImpactsTracker, get_active_trackers, is_tracking_enabled, record_impacts
 
 PROVIDER = "anthropic"
@@ -53,7 +53,7 @@ class MessageStream(_MessageStream):
             yield chunk
         request_latency = time.perf_counter() - timer_start
         if model_name is not None:
-            impacts = llm_impacts(
+            impacts = _llm_impacts(
                 provider=PROVIDER,
                 model_name=model_name,
                 output_token_count=output_tokens,
@@ -101,7 +101,7 @@ class AsyncMessageStream(_AsyncMessageStream):
             yield chunk
         request_latency = time.perf_counter() - timer_start
         if model_name is not None:
-            impacts = llm_impacts(
+            impacts = _llm_impacts(
                 provider=PROVIDER,
                 model_name=model_name,
                 output_token_count=output_tokens,
@@ -203,7 +203,7 @@ def anthropic_chat_wrapper(
     response = wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
     model_name = response.model
-    impacts = llm_impacts(
+    impacts = _llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
         output_token_count=response.usage.output_tokens,
@@ -223,7 +223,7 @@ def anthropic_chat_wrapper(
             )
 
         record_impacts(trackers, impacts)
-        return Message(**response.model_dump(), impacts=impacts)
+        return Message.model_construct(**dict(response), impacts=impacts)
     else:
         return response
 
@@ -251,7 +251,7 @@ async def anthropic_async_chat_wrapper(
     response = await wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
     model_name = response.model
-    impacts = llm_impacts(
+    impacts = _llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
         output_token_count=response.usage.output_tokens,
@@ -271,7 +271,7 @@ async def anthropic_async_chat_wrapper(
             )
 
         record_impacts(trackers, impacts)
-        return Message(**response.model_dump(), impacts=impacts)
+        return Message.model_construct(**dict(response), impacts=impacts)
     else:
         return response
 
