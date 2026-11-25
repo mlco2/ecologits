@@ -18,7 +18,7 @@ For non-trivial changes, please create an issue to discuss your proposal before 
 
     We do not accept pull requests that modify JSON data files, such as `ecologits/data/models.json` or `ecologits/data/electricity_mixes.json`. These files are managed in an internal repository with an automated update and export pipeline, so any manual change would be overwritten.
 
-    To request a new model, a new provider or any other data update, please [open an issue](https://github.com/mlco2/ecologits/issues/new/choose). If you want to contribute to the data yourself, ping us on [Discord](https://discord.com/invite/GS9js2XkJR) to get access to the internal repository.
+    To request a new model, a new provider or any other data update, please [open an issue](https://github.com/mlco2/ecologits/issues/new/choose). If you want to contribute to the data yourself, ping us on [Discord](https://discord.gg/CAecQ2zM4n) to get access to the internal repository.
 
 ### Prerequisites
 
