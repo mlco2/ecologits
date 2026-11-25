@@ -9,7 +9,6 @@ from ecologits.estimations import text_impacts
 
 impacts = text_impacts(
     model_name="openai/gpt-6-luna",
-    provider="openai",
     input_tokens=2000,
     output_tokens=1000,
 )
@@ -32,7 +31,7 @@ usage, and embodied impacts, plus warnings and errors. Values can be numbers or
     - Include the developer namespace in `model_name`, e.g. `openai/gpt-6-luna`.
     - Supply `input_tokens`, optionnally including cache reads and writes.
     - Rename `output_token_count` to `output_tokens` and `electricity_mix_zone` to `datacenter_location`.
-    - Prefer keyword arguments: the positional order is now `model_name, provider, input_tokens, output_tokens`.
+    - The positional arguments are `model_name, input_tokens, output_tokens`. Pass `provider` by keyword if needed.
 
     `text_impacts` estimates latency internally and does not accept `request_latency`,
     so migrating from measured latency can change your estimates. The deprecated
@@ -43,15 +42,23 @@ usage, and embodied impacts, plus warnings and errors. Values can be numbers or
 
 ### Model and provider
 
-`model_name` identifies the model with its developer namespace, such as
-`openai/gpt-6-luna` or `google/gemini-4-neon`. `provider` identifies the service
-hosting the model. For example, `openai/gpt-6-luna` can be hosted by
-Azure rather than OpenAI.
+Pass a namespaced model ID, such as `openai/gpt-6-luna` or `zai/glm-5.2`. The optional
+`provider` keyword selects the hosting service: `"openai"`, `"anthropic"`, `"cohere"`,
+`"google"`, or `"mistralai"`. Each model/provider pair must be registered.
 
-Supported providers are OpenAI, Anthropic, Cohere, Google, Hugging Face, and
-Mistral AI. Each model/provider combination must be registered. Bare model names
-are not accepted; registered aliases use the same namespace. Azure and AWS are
-not supported yet.
+!!! warning "Hugging Face is not supported yet"
+
+    Models served through Hugging Face will be supported in a future release.
+
+| Model ID | Provider argument | Deployment used |
+| --- | --- | --- |
+| `openai/gpt-6-luna` | Omitted or `"openai"` | OpenAI |
+| `zai/glm-5.2` | `"mistralai"` | GLM served by Mistral |
+
+When `provider` is omitted, models in the `openai`, `anthropic`, `cohere`, `google`,
+and `mistralai` namespaces use their developer's own API. Otherwise, pass the provider
+explicitly. An unsupported combination, including Azure or OpenRouter, returns a
+structured error. Estimates use the registered deployment assumptions across service tiers.
 
 ### Input tokens and caching
 
@@ -99,9 +106,7 @@ All overrides are keyword-only:
 
 PUE must be finite and at least 1. WUE must be finite and at least 0.
 These bounds apply to both endpoints of a range. Invalid overrides raise `ValueError`.
-
-Default locations include `USA` for OpenAI and `SWE` for Mistral AI. The world mix
-is the fallback when the provider's location is unavailable.
+Explicit values always take precedence over provider defaults.
 
 ```python
 from ecologits.utils.range_value import RangeValue
