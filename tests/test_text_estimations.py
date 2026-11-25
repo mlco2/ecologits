@@ -277,3 +277,19 @@ def test_text_impacts_preserves_model_and_electricity_warnings():
     for warning_type in (ElectricityMixADPeDefaultWarning, ElectricityMixPEDefaultWarning,
                          ElectricityMixWUEDefaultWarning):
         assert any(isinstance(warning, warning_type) for warning in impacts.warnings)
+
+
+def test_text_impacts_request_latency_caps_estimated_latency():
+    estimated = text_impacts("openai/gpt-6-luna", 1000, 100)
+    fast = text_impacts("openai/gpt-6-luna", 1000, 100, request_latency=0.001)
+    slow = text_impacts("openai/gpt-6-luna", 1000, 100, request_latency=3600)
+
+    assert fast == _llm_impacts("openai", "gpt-6-luna", 100, request_latency=0.001)
+    assert fast.energy.value.max < estimated.energy.value.min
+    assert slow == estimated
+
+
+@pytest.mark.parametrize("latency", [0, -1, math.nan, math.inf, True, "1"])
+def test_text_impacts_rejects_invalid_request_latency(latency):
+    with pytest.raises(ValueError, match="request_latency"):
+        text_impacts("openai/gpt-6-luna", 1000, 100, request_latency=latency)
