@@ -38,6 +38,8 @@ jobs:
           - { provider: cohere, sdk: "cohere==5.13.12" }
           - { provider: cohere, sdk: "cohere>=5.13.12,<6" }
           - { provider: cohere, sdk: "cohere>=6,<7" }
+          - { provider: anthropic, sdk: "anthropic==1.0.0" }
+          - { provider: anthropic, sdk: "anthropic>=1,<2" }
     name: SDK compatibility (${{ matrix.sdk }})
     steps:
       - uses: actions/checkout@v4
