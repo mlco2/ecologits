@@ -253,6 +253,10 @@ response = client.chat.completions.create(
 print(response.impacts)
 ```
 
+Azure can return a dated model id, such as `gpt-6-luna-2026-09-22`, for a deployment named `gpt-6-luna`. When the model id in the response is not registered in EcoLogits but the requested model (your deployment name) is, EcoLogits uses the requested model. Give your deployment the name of the model it serves, so that this fallback finds the right model. The model id in the response is not changed.
+
+The same fallback applies to any OpenAI client, including a proxy or gateway set with `base_url`. If the gateway answers with a model id that EcoLogits does not know, EcoLogits uses the model name of your request when that name is registered. If the gateway serves a different model under that name, the impacts are those of the registered name.
+
 ## Video Generation
 
 Video generation impacts are estimated with the [`video_impacts`](<https://ecologits.ai/latest/reference/ecologits/estimations/video/index.md#ecologits.estimations.video.video_impacts>) function. This is independent from the OpenAI client tracer: call it with the same model, resolution, and duration that you use for the video generation request.
