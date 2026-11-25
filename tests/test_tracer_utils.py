@@ -62,8 +62,8 @@ def test_deprecated_llm_impacts_preserves_measured_latency():
 def test_internal_and_estimation_calls_do_not_emit_deprecation_warnings():
     with warnings.catch_warnings():
         warnings.simplefilter("error", DeprecationWarning)
-        traced = _llm_impacts("openai", "gpt-6-luna", 100, request_latency=None)
-        estimated = text_impacts("openai/gpt-6-luna", "openai", 1000, 100)
+        traced = _llm_impacts("openai", "gpt-6-luna", 100, request_latency=None, electricity_mix_zone="USA")
+        estimated = text_impacts("openai/gpt-6-luna", 1000, 100, datacenter_location="USA")
 
     assert not traced.has_errors
     assert estimated == traced

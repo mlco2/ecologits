@@ -1,30 +1,44 @@
 from ecologits.log import logger
 from ecologits.model_repository import models
 from ecologits.status_messages import ModelNotRegisteredError
-from ecologits.tracers.utils import ImpactsOutput, _llm_impacts
+from ecologits.tracers.utils import PROVIDER_CONFIG_MAP, ImpactsOutput, _llm_impacts
 from ecologits.utils.range_value import RangeValue
 
-# Compatibility with the current provider-specific registry. These namespaces
-# identify model developers; provider identifies the host. Hosting combinations
-# must be registered explicitly before they can be estimated.
-_MODEL_NAMESPACES = {
+# TODO: Move model IDs and deployments to models.json.
+# Public hosting-service names mapped to internal provider IDs. Each is also the
+# namespace of the developer's own models, served by default.
+_PROVIDERS = {
     "openai": "openai",
     "anthropic": "anthropic",
     "cohere": "cohere",
-    "google_genai": "google",
+    "google": "google_genai",
     "mistralai": "mistralai",
 }
 
+# EcoLogits IDs for third-party models served under Mistral's API names.
+_MISTRAL_DEPLOYMENTS = {
+    "deepseek/deepseek-v4.1-flash-1017": "deepseek-v4-1-flash-1017",
+    "zai/glm-5": "zai-glm-5",
+    "zai/glm-5.2": "zai-glm-5-2",
+    "zai/glm-5.3": "zai-glm-5-3",
+    "zai/glm-5.3-flash": "zai-glm-5-3-flash",
+}
 
-def _registered_model_name(model_name: str, provider: str) -> str | None:
-    if "/" not in model_name:
+
+def _resolve_deployment(model_name: str, provider: str | None) -> tuple[str, str] | None:
+    """Return the internal provider and registered model name."""
+    namespace, _, name = model_name.partition("/")
+    if provider is None:
+        provider = namespace
+    if provider == "mistralai" and model_name in _MISTRAL_DEPLOYMENTS:
+        name = _MISTRAL_DEPLOYMENTS[model_name]
+    elif provider != namespace or provider not in _PROVIDERS:
         return None
-    if provider == "huggingface_hub":
-        return model_name
-    namespace = _MODEL_NAMESPACES.get(provider)
-    if namespace is not None and model_name.startswith(f"{namespace}/"):
-        return model_name.removeprefix(f"{namespace}/")
-    return None
+
+    internal = _PROVIDERS[provider]
+    if models.find_model(provider=internal, model_name=name) is None:
+        return None
+    return internal, name
 
 
 def _validate_token_count(name: str, value: int) -> None:
@@ -34,10 +48,10 @@ def _validate_token_count(name: str, value: int) -> None:
 
 def text_impacts(
     model_name: str,
-    provider: str,
     input_tokens: int,
     output_tokens: int,
     *,
+    provider: str | None = None,
     cache_read_tokens: int | None = None,
     cache_write_tokens: int | None = None,
     datacenter_location: str | None = None,
@@ -53,16 +67,16 @@ def text_impacts(
     validated in preparation for future methodology; they do not affect estimates yet.
 
     Args:
-        model_name: Namespaced model identifier, independent of its host (e.g.
-            "openai/gpt-6-luna" or "mistralai/Mistral-7B-v0.1"). Registered
-            aliases use the same namespace. Bare model names are not supported.
-        provider: Hosting provider registered in EcoLogits: "openai", "anthropic",
-            "cohere", "google_genai", "huggingface_hub", or "mistralai".
+        model_name: EcoLogits model ID: the developer's namespace and the model
+            name, such as "openai/gpt-6-luna" or "zai/glm-5.2".
         input_tokens: Total input tokens, including tokens read from or written
             to the provider's prompt cache. Must be a non-negative integer.
             Currently does not affect estimates.
         output_tokens: Number of generated tokens, including reasoning tokens
             when applicable. Must be a non-negative integer.
+        provider: Hosting service: "openai", "anthropic", "cohere", "google"
+            or "mistralai". When omitted, the model developer's own API is used
+            if registered. Hugging Face is not supported yet.
         cache_read_tokens: Input tokens whose computed state was reused from the
             provider's prompt cache. A subset of input_tokens. None means unknown
             or unreported; zero means no cache reads. Currently does not affect estimates.
@@ -100,18 +114,28 @@ def text_impacts(
             "cache_read_tokens and cache_write_tokens do not affect estimates."
         )
 
-    registered_name = _registered_model_name(model_name, provider)
-    if registered_name is None or models.find_model(provider=provider, model_name=registered_name) is None:
-        error = ModelNotRegisteredError(message=f"Could not find model `{model_name}` for {provider} provider.")
+    deployment = _resolve_deployment(model_name, provider)
+    if deployment is None:
+        if provider is None:
+            message = f"No default deployment for `{model_name}`. Supply a namespaced model ID and its provider."
+        else:
+            message = f"Could not find model `{model_name}` for {provider} provider."
+        error = ModelNotRegisteredError(message=message)
         logger.warning_once(str(error))
         return ImpactsOutput(errors=[error])
 
+    internal_provider, registered_name = deployment
+    location = (
+        PROVIDER_CONFIG_MAP[internal_provider].datacenter_location
+        if datacenter_location is None
+        else datacenter_location
+    )
     return _llm_impacts(
-        provider=provider,
+        provider=internal_provider,
         model_name=registered_name,
         output_token_count=output_tokens,
         request_latency=None,
-        electricity_mix_zone=datacenter_location,
+        electricity_mix_zone=location,
         datacenter_pue=datacenter_pue,
         datacenter_wue=datacenter_wue,
     )
