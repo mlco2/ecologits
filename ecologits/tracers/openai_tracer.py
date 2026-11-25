@@ -12,10 +12,22 @@ from openai.types.responses import ResponseStreamEvent
 from wrapt import wrap_function_wrapper  # type: ignore[import-untyped]
 
 from ecologits._ecologits import EcoLogits
+from ecologits.model_repository import models
 from ecologits.tracers.utils import ImpactsOutput, _llm_impacts, is_raw_response_request
 from ecologits.tracking import ImpactsTracker, get_active_trackers, is_tracking_enabled, record_impacts
 
 PROVIDER = "openai"
+
+
+def _registered_model_name(response_model: str, requested_model: Optional[str]) -> str:
+    """Use the requested model when only it is registered, e.g. Azure returns a dated id for a deployment."""
+    if (
+        requested_model is not None
+        and models.find_model(PROVIDER, response_model) is None
+        and models.find_model(PROVIDER, requested_model) is not None
+    ):
+        return requested_model
+    return response_model
 
 
 class ChatCompletion(_ChatCompletion):
@@ -83,7 +95,7 @@ def openai_chat_wrapper_non_stream(
     timer_start = time.perf_counter()
     response = wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
-    model_name = response.model
+    model_name = _registered_model_name(response.model, kwargs.get("model"))
     impacts = _llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
@@ -127,7 +139,7 @@ def openai_chat_wrapper_stream(  # type: ignore[misc]
         if i > 0 and chunk.choices and chunk.choices[0].finish_reason is None:
             output_token_count += 1
         request_latency = time.perf_counter() - timer_start
-        model_name = chunk.model
+        model_name = _registered_model_name(chunk.model, kwargs.get("model"))
         impacts = _llm_impacts(
             provider=PROVIDER,
             model_name=model_name,
@@ -198,7 +210,7 @@ async def openai_async_chat_wrapper_base(
     timer_start = time.perf_counter()
     response = await wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
-    model_name = response.model
+    model_name = _registered_model_name(response.model, kwargs.get("model"))
     impacts = _llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
@@ -242,7 +254,7 @@ async def openai_async_chat_wrapper_stream(  # type: ignore[misc]
         if i > 0 and chunk.choices and chunk.choices[0].finish_reason is None:
             output_token_count += 1
         request_latency = time.perf_counter() - timer_start
-        model_name = chunk.model
+        model_name = _registered_model_name(chunk.model, kwargs.get("model"))
         impacts = _llm_impacts(
             provider=PROVIDER,
             model_name=model_name,
@@ -314,7 +326,7 @@ def openai_responses_wrapper_non_stream(
     timer_start = time.perf_counter()
     response = wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
-    model_name = response.model
+    model_name = _registered_model_name(response.model, kwargs.get("model"))
     impacts = _llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
@@ -352,7 +364,7 @@ def openai_responses_wrapper_stream(  # type: ignore[misc]
     for event in stream:
         if event.type == "response.completed":
             request_latency = time.perf_counter() - timer_start
-            model_name = event.response.model
+            model_name = _registered_model_name(event.response.model, kwargs.get("model"))
             output_token_count = event.response.usage.output_tokens
             impacts = _llm_impacts(
                 provider=PROVIDER,
@@ -415,7 +427,7 @@ async def openai_async_responses_wrapper_base(
     timer_start = time.perf_counter()
     response = await wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
-    model_name = response.model
+    model_name = _registered_model_name(response.model, kwargs.get("model"))
     impacts = _llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
@@ -452,7 +464,7 @@ async def openai_async_responses_wrapper_stream(  # type: ignore[misc]
     async for event in stream:
         if event.type == "response.completed":
             request_latency = time.perf_counter() - timer_start
-            model_name = event.response.model
+            model_name = _registered_model_name(event.response.model, kwargs.get("model"))
             output_token_count = event.response.usage.output_tokens
             impacts = _llm_impacts(
                 provider=PROVIDER,
@@ -490,7 +502,7 @@ def openai_responses_parse_wrapper(
     timer_start = time.perf_counter()
     response = wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
-    model_name = response.model
+    model_name = _registered_model_name(response.model, kwargs.get("model"))
     impacts = _llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
@@ -527,7 +539,7 @@ async def openai_async_responses_parse_wrapper(
     timer_start = time.perf_counter()
     response = await wrapped(*args, **kwargs)
     request_latency = time.perf_counter() - timer_start
-    model_name = response.model
+    model_name = _registered_model_name(response.model, kwargs.get("model"))
     impacts = _llm_impacts(
         provider=PROVIDER,
         model_name=model_name,
