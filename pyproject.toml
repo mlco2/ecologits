@@ -44,7 +44,7 @@ dependencies = [
 
 [project.optional-dependencies]
 openai = ["openai>=2.0.0,<4.0.0"]
-mistralai = ["mistralai>=1.5.0,<2.0.0"]
+mistralai = ["mistralai>=2.0.0,<4.0.0"]
 anthropic = ["anthropic>=1.0.0,<3.0.0"]
 cohere = ["cohere>=5.13.12,<8.0.0"]
 huggingface-hub = [

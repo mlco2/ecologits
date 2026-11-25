@@ -2,12 +2,12 @@ import os
 import threading
 
 import litellm
-import mistralai
 import pytest
 from anthropic import Anthropic, AsyncAnthropic
 from cohere import AsyncClient, Client
 from google import genai
 from huggingface_hub import InferenceClient
+from mistralai.client import Mistral
 from openai import AsyncOpenAI, OpenAI
 from pydantic import BaseModel
 
@@ -308,7 +308,7 @@ async def test_anthropic_async_stream_chat(no_global_init):
 @pytest.mark.default_cassette(MISTRALAI_ASYNC_CHAT)
 @pytest.mark.asyncio
 async def test_mistralai_async_chat(no_global_init):
-    client = mistralai.Mistral(api_key=os.environ["MISTRAL_API_KEY"])
+    client = Mistral(api_key=os.environ["MISTRAL_API_KEY"])
     async with EcoLogits.track_impacts(providers="mistralai") as tracker:
         response = await client.chat.complete_async(
             messages=[{"role": "user", "content": "Hello World!"}], model="ministral-3b-2512"
@@ -320,7 +320,7 @@ async def test_mistralai_async_chat(no_global_init):
 @pytest.mark.vcr(allow_playback_repeats=True)
 @pytest.mark.default_cassette(MISTRALAI_STREAM_CHAT)
 def test_mistralai_stream_chat(no_global_init):
-    client = mistralai.Mistral(api_key=os.environ["MISTRAL_API_KEY"])
+    client = Mistral(api_key=os.environ["MISTRAL_API_KEY"])
     outside = list(client.chat.stream(
         messages=[{"role": "user", "content": "Hello World!"}], model="ministral-3b-2512"
     ))

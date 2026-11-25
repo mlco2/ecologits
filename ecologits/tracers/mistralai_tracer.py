@@ -2,10 +2,10 @@ import time
 from collections.abc import AsyncGenerator, Iterable, Iterator
 from typing import Any, Callable
 
-from mistralai import Mistral
-from mistralai.models import ChatCompletionResponse as _ChatCompletionResponse
-from mistralai.models import CompletionChunk as _CompletionChunk
-from mistralai.models import CompletionEvent
+from mistralai.client.chat import Chat
+from mistralai.client.models import ChatCompletionResponse as _ChatCompletionResponse
+from mistralai.client.models import CompletionChunk as _CompletionChunk
+from mistralai.client.models import CompletionEvent
 from wrapt import wrap_function_wrapper  # type: ignore[import-untyped]
 
 from ecologits._ecologits import EcoLogits
@@ -17,21 +17,21 @@ PROVIDER = "mistralai"
 
 class ChatCompletionResponse(_ChatCompletionResponse):
     """
-    Wrapper of `mistralai.models.ChatCompletionResponse` with `ImpactsOutput`
+    Wrapper of `mistralai.client.models.ChatCompletionResponse` with `ImpactsOutput`
     """
     impacts: ImpactsOutput
 
 
 class CompletionChunk(_CompletionChunk):
     """
-    Wrapper of `mistralai.models.CompletionChunk` with `ImpactsOutput`
+    Wrapper of `mistralai.client.models.CompletionChunk` with `ImpactsOutput`
     """
     impacts: ImpactsOutput
 
 
 
 def mistralai_chat_wrapper(
-    wrapped: Callable, instance: Mistral, args: Any, kwargs: Any  # noqa: ARG001
+    wrapped: Callable, instance: Chat, args: Any, kwargs: Any  # noqa: ARG001
 ) -> ChatCompletionResponse:
     """
     Function that wraps a MistralAI answer with computed impacts
@@ -77,7 +77,7 @@ def mistralai_chat_wrapper(
 
 
 def mistralai_chat_wrapper_stream(
-    wrapped: Callable, instance: Mistral, args: Any, kwargs: Any  # noqa: ARG001
+    wrapped: Callable, instance: Chat, args: Any, kwargs: Any  # noqa: ARG001
 ) -> Iterable[CompletionEvent]:
     """
     Function that wraps a MistralAI answer with computed impacts in streaming mode
@@ -142,7 +142,7 @@ def _stream_generator(
 
 async def mistralai_async_chat_wrapper(
     wrapped: Callable,
-    instance: Mistral,  # noqa: ARG001
+    instance: Chat,  # noqa: ARG001
     args: Any,
     kwargs: Any,
 ) -> ChatCompletionResponse:
@@ -231,7 +231,7 @@ async def _generator(
 
 async def mistralai_async_chat_wrapper_stream(
     wrapped: Callable,
-    instance: Mistral,  # noqa: ARG001
+    instance: Chat,  # noqa: ARG001
     args: Any,
     kwargs: Any,
 ) -> AsyncGenerator[CompletionEvent, None]:
@@ -262,22 +262,22 @@ class MistralAIInstrumentor:
     def __init__(self) -> None:
         self.wrapped_methods = [
             {
-                "module": "mistralai.chat",
+                "module": "mistralai.client.chat",
                 "name": "Chat.complete",
                 "wrapper": mistralai_chat_wrapper,
             },
             {
-                "module": "mistralai.chat",
+                "module": "mistralai.client.chat",
                 "name": "Chat.complete_async",
                 "wrapper": mistralai_async_chat_wrapper,
             },
             {
-                "module": "mistralai.chat",
+                "module": "mistralai.client.chat",
                 "name": "Chat.stream",
                 "wrapper": mistralai_chat_wrapper_stream,
             },
             {
-                "module": "mistralai.chat",
+                "module": "mistralai.client.chat",
                 "name": "Chat.stream_async",
                 "wrapper": mistralai_async_chat_wrapper_stream,
             },

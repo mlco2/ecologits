@@ -15,13 +15,11 @@ Official links:
 
 ## Installation
 
-To install EcoLogits along with all necessary dependencies for compatibility with the Mistral AI client, please use the `mistralai` extra-dependency option as follows:
+EcoLogits supports versions 2.x and 3.x of the Mistral AI Python SDK. Install the `mistralai` extra to get a compatible version.
 
 ```shell
-pip install ecologits[mistralai]
+pip install "ecologits[mistralai]"
 ```
-
-This installation command ensures that EcoLogits is set up with the specific libraries required to interface seamlessly with Mistral AI's Python client.
 
 
 ## Chat Completions
@@ -34,7 +32,7 @@ Integrating EcoLogits with your applications does not alter the standard outputs
 
     ``` { .python .annotate }
     from ecologits import EcoLogits
-    from mistralai import Mistral
+    from mistralai.client import Mistral
     
     # Initialize EcoLogits
     EcoLogits.init(providers=["mistralai"])
@@ -57,7 +55,7 @@ Integrating EcoLogits with your applications does not alter the standard outputs
     ```python
     import asyncio
     from ecologits import EcoLogits
-    from mistralai import Mistral
+    from mistralai.client import Mistral
     
     # Initialize EcoLogits
     EcoLogits.init(providers=["mistralai"])
@@ -88,7 +86,7 @@ Integrating EcoLogits with your applications does not alter the standard outputs
 
     ```python
     from ecologits import EcoLogits
-    from mistralai import Mistral
+    from mistralai.client import Mistral
     
     # Initialize EcoLogits
     EcoLogits.init(providers=["mistralai"])
@@ -112,7 +110,7 @@ Integrating EcoLogits with your applications does not alter the standard outputs
     ```python
     import asyncio
     from ecologits import EcoLogits
-    from mistralai import Mistral
+    from mistralai.client import Mistral
     
     # Initialize EcoLogits
     EcoLogits.init(providers=["mistralai"])
