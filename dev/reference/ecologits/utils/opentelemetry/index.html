@@ -1,4 +1,6 @@
 
+
+
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
@@ -11,6 +13,7 @@
       
       
         <link rel="canonical" href="https://ecologits.ai/latest/reference/ecologits/utils/opentelemetry/">
+      
       
       
         <link rel="describedby" href="../../../../llms.txt">
@@ -27,7 +30,7 @@
       
       
       <link rel="icon" href="../../../../assets/leaf.svg">
-      <meta name="generator" content="zensical-0.1.1">
+      <meta name="generator" content="zensical-0.1.3">
     
     
       
@@ -38,12 +41,13 @@
       
         
       
-      <link rel="stylesheet" href="../../../../assets/stylesheets/modern/main.ebb7f775.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/modern/main.e2cf241e.min.css">
       
         
           
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/modern/palette.b60ce83d.min.css">
+      
       
       
 
@@ -3240,11 +3244,11 @@
 
                   <details class="mkdocstrings-source">
                     <summary>Source code in <code>ecologits/utils/opentelemetry.py</code></summary>
-                    <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-21">21</a></span>
-<span class="normal"><a href="#__codelineno-0-22">22</a></span>
-<span class="normal"><a href="#__codelineno-0-23">23</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">user_labels</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">user_labels</span> <span class="o">=</span> <span class="n">user_labels</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="o">=</span> <span class="kc">None</span>
+                    <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#ecologits.utils.opentelemetry.OpenTelemetryLabels--source--__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#ecologits.utils.opentelemetry.OpenTelemetryLabels--source--__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#ecologits.utils.opentelemetry.OpenTelemetryLabels--source--__codelineno-0-23">23</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="ecologits.utils.opentelemetry.OpenTelemetryLabels--source--__span-0-21"><a id="ecologits.utils.opentelemetry.OpenTelemetryLabels--source--__codelineno-0-21" name="ecologits.utils.opentelemetry.OpenTelemetryLabels--source--__codelineno-0-21"></a><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">user_labels</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="ecologits.utils.opentelemetry.OpenTelemetryLabels--source--__span-0-22"><a id="ecologits.utils.opentelemetry.OpenTelemetryLabels--source--__codelineno-0-22" name="ecologits.utils.opentelemetry.OpenTelemetryLabels--source--__codelineno-0-22"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">user_labels</span> <span class="o">=</span> <span class="n">user_labels</span>
+</span><span id="ecologits.utils.opentelemetry.OpenTelemetryLabels--source--__span-0-23"><a id="ecologits.utils.opentelemetry.OpenTelemetryLabels--source--__codelineno-0-23" name="ecologits.utils.opentelemetry.OpenTelemetryLabels--source--__codelineno-0-23"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="o">=</span> <span class="kc">None</span>
 </span></code></pre></div></td></tr></table></div>
                   </details>
 
@@ -3286,11 +3290,11 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>ecologits/utils/opentelemetry.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-66">66</a></span>
-<span class="normal"><a href="#__codelineno-0-67">67</a></span>
-<span class="normal"><a href="#__codelineno-0-68">68</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_current_labels</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
-</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Get labels from current context.&quot;&quot;&quot;</span>
-</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68"></a>    <span class="k">return</span> <span class="n">context</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="n">_LABELS_KEY</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{}</span>
+              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#ecologits.utils.opentelemetry.get_current_labels--source--__codelineno-0-66">66</a></span>
+<span class="normal"><a href="#ecologits.utils.opentelemetry.get_current_labels--source--__codelineno-0-67">67</a></span>
+<span class="normal"><a href="#ecologits.utils.opentelemetry.get_current_labels--source--__codelineno-0-68">68</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="ecologits.utils.opentelemetry.get_current_labels--source--__span-0-66"><a id="ecologits.utils.opentelemetry.get_current_labels--source--__codelineno-0-66" name="ecologits.utils.opentelemetry.get_current_labels--source--__codelineno-0-66"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_current_labels</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+</span><span id="ecologits.utils.opentelemetry.get_current_labels--source--__span-0-67"><a id="ecologits.utils.opentelemetry.get_current_labels--source--__codelineno-0-67" name="ecologits.utils.opentelemetry.get_current_labels--source--__codelineno-0-67"></a><span class="w">    </span><span class="sd">"""Get labels from current context."""</span>
+</span><span id="ecologits.utils.opentelemetry.get_current_labels--source--__span-0-68"><a id="ecologits.utils.opentelemetry.get_current_labels--source--__codelineno-0-68" name="ecologits.utils.opentelemetry.get_current_labels--source--__codelineno-0-68"></a>    <span class="k">return</span> <span class="n">context</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="n">_LABELS_KEY</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{}</span>
 </span></code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -3449,7 +3453,8 @@
       <script id="__config" type="application/json">{"annotate":null,"base":"../../../..","features":["announce.dismiss","content.action.copy","content.action.edit","content.action.view","content.code.annotate","content.code.copy","content.code.select","content.footnote.tooltips","content.tabs.link","content.tooltips","navigation.instant","navigation.instant.prefetch","navigation.instant.preview","navigation.instant.progress","navigation.tracking","navigation.tabs","navigation.tabs.sticky","navigation.sections","navigation.path","navigation.top","navigation.footer","search.highlight","toc.follow"],"redirect":null,"search":"../../../../assets/javascripts/workers/search.719e0d91.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":{"alias":true,"default":"latest","provider":"mike"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.3cb411a8.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.9e76c64c.min.js"></script>
+      
       
         <script src="../../../../js/katex.js"></script>
       

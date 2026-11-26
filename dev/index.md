@@ -10,7 +10,7 @@ Made with 💚 by [CodeCarbon](<https://codecarbon.io/>) non-profit.
 
 **EcoLogits** is a suite of **open source tools** for estimating the **environmental footprint of generative AI models at inference**. Based on **life-cycle assessment principles**, the project raises awareness about the direct environmental impacts of AI while empowering developers and organizations to build **more sustainable AI-powered applications**.
 
-- **Open &amp; transparent** – Code, methodology, and data are openly accessible.
+- **Open & transparent** – Code, methodology, and data are openly accessible.
 - **Ease of use** – Emphasizes on seamless integration and user experience.
 - **Community-driven** – Continuously built and improved collaboratively.
 

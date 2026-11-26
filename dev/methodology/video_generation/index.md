@@ -4,7 +4,7 @@
 
 The environmental impacts of a video generation request, \\(I\_{\\text{request}}\\), can be divided into two components: the usage impacts, \\(I\_{\\text{request}}^{\\text{u}}\\), which account for energy consumption, and the embodied impacts, \\(I\_{\\text{request}}^{\\text{e}}\\), which account for resource extraction, hardware manufacturing, and transportation:
 
-\\\[ \\begin{equation\*} \\begin{split} I\_{\\text{request}} &amp;= I\_{\\text{request}}^{\\text{u}} + I\_{\\text{request}}^{\\text{e}} \\\\ &amp;= E\_{\\text{request}} \\times F\_{\\text{em}} + \\frac{\\Delta T}{\\Delta L} \\times I\_{\\text{server}}^{\\text{e}}, \\end{split} \\end{equation\*} \\\]
+\\\[ \\begin{equation\*} \\begin{split} I\_{\\text{request}} &= I\_{\\text{request}}^{\\text{u}} + I\_{\\text{request}}^{\\text{e}} \\\\ &= E\_{\\text{request}} \\times F\_{\\text{em}} + \\frac{\\Delta T}{\\Delta L} \\times I\_{\\text{server}}^{\\text{e}}, \\end{split} \\end{equation\*} \\\]
 
 where \\(E\_{\\text{request}}\\) is the electricity consumption of the hardware used for the request, \\(F\_{\\text{em}}\\) is the impact factor of the electricity mix, \\(I\_{\\text{server}}^{\\text{e}}\\) is the embodied impact of the server and its accelerators, \\(\\Delta T\\) is the generation latency, and \\(\\Delta L\\) is the hardware lifetime.
 

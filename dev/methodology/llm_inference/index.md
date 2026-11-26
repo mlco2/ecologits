@@ -4,7 +4,7 @@
 
 The environmental impacts of a request, \\(I\_{\\text{request}}\\) to a Large Language Model (LLM) can be divided into two components: the usage impacts, \\(I\_{\\text{request}}^{\\text{u}}\\), which account for energy consumption, and the embodied impacts, \\(I\_{\\text{request}}^{\\text{e}}\\), which account for resource extraction, hardware manufacturing, and transportation:
 
-\\\[ \\begin{equation\*} \\begin{split} I\_{\\text{request}}&amp;=I\_{\\text{request}}^{\\text{u}} + I\_{\\text{request}}^{\\text{e}} \\\\ &amp;= E\_{\\text{request}} \\times F\_{\\text{em}}+\\frac{\\Delta T}{\\Delta L} \\times I\_{\\text{server}}^{\\text{e}}, \\end{split} \\end{equation\*} \\\]
+\\\[ \\begin{equation\*} \\begin{split} I\_{\\text{request}}&=I\_{\\text{request}}^{\\text{u}} + I\_{\\text{request}}^{\\text{e}} \\\\ &= E\_{\\text{request}} \\times F\_{\\text{em}}+\\frac{\\Delta T}{\\Delta L} \\times I\_{\\text{server}}^{\\text{e}}, \\end{split} \\end{equation\*} \\\]
 
 where \\(E\_{\\text{request}}\\) represents the energy consumption of the IT resources associated with the request. \\(F\_{\\text{em}}\\) denotes the impact factor of electricity consumption, which varies depending on the location and time. Furthermore, \\(I\_{\\text{server}}^{\\text{e}}\\) captures the embodied impacts of the IT resources, and \\(\\frac{\\Delta T}{\\Delta L}\\) signifies the hardware utilization factor, calculated as the computation time divided by the lifetime of the hardware.
 

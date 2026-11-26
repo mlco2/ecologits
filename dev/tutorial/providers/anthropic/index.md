@@ -15,13 +15,11 @@ Official links:
 
 ## Installation
 
-To install EcoLogits along with all necessary dependencies for compatibility with the Anthropic client, please use the `anthropic` extra-dependency option as follows:
+EcoLogits supports versions 0.x (from 0.45.2), 1.x, and 2.x of the Anthropic Python SDK. Install the `anthropic` extra to get a compatible version.
 
 ```shell
-pip install ecologits[anthropic]
+pip install "ecologits[anthropic]"
 ```
-
-This installation command ensures that EcoLogits is set up with the specific libraries required to interface seamlessly with Anthropic's Python client.
 
 ## Chat Completions
 

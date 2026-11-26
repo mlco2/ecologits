@@ -15,13 +15,13 @@ Official links:
 
 ## Installation
 
-To install EcoLogits along with all necessary dependencies for compatibility with the Mistral AI client, please use the `mistralai` extra-dependency option as follows:
+EcoLogits supports versions 1.x (from 1.5.0), 2.x, and 3.x of the Mistral AI Python SDK. Install the `mistralai` extra to get a compatible version.
+
+Mistral SDK 1.x emits a deprecation warning when EcoLogits initializes the integration. EcoLogits 0.13 will remove support for Mistral SDK 1.x. The examples below use `from mistralai.client import Mistral` for SDK 2.x and 3.x. With SDK 1.x, use `from mistralai import Mistral`.
 
 ```shell
-pip install ecologits[mistralai]
+pip install "ecologits[mistralai]"
 ```
-
-This installation command ensures that EcoLogits is set up with the specific libraries required to interface seamlessly with Mistral AI's Python client.
 
 ## Chat Completions
 
@@ -31,7 +31,7 @@ Integrating EcoLogits with your applications does not alter the standard outputs
 
 ```python
 from ecologits import EcoLogits
-from mistralai import Mistral
+from mistralai.client import Mistral
 
 # Initialize EcoLogits
 EcoLogits.init(providers=["mistralai"])
@@ -52,7 +52,7 @@ print(response.impacts)
 ```python
 import asyncio
 from ecologits import EcoLogits
-from mistralai import Mistral
+from mistralai.client import Mistral
 
 # Initialize EcoLogits
 EcoLogits.init(providers=["mistralai"])
@@ -80,7 +80,7 @@ asyncio.run(main())
 
 ```python
 from ecologits import EcoLogits
-from mistralai import Mistral
+from mistralai.client import Mistral
 
 # Initialize EcoLogits
 EcoLogits.init(providers=["mistralai"])
@@ -102,7 +102,7 @@ for chunk in stream:
 ```python
 import asyncio
 from ecologits import EcoLogits
-from mistralai import Mistral
+from mistralai.client import Mistral
 
 # Initialize EcoLogits
 EcoLogits.init(providers=["mistralai"])

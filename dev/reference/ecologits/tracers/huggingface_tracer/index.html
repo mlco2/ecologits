@@ -1,4 +1,6 @@
 
+
+
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
@@ -11,6 +13,7 @@
       
       
         <link rel="canonical" href="https://ecologits.ai/latest/reference/ecologits/tracers/huggingface_tracer/">
+      
       
       
         <link rel="describedby" href="../../../../llms.txt">
@@ -27,7 +30,7 @@
       
       
       <link rel="icon" href="../../../../assets/leaf.svg">
-      <meta name="generator" content="zensical-0.1.1">
+      <meta name="generator" content="zensical-0.1.3">
     
     
       
@@ -38,12 +41,13 @@
       
         
       
-      <link rel="stylesheet" href="../../../../assets/stylesheets/modern/main.ebb7f775.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/modern/main.e2cf241e.min.css">
       
         
           
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/modern/palette.b60ce83d.min.css">
+      
       
       
 
@@ -3408,31 +3412,31 @@
 
                   <details class="mkdocstrings-source">
                     <summary>Source code in <code>ecologits/tracers/huggingface_tracer.py</code></summary>
-                    <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-292">292</a></span>
-<span class="normal"><a href="#__codelineno-0-293">293</a></span>
-<span class="normal"><a href="#__codelineno-0-294">294</a></span>
-<span class="normal"><a href="#__codelineno-0-295">295</a></span>
-<span class="normal"><a href="#__codelineno-0-296">296</a></span>
-<span class="normal"><a href="#__codelineno-0-297">297</a></span>
-<span class="normal"><a href="#__codelineno-0-298">298</a></span>
-<span class="normal"><a href="#__codelineno-0-299">299</a></span>
-<span class="normal"><a href="#__codelineno-0-300">300</a></span>
-<span class="normal"><a href="#__codelineno-0-301">301</a></span>
-<span class="normal"><a href="#__codelineno-0-302">302</a></span>
-<span class="normal"><a href="#__codelineno-0-303">303</a></span>
-<span class="normal"><a href="#__codelineno-0-304">304</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-292"><a id="__codelineno-0-292" name="__codelineno-0-292"></a><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="__span-0-293"><a id="__codelineno-0-293" name="__codelineno-0-293"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">wrapped_methods</span> <span class="o">=</span> <span class="p">[</span>
-</span><span id="__span-0-294"><a id="__codelineno-0-294" name="__codelineno-0-294"></a>        <span class="p">{</span>
-</span><span id="__span-0-295"><a id="__codelineno-0-295" name="__codelineno-0-295"></a>            <span class="s2">&quot;module&quot;</span><span class="p">:</span> <span class="s2">&quot;huggingface_hub.inference._client&quot;</span><span class="p">,</span>
-</span><span id="__span-0-296"><a id="__codelineno-0-296" name="__codelineno-0-296"></a>            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;InferenceClient.chat_completion&quot;</span><span class="p">,</span>
-</span><span id="__span-0-297"><a id="__codelineno-0-297" name="__codelineno-0-297"></a>            <span class="s2">&quot;wrapper&quot;</span><span class="p">:</span> <span class="n">huggingface_chat_wrapper</span><span class="p">,</span>
-</span><span id="__span-0-298"><a id="__codelineno-0-298" name="__codelineno-0-298"></a>        <span class="p">},</span>
-</span><span id="__span-0-299"><a id="__codelineno-0-299" name="__codelineno-0-299"></a>        <span class="p">{</span>
-</span><span id="__span-0-300"><a id="__codelineno-0-300" name="__codelineno-0-300"></a>            <span class="s2">&quot;module&quot;</span><span class="p">:</span> <span class="s2">&quot;huggingface_hub.inference._generated._async_client&quot;</span><span class="p">,</span>
-</span><span id="__span-0-301"><a id="__codelineno-0-301" name="__codelineno-0-301"></a>            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;AsyncInferenceClient.chat_completion&quot;</span><span class="p">,</span>
-</span><span id="__span-0-302"><a id="__codelineno-0-302" name="__codelineno-0-302"></a>            <span class="s2">&quot;wrapper&quot;</span><span class="p">:</span> <span class="n">huggingface_async_chat_wrapper</span><span class="p">,</span>
-</span><span id="__span-0-303"><a id="__codelineno-0-303" name="__codelineno-0-303"></a>        <span class="p">},</span>
-</span><span id="__span-0-304"><a id="__codelineno-0-304" name="__codelineno-0-304"></a>    <span class="p">]</span>
+                    <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-292">292</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-293">293</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-294">294</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-295">295</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-296">296</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-297">297</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-298">298</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-299">299</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-300">300</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-301">301</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-302">302</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-303">303</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-304">304</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__span-0-292"><a id="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-292" name="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-292"></a><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__span-0-293"><a id="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-293" name="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-293"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">wrapped_methods</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__span-0-294"><a id="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-294" name="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-294"></a>        <span class="p">{</span>
+</span><span id="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__span-0-295"><a id="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-295" name="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-295"></a>            <span class="s2">"module"</span><span class="p">:</span> <span class="s2">"huggingface_hub.inference._client"</span><span class="p">,</span>
+</span><span id="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__span-0-296"><a id="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-296" name="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-296"></a>            <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"InferenceClient.chat_completion"</span><span class="p">,</span>
+</span><span id="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__span-0-297"><a id="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-297" name="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-297"></a>            <span class="s2">"wrapper"</span><span class="p">:</span> <span class="n">huggingface_chat_wrapper</span><span class="p">,</span>
+</span><span id="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__span-0-298"><a id="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-298" name="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-298"></a>        <span class="p">},</span>
+</span><span id="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__span-0-299"><a id="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-299" name="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-299"></a>        <span class="p">{</span>
+</span><span id="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__span-0-300"><a id="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-300" name="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-300"></a>            <span class="s2">"module"</span><span class="p">:</span> <span class="s2">"huggingface_hub.inference._generated._async_client"</span><span class="p">,</span>
+</span><span id="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__span-0-301"><a id="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-301" name="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-301"></a>            <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"AsyncInferenceClient.chat_completion"</span><span class="p">,</span>
+</span><span id="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__span-0-302"><a id="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-302" name="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-302"></a>            <span class="s2">"wrapper"</span><span class="p">:</span> <span class="n">huggingface_async_chat_wrapper</span><span class="p">,</span>
+</span><span id="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__span-0-303"><a id="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-303" name="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-303"></a>        <span class="p">},</span>
+</span><span id="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__span-0-304"><a id="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-304" name="ecologits.tracers.huggingface_tracer.HuggingfaceInstrumentor--source--__codelineno-0-304"></a>    <span class="p">]</span>
 </span></code></pre></div></td></tr></table></div>
                   </details>
 
@@ -3576,55 +3580,55 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>ecologits/tracers/huggingface_tracer.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-51">51</a></span>
-<span class="normal"><a href="#__codelineno-0-52">52</a></span>
-<span class="normal"><a href="#__codelineno-0-53">53</a></span>
-<span class="normal"><a href="#__codelineno-0-54">54</a></span>
-<span class="normal"><a href="#__codelineno-0-55">55</a></span>
-<span class="normal"><a href="#__codelineno-0-56">56</a></span>
-<span class="normal"><a href="#__codelineno-0-57">57</a></span>
-<span class="normal"><a href="#__codelineno-0-58">58</a></span>
-<span class="normal"><a href="#__codelineno-0-59">59</a></span>
-<span class="normal"><a href="#__codelineno-0-60">60</a></span>
-<span class="normal"><a href="#__codelineno-0-61">61</a></span>
-<span class="normal"><a href="#__codelineno-0-62">62</a></span>
-<span class="normal"><a href="#__codelineno-0-63">63</a></span>
-<span class="normal"><a href="#__codelineno-0-64">64</a></span>
-<span class="normal"><a href="#__codelineno-0-65">65</a></span>
-<span class="normal"><a href="#__codelineno-0-66">66</a></span>
-<span class="normal"><a href="#__codelineno-0-67">67</a></span>
-<span class="normal"><a href="#__codelineno-0-68">68</a></span>
-<span class="normal"><a href="#__codelineno-0-69">69</a></span>
-<span class="normal"><a href="#__codelineno-0-70">70</a></span>
-<span class="normal"><a href="#__codelineno-0-71">71</a></span>
-<span class="normal"><a href="#__codelineno-0-72">72</a></span>
-<span class="normal"><a href="#__codelineno-0-73">73</a></span>
-<span class="normal"><a href="#__codelineno-0-74">74</a></span>
-<span class="normal"><a href="#__codelineno-0-75">75</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="k">def</span><span class="w"> </span><span class="nf">huggingface_chat_wrapper</span><span class="p">(</span>
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52"></a>    <span class="n">wrapped</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53"></a>    <span class="n">instance</span><span class="p">:</span> <span class="n">InferenceClient</span><span class="p">,</span>
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54"></a>    <span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55"></a>    <span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">ChatCompletionOutput</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">ChatCompletionStreamOutput</span><span class="p">]]:</span>
-</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sd">    Function that wraps a HuggingFace Hub answer with computed impacts</span>
-</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59"></a>
-</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">    Args:</span>
-</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="sd">        wrapped: Callable that returns the LLM response</span>
-</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="sd">        instance: Never used - for compatibility with `wrapt`</span>
-</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="sd">        args: Arguments of the callable</span>
-</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="sd">        kwargs: Keyword arguments of the callable</span>
-</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65"></a>
-</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="sd">    Returns:</span>
-</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="sd">        A wrapped `ChatCompletionOutput` or `Iterable[ChatCompletionStreamOutput]` with impacts</span>
-</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68"></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_tracking_enabled</span><span class="p">(</span><span class="n">PROVIDER</span><span class="p">):</span>
-</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70"></a>        <span class="k">return</span> <span class="n">wrapped</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71"></a>    <span class="n">trackers</span> <span class="o">=</span> <span class="n">get_active_trackers</span><span class="p">(</span><span class="n">PROVIDER</span><span class="p">)</span>
-</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72"></a>    <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;stream&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
-</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73"></a>        <span class="k">return</span> <span class="n">huggingface_chat_wrapper_stream</span><span class="p">(</span><span class="n">wrapped</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">trackers</span><span class="p">)</span>
-</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74"></a>    <span class="k">else</span><span class="p">:</span>
-</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75"></a>        <span class="k">return</span> <span class="n">huggingface_chat_wrapper_non_stream</span><span class="p">(</span><span class="n">wrapped</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">trackers</span><span class="p">)</span>
+              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-51">51</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-52">52</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-53">53</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-54">54</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-55">55</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-56">56</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-57">57</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-58">58</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-59">59</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-60">60</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-61">61</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-62">62</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-63">63</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-64">64</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-65">65</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-66">66</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-67">67</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-68">68</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-69">69</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-70">70</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-71">71</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-72">72</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-73">73</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-74">74</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-75">75</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__span-0-51"><a id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-51" name="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-51"></a><span class="k">def</span><span class="w"> </span><span class="nf">huggingface_chat_wrapper</span><span class="p">(</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__span-0-52"><a id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-52" name="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-52"></a>    <span class="n">wrapped</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__span-0-53"><a id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-53" name="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-53"></a>    <span class="n">instance</span><span class="p">:</span> <span class="n">InferenceClient</span><span class="p">,</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__span-0-54"><a id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-54" name="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-54"></a>    <span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__span-0-55"><a id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-55" name="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-55"></a>    <span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__span-0-56"><a id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-56" name="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-56"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">ChatCompletionOutput</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">ChatCompletionStreamOutput</span><span class="p">]]:</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__span-0-57"><a id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-57" name="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-57"></a><span class="w">    </span><span class="sd">"""</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__span-0-58"><a id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-58" name="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-58"></a><span class="sd">    Function that wraps a HuggingFace Hub answer with computed impacts</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__span-0-59"><a id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-59" name="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-59"></a>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__span-0-60"><a id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-60" name="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-60"></a><span class="sd">    Args:</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__span-0-61"><a id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-61" name="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-61"></a><span class="sd">        wrapped: Callable that returns the LLM response</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__span-0-62"><a id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-62" name="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-62"></a><span class="sd">        instance: Never used - for compatibility with `wrapt`</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__span-0-63"><a id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-63" name="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-63"></a><span class="sd">        args: Arguments of the callable</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__span-0-64"><a id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-64" name="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-64"></a><span class="sd">        kwargs: Keyword arguments of the callable</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__span-0-65"><a id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-65" name="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-65"></a>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__span-0-66"><a id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-66" name="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-66"></a><span class="sd">    Returns:</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__span-0-67"><a id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-67" name="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-67"></a><span class="sd">        A wrapped `ChatCompletionOutput` or `Iterable[ChatCompletionStreamOutput]` with impacts</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__span-0-68"><a id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-68" name="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-68"></a><span class="sd">    """</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__span-0-69"><a id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-69" name="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-69"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_tracking_enabled</span><span class="p">(</span><span class="n">PROVIDER</span><span class="p">):</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__span-0-70"><a id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-70" name="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-70"></a>        <span class="k">return</span> <span class="n">wrapped</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__span-0-71"><a id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-71" name="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-71"></a>    <span class="n">trackers</span> <span class="o">=</span> <span class="n">get_active_trackers</span><span class="p">(</span><span class="n">PROVIDER</span><span class="p">)</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__span-0-72"><a id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-72" name="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-72"></a>    <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"stream"</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__span-0-73"><a id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-73" name="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-73"></a>        <span class="k">return</span> <span class="n">huggingface_chat_wrapper_stream</span><span class="p">(</span><span class="n">wrapped</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">trackers</span><span class="p">)</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__span-0-74"><a id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-74" name="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-74"></a>    <span class="k">else</span><span class="p">:</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__span-0-75"><a id="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-75" name="ecologits.tracers.huggingface_tracer.huggingface_chat_wrapper--source--__codelineno-0-75"></a>        <span class="k">return</span> <span class="n">huggingface_chat_wrapper_non_stream</span><span class="p">(</span><span class="n">wrapped</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">trackers</span><span class="p">)</span>
 </span></code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -3753,55 +3757,55 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>ecologits/tracers/huggingface_tracer.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-169">169</a></span>
-<span class="normal"><a href="#__codelineno-0-170">170</a></span>
-<span class="normal"><a href="#__codelineno-0-171">171</a></span>
-<span class="normal"><a href="#__codelineno-0-172">172</a></span>
-<span class="normal"><a href="#__codelineno-0-173">173</a></span>
-<span class="normal"><a href="#__codelineno-0-174">174</a></span>
-<span class="normal"><a href="#__codelineno-0-175">175</a></span>
-<span class="normal"><a href="#__codelineno-0-176">176</a></span>
-<span class="normal"><a href="#__codelineno-0-177">177</a></span>
-<span class="normal"><a href="#__codelineno-0-178">178</a></span>
-<span class="normal"><a href="#__codelineno-0-179">179</a></span>
-<span class="normal"><a href="#__codelineno-0-180">180</a></span>
-<span class="normal"><a href="#__codelineno-0-181">181</a></span>
-<span class="normal"><a href="#__codelineno-0-182">182</a></span>
-<span class="normal"><a href="#__codelineno-0-183">183</a></span>
-<span class="normal"><a href="#__codelineno-0-184">184</a></span>
-<span class="normal"><a href="#__codelineno-0-185">185</a></span>
-<span class="normal"><a href="#__codelineno-0-186">186</a></span>
-<span class="normal"><a href="#__codelineno-0-187">187</a></span>
-<span class="normal"><a href="#__codelineno-0-188">188</a></span>
-<span class="normal"><a href="#__codelineno-0-189">189</a></span>
-<span class="normal"><a href="#__codelineno-0-190">190</a></span>
-<span class="normal"><a href="#__codelineno-0-191">191</a></span>
-<span class="normal"><a href="#__codelineno-0-192">192</a></span>
-<span class="normal"><a href="#__codelineno-0-193">193</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-169"><a id="__codelineno-0-169" name="__codelineno-0-169"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">huggingface_async_chat_wrapper</span><span class="p">(</span>
-</span><span id="__span-0-170"><a id="__codelineno-0-170" name="__codelineno-0-170"></a>    <span class="n">wrapped</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
-</span><span id="__span-0-171"><a id="__codelineno-0-171" name="__codelineno-0-171"></a>    <span class="n">instance</span><span class="p">:</span> <span class="n">AsyncInferenceClient</span><span class="p">,</span>
-</span><span id="__span-0-172"><a id="__codelineno-0-172" name="__codelineno-0-172"></a>    <span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-</span><span id="__span-0-173"><a id="__codelineno-0-173" name="__codelineno-0-173"></a>    <span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
-</span><span id="__span-0-174"><a id="__codelineno-0-174" name="__codelineno-0-174"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">ChatCompletionOutput</span><span class="p">,</span> <span class="n">AsyncIterable</span><span class="p">[</span><span class="n">ChatCompletionStreamOutput</span><span class="p">]]:</span>
-</span><span id="__span-0-175"><a id="__codelineno-0-175" name="__codelineno-0-175"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="__span-0-176"><a id="__codelineno-0-176" name="__codelineno-0-176"></a><span class="sd">    Function that wraps a HuggingFace Hub answer with computed impacts in async mode</span>
-</span><span id="__span-0-177"><a id="__codelineno-0-177" name="__codelineno-0-177"></a>
-</span><span id="__span-0-178"><a id="__codelineno-0-178" name="__codelineno-0-178"></a><span class="sd">    Args:</span>
-</span><span id="__span-0-179"><a id="__codelineno-0-179" name="__codelineno-0-179"></a><span class="sd">        wrapped: Async callable that returns the LLM response</span>
-</span><span id="__span-0-180"><a id="__codelineno-0-180" name="__codelineno-0-180"></a><span class="sd">        instance: Never used - for compatibility with `wrapt`</span>
-</span><span id="__span-0-181"><a id="__codelineno-0-181" name="__codelineno-0-181"></a><span class="sd">        args: Arguments of the callable</span>
-</span><span id="__span-0-182"><a id="__codelineno-0-182" name="__codelineno-0-182"></a><span class="sd">        kwargs: Keyword arguments of the callable</span>
-</span><span id="__span-0-183"><a id="__codelineno-0-183" name="__codelineno-0-183"></a>
-</span><span id="__span-0-184"><a id="__codelineno-0-184" name="__codelineno-0-184"></a><span class="sd">    Returns:</span>
-</span><span id="__span-0-185"><a id="__codelineno-0-185" name="__codelineno-0-185"></a><span class="sd">        A wrapped `ChatCompletionOutput` or `AsyncIterable[ChatCompletionStreamOutput]]` with impacts</span>
-</span><span id="__span-0-186"><a id="__codelineno-0-186" name="__codelineno-0-186"></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="__span-0-187"><a id="__codelineno-0-187" name="__codelineno-0-187"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_tracking_enabled</span><span class="p">(</span><span class="n">PROVIDER</span><span class="p">):</span>
-</span><span id="__span-0-188"><a id="__codelineno-0-188" name="__codelineno-0-188"></a>        <span class="k">return</span> <span class="k">await</span> <span class="n">wrapped</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-</span><span id="__span-0-189"><a id="__codelineno-0-189" name="__codelineno-0-189"></a>    <span class="n">trackers</span> <span class="o">=</span> <span class="n">get_active_trackers</span><span class="p">(</span><span class="n">PROVIDER</span><span class="p">)</span>
-</span><span id="__span-0-190"><a id="__codelineno-0-190" name="__codelineno-0-190"></a>    <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;stream&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
-</span><span id="__span-0-191"><a id="__codelineno-0-191" name="__codelineno-0-191"></a>        <span class="k">return</span> <span class="n">huggingface_async_chat_wrapper_stream</span><span class="p">(</span><span class="n">wrapped</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">trackers</span><span class="p">)</span>
-</span><span id="__span-0-192"><a id="__codelineno-0-192" name="__codelineno-0-192"></a>    <span class="k">else</span><span class="p">:</span>
-</span><span id="__span-0-193"><a id="__codelineno-0-193" name="__codelineno-0-193"></a>        <span class="k">return</span> <span class="k">await</span> <span class="n">huggingface_async_chat_wrapper_non_stream</span><span class="p">(</span><span class="n">wrapped</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">trackers</span><span class="p">)</span>
+              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-169">169</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-170">170</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-171">171</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-172">172</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-173">173</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-174">174</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-175">175</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-176">176</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-177">177</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-178">178</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-179">179</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-180">180</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-181">181</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-182">182</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-183">183</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-184">184</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-185">185</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-186">186</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-187">187</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-188">188</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-189">189</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-190">190</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-191">191</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-192">192</a></span>
+<span class="normal"><a href="#ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-193">193</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__span-0-169"><a id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-169" name="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-169"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">huggingface_async_chat_wrapper</span><span class="p">(</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__span-0-170"><a id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-170" name="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-170"></a>    <span class="n">wrapped</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__span-0-171"><a id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-171" name="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-171"></a>    <span class="n">instance</span><span class="p">:</span> <span class="n">AsyncInferenceClient</span><span class="p">,</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__span-0-172"><a id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-172" name="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-172"></a>    <span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__span-0-173"><a id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-173" name="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-173"></a>    <span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__span-0-174"><a id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-174" name="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-174"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">ChatCompletionOutput</span><span class="p">,</span> <span class="n">AsyncIterable</span><span class="p">[</span><span class="n">ChatCompletionStreamOutput</span><span class="p">]]:</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__span-0-175"><a id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-175" name="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-175"></a><span class="w">    </span><span class="sd">"""</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__span-0-176"><a id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-176" name="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-176"></a><span class="sd">    Function that wraps a HuggingFace Hub answer with computed impacts in async mode</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__span-0-177"><a id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-177" name="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-177"></a>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__span-0-178"><a id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-178" name="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-178"></a><span class="sd">    Args:</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__span-0-179"><a id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-179" name="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-179"></a><span class="sd">        wrapped: Async callable that returns the LLM response</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__span-0-180"><a id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-180" name="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-180"></a><span class="sd">        instance: Never used - for compatibility with `wrapt`</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__span-0-181"><a id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-181" name="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-181"></a><span class="sd">        args: Arguments of the callable</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__span-0-182"><a id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-182" name="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-182"></a><span class="sd">        kwargs: Keyword arguments of the callable</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__span-0-183"><a id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-183" name="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-183"></a>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__span-0-184"><a id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-184" name="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-184"></a><span class="sd">    Returns:</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__span-0-185"><a id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-185" name="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-185"></a><span class="sd">        A wrapped `ChatCompletionOutput` or `AsyncIterable[ChatCompletionStreamOutput]]` with impacts</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__span-0-186"><a id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-186" name="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-186"></a><span class="sd">    """</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__span-0-187"><a id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-187" name="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-187"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_tracking_enabled</span><span class="p">(</span><span class="n">PROVIDER</span><span class="p">):</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__span-0-188"><a id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-188" name="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-188"></a>        <span class="k">return</span> <span class="k">await</span> <span class="n">wrapped</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__span-0-189"><a id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-189" name="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-189"></a>    <span class="n">trackers</span> <span class="o">=</span> <span class="n">get_active_trackers</span><span class="p">(</span><span class="n">PROVIDER</span><span class="p">)</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__span-0-190"><a id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-190" name="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-190"></a>    <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"stream"</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__span-0-191"><a id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-191" name="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-191"></a>        <span class="k">return</span> <span class="n">huggingface_async_chat_wrapper_stream</span><span class="p">(</span><span class="n">wrapped</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">trackers</span><span class="p">)</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__span-0-192"><a id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-192" name="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-192"></a>    <span class="k">else</span><span class="p">:</span>
+</span><span id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__span-0-193"><a id="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-193" name="ecologits.tracers.huggingface_tracer.huggingface_async_chat_wrapper--source--__codelineno-0-193"></a>        <span class="k">return</span> <span class="k">await</span> <span class="n">huggingface_async_chat_wrapper_non_stream</span><span class="p">(</span><span class="n">wrapped</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">trackers</span><span class="p">)</span>
 </span></code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -3960,7 +3964,8 @@
       <script id="__config" type="application/json">{"annotate":null,"base":"../../../..","features":["announce.dismiss","content.action.copy","content.action.edit","content.action.view","content.code.annotate","content.code.copy","content.code.select","content.footnote.tooltips","content.tabs.link","content.tooltips","navigation.instant","navigation.instant.prefetch","navigation.instant.preview","navigation.instant.progress","navigation.tracking","navigation.tabs","navigation.tabs.sticky","navigation.sections","navigation.path","navigation.top","navigation.footer","search.highlight","toc.follow"],"redirect":null,"search":"../../../../assets/javascripts/workers/search.719e0d91.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":{"alias":true,"default":"latest","provider":"mike"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.3cb411a8.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.9e76c64c.min.js"></script>
+      
       
         <script src="../../../../js/katex.js"></script>
       

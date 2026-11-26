@@ -1,4 +1,6 @@
 
+
+
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
@@ -11,6 +13,7 @@
       
       
         <link rel="canonical" href="https://ecologits.ai/latest/reference/ecologits/tracking/">
+      
       
       
         <link rel="describedby" href="../../../llms.txt">
@@ -27,7 +30,7 @@
       
       
       <link rel="icon" href="../../../assets/leaf.svg">
-      <meta name="generator" content="zensical-0.1.1">
+      <meta name="generator" content="zensical-0.1.3">
     
     
       
@@ -38,12 +41,13 @@
       
         
       
-      <link rel="stylesheet" href="../../../assets/stylesheets/modern/main.ebb7f775.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/modern/main.e2cf241e.min.css">
       
         
           
         
         <link rel="stylesheet" href="../../../assets/stylesheets/modern/palette.b60ce83d.min.css">
+      
       
       
 
@@ -3330,13 +3334,13 @@
 
                   <details class="mkdocstrings-source">
                     <summary>Source code in <code>ecologits/tracking.py</code></summary>
-                    <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-30">30</a></span>
-<span class="normal"><a href="#__codelineno-0-31">31</a></span>
-<span class="normal"><a href="#__codelineno-0-32">32</a></span>
-<span class="normal"><a href="#__codelineno-0-33">33</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">providers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">providers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">providers</span><span class="p">)</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">calls</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ImpactsOutput</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Token</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">ImpactsTracker</span><span class="p">,</span> <span class="o">...</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">[]</span>
+                    <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#ecologits.tracking.ImpactsTracker--source--__codelineno-0-30">30</a></span>
+<span class="normal"><a href="#ecologits.tracking.ImpactsTracker--source--__codelineno-0-31">31</a></span>
+<span class="normal"><a href="#ecologits.tracking.ImpactsTracker--source--__codelineno-0-32">32</a></span>
+<span class="normal"><a href="#ecologits.tracking.ImpactsTracker--source--__codelineno-0-33">33</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="ecologits.tracking.ImpactsTracker--source--__span-0-30"><a id="ecologits.tracking.ImpactsTracker--source--__codelineno-0-30" name="ecologits.tracking.ImpactsTracker--source--__codelineno-0-30"></a><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">providers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="ecologits.tracking.ImpactsTracker--source--__span-0-31"><a id="ecologits.tracking.ImpactsTracker--source--__codelineno-0-31" name="ecologits.tracking.ImpactsTracker--source--__codelineno-0-31"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">providers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">providers</span><span class="p">)</span>
+</span><span id="ecologits.tracking.ImpactsTracker--source--__span-0-32"><a id="ecologits.tracking.ImpactsTracker--source--__codelineno-0-32" name="ecologits.tracking.ImpactsTracker--source--__codelineno-0-32"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">calls</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ImpactsOutput</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="ecologits.tracking.ImpactsTracker--source--__span-0-33"><a id="ecologits.tracking.ImpactsTracker--source--__codelineno-0-33" name="ecologits.tracking.ImpactsTracker--source--__codelineno-0-33"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_tokens</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Token</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">ImpactsTracker</span><span class="p">,</span> <span class="o">...</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">[]</span>
 </span></code></pre></div></td></tr></table></div>
                   </details>
 
@@ -3454,27 +3458,27 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>ecologits/tracking.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-56">56</a></span>
-<span class="normal"><a href="#__codelineno-0-57">57</a></span>
-<span class="normal"><a href="#__codelineno-0-58">58</a></span>
-<span class="normal"><a href="#__codelineno-0-59">59</a></span>
-<span class="normal"><a href="#__codelineno-0-60">60</a></span>
-<span class="normal"><a href="#__codelineno-0-61">61</a></span>
-<span class="normal"><a href="#__codelineno-0-62">62</a></span>
-<span class="normal"><a href="#__codelineno-0-63">63</a></span>
-<span class="normal"><a href="#__codelineno-0-64">64</a></span>
-<span class="normal"><a href="#__codelineno-0-65">65</a></span>
-<span class="normal"><a href="#__codelineno-0-66">66</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_active_trackers</span><span class="p">(</span><span class="n">provider</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">ImpactsTracker</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
-</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sd">    Get the trackers open in the current context that track a provider.</span>
-</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59"></a>
-</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">    Args:</span>
-</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="sd">        provider: Name of the provider.</span>
-</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62"></a>
-</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="sd">    Returns:</span>
-</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="sd">        The open trackers that track the provider.</span>
-</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65"></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66"></a>    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">tracker</span> <span class="k">for</span> <span class="n">tracker</span> <span class="ow">in</span> <span class="n">_active_trackers</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="k">if</span> <span class="n">provider</span> <span class="ow">in</span> <span class="n">tracker</span><span class="o">.</span><span class="n">providers</span><span class="p">)</span>
+              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#ecologits.tracking.get_active_trackers--source--__codelineno-0-56">56</a></span>
+<span class="normal"><a href="#ecologits.tracking.get_active_trackers--source--__codelineno-0-57">57</a></span>
+<span class="normal"><a href="#ecologits.tracking.get_active_trackers--source--__codelineno-0-58">58</a></span>
+<span class="normal"><a href="#ecologits.tracking.get_active_trackers--source--__codelineno-0-59">59</a></span>
+<span class="normal"><a href="#ecologits.tracking.get_active_trackers--source--__codelineno-0-60">60</a></span>
+<span class="normal"><a href="#ecologits.tracking.get_active_trackers--source--__codelineno-0-61">61</a></span>
+<span class="normal"><a href="#ecologits.tracking.get_active_trackers--source--__codelineno-0-62">62</a></span>
+<span class="normal"><a href="#ecologits.tracking.get_active_trackers--source--__codelineno-0-63">63</a></span>
+<span class="normal"><a href="#ecologits.tracking.get_active_trackers--source--__codelineno-0-64">64</a></span>
+<span class="normal"><a href="#ecologits.tracking.get_active_trackers--source--__codelineno-0-65">65</a></span>
+<span class="normal"><a href="#ecologits.tracking.get_active_trackers--source--__codelineno-0-66">66</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="ecologits.tracking.get_active_trackers--source--__span-0-56"><a id="ecologits.tracking.get_active_trackers--source--__codelineno-0-56" name="ecologits.tracking.get_active_trackers--source--__codelineno-0-56"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_active_trackers</span><span class="p">(</span><span class="n">provider</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">ImpactsTracker</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+</span><span id="ecologits.tracking.get_active_trackers--source--__span-0-57"><a id="ecologits.tracking.get_active_trackers--source--__codelineno-0-57" name="ecologits.tracking.get_active_trackers--source--__codelineno-0-57"></a><span class="w">    </span><span class="sd">"""</span>
+</span><span id="ecologits.tracking.get_active_trackers--source--__span-0-58"><a id="ecologits.tracking.get_active_trackers--source--__codelineno-0-58" name="ecologits.tracking.get_active_trackers--source--__codelineno-0-58"></a><span class="sd">    Get the trackers open in the current context that track a provider.</span>
+</span><span id="ecologits.tracking.get_active_trackers--source--__span-0-59"><a id="ecologits.tracking.get_active_trackers--source--__codelineno-0-59" name="ecologits.tracking.get_active_trackers--source--__codelineno-0-59"></a>
+</span><span id="ecologits.tracking.get_active_trackers--source--__span-0-60"><a id="ecologits.tracking.get_active_trackers--source--__codelineno-0-60" name="ecologits.tracking.get_active_trackers--source--__codelineno-0-60"></a><span class="sd">    Args:</span>
+</span><span id="ecologits.tracking.get_active_trackers--source--__span-0-61"><a id="ecologits.tracking.get_active_trackers--source--__codelineno-0-61" name="ecologits.tracking.get_active_trackers--source--__codelineno-0-61"></a><span class="sd">        provider: Name of the provider.</span>
+</span><span id="ecologits.tracking.get_active_trackers--source--__span-0-62"><a id="ecologits.tracking.get_active_trackers--source--__codelineno-0-62" name="ecologits.tracking.get_active_trackers--source--__codelineno-0-62"></a>
+</span><span id="ecologits.tracking.get_active_trackers--source--__span-0-63"><a id="ecologits.tracking.get_active_trackers--source--__codelineno-0-63" name="ecologits.tracking.get_active_trackers--source--__codelineno-0-63"></a><span class="sd">    Returns:</span>
+</span><span id="ecologits.tracking.get_active_trackers--source--__span-0-64"><a id="ecologits.tracking.get_active_trackers--source--__codelineno-0-64" name="ecologits.tracking.get_active_trackers--source--__codelineno-0-64"></a><span class="sd">        The open trackers that track the provider.</span>
+</span><span id="ecologits.tracking.get_active_trackers--source--__span-0-65"><a id="ecologits.tracking.get_active_trackers--source--__codelineno-0-65" name="ecologits.tracking.get_active_trackers--source--__codelineno-0-65"></a><span class="sd">    """</span>
+</span><span id="ecologits.tracking.get_active_trackers--source--__span-0-66"><a id="ecologits.tracking.get_active_trackers--source--__codelineno-0-66" name="ecologits.tracking.get_active_trackers--source--__codelineno-0-66"></a>    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">tracker</span> <span class="k">for</span> <span class="n">tracker</span> <span class="ow">in</span> <span class="n">_active_trackers</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="k">if</span> <span class="n">provider</span> <span class="ow">in</span> <span class="n">tracker</span><span class="o">.</span><span class="n">providers</span><span class="p">)</span>
 </span></code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -3551,31 +3555,31 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>ecologits/tracking.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-69">69</a></span>
-<span class="normal"><a href="#__codelineno-0-70">70</a></span>
-<span class="normal"><a href="#__codelineno-0-71">71</a></span>
-<span class="normal"><a href="#__codelineno-0-72">72</a></span>
-<span class="normal"><a href="#__codelineno-0-73">73</a></span>
-<span class="normal"><a href="#__codelineno-0-74">74</a></span>
-<span class="normal"><a href="#__codelineno-0-75">75</a></span>
-<span class="normal"><a href="#__codelineno-0-76">76</a></span>
-<span class="normal"><a href="#__codelineno-0-77">77</a></span>
-<span class="normal"><a href="#__codelineno-0-78">78</a></span>
-<span class="normal"><a href="#__codelineno-0-79">79</a></span>
-<span class="normal"><a href="#__codelineno-0-80">80</a></span>
-<span class="normal"><a href="#__codelineno-0-81">81</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="k">def</span><span class="w"> </span><span class="nf">is_tracking_enabled</span><span class="p">(</span><span class="n">provider</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71"></a><span class="sd">    Check if a call to a provider should be tracked.</span>
-</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72"></a>
-</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="sd">    Args:</span>
-</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="sd">        provider: Name of the provider.</span>
-</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75"></a>
-</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76"></a><span class="sd">    Returns:</span>
-</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="sd">        True if the provider was enabled with `EcoLogits.init()` or is tracked by a tracker open in the current context.</span>
-</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78"></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">ecologits._ecologits</span><span class="w"> </span><span class="kn">import</span> <span class="n">EcoLogits</span>
-</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80"></a>
-</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81"></a>    <span class="k">return</span> <span class="n">provider</span> <span class="ow">in</span> <span class="n">EcoLogits</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">providers</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">get_active_trackers</span><span class="p">(</span><span class="n">provider</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span>
+              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#ecologits.tracking.is_tracking_enabled--source--__codelineno-0-69">69</a></span>
+<span class="normal"><a href="#ecologits.tracking.is_tracking_enabled--source--__codelineno-0-70">70</a></span>
+<span class="normal"><a href="#ecologits.tracking.is_tracking_enabled--source--__codelineno-0-71">71</a></span>
+<span class="normal"><a href="#ecologits.tracking.is_tracking_enabled--source--__codelineno-0-72">72</a></span>
+<span class="normal"><a href="#ecologits.tracking.is_tracking_enabled--source--__codelineno-0-73">73</a></span>
+<span class="normal"><a href="#ecologits.tracking.is_tracking_enabled--source--__codelineno-0-74">74</a></span>
+<span class="normal"><a href="#ecologits.tracking.is_tracking_enabled--source--__codelineno-0-75">75</a></span>
+<span class="normal"><a href="#ecologits.tracking.is_tracking_enabled--source--__codelineno-0-76">76</a></span>
+<span class="normal"><a href="#ecologits.tracking.is_tracking_enabled--source--__codelineno-0-77">77</a></span>
+<span class="normal"><a href="#ecologits.tracking.is_tracking_enabled--source--__codelineno-0-78">78</a></span>
+<span class="normal"><a href="#ecologits.tracking.is_tracking_enabled--source--__codelineno-0-79">79</a></span>
+<span class="normal"><a href="#ecologits.tracking.is_tracking_enabled--source--__codelineno-0-80">80</a></span>
+<span class="normal"><a href="#ecologits.tracking.is_tracking_enabled--source--__codelineno-0-81">81</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="ecologits.tracking.is_tracking_enabled--source--__span-0-69"><a id="ecologits.tracking.is_tracking_enabled--source--__codelineno-0-69" name="ecologits.tracking.is_tracking_enabled--source--__codelineno-0-69"></a><span class="k">def</span><span class="w"> </span><span class="nf">is_tracking_enabled</span><span class="p">(</span><span class="n">provider</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span><span id="ecologits.tracking.is_tracking_enabled--source--__span-0-70"><a id="ecologits.tracking.is_tracking_enabled--source--__codelineno-0-70" name="ecologits.tracking.is_tracking_enabled--source--__codelineno-0-70"></a><span class="w">    </span><span class="sd">"""</span>
+</span><span id="ecologits.tracking.is_tracking_enabled--source--__span-0-71"><a id="ecologits.tracking.is_tracking_enabled--source--__codelineno-0-71" name="ecologits.tracking.is_tracking_enabled--source--__codelineno-0-71"></a><span class="sd">    Check if a call to a provider should be tracked.</span>
+</span><span id="ecologits.tracking.is_tracking_enabled--source--__span-0-72"><a id="ecologits.tracking.is_tracking_enabled--source--__codelineno-0-72" name="ecologits.tracking.is_tracking_enabled--source--__codelineno-0-72"></a>
+</span><span id="ecologits.tracking.is_tracking_enabled--source--__span-0-73"><a id="ecologits.tracking.is_tracking_enabled--source--__codelineno-0-73" name="ecologits.tracking.is_tracking_enabled--source--__codelineno-0-73"></a><span class="sd">    Args:</span>
+</span><span id="ecologits.tracking.is_tracking_enabled--source--__span-0-74"><a id="ecologits.tracking.is_tracking_enabled--source--__codelineno-0-74" name="ecologits.tracking.is_tracking_enabled--source--__codelineno-0-74"></a><span class="sd">        provider: Name of the provider.</span>
+</span><span id="ecologits.tracking.is_tracking_enabled--source--__span-0-75"><a id="ecologits.tracking.is_tracking_enabled--source--__codelineno-0-75" name="ecologits.tracking.is_tracking_enabled--source--__codelineno-0-75"></a>
+</span><span id="ecologits.tracking.is_tracking_enabled--source--__span-0-76"><a id="ecologits.tracking.is_tracking_enabled--source--__codelineno-0-76" name="ecologits.tracking.is_tracking_enabled--source--__codelineno-0-76"></a><span class="sd">    Returns:</span>
+</span><span id="ecologits.tracking.is_tracking_enabled--source--__span-0-77"><a id="ecologits.tracking.is_tracking_enabled--source--__codelineno-0-77" name="ecologits.tracking.is_tracking_enabled--source--__codelineno-0-77"></a><span class="sd">        True if the provider was enabled with `EcoLogits.init()` or is tracked by a tracker open in the current context.</span>
+</span><span id="ecologits.tracking.is_tracking_enabled--source--__span-0-78"><a id="ecologits.tracking.is_tracking_enabled--source--__codelineno-0-78" name="ecologits.tracking.is_tracking_enabled--source--__codelineno-0-78"></a><span class="sd">    """</span>
+</span><span id="ecologits.tracking.is_tracking_enabled--source--__span-0-79"><a id="ecologits.tracking.is_tracking_enabled--source--__codelineno-0-79" name="ecologits.tracking.is_tracking_enabled--source--__codelineno-0-79"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">ecologits._ecologits</span><span class="w"> </span><span class="kn">import</span> <span class="n">EcoLogits</span>
+</span><span id="ecologits.tracking.is_tracking_enabled--source--__span-0-80"><a id="ecologits.tracking.is_tracking_enabled--source--__codelineno-0-80" name="ecologits.tracking.is_tracking_enabled--source--__codelineno-0-80"></a>
+</span><span id="ecologits.tracking.is_tracking_enabled--source--__span-0-81"><a id="ecologits.tracking.is_tracking_enabled--source--__codelineno-0-81" name="ecologits.tracking.is_tracking_enabled--source--__codelineno-0-81"></a>    <span class="k">return</span> <span class="n">provider</span> <span class="ow">in</span> <span class="n">EcoLogits</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">providers</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">get_active_trackers</span><span class="p">(</span><span class="n">provider</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span>
 </span></code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -3645,25 +3649,25 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>ecologits/tracking.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-84">84</a></span>
-<span class="normal"><a href="#__codelineno-0-85">85</a></span>
-<span class="normal"><a href="#__codelineno-0-86">86</a></span>
-<span class="normal"><a href="#__codelineno-0-87">87</a></span>
-<span class="normal"><a href="#__codelineno-0-88">88</a></span>
-<span class="normal"><a href="#__codelineno-0-89">89</a></span>
-<span class="normal"><a href="#__codelineno-0-90">90</a></span>
-<span class="normal"><a href="#__codelineno-0-91">91</a></span>
-<span class="normal"><a href="#__codelineno-0-92">92</a></span>
-<span class="normal"><a href="#__codelineno-0-93">93</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84"></a><span class="k">def</span><span class="w"> </span><span class="nf">record_impacts</span><span class="p">(</span><span class="n">trackers</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">ImpactsTracker</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">impacts</span><span class="p">:</span> <span class="n">ImpactsOutput</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86"></a><span class="sd">    Add the impacts of a call to the given trackers.</span>
-</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87"></a>
-</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88"></a><span class="sd">    Args:</span>
-</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89"></a><span class="sd">        trackers: Trackers that were open when the call started.</span>
-</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90"></a><span class="sd">        impacts: Impacts of the call.</span>
-</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91"></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92"></a>    <span class="k">for</span> <span class="n">tracker</span> <span class="ow">in</span> <span class="n">trackers</span><span class="p">:</span>
-</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93"></a>        <span class="n">tracker</span><span class="o">.</span><span class="n">calls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">impacts</span><span class="p">)</span>
+              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#ecologits.tracking.record_impacts--source--__codelineno-0-84">84</a></span>
+<span class="normal"><a href="#ecologits.tracking.record_impacts--source--__codelineno-0-85">85</a></span>
+<span class="normal"><a href="#ecologits.tracking.record_impacts--source--__codelineno-0-86">86</a></span>
+<span class="normal"><a href="#ecologits.tracking.record_impacts--source--__codelineno-0-87">87</a></span>
+<span class="normal"><a href="#ecologits.tracking.record_impacts--source--__codelineno-0-88">88</a></span>
+<span class="normal"><a href="#ecologits.tracking.record_impacts--source--__codelineno-0-89">89</a></span>
+<span class="normal"><a href="#ecologits.tracking.record_impacts--source--__codelineno-0-90">90</a></span>
+<span class="normal"><a href="#ecologits.tracking.record_impacts--source--__codelineno-0-91">91</a></span>
+<span class="normal"><a href="#ecologits.tracking.record_impacts--source--__codelineno-0-92">92</a></span>
+<span class="normal"><a href="#ecologits.tracking.record_impacts--source--__codelineno-0-93">93</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="ecologits.tracking.record_impacts--source--__span-0-84"><a id="ecologits.tracking.record_impacts--source--__codelineno-0-84" name="ecologits.tracking.record_impacts--source--__codelineno-0-84"></a><span class="k">def</span><span class="w"> </span><span class="nf">record_impacts</span><span class="p">(</span><span class="n">trackers</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">ImpactsTracker</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">impacts</span><span class="p">:</span> <span class="n">ImpactsOutput</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="ecologits.tracking.record_impacts--source--__span-0-85"><a id="ecologits.tracking.record_impacts--source--__codelineno-0-85" name="ecologits.tracking.record_impacts--source--__codelineno-0-85"></a><span class="w">    </span><span class="sd">"""</span>
+</span><span id="ecologits.tracking.record_impacts--source--__span-0-86"><a id="ecologits.tracking.record_impacts--source--__codelineno-0-86" name="ecologits.tracking.record_impacts--source--__codelineno-0-86"></a><span class="sd">    Add the impacts of a call to the given trackers.</span>
+</span><span id="ecologits.tracking.record_impacts--source--__span-0-87"><a id="ecologits.tracking.record_impacts--source--__codelineno-0-87" name="ecologits.tracking.record_impacts--source--__codelineno-0-87"></a>
+</span><span id="ecologits.tracking.record_impacts--source--__span-0-88"><a id="ecologits.tracking.record_impacts--source--__codelineno-0-88" name="ecologits.tracking.record_impacts--source--__codelineno-0-88"></a><span class="sd">    Args:</span>
+</span><span id="ecologits.tracking.record_impacts--source--__span-0-89"><a id="ecologits.tracking.record_impacts--source--__codelineno-0-89" name="ecologits.tracking.record_impacts--source--__codelineno-0-89"></a><span class="sd">        trackers: Trackers that were open when the call started.</span>
+</span><span id="ecologits.tracking.record_impacts--source--__span-0-90"><a id="ecologits.tracking.record_impacts--source--__codelineno-0-90" name="ecologits.tracking.record_impacts--source--__codelineno-0-90"></a><span class="sd">        impacts: Impacts of the call.</span>
+</span><span id="ecologits.tracking.record_impacts--source--__span-0-91"><a id="ecologits.tracking.record_impacts--source--__codelineno-0-91" name="ecologits.tracking.record_impacts--source--__codelineno-0-91"></a><span class="sd">    """</span>
+</span><span id="ecologits.tracking.record_impacts--source--__span-0-92"><a id="ecologits.tracking.record_impacts--source--__codelineno-0-92" name="ecologits.tracking.record_impacts--source--__codelineno-0-92"></a>    <span class="k">for</span> <span class="n">tracker</span> <span class="ow">in</span> <span class="n">trackers</span><span class="p">:</span>
+</span><span id="ecologits.tracking.record_impacts--source--__span-0-93"><a id="ecologits.tracking.record_impacts--source--__codelineno-0-93" name="ecologits.tracking.record_impacts--source--__codelineno-0-93"></a>        <span class="n">tracker</span><span class="o">.</span><span class="n">calls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">impacts</span><span class="p">)</span>
 </span></code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -3822,7 +3826,8 @@
       <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["announce.dismiss","content.action.copy","content.action.edit","content.action.view","content.code.annotate","content.code.copy","content.code.select","content.footnote.tooltips","content.tabs.link","content.tooltips","navigation.instant","navigation.instant.prefetch","navigation.instant.preview","navigation.instant.progress","navigation.tracking","navigation.tabs","navigation.tabs.sticky","navigation.sections","navigation.path","navigation.top","navigation.footer","search.highlight","toc.follow"],"redirect":null,"search":"../../../assets/javascripts/workers/search.719e0d91.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":{"alias":true,"default":"latest","provider":"mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.3cb411a8.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.9e76c64c.min.js"></script>
+      
       
         <script src="../../../js/katex.js"></script>
       

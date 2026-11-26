@@ -15,13 +15,11 @@ Official links:
 
 ## Installation
 
-To install EcoLogits along with all necessary dependencies for compatibility with the Cohere client, please use the `cohere` extra-dependency option as follows:
+EcoLogits supports the `Client` and `AsyncClient` chat methods in Cohere Python SDK 5.x (from 5.13.12), 6.x, and 7.x. Install the `cohere` extra to get a compatible version.
 
 ```shell
-pip install ecologits[cohere]
+pip install "ecologits[cohere]"
 ```
-
-This installation command ensures that EcoLogits is set up with the specific libraries required to interface seamlessly with Cohere's Python client.
 
 ## Chat Completions
 

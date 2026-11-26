@@ -1,4 +1,6 @@
 
+
+
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
@@ -11,6 +13,7 @@
       
       
         <link rel="canonical" href="https://ecologits.ai/latest/reference/ecologits/tracers/utils/">
+      
       
       
         <link rel="describedby" href="../../../../llms.txt">
@@ -27,7 +30,7 @@
       
       
       <link rel="icon" href="../../../../assets/leaf.svg">
-      <meta name="generator" content="zensical-0.1.1">
+      <meta name="generator" content="zensical-0.1.3">
     
     
       
@@ -38,12 +41,13 @@
       
         
       
-      <link rel="stylesheet" href="../../../../assets/stylesheets/modern/main.ebb7f775.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/modern/main.e2cf241e.min.css">
       
         
           
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/modern/palette.b60ce83d.min.css">
+      
       
       
 
@@ -3471,35 +3475,35 @@ HTTP response instead of the parsed model, so there is nothing to add impacts to
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>ecologits/tracers/utils.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-21">21</a></span>
-<span class="normal"><a href="#__codelineno-0-22">22</a></span>
-<span class="normal"><a href="#__codelineno-0-23">23</a></span>
-<span class="normal"><a href="#__codelineno-0-24">24</a></span>
-<span class="normal"><a href="#__codelineno-0-25">25</a></span>
-<span class="normal"><a href="#__codelineno-0-26">26</a></span>
-<span class="normal"><a href="#__codelineno-0-27">27</a></span>
-<span class="normal"><a href="#__codelineno-0-28">28</a></span>
-<span class="normal"><a href="#__codelineno-0-29">29</a></span>
-<span class="normal"><a href="#__codelineno-0-30">30</a></span>
-<span class="normal"><a href="#__codelineno-0-31">31</a></span>
-<span class="normal"><a href="#__codelineno-0-32">32</a></span>
-<span class="normal"><a href="#__codelineno-0-33">33</a></span>
-<span class="normal"><a href="#__codelineno-0-34">34</a></span>
-<span class="normal"><a href="#__codelineno-0-35">35</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="k">def</span><span class="w"> </span><span class="nf">is_raw_response_request</span><span class="p">(</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="sd">    Check if a request was made with `with_raw_response` or `with_streaming_response`.</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24"></a>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="sd">    The OpenAI and Anthropic clients add the `X-Stainless-Raw-Response` header to these requests and return the raw</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="sd">    HTTP response instead of the parsed model, so there is nothing to add impacts to.</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27"></a>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="sd">    Args:</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="sd">        kwargs: Keyword arguments of the request.</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30"></a>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="sd">    Returns:</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="sd">        True if the client returns the raw HTTP response for this request.</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34"></a>    <span class="n">extra_headers</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;extra_headers&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{}</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35"></a>    <span class="k">return</span> <span class="n">RAW_RESPONSE_HEADER</span> <span class="ow">in</span> <span class="n">extra_headers</span>
+              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-24">24</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-25">25</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-26">26</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-27">27</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-28">28</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-29">29</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-30">30</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-31">31</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-32">32</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-33">33</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-34">34</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-35">35</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="ecologits.tracers.utils.is_raw_response_request--source--__span-0-21"><a id="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-21" name="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-21"></a><span class="k">def</span><span class="w"> </span><span class="nf">is_raw_response_request</span><span class="p">(</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span><span id="ecologits.tracers.utils.is_raw_response_request--source--__span-0-22"><a id="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-22" name="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-22"></a><span class="w">    </span><span class="sd">"""</span>
+</span><span id="ecologits.tracers.utils.is_raw_response_request--source--__span-0-23"><a id="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-23" name="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-23"></a><span class="sd">    Check if a request was made with `with_raw_response` or `with_streaming_response`.</span>
+</span><span id="ecologits.tracers.utils.is_raw_response_request--source--__span-0-24"><a id="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-24" name="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-24"></a>
+</span><span id="ecologits.tracers.utils.is_raw_response_request--source--__span-0-25"><a id="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-25" name="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-25"></a><span class="sd">    The OpenAI and Anthropic clients add the `X-Stainless-Raw-Response` header to these requests and return the raw</span>
+</span><span id="ecologits.tracers.utils.is_raw_response_request--source--__span-0-26"><a id="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-26" name="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-26"></a><span class="sd">    HTTP response instead of the parsed model, so there is nothing to add impacts to.</span>
+</span><span id="ecologits.tracers.utils.is_raw_response_request--source--__span-0-27"><a id="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-27" name="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-27"></a>
+</span><span id="ecologits.tracers.utils.is_raw_response_request--source--__span-0-28"><a id="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-28" name="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-28"></a><span class="sd">    Args:</span>
+</span><span id="ecologits.tracers.utils.is_raw_response_request--source--__span-0-29"><a id="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-29" name="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-29"></a><span class="sd">        kwargs: Keyword arguments of the request.</span>
+</span><span id="ecologits.tracers.utils.is_raw_response_request--source--__span-0-30"><a id="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-30" name="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-30"></a>
+</span><span id="ecologits.tracers.utils.is_raw_response_request--source--__span-0-31"><a id="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-31" name="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-31"></a><span class="sd">    Returns:</span>
+</span><span id="ecologits.tracers.utils.is_raw_response_request--source--__span-0-32"><a id="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-32" name="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-32"></a><span class="sd">        True if the client returns the raw HTTP response for this request.</span>
+</span><span id="ecologits.tracers.utils.is_raw_response_request--source--__span-0-33"><a id="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-33" name="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-33"></a><span class="sd">    """</span>
+</span><span id="ecologits.tracers.utils.is_raw_response_request--source--__span-0-34"><a id="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-34" name="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-34"></a>    <span class="n">extra_headers</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"extra_headers"</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{}</span>
+</span><span id="ecologits.tracers.utils.is_raw_response_request--source--__span-0-35"><a id="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-35" name="ecologits.tracers.utils.is_raw_response_request--source--__codelineno-0-35"></a>    <span class="k">return</span> <span class="n">RAW_RESPONSE_HEADER</span> <span class="ow">in</span> <span class="n">extra_headers</span>
 </span></code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -3531,77 +3535,77 @@ a namespaced model identifier, so migration may change the resulting estimates.<
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>ecologits/tracers/utils.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-179">179</a></span>
-<span class="normal"><a href="#__codelineno-0-180">180</a></span>
-<span class="normal"><a href="#__codelineno-0-181">181</a></span>
-<span class="normal"><a href="#__codelineno-0-182">182</a></span>
-<span class="normal"><a href="#__codelineno-0-183">183</a></span>
-<span class="normal"><a href="#__codelineno-0-184">184</a></span>
-<span class="normal"><a href="#__codelineno-0-185">185</a></span>
-<span class="normal"><a href="#__codelineno-0-186">186</a></span>
-<span class="normal"><a href="#__codelineno-0-187">187</a></span>
-<span class="normal"><a href="#__codelineno-0-188">188</a></span>
-<span class="normal"><a href="#__codelineno-0-189">189</a></span>
-<span class="normal"><a href="#__codelineno-0-190">190</a></span>
-<span class="normal"><a href="#__codelineno-0-191">191</a></span>
-<span class="normal"><a href="#__codelineno-0-192">192</a></span>
-<span class="normal"><a href="#__codelineno-0-193">193</a></span>
-<span class="normal"><a href="#__codelineno-0-194">194</a></span>
-<span class="normal"><a href="#__codelineno-0-195">195</a></span>
-<span class="normal"><a href="#__codelineno-0-196">196</a></span>
-<span class="normal"><a href="#__codelineno-0-197">197</a></span>
-<span class="normal"><a href="#__codelineno-0-198">198</a></span>
-<span class="normal"><a href="#__codelineno-0-199">199</a></span>
-<span class="normal"><a href="#__codelineno-0-200">200</a></span>
-<span class="normal"><a href="#__codelineno-0-201">201</a></span>
-<span class="normal"><a href="#__codelineno-0-202">202</a></span>
-<span class="normal"><a href="#__codelineno-0-203">203</a></span>
-<span class="normal"><a href="#__codelineno-0-204">204</a></span>
-<span class="normal"><a href="#__codelineno-0-205">205</a></span>
-<span class="normal"><a href="#__codelineno-0-206">206</a></span>
-<span class="normal"><a href="#__codelineno-0-207">207</a></span>
-<span class="normal"><a href="#__codelineno-0-208">208</a></span>
-<span class="normal"><a href="#__codelineno-0-209">209</a></span>
-<span class="normal"><a href="#__codelineno-0-210">210</a></span>
-<span class="normal"><a href="#__codelineno-0-211">211</a></span>
-<span class="normal"><a href="#__codelineno-0-212">212</a></span>
-<span class="normal"><a href="#__codelineno-0-213">213</a></span>
-<span class="normal"><a href="#__codelineno-0-214">214</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-179"><a id="__codelineno-0-179" name="__codelineno-0-179"></a><span class="k">def</span><span class="w"> </span><span class="nf">llm_impacts</span><span class="p">(</span>
-</span><span id="__span-0-180"><a id="__codelineno-0-180" name="__codelineno-0-180"></a>    <span class="n">provider</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-</span><span id="__span-0-181"><a id="__codelineno-0-181" name="__codelineno-0-181"></a>    <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-</span><span id="__span-0-182"><a id="__codelineno-0-182" name="__codelineno-0-182"></a>    <span class="n">output_token_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-</span><span id="__span-0-183"><a id="__codelineno-0-183" name="__codelineno-0-183"></a>    <span class="n">request_latency</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="__span-0-184"><a id="__codelineno-0-184" name="__codelineno-0-184"></a>    <span class="n">electricity_mix_zone</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="__span-0-185"><a id="__codelineno-0-185" name="__codelineno-0-185"></a>    <span class="o">*</span><span class="p">,</span>
-</span><span id="__span-0-186"><a id="__codelineno-0-186" name="__codelineno-0-186"></a>    <span class="n">datacenter_pue</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">RangeValue</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="__span-0-187"><a id="__codelineno-0-187" name="__codelineno-0-187"></a>    <span class="n">datacenter_wue</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">RangeValue</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="__span-0-188"><a id="__codelineno-0-188" name="__codelineno-0-188"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ImpactsOutput</span><span class="p">:</span>
-</span><span id="__span-0-189"><a id="__codelineno-0-189" name="__codelineno-0-189"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute LLM impacts using the deprecated tracer utility interface.</span>
-</span><span id="__span-0-190"><a id="__codelineno-0-190" name="__codelineno-0-190"></a>
-</span><span id="__span-0-191"><a id="__codelineno-0-191" name="__codelineno-0-191"></a><span class="sd">    Deprecated:</span>
-</span><span id="__span-0-192"><a id="__codelineno-0-192" name="__codelineno-0-192"></a><span class="sd">        Use `ecologits.estimations.text_impacts` for standalone text generation</span>
-</span><span id="__span-0-193"><a id="__codelineno-0-193" name="__codelineno-0-193"></a><span class="sd">        estimates. See the text generation tutorial for argument mappings.</span>
-</span><span id="__span-0-194"><a id="__codelineno-0-194" name="__codelineno-0-194"></a>
-</span><span id="__span-0-195"><a id="__codelineno-0-195" name="__codelineno-0-195"></a><span class="sd">    Preserves the original arguments and calculations, including measured request</span>
-</span><span id="__span-0-196"><a id="__codelineno-0-196" name="__codelineno-0-196"></a><span class="sd">    latency. The replacement estimates latency and requires total input tokens and</span>
-</span><span id="__span-0-197"><a id="__codelineno-0-197" name="__codelineno-0-197"></a><span class="sd">    a namespaced model identifier, so migration may change the resulting estimates.</span>
-</span><span id="__span-0-198"><a id="__codelineno-0-198" name="__codelineno-0-198"></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="__span-0-199"><a id="__codelineno-0-199" name="__codelineno-0-199"></a>    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-</span><span id="__span-0-200"><a id="__codelineno-0-200" name="__codelineno-0-200"></a>        <span class="s2">&quot;ecologits.tracers.utils.llm_impacts is deprecated; &quot;</span>
-</span><span id="__span-0-201"><a id="__codelineno-0-201" name="__codelineno-0-201"></a>        <span class="s2">&quot;use ecologits.estimations.text_impacts instead. &quot;</span>
-</span><span id="__span-0-202"><a id="__codelineno-0-202" name="__codelineno-0-202"></a>        <span class="s2">&quot;See the text generation tutorial for migration details.&quot;</span><span class="p">,</span>
-</span><span id="__span-0-203"><a id="__codelineno-0-203" name="__codelineno-0-203"></a>        <span class="ne">DeprecationWarning</span><span class="p">,</span>
-</span><span id="__span-0-204"><a id="__codelineno-0-204" name="__codelineno-0-204"></a>        <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-</span><span id="__span-0-205"><a id="__codelineno-0-205" name="__codelineno-0-205"></a>    <span class="p">)</span>
-</span><span id="__span-0-206"><a id="__codelineno-0-206" name="__codelineno-0-206"></a>    <span class="k">return</span> <span class="n">_llm_impacts</span><span class="p">(</span>
-</span><span id="__span-0-207"><a id="__codelineno-0-207" name="__codelineno-0-207"></a>        <span class="n">provider</span><span class="o">=</span><span class="n">provider</span><span class="p">,</span>
-</span><span id="__span-0-208"><a id="__codelineno-0-208" name="__codelineno-0-208"></a>        <span class="n">model_name</span><span class="o">=</span><span class="n">model_name</span><span class="p">,</span>
-</span><span id="__span-0-209"><a id="__codelineno-0-209" name="__codelineno-0-209"></a>        <span class="n">output_token_count</span><span class="o">=</span><span class="n">output_token_count</span><span class="p">,</span>
-</span><span id="__span-0-210"><a id="__codelineno-0-210" name="__codelineno-0-210"></a>        <span class="n">request_latency</span><span class="o">=</span><span class="n">request_latency</span><span class="p">,</span>
-</span><span id="__span-0-211"><a id="__codelineno-0-211" name="__codelineno-0-211"></a>        <span class="n">electricity_mix_zone</span><span class="o">=</span><span class="n">electricity_mix_zone</span><span class="p">,</span>
-</span><span id="__span-0-212"><a id="__codelineno-0-212" name="__codelineno-0-212"></a>        <span class="n">datacenter_pue</span><span class="o">=</span><span class="n">datacenter_pue</span><span class="p">,</span>
-</span><span id="__span-0-213"><a id="__codelineno-0-213" name="__codelineno-0-213"></a>        <span class="n">datacenter_wue</span><span class="o">=</span><span class="n">datacenter_wue</span><span class="p">,</span>
-</span><span id="__span-0-214"><a id="__codelineno-0-214" name="__codelineno-0-214"></a>    <span class="p">)</span>
+              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-179">179</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-180">180</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-181">181</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-182">182</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-183">183</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-184">184</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-185">185</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-186">186</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-187">187</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-188">188</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-189">189</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-190">190</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-191">191</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-192">192</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-193">193</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-194">194</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-195">195</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-196">196</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-197">197</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-198">198</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-199">199</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-200">200</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-201">201</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-202">202</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-203">203</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-204">204</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-205">205</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-206">206</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-207">207</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-208">208</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-209">209</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-210">210</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-211">211</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-212">212</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-213">213</a></span>
+<span class="normal"><a href="#ecologits.tracers.utils.llm_impacts--source--__codelineno-0-214">214</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-179"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-179" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-179"></a><span class="k">def</span><span class="w"> </span><span class="nf">llm_impacts</span><span class="p">(</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-180"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-180" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-180"></a>    <span class="n">provider</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-181"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-181" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-181"></a>    <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-182"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-182" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-182"></a>    <span class="n">output_token_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-183"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-183" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-183"></a>    <span class="n">request_latency</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-184"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-184" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-184"></a>    <span class="n">electricity_mix_zone</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-185"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-185" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-185"></a>    <span class="o">*</span><span class="p">,</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-186"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-186" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-186"></a>    <span class="n">datacenter_pue</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">RangeValue</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-187"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-187" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-187"></a>    <span class="n">datacenter_wue</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">RangeValue</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-188"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-188" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-188"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ImpactsOutput</span><span class="p">:</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-189"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-189" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-189"></a><span class="w">    </span><span class="sd">"""Compute LLM impacts using the deprecated tracer utility interface.</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-190"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-190" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-190"></a>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-191"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-191" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-191"></a><span class="sd">    Deprecated:</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-192"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-192" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-192"></a><span class="sd">        Use `ecologits.estimations.text_impacts` for standalone text generation</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-193"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-193" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-193"></a><span class="sd">        estimates. See the text generation tutorial for argument mappings.</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-194"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-194" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-194"></a>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-195"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-195" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-195"></a><span class="sd">    Preserves the original arguments and calculations, including measured request</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-196"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-196" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-196"></a><span class="sd">    latency. The replacement estimates latency and requires total input tokens and</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-197"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-197" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-197"></a><span class="sd">    a namespaced model identifier, so migration may change the resulting estimates.</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-198"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-198" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-198"></a><span class="sd">    """</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-199"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-199" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-199"></a>    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-200"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-200" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-200"></a>        <span class="s2">"ecologits.tracers.utils.llm_impacts is deprecated; "</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-201"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-201" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-201"></a>        <span class="s2">"use ecologits.estimations.text_impacts instead. "</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-202"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-202" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-202"></a>        <span class="s2">"See the text generation tutorial for migration details."</span><span class="p">,</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-203"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-203" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-203"></a>        <span class="ne">DeprecationWarning</span><span class="p">,</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-204"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-204" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-204"></a>        <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-205"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-205" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-205"></a>    <span class="p">)</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-206"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-206" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-206"></a>    <span class="k">return</span> <span class="n">_llm_impacts</span><span class="p">(</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-207"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-207" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-207"></a>        <span class="n">provider</span><span class="o">=</span><span class="n">provider</span><span class="p">,</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-208"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-208" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-208"></a>        <span class="n">model_name</span><span class="o">=</span><span class="n">model_name</span><span class="p">,</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-209"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-209" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-209"></a>        <span class="n">output_token_count</span><span class="o">=</span><span class="n">output_token_count</span><span class="p">,</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-210"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-210" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-210"></a>        <span class="n">request_latency</span><span class="o">=</span><span class="n">request_latency</span><span class="p">,</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-211"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-211" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-211"></a>        <span class="n">electricity_mix_zone</span><span class="o">=</span><span class="n">electricity_mix_zone</span><span class="p">,</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-212"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-212" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-212"></a>        <span class="n">datacenter_pue</span><span class="o">=</span><span class="n">datacenter_pue</span><span class="p">,</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-213"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-213" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-213"></a>        <span class="n">datacenter_wue</span><span class="o">=</span><span class="n">datacenter_wue</span><span class="p">,</span>
+</span><span id="ecologits.tracers.utils.llm_impacts--source--__span-0-214"><a id="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-214" name="ecologits.tracers.utils.llm_impacts--source--__codelineno-0-214"></a>    <span class="p">)</span>
 </span></code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -3760,7 +3764,8 @@ a namespaced model identifier, so migration may change the resulting estimates.<
       <script id="__config" type="application/json">{"annotate":null,"base":"../../../..","features":["announce.dismiss","content.action.copy","content.action.edit","content.action.view","content.code.annotate","content.code.copy","content.code.select","content.footnote.tooltips","content.tabs.link","content.tooltips","navigation.instant","navigation.instant.prefetch","navigation.instant.preview","navigation.instant.progress","navigation.tracking","navigation.tabs","navigation.tabs.sticky","navigation.sections","navigation.path","navigation.top","navigation.footer","search.highlight","toc.follow"],"redirect":null,"search":"../../../../assets/javascripts/workers/search.719e0d91.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":{"alias":true,"default":"latest","provider":"mike"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.3cb411a8.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.9e76c64c.min.js"></script>
+      
       
         <script src="../../../../js/katex.js"></script>
       

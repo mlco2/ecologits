@@ -1,4 +1,6 @@
 
+
+
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
@@ -11,6 +13,7 @@
       
       
         <link rel="canonical" href="https://ecologits.ai/latest/reference/ecologits/model_repository/">
+      
       
       
         <link rel="describedby" href="../../../llms.txt">
@@ -27,7 +30,7 @@
       
       
       <link rel="icon" href="../../../assets/leaf.svg">
-      <meta name="generator" content="zensical-0.1.1">
+      <meta name="generator" content="zensical-0.1.3">
     
     
       
@@ -38,12 +41,13 @@
       
         
       
-      <link rel="stylesheet" href="../../../assets/stylesheets/modern/main.ebb7f775.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/modern/main.e2cf241e.min.css">
       
         
           
         
         <link rel="stylesheet" href="../../../assets/stylesheets/modern/palette.b60ce83d.min.css">
+      
       
       
 
@@ -3344,41 +3348,41 @@
 
                   <details class="mkdocstrings-source">
                     <summary>Source code in <code>ecologits/model_repository.py</code></summary>
-                    <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-97"> 97</a></span>
-<span class="normal"><a href="#__codelineno-0-98"> 98</a></span>
-<span class="normal"><a href="#__codelineno-0-99"> 99</a></span>
-<span class="normal"><a href="#__codelineno-0-100">100</a></span>
-<span class="normal"><a href="#__codelineno-0-101">101</a></span>
-<span class="normal"><a href="#__codelineno-0-102">102</a></span>
-<span class="normal"><a href="#__codelineno-0-103">103</a></span>
-<span class="normal"><a href="#__codelineno-0-104">104</a></span>
-<span class="normal"><a href="#__codelineno-0-105">105</a></span>
-<span class="normal"><a href="#__codelineno-0-106">106</a></span>
-<span class="normal"><a href="#__codelineno-0-107">107</a></span>
-<span class="normal"><a href="#__codelineno-0-108">108</a></span>
-<span class="normal"><a href="#__codelineno-0-109">109</a></span>
-<span class="normal"><a href="#__codelineno-0-110">110</a></span>
-<span class="normal"><a href="#__codelineno-0-111">111</a></span>
-<span class="normal"><a href="#__codelineno-0-112">112</a></span>
-<span class="normal"><a href="#__codelineno-0-113">113</a></span>
-<span class="normal"><a href="#__codelineno-0-114">114</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97"></a><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">models</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">Model</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">aliases</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">Alias</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__models</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">Model</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99"></a>    <span class="k">if</span> <span class="n">models</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100"></a>        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">models</span><span class="p">:</span>
-</span><span id="__span-0-101"><a id="__codelineno-0-101" name="__codelineno-0-101"></a>            <span class="n">key</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">provider</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">name</span>
-</span><span id="__span-0-102"><a id="__codelineno-0-102" name="__codelineno-0-102"></a>            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__models</span><span class="p">:</span>
-</span><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103"></a>                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;duplicated models with: </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span id="__span-0-104"><a id="__codelineno-0-104" name="__codelineno-0-104"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">__models</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">m</span>
-</span><span id="__span-0-105"><a id="__codelineno-0-105" name="__codelineno-0-105"></a>
-</span><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106"></a>    <span class="k">if</span> <span class="n">aliases</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="__span-0-107"><a id="__codelineno-0-107" name="__codelineno-0-107"></a>        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">aliases</span><span class="p">:</span>
-</span><span id="__span-0-108"><a id="__codelineno-0-108" name="__codelineno-0-108"></a>            <span class="n">model_key</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">provider</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">alias</span>
-</span><span id="__span-0-109"><a id="__codelineno-0-109" name="__codelineno-0-109"></a>            <span class="k">if</span> <span class="n">model_key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__models</span><span class="p">:</span>
-</span><span id="__span-0-110"><a id="__codelineno-0-110" name="__codelineno-0-110"></a>                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;model alias not found: </span><span class="si">{</span><span class="n">model_key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span id="__span-0-111"><a id="__codelineno-0-111" name="__codelineno-0-111"></a>            <span class="n">alias_key</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">provider</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">name</span>
-</span><span id="__span-0-112"><a id="__codelineno-0-112" name="__codelineno-0-112"></a>            <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__models</span><span class="p">[</span><span class="n">model_key</span><span class="p">]</span><span class="o">.</span><span class="n">model_copy</span><span class="p">()</span>
-</span><span id="__span-0-113"><a id="__codelineno-0-113" name="__codelineno-0-113"></a>            <span class="n">model</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">name</span>
-</span><span id="__span-0-114"><a id="__codelineno-0-114" name="__codelineno-0-114"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">__models</span><span class="p">[</span><span class="n">alias_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span>
+                    <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#ecologits.model_repository.ModelRepository--source--__codelineno-0-97"> 97</a></span>
+<span class="normal"><a href="#ecologits.model_repository.ModelRepository--source--__codelineno-0-98"> 98</a></span>
+<span class="normal"><a href="#ecologits.model_repository.ModelRepository--source--__codelineno-0-99"> 99</a></span>
+<span class="normal"><a href="#ecologits.model_repository.ModelRepository--source--__codelineno-0-100">100</a></span>
+<span class="normal"><a href="#ecologits.model_repository.ModelRepository--source--__codelineno-0-101">101</a></span>
+<span class="normal"><a href="#ecologits.model_repository.ModelRepository--source--__codelineno-0-102">102</a></span>
+<span class="normal"><a href="#ecologits.model_repository.ModelRepository--source--__codelineno-0-103">103</a></span>
+<span class="normal"><a href="#ecologits.model_repository.ModelRepository--source--__codelineno-0-104">104</a></span>
+<span class="normal"><a href="#ecologits.model_repository.ModelRepository--source--__codelineno-0-105">105</a></span>
+<span class="normal"><a href="#ecologits.model_repository.ModelRepository--source--__codelineno-0-106">106</a></span>
+<span class="normal"><a href="#ecologits.model_repository.ModelRepository--source--__codelineno-0-107">107</a></span>
+<span class="normal"><a href="#ecologits.model_repository.ModelRepository--source--__codelineno-0-108">108</a></span>
+<span class="normal"><a href="#ecologits.model_repository.ModelRepository--source--__codelineno-0-109">109</a></span>
+<span class="normal"><a href="#ecologits.model_repository.ModelRepository--source--__codelineno-0-110">110</a></span>
+<span class="normal"><a href="#ecologits.model_repository.ModelRepository--source--__codelineno-0-111">111</a></span>
+<span class="normal"><a href="#ecologits.model_repository.ModelRepository--source--__codelineno-0-112">112</a></span>
+<span class="normal"><a href="#ecologits.model_repository.ModelRepository--source--__codelineno-0-113">113</a></span>
+<span class="normal"><a href="#ecologits.model_repository.ModelRepository--source--__codelineno-0-114">114</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="ecologits.model_repository.ModelRepository--source--__span-0-97"><a id="ecologits.model_repository.ModelRepository--source--__codelineno-0-97" name="ecologits.model_repository.ModelRepository--source--__codelineno-0-97"></a><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">models</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">Model</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">aliases</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">Alias</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="ecologits.model_repository.ModelRepository--source--__span-0-98"><a id="ecologits.model_repository.ModelRepository--source--__codelineno-0-98" name="ecologits.model_repository.ModelRepository--source--__codelineno-0-98"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__models</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">Model</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span id="ecologits.model_repository.ModelRepository--source--__span-0-99"><a id="ecologits.model_repository.ModelRepository--source--__codelineno-0-99" name="ecologits.model_repository.ModelRepository--source--__codelineno-0-99"></a>    <span class="k">if</span> <span class="n">models</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="ecologits.model_repository.ModelRepository--source--__span-0-100"><a id="ecologits.model_repository.ModelRepository--source--__codelineno-0-100" name="ecologits.model_repository.ModelRepository--source--__codelineno-0-100"></a>        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">models</span><span class="p">:</span>
+</span><span id="ecologits.model_repository.ModelRepository--source--__span-0-101"><a id="ecologits.model_repository.ModelRepository--source--__codelineno-0-101" name="ecologits.model_repository.ModelRepository--source--__codelineno-0-101"></a>            <span class="n">key</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">provider</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">name</span>
+</span><span id="ecologits.model_repository.ModelRepository--source--__span-0-102"><a id="ecologits.model_repository.ModelRepository--source--__codelineno-0-102" name="ecologits.model_repository.ModelRepository--source--__codelineno-0-102"></a>            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__models</span><span class="p">:</span>
+</span><span id="ecologits.model_repository.ModelRepository--source--__span-0-103"><a id="ecologits.model_repository.ModelRepository--source--__codelineno-0-103" name="ecologits.model_repository.ModelRepository--source--__codelineno-0-103"></a>                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"duplicated models with: </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="ecologits.model_repository.ModelRepository--source--__span-0-104"><a id="ecologits.model_repository.ModelRepository--source--__codelineno-0-104" name="ecologits.model_repository.ModelRepository--source--__codelineno-0-104"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">__models</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">m</span>
+</span><span id="ecologits.model_repository.ModelRepository--source--__span-0-105"><a id="ecologits.model_repository.ModelRepository--source--__codelineno-0-105" name="ecologits.model_repository.ModelRepository--source--__codelineno-0-105"></a>
+</span><span id="ecologits.model_repository.ModelRepository--source--__span-0-106"><a id="ecologits.model_repository.ModelRepository--source--__codelineno-0-106" name="ecologits.model_repository.ModelRepository--source--__codelineno-0-106"></a>    <span class="k">if</span> <span class="n">aliases</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="ecologits.model_repository.ModelRepository--source--__span-0-107"><a id="ecologits.model_repository.ModelRepository--source--__codelineno-0-107" name="ecologits.model_repository.ModelRepository--source--__codelineno-0-107"></a>        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">aliases</span><span class="p">:</span>
+</span><span id="ecologits.model_repository.ModelRepository--source--__span-0-108"><a id="ecologits.model_repository.ModelRepository--source--__codelineno-0-108" name="ecologits.model_repository.ModelRepository--source--__codelineno-0-108"></a>            <span class="n">model_key</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">provider</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">alias</span>
+</span><span id="ecologits.model_repository.ModelRepository--source--__span-0-109"><a id="ecologits.model_repository.ModelRepository--source--__codelineno-0-109" name="ecologits.model_repository.ModelRepository--source--__codelineno-0-109"></a>            <span class="k">if</span> <span class="n">model_key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__models</span><span class="p">:</span>
+</span><span id="ecologits.model_repository.ModelRepository--source--__span-0-110"><a id="ecologits.model_repository.ModelRepository--source--__codelineno-0-110" name="ecologits.model_repository.ModelRepository--source--__codelineno-0-110"></a>                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"model alias not found: </span><span class="si">{</span><span class="n">model_key</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="ecologits.model_repository.ModelRepository--source--__span-0-111"><a id="ecologits.model_repository.ModelRepository--source--__codelineno-0-111" name="ecologits.model_repository.ModelRepository--source--__codelineno-0-111"></a>            <span class="n">alias_key</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">provider</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">name</span>
+</span><span id="ecologits.model_repository.ModelRepository--source--__span-0-112"><a id="ecologits.model_repository.ModelRepository--source--__codelineno-0-112" name="ecologits.model_repository.ModelRepository--source--__codelineno-0-112"></a>            <span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__models</span><span class="p">[</span><span class="n">model_key</span><span class="p">]</span><span class="o">.</span><span class="n">model_copy</span><span class="p">()</span>
+</span><span id="ecologits.model_repository.ModelRepository--source--__span-0-113"><a id="ecologits.model_repository.ModelRepository--source--__codelineno-0-113" name="ecologits.model_repository.ModelRepository--source--__codelineno-0-113"></a>            <span class="n">model</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">name</span>
+</span><span id="ecologits.model_repository.ModelRepository--source--__span-0-114"><a id="ecologits.model_repository.ModelRepository--source--__codelineno-0-114" name="ecologits.model_repository.ModelRepository--source--__codelineno-0-114"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">__models</span><span class="p">[</span><span class="n">alias_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span>
 </span></code></pre></div></td></tr></table></div>
                   </details>
 
@@ -3556,7 +3560,8 @@
       <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["announce.dismiss","content.action.copy","content.action.edit","content.action.view","content.code.annotate","content.code.copy","content.code.select","content.footnote.tooltips","content.tabs.link","content.tooltips","navigation.instant","navigation.instant.prefetch","navigation.instant.preview","navigation.instant.progress","navigation.tracking","navigation.tabs","navigation.tabs.sticky","navigation.sections","navigation.path","navigation.top","navigation.footer","search.highlight","toc.follow"],"redirect":null,"search":"../../../assets/javascripts/workers/search.719e0d91.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":{"alias":true,"default":"latest","provider":"mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.3cb411a8.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.9e76c64c.min.js"></script>
+      
       
         <script src="../../../js/katex.js"></script>
       
