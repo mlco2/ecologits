@@ -3,6 +3,7 @@ import os
 import pytest
 from openai import AsyncAzureOpenAI, AsyncOpenAI, AzureOpenAI, OpenAI
 from pydantic import BaseModel
+from ecologits.tracers.utils import AsyncImpactsStream, ImpactsStream
 
 class GreetingDetection(BaseModel):
     is_greeting: bool
@@ -64,6 +65,7 @@ async def test_openai_async_stream_chat(tracer_init):
         messages=[{"role": "user", "content": "Hello World!"}],
         stream=True
     )
+    assert isinstance(stream, AsyncImpactsStream)
     async for chunk in stream:
         assert chunk.impacts.energy.value >= 0
 
@@ -113,6 +115,7 @@ def test_openai_stream_responses(tracer_init):
         input="Hello World!",
         stream=True
     )
+    assert isinstance(stream, ImpactsStream)
     for event in stream:
         if event.type == "response.completed":
             assert event.impacts.energy.value > 0

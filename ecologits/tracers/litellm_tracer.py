@@ -1,5 +1,6 @@
 import re
 import time
+from collections.abc import AsyncIterator, Iterator
 from typing import Any, Callable, Optional, Union
 
 import litellm
@@ -12,7 +13,7 @@ from wrapt import wrap_function_wrapper  # type: ignore[import-untyped]
 from ecologits._ecologits import EcoLogits
 from ecologits.model_repository import Providers, models
 from ecologits.status_messages import ModelNameFuzzyMatchWarning
-from ecologits.tracers.utils import ImpactsOutput, _llm_impacts
+from ecologits.tracers.utils import AsyncImpactsStream, ImpactsOutput, ImpactsStream, _llm_impacts
 from ecologits.tracking import ImpactsTracker, get_active_trackers, is_tracking_enabled, record_impacts
 
 PROVIDER = "litellm"
@@ -140,20 +141,18 @@ def litellm_chat_wrapper(
         return wrapped(*args, **kwargs)
     trackers = get_active_trackers(PROVIDER)
     if kwargs.get("stream", False):
-        return litellm_chat_wrapper_stream(wrapped, instance, args, kwargs, trackers)
+        timer_start = time.perf_counter()
+        stream = wrapped(*args, **kwargs)
+        return ImpactsStream(stream, litellm_chat_wrapper_stream(stream, timer_start, trackers))
     else:
         return litellm_chat_wrapper_non_stream(wrapped, instance, args, kwargs, trackers)
 
 
-def litellm_chat_wrapper_stream(  # type: ignore[misc]
-    wrapped: Callable,
-    instance: Completions,      # noqa: ARG001
-    args: Any,
-    kwargs: Any,
+def litellm_chat_wrapper_stream(
+    stream: CustomStreamWrapper,
+    timer_start: float,
     trackers: tuple[ImpactsTracker, ...] = ()
-) -> CustomStreamWrapper:
-    timer_start = time.perf_counter()
-    stream = wrapped(*args, **kwargs)
+) -> Iterator[Any]:
     token_count = 0
     impacts: ImpactsOutput | None = None
     for i, chunk in enumerate(stream):
@@ -234,7 +233,9 @@ async def litellm_async_chat_wrapper(
         return await wrapped(*args, **kwargs)
     trackers = get_active_trackers(PROVIDER)
     if kwargs.get("stream", False):
-        return litellm_async_chat_wrapper_stream(wrapped, instance, args, kwargs, trackers)
+        timer_start = time.perf_counter()
+        stream = await wrapped(*args, **kwargs)
+        return AsyncImpactsStream(stream, litellm_async_chat_wrapper_stream(stream, timer_start, trackers))
     else:
         return await litellm_async_chat_wrapper_base(wrapped, instance, args, kwargs, trackers)
 
@@ -268,15 +269,11 @@ async def litellm_async_chat_wrapper_base(
         return response
 
 
-async def litellm_async_chat_wrapper_stream(  # type: ignore[misc]
-    wrapped: Callable,
-    instance: AsyncCompletions,      # noqa: ARG001
-    args: Any,
-    kwargs: Any,
+async def litellm_async_chat_wrapper_stream(
+    stream: CustomStreamWrapper,
+    timer_start: float,
     trackers: tuple[ImpactsTracker, ...] = ()
-) -> CustomStreamWrapper:
-    timer_start = time.perf_counter()
-    stream = await wrapped(*args, **kwargs)
+) -> AsyncIterator[Any]:
     i = 0
     token_count = 0
     impacts: ImpactsOutput | None = None

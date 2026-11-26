@@ -1,5 +1,6 @@
 import pytest
 from cohere import AsyncClient, Client
+from ecologits.tracers.utils import AsyncImpactsStream, ImpactsStream
 
 
 @pytest.mark.vcr
@@ -35,6 +36,7 @@ def test_cohere_stream_chat(tracer_init):
         model="command-r7b-12-2024",
         max_tokens=100
     )
+    assert isinstance(stream, ImpactsStream)
     for event in stream:
         if event.event_type == "text-generation":
             assert len(event.text) > 0
@@ -51,6 +53,7 @@ async def test_cohere_async_stream_chat(tracer_init):
         model="command-r7b-12-2024",
         max_tokens=100
     )
+    assert isinstance(stream, AsyncImpactsStream)
     async for event in stream:
         if event.event_type == "text-generation":
             assert len(event.text) > 0

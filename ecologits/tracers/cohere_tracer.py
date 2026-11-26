@@ -9,7 +9,7 @@ from cohere.types.streamed_chat_response import StreamEndStreamedChatResponse as
 from wrapt import wrap_function_wrapper  # type: ignore[import-untyped]
 
 from ecologits._ecologits import EcoLogits
-from ecologits.tracers.utils import ImpactsOutput, _llm_impacts
+from ecologits.tracers.utils import AsyncImpactsStream, ImpactsOutput, ImpactsStream, _llm_impacts
 from ecologits.tracking import ImpactsTracker, get_active_trackers, is_tracking_enabled, record_impacts
 
 PROVIDER = "cohere"
@@ -148,18 +148,18 @@ def cohere_stream_chat_wrapper(
     """
     if not is_tracking_enabled(PROVIDER):
         return wrapped(*args, **kwargs)
-    return _stream_generator(wrapped, args, kwargs, get_active_trackers(PROVIDER))
+    stream = wrapped(*args, **kwargs)
+    return ImpactsStream(stream, _stream_generator(stream, kwargs, get_active_trackers(PROVIDER)))
 
 
 def _stream_generator(
-    wrapped: Callable,
-    args: Any,
+    stream: Iterator[StreamedChatResponse],
     kwargs: Any,
     trackers: tuple[ImpactsTracker, ...]
 ) -> Iterator[StreamedChatResponse]:
     model_name = kwargs.get("model", "command-r")
+    # The SDK sends the request on the first iteration.
     timer_start = time.perf_counter()
-    stream = wrapped(*args, **kwargs)
     for event in stream:
         if event.event_type == "stream-end":
             request_latency = time.perf_counter() - timer_start
@@ -209,18 +209,18 @@ def cohere_async_stream_chat_wrapper(
     """
     if not is_tracking_enabled(PROVIDER):
         return wrapped(*args, **kwargs)
-    return _async_stream_generator(wrapped, args, kwargs, get_active_trackers(PROVIDER))
+    stream = wrapped(*args, **kwargs)
+    return AsyncImpactsStream(stream, _async_stream_generator(stream, kwargs, get_active_trackers(PROVIDER)))
 
 
 async def _async_stream_generator(
-    wrapped: Callable,
-    args: Any,
+    stream: AsyncIterator[StreamedChatResponse],
     kwargs: Any,
     trackers: tuple[ImpactsTracker, ...]
 ) -> AsyncIterator[StreamedChatResponse]:
     model_name = kwargs.get("model", "command-r")
+    # The SDK sends the request on the first iteration.
     timer_start = time.perf_counter()
-    stream = wrapped(*args, **kwargs)
     async for event in stream:
         if event.event_type == "stream-end":
             request_latency = time.perf_counter() - timer_start

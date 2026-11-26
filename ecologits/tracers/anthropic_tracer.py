@@ -1,5 +1,5 @@
 import time
-from collections.abc import AsyncIterator, Awaitable, Iterator
+from collections.abc import AsyncIterable, AsyncIterator, Awaitable, Iterable, Iterator
 from types import TracebackType
 from typing import Any, Callable, Generic, Optional, TypeVar
 
@@ -7,13 +7,17 @@ from anthropic import Anthropic, AsyncAnthropic
 from anthropic.lib.streaming import AsyncMessageStream as _AsyncMessageStream
 from anthropic.lib.streaming import MessageStream as _MessageStream
 from anthropic.types import Message as _Message
-from anthropic.types.message_delta_event import MessageDeltaEvent
-from anthropic.types.message_start_event import MessageStartEvent
 from typing_extensions import override
 from wrapt import wrap_function_wrapper  # type: ignore[import-untyped]
 
 from ecologits._ecologits import EcoLogits
-from ecologits.tracers.utils import ImpactsOutput, _llm_impacts, is_raw_response_request
+from ecologits.tracers.utils import (
+    AsyncImpactsStream,
+    ImpactsOutput,
+    ImpactsStream,
+    _llm_impacts,
+    is_raw_response_request,
+)
 from ecologits.tracking import ImpactsTracker, get_active_trackers, is_tracking_enabled, record_impacts
 
 PROVIDER = "anthropic"
@@ -41,43 +45,10 @@ class MessageStream(_MessageStream):
 
     @override
     def __stream__(self) -> Iterator[Any]:  # type: ignore[misc]
-        timer_start = time.perf_counter()
-        output_tokens = 0
-        model_name = None
-        input_tokens = 0
-        for chunk in super().__stream__():
-            if type(chunk) is MessageStartEvent:
-                message = chunk.message
-                model_name = message.model
-                input_tokens = message.usage.input_tokens
-                output_tokens += message.usage.output_tokens
-            elif type(chunk) is MessageDeltaEvent:
-                output_tokens += chunk.usage.output_tokens
-            yield chunk
-        request_latency = time.perf_counter() - timer_start
-        if model_name is not None:
-            impacts = _llm_impacts(
-                provider=PROVIDER,
-                model_name=model_name,
-                output_token_count=output_tokens,
-                request_latency=request_latency,
-                electricity_mix_zone=EcoLogits.config.electricity_mix_zone
-            )
-            self.impacts = impacts
-            record_impacts(self.impacts_trackers, impacts)
-
-            if impacts is not None \
-                and EcoLogits.config.opentelemetry:
-                    EcoLogits.config.opentelemetry.record_request(
-                        input_tokens=input_tokens,
-                        output_tokens=output_tokens,
-                        request_latency=request_latency,
-                        impacts=impacts,
-                        provider=PROVIDER,
-                        model=model_name,
-                        endpoint="/messages"
-                    )
-
+        for event in _stream_events(super().__stream__(), time.perf_counter(), self.impacts_trackers):
+            if event.type == "message_stop":
+                self.impacts = event.impacts
+            yield event
 
 
 class AsyncMessageStream(_AsyncMessageStream):
@@ -89,43 +60,10 @@ class AsyncMessageStream(_AsyncMessageStream):
 
     @override
     async def __stream__(self) -> AsyncIterator[Any]:  # type: ignore[misc]
-        timer_start = time.perf_counter()
-        output_tokens = 0
-        model_name = None
-        input_tokens = 0
-        async for chunk in super().__stream__():
-            if type(chunk) is MessageStartEvent:
-                message = chunk.message
-                model_name = message.model
-                input_tokens = message.usage.input_tokens
-                output_tokens += message.usage.output_tokens
-            elif type(chunk) is MessageDeltaEvent:
-                output_tokens += chunk.usage.output_tokens
-            yield chunk
-        request_latency = time.perf_counter() - timer_start
-        if model_name is not None:
-            impacts = _llm_impacts(
-                provider=PROVIDER,
-                model_name=model_name,
-                output_token_count=output_tokens,
-                request_latency=request_latency,
-                electricity_mix_zone=EcoLogits.config.electricity_mix_zone
-            )
-            self.impacts = impacts
-            record_impacts(self.impacts_trackers, impacts)
-
-            if impacts is not None \
-                and EcoLogits.config.opentelemetry:
-                    EcoLogits.config.opentelemetry.record_request(
-                        input_tokens=input_tokens,
-                        output_tokens=output_tokens,
-                        request_latency=request_latency,
-                        impacts=impacts,
-                        provider=PROVIDER,
-                        model=model_name,
-                        endpoint="/messages"
-                    )
-
+        async for event in _async_stream_events(super().__stream__(), time.perf_counter(), self.impacts_trackers):
+            if event.type == "message_stop":
+                self.impacts = event.impacts
+            yield event
 
 
 class MessageStreamManager(Generic[MessageStreamT]):
@@ -185,6 +123,71 @@ class AsyncMessageStreamManager(Generic[AsyncMessageStreamT]):
             await self.__stream.close()
 
 
+def _stream_impacts(
+    model_name: str,
+    input_tokens: int,
+    output_tokens: int,
+    timer_start: float,
+    trackers: tuple[ImpactsTracker, ...],
+) -> ImpactsOutput:
+    request_latency = time.perf_counter() - timer_start
+    impacts = _llm_impacts(
+        provider=PROVIDER,
+        model_name=model_name,
+        output_token_count=output_tokens,
+        request_latency=request_latency,
+        electricity_mix_zone=EcoLogits.config.electricity_mix_zone
+    )
+    record_impacts(trackers, impacts)
+    if impacts is not None and EcoLogits.config.opentelemetry:
+        EcoLogits.config.opentelemetry.record_request(
+            input_tokens=input_tokens,
+            output_tokens=output_tokens,
+            request_latency=request_latency,
+            impacts=impacts,
+            provider=PROVIDER,
+            model=model_name,
+            endpoint="/messages"
+        )
+    return impacts
+
+
+def _stream_events(
+    stream: Iterable[Any],
+    timer_start: float,
+    trackers: tuple[ImpactsTracker, ...],
+) -> Iterator[Any]:
+    model_name, input_tokens, output_tokens = "", 0, 0
+    for event in stream:
+        if event.type == "message_start":
+            model_name = event.message.model
+            input_tokens = event.message.usage.input_tokens
+            output_tokens += event.message.usage.output_tokens
+        elif event.type == "message_delta":
+            output_tokens += event.usage.output_tokens
+        elif event.type == "message_stop":
+            event.impacts = _stream_impacts(model_name, input_tokens, output_tokens, timer_start, trackers)
+        yield event
+
+
+async def _async_stream_events(
+    stream: AsyncIterable[Any],
+    timer_start: float,
+    trackers: tuple[ImpactsTracker, ...],
+) -> AsyncIterator[Any]:
+    model_name, input_tokens, output_tokens = "", 0, 0
+    async for event in stream:
+        if event.type == "message_start":
+            model_name = event.message.model
+            input_tokens = event.message.usage.input_tokens
+            output_tokens += event.message.usage.output_tokens
+        elif event.type == "message_delta":
+            output_tokens += event.usage.output_tokens
+        elif event.type == "message_stop":
+            event.impacts = _stream_impacts(model_name, input_tokens, output_tokens, timer_start, trackers)
+        yield event
+
+
 def anthropic_chat_wrapper(
     wrapped: Callable, instance: Anthropic, args: Any, kwargs: Any  # noqa: ARG001
 ) -> Message:
@@ -206,6 +209,8 @@ def anthropic_chat_wrapper(
 
     timer_start = time.perf_counter()
     response = wrapped(*args, **kwargs)
+    if kwargs.get("stream", False):
+        return ImpactsStream(response, _stream_events(response, timer_start, trackers))
     request_latency = time.perf_counter() - timer_start
     model_name = response.model
     impacts = _llm_impacts(
@@ -254,6 +259,8 @@ async def anthropic_async_chat_wrapper(
 
     timer_start = time.perf_counter()
     response = await wrapped(*args, **kwargs)
+    if kwargs.get("stream", False):
+        return AsyncImpactsStream(response, _async_stream_events(response, timer_start, trackers))
     request_latency = time.perf_counter() - timer_start
     model_name = response.model
     impacts = _llm_impacts(

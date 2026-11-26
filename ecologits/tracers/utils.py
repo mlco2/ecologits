@@ -2,10 +2,12 @@ from __future__ import annotations
 
 import math
 import warnings
+from collections.abc import AsyncIterator, Iterator
 from dataclasses import dataclass
 from typing import Any
 
 from pydantic import BaseModel
+from wrapt import ObjectProxy  # type: ignore[import-untyped]
 
 from ecologits.electricity_mix_repository import electricity_mixes
 from ecologits.impacts.llm import compute_llm_impacts
@@ -33,6 +35,48 @@ def is_raw_response_request(kwargs: dict[str, Any]) -> bool:
     """
     extra_headers = kwargs.get("extra_headers") or {}
     return RAW_RESPONSE_HEADER in extra_headers
+
+
+class ImpactsStream(ObjectProxy):  # type: ignore[misc]
+    """
+    An SDK stream object whose iteration yields the items with impacts. Other attributes go to the SDK object.
+    """
+    def __init__(self, stream: Any, items: Iterator[Any]) -> None:
+        super().__init__(stream)
+        self._self_items = items
+
+    def __iter__(self) -> Iterator[Any]:
+        return self._self_items
+
+    def __next__(self) -> Any:
+        return next(self._self_items)
+
+    def __enter__(self) -> ImpactsStream:
+        self.__wrapped__.__enter__()
+        return self
+
+
+class AsyncImpactsStream(ObjectProxy):  # type: ignore[misc]
+    """
+    An async SDK stream object whose iteration yields the items with impacts. Other attributes go to the SDK object.
+    """
+    def __init__(self, stream: Any, items: AsyncIterator[Any]) -> None:
+        super().__init__(stream)
+        self._self_items = items
+
+    def __aiter__(self) -> AsyncIterator[Any]:
+        return self._self_items
+
+    async def __anext__(self) -> Any:
+        return await self._self_items.__anext__()
+
+    async def __aenter__(self) -> AsyncImpactsStream:
+        await self.__wrapped__.__aenter__()
+        return self
+
+    # wrapt 1.x proxies have no __aexit__.
+    async def __aexit__(self, *exc_info: Any) -> Any:
+        return await self.__wrapped__.__aexit__(*exc_info)
 
 
 class ImpactsOutput(BaseModel):
