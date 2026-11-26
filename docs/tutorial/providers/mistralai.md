@@ -15,7 +15,9 @@ Official links:
 
 ## Installation
 
-EcoLogits supports versions 2.x and 3.x of the Mistral AI Python SDK. Install the `mistralai` extra to get a compatible version.
+EcoLogits supports versions 1.x (from 1.5.0), 2.x, and 3.x of the Mistral AI Python SDK. Install the `mistralai` extra to get a compatible version.
+
+Mistral SDK 1.x emits a deprecation warning when EcoLogits initializes the integration. EcoLogits 0.13 will remove support for Mistral SDK 1.x. The examples below use `from mistralai.client import Mistral` for SDK 2.x and 3.x. With SDK 1.x, use `from mistralai import Mistral`.
 
 ```shell
 pip install "ecologits[mistralai]"

@@ -86,6 +86,32 @@ _INSTRUMENTS = {
 }
 
 _instrumented_providers: set[str] = set()
+_DEPRECATED_SDK_MAJORS = {
+    "openai": 1,
+    "mistralai": 1,
+    "huggingface_hub": 0,
+    "google_genai": 1,
+}
+
+
+def _warn_deprecated_sdk(provider: str) -> None:
+    deprecated_major = _DEPRECATED_SDK_MAJORS.get(provider)
+    if deprecated_major is None:
+        return
+
+    package = provider.replace("_", "-")
+    try:
+        version = Version(importlib.metadata.version(package))
+    except importlib.metadata.PackageNotFoundError:
+        return
+
+    if version.major == deprecated_major:
+        warnings.warn(
+            f"EcoLogits will remove support for {package} {deprecated_major}.x in version 0.13. "
+            f"Upgrade {package} to {deprecated_major + 1}.x or newer.",
+            FutureWarning,
+            stacklevel=4,
+        )
 
 
 class EcoLogits:
@@ -261,6 +287,7 @@ def init_instruments(providers: list[str]) -> None:
         if provider not in _INSTRUMENTS:
             raise EcoLogitsError(f"Could not find tracer for the `{provider}` provider.")
         if provider not in _instrumented_providers:
+            _warn_deprecated_sdk(provider)
             init_func = _INSTRUMENTS[provider]
             init_func()
             _instrumented_providers.add(provider)

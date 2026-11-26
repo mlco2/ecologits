@@ -48,8 +48,22 @@ def google_genai_client():
     from google import genai
 
     # The Gemini cassettes were recorded against the v1beta API.
-    with genai.Client(http_options={"api_version": "v1beta"}) as client:
-        yield client
+    client = genai.Client(http_options={"api_version": "v1beta"})
+    yield client
+    if hasattr(client, "close"):
+        client.close()
+
+
+@pytest.fixture
+def mistralai_client():
+    from importlib.util import find_spec
+
+    if find_spec("mistralai.chat") is not None:
+        from mistralai import Mistral
+    else:
+        from mistralai.client import Mistral
+
+    return Mistral(api_key=os.environ["MISTRAL_API_KEY"])
 
 
 @pytest.fixture(scope="session")

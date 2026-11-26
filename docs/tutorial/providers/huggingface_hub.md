@@ -14,7 +14,9 @@ Official links:
 
 ## Installation
 
-EcoLogits supports versions 1.x and 2.x of the Hugging Face Hub Python SDK. Install the `huggingface-hub` extra to get a compatible version.
+EcoLogits supports versions 0.x (from 0.28.1), 1.x, and 2.x of the Hugging Face Hub Python SDK. Install the `huggingface-hub` extra to get a compatible version.
+
+Hugging Face Hub 0.x emits a deprecation warning when EcoLogits initializes the integration. EcoLogits 0.13 will remove support for Hugging Face Hub 0.x.
 
 ```shell
 pip install "ecologits[huggingface-hub]"

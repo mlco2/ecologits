@@ -1,9 +1,11 @@
 import json
+from inspect import Parameter, signature
 from typing import Optional
 
 import httpx
 import pytest
 from openai import AsyncAzureOpenAI, AsyncOpenAI, AzureOpenAI, OpenAI
+from openai.resources.responses.responses import AsyncResponses, Responses
 
 from ecologits.model_repository import models
 from ecologits.tracers import openai_tracer
@@ -174,7 +176,11 @@ async def test_azure_dated_model_falls_back_to_deployment(tracer_init, used_mode
 @pytest.mark.asyncio
 @pytest.mark.parametrize("kind", RESPONSES_KINDS)
 async def test_responses_without_model_uses_response_model(tracer_init, used_models, kind):
-    # `model` is optional on the Responses API, for example with a stored prompt.
+    resource = AsyncResponses if kind.startswith("async_") else Responses
+    method = resource.parse if kind.endswith("_parse") else resource.create
+    if signature(method).parameters["model"].default is Parameter.empty:
+        pytest.skip("This OpenAI SDK release requires a model for Responses requests.")
+
     result = await _call(kind, "gpt-4o-mini", None)
 
     assert used_models and set(used_models) == {"gpt-4o-mini"}

@@ -1,13 +1,9 @@
-import os
-
 import pytest
-from mistralai.client import Mistral
 
 
 @pytest.mark.vcr
-def test_mistralai_chat(tracer_init):
-    client = Mistral(api_key=os.environ["MISTRAL_API_KEY"])
-    response = client.chat.complete(
+def test_mistralai_chat(tracer_init, mistralai_client):
+    response = mistralai_client.chat.complete(
         messages=[{"role": "user", "content": "Hello World!"}], model="ministral-3b-2512"
     )
     assert len(response.choices) > 0
@@ -16,9 +12,8 @@ def test_mistralai_chat(tracer_init):
 
 @pytest.mark.vcr
 @pytest.mark.asyncio
-async def test_mistralai_async_chat(tracer_init):
-    client = Mistral(api_key=os.environ["MISTRAL_API_KEY"])
-    response = await client.chat.complete_async(
+async def test_mistralai_async_chat(tracer_init, mistralai_client):
+    response = await mistralai_client.chat.complete_async(
         messages=[{"role": "user", "content": "Hello World!"}], model="ministral-3b-2512"
     )
     assert len(response.choices) > 0
@@ -26,9 +21,8 @@ async def test_mistralai_async_chat(tracer_init):
 
 
 @pytest.mark.vcr
-def test_mistralai_stream_chat(tracer_init):
-    client = Mistral(api_key=os.environ["MISTRAL_API_KEY"])
-    stream = client.chat.stream(
+def test_mistralai_stream_chat(tracer_init, mistralai_client):
+    stream = mistralai_client.chat.stream(
         messages=[{"role": "user", "content": "Hello World!"}], model="ministral-3b-2512"
     )
     for chunk in stream:
@@ -37,9 +31,8 @@ def test_mistralai_stream_chat(tracer_init):
 
 @pytest.mark.vcr
 @pytest.mark.asyncio
-async def test_mistralai_async_stream_chat(tracer_init):
-    client = Mistral(api_key=os.environ["MISTRAL_API_KEY"])
-    stream = await client.chat.stream_async(
+async def test_mistralai_async_stream_chat(tracer_init, mistralai_client):
+    stream = await mistralai_client.chat.stream_async(
         messages=[{"role": "user", "content": "Hello World!"}], model="ministral-3b-2512"
     )
     async for chunk in stream:

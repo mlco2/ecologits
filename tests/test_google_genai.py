@@ -28,9 +28,12 @@ def test_google_genai_telemetry_endpoint(tracer_init, monkeypatch, config):
         "candidates": [{"content": {"role": "model", "parts": [{"text": "Hello"}]}}],
         "usageMetadata": {"promptTokenCount": 2, "candidatesTokenCount": 1},
     }))
-    with httpx.Client(transport=httpx.MockTransport(handler)) as http_client:
-        with genai.Client(api_key="test", http_options={"httpx_client": http_client}) as client:
-            client.models.generate_content(model="gemini-2.5-flash-lite", contents="Hello", config=config)
+    client = genai.Client(api_key="test", http_options={"client_args": {"transport": httpx.MockTransport(handler)}})
+    try:
+        client.models.generate_content(model="gemini-2.5-flash-lite", contents="Hello", config=config)
+    finally:
+        if hasattr(client, "close"):
+            client.close()
 
     telemetry.record_request.assert_called_once()
     assert telemetry.record_request.call_args.kwargs["endpoint"] == handler.call_args.args[0].url.path

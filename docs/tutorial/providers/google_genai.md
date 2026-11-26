@@ -14,7 +14,9 @@ Official links:
 
 ## Installation
 
-EcoLogits supports versions 2.x and 3.x of the Google Gen AI Python SDK. Install the `google-genai` extra to get a compatible version.
+EcoLogits supports versions 1.x (from 1.26.0), 2.x, and 3.x of the Google Gen AI Python SDK. Install the `google-genai` extra to get a compatible version.
+
+Google Gen AI 1.x emits a deprecation warning when EcoLogits initializes the integration. EcoLogits 0.13 will remove support for Google Gen AI 1.x.
 
 ```shell
 pip install "ecologits[google-genai]"

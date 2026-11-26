@@ -13,7 +13,7 @@ Official links:
 
 ## Installation
 
-EcoLogits supports versions 1.x and 2.x of the Anthropic Python SDK. Install the `anthropic` extra to get a compatible version.
+EcoLogits supports versions 0.x (from 0.45.2), 1.x, and 2.x of the Anthropic Python SDK. Install the `anthropic` extra to get a compatible version.
 
 ```shell
 pip install "ecologits[anthropic]"

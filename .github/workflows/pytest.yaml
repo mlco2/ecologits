@@ -33,17 +33,27 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          - { provider: openai, sdk: "openai==1.66.0" }
+          - { provider: openai, sdk: "openai>=1.66,<2" }
           - { provider: openai, sdk: "openai==2.0.0" }
           - { provider: openai, sdk: "openai>=2,<3" }
           - { provider: cohere, sdk: "cohere==5.13.12" }
           - { provider: cohere, sdk: "cohere>=5.13.12,<6" }
           - { provider: cohere, sdk: "cohere>=6,<7" }
+          - { provider: anthropic, sdk: "anthropic==0.45.2" }
+          - { provider: anthropic, sdk: "anthropic>=0.45.2,<1" }
           - { provider: anthropic, sdk: "anthropic==1.0.0" }
           - { provider: anthropic, sdk: "anthropic>=1,<2" }
+          - { provider: mistralai, sdk: "mistralai==1.5.0" }
+          - { provider: mistralai, sdk: "mistralai>=1.5,<2" }
           - { provider: mistralai, sdk: "mistralai==2.0.0" }
           - { provider: mistralai, sdk: "mistralai>=2,<3" }
+          - { provider: google_genai, sdk: "google-genai==1.26.0" }
+          - { provider: google_genai, sdk: "google-genai>=1.26,<2" }
           - { provider: google_genai, sdk: "google-genai==2.0.0" }
           - { provider: google_genai, sdk: "google-genai>=2,<3" }
+          - { provider: huggingface_hub, sdk: "huggingface-hub==0.28.1" }
+          - { provider: huggingface_hub, sdk: "huggingface-hub>=0.28.1,<1" }
           - { provider: huggingface_hub, sdk: "huggingface-hub==1.0.0" }
           - { provider: huggingface_hub, sdk: "huggingface-hub>=1,<2" }
           - { provider: huggingface_hub, sdk: "huggingface-hub>=2,<3" }
