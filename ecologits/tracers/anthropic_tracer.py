@@ -18,6 +18,9 @@ from ecologits.tracking import ImpactsTracker, get_active_trackers, is_tracking_
 
 PROVIDER = "anthropic"
 
+# Older SDKs have no `output_format` attribute; an explicit `None` must still be passed to `MessageStream`.
+_MISSING: Any = object()
+
 MessageStreamT = TypeVar("MessageStreamT", bound=_MessageStream)
 AsyncMessageStreamT = TypeVar("AsyncMessageStreamT", bound=_AsyncMessageStream)
 
@@ -139,7 +142,7 @@ class MessageStreamManager(Generic[MessageStreamT]):
 
     def __enter__(self) -> MessageStream:
         raw_stream = self.__api_request()
-        stream_options = {"output_format": self.__output_format} if self.__output_format is not None else {}
+        stream_options = {"output_format": self.__output_format} if self.__output_format is not _MISSING else {}
         self.__stream = MessageStream(raw_stream, **stream_options)
         self.__stream.impacts_trackers = self.__trackers
         return self.__stream
@@ -167,7 +170,7 @@ class AsyncMessageStreamManager(Generic[AsyncMessageStreamT]):
 
     async def __aenter__(self) -> AsyncMessageStream:
         raw_stream = await self.__api_request
-        stream_options = {"output_format": self.__output_format} if self.__output_format is not None else {}
+        stream_options = {"output_format": self.__output_format} if self.__output_format is not _MISSING else {}
         self.__stream = AsyncMessageStream(raw_stream, **stream_options)
         self.__stream.impacts_trackers = self.__trackers
         return self.__stream
@@ -297,7 +300,7 @@ def anthropic_stream_chat_wrapper(
     if not is_tracking_enabled(PROVIDER):
         return response
     api_request = response._MessageStreamManager__api_request  # noqa: SLF001
-    output_format = getattr(response, "_MessageStreamManager__output_format", None)
+    output_format = getattr(response, "_MessageStreamManager__output_format", _MISSING)
     return MessageStreamManager(api_request, output_format, get_active_trackers(PROVIDER))
 
 
@@ -320,7 +323,7 @@ def anthropic_async_stream_chat_wrapper(
     if not is_tracking_enabled(PROVIDER):
         return response
     api_request = response._AsyncMessageStreamManager__api_request  # noqa: SLF001
-    output_format = getattr(response, "_AsyncMessageStreamManager__output_format", None)
+    output_format = getattr(response, "_AsyncMessageStreamManager__output_format", _MISSING)
     return AsyncMessageStreamManager(api_request, output_format, get_active_trackers(PROVIDER))
 
 
