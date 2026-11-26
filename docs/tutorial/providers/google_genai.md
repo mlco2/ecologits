@@ -14,14 +14,13 @@ Official links:
 
 ## Installation
 
-To install EcoLogits along with all necessary dependencies for compatibility with the Google Gemini client, please use the `google-genai` extra-dependency option as follows:
+EcoLogits supports versions 1.x (from 1.26.0), 2.x, and 3.x of the Google Gen AI Python SDK. Install the `google-genai` extra to get a compatible version.
+
+Google Gen AI 1.x emits a deprecation warning when EcoLogits initializes the integration. EcoLogits 0.13 will remove support for Google Gen AI 1.x.
 
 ```shell
-pip install ecologits[google-genai]
+pip install "ecologits[google-genai]"
 ```
-
-This installation command ensures that EcoLogits is set up with the specific libraries required to interface seamlessly with Google Gemini Python client.
-
 
 ## Chat Completions
 

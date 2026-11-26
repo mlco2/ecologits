@@ -2,11 +2,9 @@ import os
 import threading
 
 import litellm
-import mistralai
 import pytest
 from anthropic import Anthropic, AsyncAnthropic
 from cohere import AsyncClient, Client
-from google import genai
 from huggingface_hub import InferenceClient
 from openai import AsyncOpenAI, OpenAI
 from pydantic import BaseModel
@@ -307,10 +305,9 @@ async def test_anthropic_async_stream_chat(no_global_init):
 @pytest.mark.vcr
 @pytest.mark.default_cassette(MISTRALAI_ASYNC_CHAT)
 @pytest.mark.asyncio
-async def test_mistralai_async_chat(no_global_init):
-    client = mistralai.Mistral(api_key=os.environ["MISTRAL_API_KEY"])
+async def test_mistralai_async_chat(no_global_init, mistralai_client):
     async with EcoLogits.track_impacts(providers="mistralai") as tracker:
-        response = await client.chat.complete_async(
+        response = await mistralai_client.chat.complete_async(
             messages=[{"role": "user", "content": "Hello World!"}], model="ministral-3b-2512"
         )
     assert len(tracker.calls) == 1
@@ -319,13 +316,12 @@ async def test_mistralai_async_chat(no_global_init):
 
 @pytest.mark.vcr(allow_playback_repeats=True)
 @pytest.mark.default_cassette(MISTRALAI_STREAM_CHAT)
-def test_mistralai_stream_chat(no_global_init):
-    client = mistralai.Mistral(api_key=os.environ["MISTRAL_API_KEY"])
-    outside = list(client.chat.stream(
+def test_mistralai_stream_chat(no_global_init, mistralai_client):
+    outside = list(mistralai_client.chat.stream(
         messages=[{"role": "user", "content": "Hello World!"}], model="ministral-3b-2512"
     ))
     with EcoLogits.track_impacts(providers="mistralai") as tracker:
-        stream = client.chat.stream(
+        stream = mistralai_client.chat.stream(
             messages=[{"role": "user", "content": "Hello World!"}], model="ministral-3b-2512"
         )
     chunks = list(stream)
@@ -364,11 +360,11 @@ async def test_cohere_async_stream_chat(no_global_init):
 
 @pytest.mark.vcr(allow_playback_repeats=True)
 @pytest.mark.default_cassette(GOOGLE_GENAI_CONTENT_STREAM)
-def test_google_genai_content_stream(no_global_init):
-    client = genai.Client()
-    outside = list(client.models.generate_content_stream(model="gemini-2.5-flash-lite", contents="Tell me a joke!"))
+def test_google_genai_content_stream(no_global_init, google_genai_client):
+    models = google_genai_client.models
+    outside = list(models.generate_content_stream(model="gemini-2.5-flash-lite", contents="Tell me a joke!"))
     with EcoLogits.track_impacts(providers="google_genai") as tracker:
-        stream = client.models.generate_content_stream(model="gemini-2.5-flash-lite", contents="Tell me a joke!")
+        stream = models.generate_content_stream(model="gemini-2.5-flash-lite", contents="Tell me a joke!")
     chunks = list(stream)
 
     assert not hasattr(outside[-1], "impacts")

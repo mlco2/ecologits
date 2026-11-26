@@ -1,37 +1,109 @@
 import time
-from collections.abc import AsyncGenerator, Iterable, Iterator
-from typing import Any, Callable
+from collections.abc import AsyncGenerator, AsyncIterator, Iterator
+from importlib.util import find_spec
+from types import TracebackType
+from typing import Any, Callable, Optional
 
-from mistralai import Mistral
-from mistralai.models import ChatCompletionResponse as _ChatCompletionResponse
-from mistralai.models import CompletionChunk as _CompletionChunk
-from mistralai.models import CompletionEvent
 from wrapt import wrap_function_wrapper  # type: ignore[import-untyped]
 
 from ecologits._ecologits import EcoLogits
 from ecologits.tracers.utils import ImpactsOutput, _llm_impacts
 from ecologits.tracking import ImpactsTracker, get_active_trackers, is_tracking_enabled, record_impacts
 
+if find_spec("mistralai.chat") is not None:
+    from mistralai.chat import Chat
+    from mistralai.models import ChatCompletionResponse as _ChatCompletionResponse
+    from mistralai.models import CompletionChunk as _CompletionChunk
+    from mistralai.models import CompletionEvent
+else:
+    from mistralai.client.chat import Chat
+    from mistralai.client.models import ChatCompletionResponse as _ChatCompletionResponse
+    from mistralai.client.models import CompletionChunk as _CompletionChunk
+    from mistralai.client.models import CompletionEvent
+
 PROVIDER = "mistralai"
 
 
 class ChatCompletionResponse(_ChatCompletionResponse):
     """
-    Wrapper of `mistralai.models.ChatCompletionResponse` with `ImpactsOutput`
+    Wrapper of `mistralai.client.models.ChatCompletionResponse` with `ImpactsOutput`
     """
     impacts: ImpactsOutput
 
 
 class CompletionChunk(_CompletionChunk):
     """
-    Wrapper of `mistralai.models.CompletionChunk` with `ImpactsOutput`
+    Wrapper of `mistralai.client.models.CompletionChunk` with `ImpactsOutput`
     """
     impacts: ImpactsOutput
 
 
+class EventStream:
+    """
+    Wrapper of the SDK's `EventStream` that adds impacts to each chunk while keeping its interface (context manager,
+    `close()`, `response`)
+    """
+
+    def __init__(self, stream: Any, timer_start: float, trackers: tuple[ImpactsTracker, ...]) -> None:
+        self._stream = stream
+        self._events = _stream_generator(stream, timer_start, trackers)
+
+    def __iter__(self) -> "EventStream":
+        return self
+
+    def __next__(self) -> CompletionEvent:
+        return next(self._events)
+
+    def __enter__(self) -> "EventStream":
+        self._stream.__enter__()
+        return self
+
+    def __exit__(
+        self,
+        exc_type: Optional[type[BaseException]],
+        exc: Optional[BaseException],
+        exc_tb: Optional[TracebackType]
+    ) -> None:
+        self._stream.__exit__(exc_type, exc, exc_tb)
+
+    def __getattr__(self, name: str) -> Any:
+        return getattr(self._stream, name)
+
+
+class EventStreamAsync:
+    """
+    Wrapper of the SDK's `EventStreamAsync` that adds impacts to each chunk while keeping its interface (async context
+    manager, `close()`, `response`)
+    """
+
+    def __init__(self, stream: Any, timer_start: float, trackers: tuple[ImpactsTracker, ...]) -> None:
+        self._stream = stream
+        self._events = _generator(stream, timer_start, trackers)
+
+    def __aiter__(self) -> "EventStreamAsync":
+        return self
+
+    async def __anext__(self) -> CompletionEvent:
+        return await self._events.__anext__()
+
+    async def __aenter__(self) -> "EventStreamAsync":
+        await self._stream.__aenter__()
+        return self
+
+    async def __aexit__(
+        self,
+        exc_type: Optional[type[BaseException]],
+        exc: Optional[BaseException],
+        exc_tb: Optional[TracebackType]
+    ) -> None:
+        await self._stream.__aexit__(exc_type, exc, exc_tb)
+
+    def __getattr__(self, name: str) -> Any:
+        return getattr(self._stream, name)
+
 
 def mistralai_chat_wrapper(
-    wrapped: Callable, instance: Mistral, args: Any, kwargs: Any  # noqa: ARG001
+    wrapped: Callable, instance: Chat, args: Any, kwargs: Any  # noqa: ARG001
 ) -> ChatCompletionResponse:
     """
     Function that wraps a MistralAI answer with computed impacts
@@ -77,8 +149,8 @@ def mistralai_chat_wrapper(
 
 
 def mistralai_chat_wrapper_stream(
-    wrapped: Callable, instance: Mistral, args: Any, kwargs: Any  # noqa: ARG001
-) -> Iterable[CompletionEvent]:
+    wrapped: Callable, instance: Chat, args: Any, kwargs: Any  # noqa: ARG001
+) -> EventStream:
     """
     Function that wraps a MistralAI answer with computed impacts in streaming mode
 
@@ -89,21 +161,21 @@ def mistralai_chat_wrapper_stream(
         kwargs: Keyword arguments of the callable
 
     Returns:
-        A wrapped `Iterable[CompletionEvent]` with impacts
+        A wrapped `EventStream` with impacts
     """
     if not is_tracking_enabled(PROVIDER):
         return wrapped(*args, **kwargs)
-    return _stream_generator(wrapped, args, kwargs, get_active_trackers(PROVIDER))
+    trackers = get_active_trackers(PROVIDER)
+    timer_start = time.perf_counter()
+    stream = wrapped(*args, **kwargs)
+    return EventStream(stream, timer_start, trackers)
 
 
 def _stream_generator(
-    wrapped: Callable,
-    args: Any,
-    kwargs: Any,
+    stream: Iterator[CompletionEvent],
+    timer_start: float,
     trackers: tuple[ImpactsTracker, ...]
 ) -> Iterator[CompletionEvent]:
-    timer_start = time.perf_counter()
-    stream = wrapped(*args, **kwargs)
     token_count = 0
     impacts: ImpactsOutput | None = None
     for i, chunk in enumerate(stream):
@@ -142,7 +214,7 @@ def _stream_generator(
 
 async def mistralai_async_chat_wrapper(
     wrapped: Callable,
-    instance: Mistral,  # noqa: ARG001
+    instance: Chat,  # noqa: ARG001
     args: Any,
     kwargs: Any,
 ) -> ChatCompletionResponse:
@@ -189,7 +261,7 @@ async def mistralai_async_chat_wrapper(
         return response
 
 async def _generator(
-    stream: AsyncGenerator[CompletionEvent, None],
+    stream: AsyncIterator[CompletionEvent],
     timer_start: float,
     trackers: tuple[ImpactsTracker, ...] = ()
 ) -> AsyncGenerator[CompletionEvent, None]:
@@ -231,10 +303,10 @@ async def _generator(
 
 async def mistralai_async_chat_wrapper_stream(
     wrapped: Callable,
-    instance: Mistral,  # noqa: ARG001
+    instance: Chat,  # noqa: ARG001
     args: Any,
     kwargs: Any,
-) -> AsyncGenerator[CompletionEvent, None]:
+) -> EventStreamAsync:
     """
     Function that wraps a MistralAI answer with computed impacts in streaming and async mode
 
@@ -245,14 +317,14 @@ async def mistralai_async_chat_wrapper_stream(
         kwargs: Keyword arguments of the callable
 
     Returns:
-        A wrapped `AsyncGenerator[CompletionEvent, None]` with impacts
+        A wrapped `EventStreamAsync` with impacts
     """
     if not is_tracking_enabled(PROVIDER):
         return await wrapped(*args, **kwargs)
     trackers = get_active_trackers(PROVIDER)
     timer_start = time.perf_counter()
     stream = await wrapped(*args, **kwargs)
-    return _generator(stream, timer_start, trackers)
+    return EventStreamAsync(stream, timer_start, trackers)
 
 
 class MistralAIInstrumentor:
@@ -262,22 +334,22 @@ class MistralAIInstrumentor:
     def __init__(self) -> None:
         self.wrapped_methods = [
             {
-                "module": "mistralai.chat",
+                "module": Chat.__module__,
                 "name": "Chat.complete",
                 "wrapper": mistralai_chat_wrapper,
             },
             {
-                "module": "mistralai.chat",
+                "module": Chat.__module__,
                 "name": "Chat.complete_async",
                 "wrapper": mistralai_async_chat_wrapper,
             },
             {
-                "module": "mistralai.chat",
+                "module": Chat.__module__,
                 "name": "Chat.stream",
                 "wrapper": mistralai_chat_wrapper_stream,
             },
             {
-                "module": "mistralai.chat",
+                "module": Chat.__module__,
                 "name": "Chat.stream_async",
                 "wrapper": mistralai_async_chat_wrapper_stream,
             },

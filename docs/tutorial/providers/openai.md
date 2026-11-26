@@ -14,14 +14,13 @@ Official links:
 
 ## Installation
 
-To install EcoLogits along with all necessary dependencies for compatibility with the OpenAI client, please use the `openai` extra-dependency option as follows:
+EcoLogits supports versions 1.x (from 1.66.0), 2.x, and 3.x of the OpenAI Python SDK. Install the `openai` extra to get a compatible version.
+
+OpenAI 1.x emits a deprecation warning when EcoLogits initializes the integration. EcoLogits 0.13 will remove support for OpenAI 1.x.
 
 ```shell
-pip install ecologits[openai]
+pip install "ecologits[openai]"
 ```
-
-This installation command ensures that EcoLogits is set up with the specific libraries required to interface seamlessly with OpenAI's Python client.
-
 
 ## Chat Completions
 

@@ -14,13 +14,13 @@ Official links:
 
 ## Installation
 
-To install EcoLogits along with all necessary dependencies for compatibility with the Hugging Face Hub client, please use the `huggingface-hub` extra-dependency option as follows:
+EcoLogits supports versions 0.x (from 0.28.1), 1.x, and 2.x of the Hugging Face Hub Python SDK. Install the `huggingface-hub` extra to get a compatible version.
+
+Hugging Face Hub 0.x emits a deprecation warning when EcoLogits initializes the integration. EcoLogits 0.13 will remove support for Hugging Face Hub 0.x.
 
 ```shell
-pip install ecologits[huggingface-hub]
+pip install "ecologits[huggingface-hub]"
 ```
-
-This installation command ensures that EcoLogits is set up with the specific libraries required to interface seamlessly with Hugging Face Hub's Python client.
 
 ## Chat Completions
 
