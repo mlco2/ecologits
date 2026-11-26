@@ -3299,7 +3299,7 @@
 </div>
 </div>
 <h3 id="streaming-example">Streaming example<a class="headerlink" href="#streaming-example" title="Permanent link">&para;</a></h3>
-<p><strong>In streaming mode, the impacts are calculated incrementally</strong>, which means you don't need to sum the impacts from each data chunk. Instead, the impact information in the last chunk reflects the total cumulative environmental impacts for the entire request.</p>
+<p><strong>In streaming mode, the impacts are calculated incrementally</strong>, which means you don't need to sum the impacts from each data chunk. Instead, the impact information in the last chunk reflects the total cumulative environmental impacts for the entire request. The streaming call returns the SDK <code>EventStream</code> (<code>EventStreamAsync</code> in async code) through a proxy, so you can also use it with <code>with</code> or <code>async with</code>.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Sync</label><label for="__tabbed_2_2">Async</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">

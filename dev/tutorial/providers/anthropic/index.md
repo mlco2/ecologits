@@ -118,3 +118,25 @@ async def main() -> None:
 
 asyncio.run(main())
 ```
+
+**With `client.messages.create(..., stream=True)`, the impacts are only available on the final `message_stop` event.** Other events are yielded as-is without impact data. The call returns the SDK stream object through a proxy, so you can use it with `with`, `close()` and `response`. `isinstance(stream, anthropic.Stream)` is `False` for this proxy, because the `Stream` class of the Anthropic SDK accepts only its exact type.
+
+```python
+from anthropic import Anthropic
+from ecologits import EcoLogits
+
+EcoLogits.init(providers=["anthropic"])
+
+client = Anthropic(api_key="<ANTHROPIC_API_KEY>")
+
+with client.messages.create(
+    max_tokens=100,
+    messages=[{"role": "user", "content": "Tell me a funny joke!"}],
+    model="claude-haiku-4-5",
+    stream=True,
+) as stream:
+    for event in stream:
+        if event.type == "message_stop":
+            # Get estimated environmental impacts of the inference
+            print(event.impacts)
+```

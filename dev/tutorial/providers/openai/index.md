@@ -223,6 +223,29 @@ async def main() -> None:
 asyncio.run(main())
 ```
 
+## Stream helpers and structured outputs
+
+EcoLogits also tracks `client.chat.completions.stream(...)`, `client.responses.stream(...)` and `client.chat.completions.parse(...)`, in sync and async code. A streaming call returns the SDK stream object, so you can also use it with `with` and `close()`.
+
+**With `client.chat.completions.stream(...)`, the impacts are calculated incrementally on each `chunk` event** (`event.chunk.impacts`), which means the impact information in the last chunk reflects the total cumulative environmental impacts for the entire request.
+
+**With both stream helpers, the final objects from `get_final_completion()` and `get_final_response()` do not contain an `ImpactsOutput` object.** The SDK builds these objects, so their `impacts` field is only a plain `dict`. Use [`EcoLogits.track_impacts()`](<https://ecologits.ai/latest/tutorial/index.md#tracking-impacts-in-a-block>) to get the impacts of these calls:
+
+```python
+from ecologits import EcoLogits
+from openai import OpenAI
+
+client = OpenAI(api_key="<OPENAI_API_KEY>")
+
+with EcoLogits.track_impacts(providers=["openai"]) as tracker, client.chat.completions.stream(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Tell me a funny joke!"}],
+) as stream:
+    stream.get_final_completion()
+
+print(tracker.impacts)
+```
+
 ## Compatibility with Azure OpenAI
 
 EcoLogits is also compatible with .
