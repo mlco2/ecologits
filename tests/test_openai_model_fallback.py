@@ -2,20 +2,15 @@ import json
 from inspect import Parameter, signature
 from typing import Optional
 
-import openai
 import pytest
 from openai import AsyncAzureOpenAI, AsyncOpenAI, AzureOpenAI, OpenAI
 from openai.resources.responses.responses import AsyncResponses, Responses
-from packaging.version import Version
-
-# OpenAI SDK 3.x is built on httpx2 and no longer depends on httpx.
-if Version(openai.__version__).major >= 3:
-    import httpx2 as httpx
-else:
-    import httpx
 
 from ecologits.model_repository import models
 from ecologits.tracers import openai_tracer
+from tests.sdk_http import sdk_httpx
+
+httpx = sdk_httpx("openai")
 
 USAGE_CHAT = {"prompt_tokens": 5, "completion_tokens": 3, "total_tokens": 8}
 USAGE_RESPONSES = {

@@ -1,13 +1,12 @@
 import time
-from collections.abc import AsyncGenerator, AsyncIterator, Iterator
+from collections.abc import AsyncGenerator, AsyncIterator, Iterable, Iterator
 from importlib.util import find_spec
-from types import TracebackType
-from typing import Any, Callable, Optional
+from typing import Any, Callable
 
 from wrapt import wrap_function_wrapper  # type: ignore[import-untyped]
 
 from ecologits._ecologits import EcoLogits
-from ecologits.tracers.utils import ImpactsOutput, _llm_impacts
+from ecologits.tracers.utils import AsyncImpactsStream, ImpactsOutput, ImpactsStream, _llm_impacts
 from ecologits.tracking import ImpactsTracker, get_active_trackers, is_tracking_enabled, record_impacts
 
 if find_spec("mistralai.chat") is not None:
@@ -36,70 +35,6 @@ class CompletionChunk(_CompletionChunk):
     Wrapper of `mistralai.client.models.CompletionChunk` with `ImpactsOutput`
     """
     impacts: ImpactsOutput
-
-
-class EventStream:
-    """
-    Wrapper of the SDK's `EventStream` that adds impacts to each chunk while keeping its interface (context manager,
-    `close()`, `response`)
-    """
-
-    def __init__(self, stream: Any, timer_start: float, trackers: tuple[ImpactsTracker, ...]) -> None:
-        self._stream = stream
-        self._events = _stream_generator(stream, timer_start, trackers)
-
-    def __iter__(self) -> "EventStream":
-        return self
-
-    def __next__(self) -> CompletionEvent:
-        return next(self._events)
-
-    def __enter__(self) -> "EventStream":
-        self._stream.__enter__()
-        return self
-
-    def __exit__(
-        self,
-        exc_type: Optional[type[BaseException]],
-        exc: Optional[BaseException],
-        exc_tb: Optional[TracebackType]
-    ) -> None:
-        self._stream.__exit__(exc_type, exc, exc_tb)
-
-    def __getattr__(self, name: str) -> Any:
-        return getattr(self._stream, name)
-
-
-class EventStreamAsync:
-    """
-    Wrapper of the SDK's `EventStreamAsync` that adds impacts to each chunk while keeping its interface (async context
-    manager, `close()`, `response`)
-    """
-
-    def __init__(self, stream: Any, timer_start: float, trackers: tuple[ImpactsTracker, ...]) -> None:
-        self._stream = stream
-        self._events = _generator(stream, timer_start, trackers)
-
-    def __aiter__(self) -> "EventStreamAsync":
-        return self
-
-    async def __anext__(self) -> CompletionEvent:
-        return await self._events.__anext__()
-
-    async def __aenter__(self) -> "EventStreamAsync":
-        await self._stream.__aenter__()
-        return self
-
-    async def __aexit__(
-        self,
-        exc_type: Optional[type[BaseException]],
-        exc: Optional[BaseException],
-        exc_tb: Optional[TracebackType]
-    ) -> None:
-        await self._stream.__aexit__(exc_type, exc, exc_tb)
-
-    def __getattr__(self, name: str) -> Any:
-        return getattr(self._stream, name)
 
 
 def mistralai_chat_wrapper(
@@ -150,7 +85,7 @@ def mistralai_chat_wrapper(
 
 def mistralai_chat_wrapper_stream(
     wrapped: Callable, instance: Chat, args: Any, kwargs: Any  # noqa: ARG001
-) -> EventStream:
+) -> Iterable[CompletionEvent]:
     """
     Function that wraps a MistralAI answer with computed impacts in streaming mode
 
@@ -161,18 +96,18 @@ def mistralai_chat_wrapper_stream(
         kwargs: Keyword arguments of the callable
 
     Returns:
-        A wrapped `EventStream` with impacts
+        A wrapped `Iterable[CompletionEvent]` with impacts
     """
     if not is_tracking_enabled(PROVIDER):
         return wrapped(*args, **kwargs)
     trackers = get_active_trackers(PROVIDER)
     timer_start = time.perf_counter()
     stream = wrapped(*args, **kwargs)
-    return EventStream(stream, timer_start, trackers)
+    return ImpactsStream(stream, _stream_generator(stream, timer_start, trackers))
 
 
 def _stream_generator(
-    stream: Iterator[CompletionEvent],
+    stream: Iterable[CompletionEvent],
     timer_start: float,
     trackers: tuple[ImpactsTracker, ...]
 ) -> Iterator[CompletionEvent]:
@@ -306,7 +241,7 @@ async def mistralai_async_chat_wrapper_stream(
     instance: Chat,  # noqa: ARG001
     args: Any,
     kwargs: Any,
-) -> EventStreamAsync:
+) -> AsyncGenerator[CompletionEvent, None]:
     """
     Function that wraps a MistralAI answer with computed impacts in streaming and async mode
 
@@ -317,14 +252,14 @@ async def mistralai_async_chat_wrapper_stream(
         kwargs: Keyword arguments of the callable
 
     Returns:
-        A wrapped `EventStreamAsync` with impacts
+        A wrapped `AsyncGenerator[CompletionEvent, None]` with impacts
     """
     if not is_tracking_enabled(PROVIDER):
         return await wrapped(*args, **kwargs)
     trackers = get_active_trackers(PROVIDER)
     timer_start = time.perf_counter()
     stream = await wrapped(*args, **kwargs)
-    return EventStreamAsync(stream, timer_start, trackers)
+    return AsyncImpactsStream(stream, _generator(stream, timer_start, trackers))
 
 
 class MistralAIInstrumentor:

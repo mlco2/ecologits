@@ -1,5 +1,6 @@
 import pytest
 from huggingface_hub import AsyncInferenceClient, InferenceClient
+from ecologits.tracers.utils import AsyncImpactsStream, ImpactsStream
 
 HF_INFERENCE_MODEL_URL = (
     "https://api-inference.huggingface.co/models/"
@@ -38,6 +39,7 @@ def test_huggingface_hub_stream_chat(tracer_init):
         max_tokens=15,
         stream=True
     )
+    assert isinstance(stream, ImpactsStream)
     for chunk in stream:
         assert chunk.impacts.energy.value > 0
 
@@ -51,5 +53,6 @@ async def test_huggingface_hub_async_stream_chat(tracer_init):
         max_tokens=15,
         stream=True
     )
+    assert isinstance(stream, AsyncImpactsStream)
     async for chunk in stream:
         assert chunk.impacts.energy.value > 0

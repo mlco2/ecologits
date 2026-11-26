@@ -82,7 +82,7 @@ Integrating EcoLogits with your applications does not alter the standard outputs
 
 ### Streaming example
 
-**In streaming mode, the impacts are calculated incrementally**, which means you don't need to sum the impacts from each data chunk. Instead, the impact information in the last chunk reflects the total cumulative environmental impacts for the entire request.
+**In streaming mode, the impacts are calculated incrementally**, which means you don't need to sum the impacts from each data chunk. Instead, the impact information in the last chunk reflects the total cumulative environmental impacts for the entire request. The streaming call returns the SDK `EventStream` (`EventStreamAsync` in async code) through a proxy, so you can also use it with `with` or `async with`.
 
 === "Sync"
 

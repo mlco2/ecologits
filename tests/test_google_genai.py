@@ -2,6 +2,7 @@ from unittest.mock import Mock
 
 import pytest
 from google import genai
+from ecologits.tracers.utils import AsyncImpactsStream, ImpactsStream
 
 from ecologits import EcoLogits
 
@@ -66,6 +67,7 @@ def test_google_genai_content_stream(tracer_init, google_genai_client):
         model="gemini-2.5-flash-lite",
         contents="Tell me a joke!"
     )
+    assert isinstance(stream, ImpactsStream)
     for chunk in stream:
         assert len(chunk.text) > 0
 
@@ -81,6 +83,7 @@ async def test_google_genai_async_content_stream(tracer_init, google_genai_clien
         model="gemini-2.5-flash-lite",
         contents="Tell me a joke!"
     )
+    assert isinstance(stream, AsyncImpactsStream)
     async for chunk in stream:
         assert len(chunk.text) > 0
 
