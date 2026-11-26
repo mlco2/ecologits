@@ -1,0 +1,176 @@
+# Environmental Impacts of Video Generation
+
+## Introduction
+
+The environmental impacts of a video generation request, \\(I\_{\\text{request}}\\), can be divided into two components: the usage impacts, \\(I\_{\\text{request}}^{\\text{u}}\\), which account for energy consumption, and the embodied impacts, \\(I\_{\\text{request}}^{\\text{e}}\\), which account for resource extraction, hardware manufacturing, and transportation:
+
+\\\[ \\begin{equation\*} \\begin{split} I\_{\\text{request}} &= I\_{\\text{request}}^{\\text{u}} + I\_{\\text{request}}^{\\text{e}} \\\\ &= E\_{\\text{request}} \\times F\_{\\text{em}} + \\frac{\\Delta T}{\\Delta L} \\times I\_{\\text{server}}^{\\text{e}}, \\end{split} \\end{equation\*} \\\]
+
+where \\(E\_{\\text{request}}\\) is the electricity consumption of the hardware used for the request, \\(F\_{\\text{em}}\\) is the impact factor of the electricity mix, \\(I\_{\\text{server}}^{\\text{e}}\\) is the embodied impact of the server and its accelerators, \\(\\Delta T\\) is the generation latency, and \\(\\Delta L\\) is the hardware lifetime.
+
+## Usage impacts
+
+To assess the usage impacts of a video generation request, we first estimate the generation latency of the request and the power draw of the hardware configuration used to serve it. We then account for data center overhead through the Power Usage Effectiveness (PUE) and transform electricity consumption into environmental impacts using country-level electricity-mix factors.
+
+### Modeling the generation latency
+
+Our latency estimation follows the approach from [Jegham et al. (2026)](<https://arxiv.org/abs/2607.04553>). The main idea is that video generation is mostly compute-bound, so under fixed hardware the generation time is a good proxy for the computational work of the request. In practice, we use model-specific regressions fitted from observed generation latencies, directly derived from the paper.
+
+We denote:
+
+- \\(W\\): video width in pixels,
+- \\(H\\): video height in pixels,
+- \\(F\\): number of generated frames,
+- \\(T = \\frac{W \\times H \\times F}{1000}\\): spatiotemporal volume.
+
+As in the paper, the frame count is derived from the target duration \\(D\\) in seconds using a fixed frame rate of 24 fps:
+
+\\\[ F(D) = \\lfloor 24 \\times D + 1 \\rfloor. \\\]
+
+We then reuse the regression from the paper to estimate the generation latency as a function of the resolution and frame count:
+
+\\\[ \\Delta T\_{\\text{est}}(W, H, F) = \\left\[ n \\times F \\times (W \\times H)^2 + m \\times T + m\_1 \\times F + m\_2 \\times (W \\times H)^2 + n\_1 \\times F^2 + n\_2 \\times T^2 + g \\right\] \\times \\omega\_{\\text{no-audio}}, \\\]
+
+where \\(n\\), \\(m\\), \\(n\_1\\), \\(m\_1\\), \\(n\_2\\), \\(m\_2\\), and \\(g\\) are model-specific regression coefficients, and \\(\\omega\_{\\text{no-audio}}\\) is a multiplicative factor applied when a model supports audio but the request is video-only.
+
+This regression is used to capture the main components of the generation latency:
+
+- the linear terms account for costs that scale approximately linearly with video size,
+- the quadratic terms account for attention-like costs that grow faster with resolution or length,
+- the constant term captures fixed per-request overheads.
+
+When an observed request latency \\(\\Delta T\_{\\text{request}}\\) is available, we cap the estimate with:
+
+\\\[ \\Delta T = \\min \\left\\{ \\Delta T\_{\\text{est}}, \\Delta T\_{\\text{request}} \\right\\}. \\\]
+
+> [!NOTE]
+>
+> **On the no-audio factor**
+>
+> In the current implementation, regressions are stored with a model-specific `non_audio_weight`.
+>
+> - If a request is generated **with audio**, we force \\(\\omega\_{\\text{no-audio}} = 1\\).
+> - If a request is generated **without audio**, we use the calibrated model value, typically lower than 1, depending on the model.
+>
+> This assumes that removing audio reduces generation latency by a constant multiplicative factor for a given model.
+
+### Modeling server and accelerator energy consumption
+
+Each video model is mapped to a fixed hardware configuration. The supported configurations currently include NVIDIA DGX GPU servers and TPU servers.
+
+We denote by \\(P\_{\\text{server}}\\) the electrical power of the full machine, including the base server and all installed accelerators. The power consumptions for each server is derived from [Jegham et al. (2026)](<https://arxiv.org/abs/2607.04553>). The server energy consumed during the request is:
+
+\\\[ E\_{\\text{server}} = \\frac{\\Delta T}{3600} \\times P\_{\\text{server}}, \\\]
+
+with \\(\\Delta T\\) in seconds and \\(P\_{\\text{server}}\\) in kW, giving \\(E\_{\\text{server}}\\) in kWh.
+
+> [!NOTE]
+>
+> **On power intervals**
+>
+> We use a range of power values between the 2.5<sup>th</sup> and 97.5<sup>th</sup> percentiles for each hardware configuration. This interval is propagated through the energy and impact equations, which is why EcoLogits returns interval estimates rather than a single deterministic value.
+
+There is no additional allocation term for batch size or for a fraction of installed accelerators. In other words, the current methodology attributes the whole machine power to the request once the hardware configuration has been selected.
+
+### Modeling request energy consumption
+
+To account for data center overheads such as cooling and electrical distribution losses, we multiply the direct server energy by the Power Usage Effectiveness (PUE):
+
+\\\[ E\_{\\text{request}} = \\text{PUE} \\times E\_{\\text{server}}. \\\]
+
+### Modeling request usage environmental impacts
+
+To assess the environmental impacts of the request for the usage phase, we multiply the estimated electricity consumption by the impact factor of the electricity mix, \\(F\_{\\text{em}}\\), specific to the target country and time. We use data from the [Our World in Data](<https://ourworldindata.org/electricity-mix>) for GWP impact and from the [ADEME Base Empreinte®](<https://base-empreinte.ademe.fr/>) for ADPe and PE impacts. It gives us:
+
+\\\[ I^\\text{u}\_{\\text{request}} = E\_{\\text{request}} \\times F\_{\\text{em}}. \\\]
+
+#### Modeling request water consumption footprint for usage phase
+
+To assess the Water Consumption Footprint (WCF) for the usage phase we use the modeling from [Li et al. (2025)](<https://arxiv.org/abs/2304.03271>). It uses the Water Usage Effectiveness (WUE) of both the data center \\(\\text{WUE}\_\\text{on-site}\\) and of the local electricity mix \\(\\text{WUE}\_\\text{off-site}\\). On-site data is assessed for each provider individually, whereas off-site data is averaged from each country according to the [World Resource Institute methodology](<https://www.wri.org/research/guidance-calculating-water-use-embedded-purchased-electricity>). It gives us:
+
+\\\[ \\text{WCF}^{\\text{u}}\_{\\text{request}} = E\_{\\text{server}} \\times \\left\[ \\text{WUE}\_{\\text{on-site}} + \\text{PUE} \\times \\text{WUE}\_{\\text{off-site}} \\right\]. \\\]
+
+## Embodied impacts
+
+To determine the embodied impacts of a video generation request, we need to estimate the **hardware configuration** used to host the model and its lifetime. Embodied impacts account for resource extraction (e.g., minerals and metals), manufacturing, and transportation of the hardware.
+
+### Modeling server embodied impacts
+
+To estimate the embodied impacts of IT hardware, we use the [BoaviztAPI](<https://github.com/Boavizta/boaviztapi>) tool from the non-profit organization [Boavizta](<https://boavizta.org/en/>). This API embeds a bottom-up multicriteria environmental impact estimation engine for IT equipment and services. We focus here on estimating the embodied impacts of a server and an accelerator.
+
+#### Server embodied impacts without accelerators
+
+To assess the embodied impacts of the serving systems used in the methodology, we use reference values for the base server, without accelerators, denoted as \\(I^{\\text{e}}\_{\\text{server} \\backslash \\text{acc}}\\).
+
+The embodied environmental impacts of the base server are:
+
+|  | DGX H800 | DGX H200 | TPU v6e |
+| --- | --- | --- | --- |
+| GWP (kgCO2eq) | \\(6000\\) | \\(6000\\) | \\(3550\\) |
+| ADPe (kgSbeq) | \\(0.42\\) | \\(0.42\\) | \\(0.42\\) |
+| PE (MJ) | \\(8000\\) | \\(8000\\) | \\(8000\\) |
+
+> [!NOTE]
+>
+> **On TPU server impacts**
+>
+> For TPU systems, the base-server GWP value comes from [Schneider et al. (2025)](<https://arxiv.org/abs/2502.01671>). Since this source only reports GWP, we approximate ADPe and PE using the values of the equivalent DGX server configuration. We also add storage impacts to the base TPU server, as they are absent from the original paper.
+
+#### Accelerator embodied impacts
+
+We use Boavizta-based values to estimate the embodied impacts of a single accelerator, denoted as \\(I^{\\text{e}}\_{\\text{acc}}\\).
+
+|  | H800 | H200 | TPU v6e |
+| --- | --- | --- | --- |
+| GWP (kgCO2eq) | \\(273\\) | \\(364\\) | \\(323\\) |
+| ADPe (kgSbeq) | \\(0.00895\\) | \\(0.00895\\) | \\(0.00895\\) |
+| PE (MJ) | \\(3721\\) | \\(4906\\) | \\(4906\\) |
+
+> [!NOTE]
+>
+> **On accelerator embodied values**
+>
+> In the current methodology, H800 systems are used for Chinese and more broadly Asia-based providers. The H800 embodied values reuse the H100 embodied values.
+
+> [!NOTE]
+>
+> **On TPU accelerator impacts**
+>
+> For TPU systems, the accelerator GWP value comes from [Schneider et al. (2025)](<https://arxiv.org/abs/2502.01671>). Since this source only reports GWP, we approximate ADPe and PE using the values of the equivalent DGX accelerator configuration.
+
+#### Complete server embodied impacts
+
+For the supported hardware configurations, we consider systems with \\(N\_{\\text{acc}} = 8\\) accelerators. The complete embodied impacts of the serving system are then:
+
+\\\[ I^{\\text{e}}\_{\\text{server}} = I^{\\text{e}}\_{\\text{server} \\backslash \\text{acc}} + N\_{\\text{acc}} \\times I^{\\text{e}}\_{\\text{acc}}. \\\]
+
+### Modeling request embodied environmental impacts
+
+To allocate the server embodied impacts to one request, we use an allocation based on the hardware utilization factor, \\(\\frac{\\Delta T}{\\Delta L}\\). In this case, \\(\\Delta L\\) represents the lifetime of the server and accelerator, which we fix at 3 years:
+
+\\\[ I^{\\text{e}}\_{\\text{request}} = \\frac{\\Delta T}{\\Delta L} \\times I^{\\text{e}}\_{\\text{server}}. \\\]
+
+> [!WARNING]
+>
+> **Water consumption (WCF) is not modeled for the embodied phase due to a lack of data.**
+
+## Supplemental material
+
+### Data center configuration
+
+We use provider-level assumptions for the default **deployment location**, **PUE**, and **WUE** used in video generation impact estimates. These values are used when no request-specific data center location, PUE, or WUE is provided.
+
+| AI Provider | Location | PUE | WUE |
+| --- | --- | --- | --- |
+| ByteDance | SGP | 1.20 | 0.50 |
+| Google | USA | 1.09 | 0.999 |
+| Kling AI | SGP | 1.20 | 0.50 |
+| OpenAI | USA | 1.20 | 0.569 |
+| Runway | USA | 1.09 - 1.14 | 0.13 - 0.999 |
+
+## References
+
+- [Jegham et al. (2026)](<https://arxiv.org/abs/2607.04553>) for video generation latency and power consumption.
+- [Schneider et al. (2025)](<https://arxiv.org/abs/2502.01671>) for TPU embodied GWP values.
+- [Boavizta](<https://boavizta.org/>) and [BoaviztAPI](<https://github.com/Boavizta/boaviztapi>) for embodied impacts of the modeled hardware configurations.
+- [Our World in Data](<https://ourworldindata.org/>), [ADEME Base Empreinte®](<https://base-empreinte.ademe.fr/>), and [World Resource Institute](<https://www.wri.org/>) for electricity-mix and water-use factors.

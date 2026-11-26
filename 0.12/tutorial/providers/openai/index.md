@@ -1,0 +1,315 @@
+# OpenAI
+
+> [!CAUTION]
+>
+> **Lack of transparency**
+>
+> OpenAI does not disclose any information about model architecture and inference infrastrucure. Thus, the environmental impacts are estimated with a very low precision.
+
+This guide focuses on the integration of 🌱 **EcoLogits** with the .
+
+Official links:
+
+- Repository:
+- Documentation:
+
+## Installation
+
+EcoLogits supports versions 1.x (from 1.66.0), 2.x, and 3.x of the OpenAI Python SDK. Install the `openai` extra to get a compatible version.
+
+OpenAI 1.x emits a deprecation warning when EcoLogits initializes the integration. EcoLogits 0.13 will remove support for OpenAI 1.x.
+
+```shell
+pip install "ecologits[openai]"
+```
+
+## Chat Completions
+
+### Example
+
+Integrating EcoLogits with your applications does not alter the standard outputs from the API responses. Instead, it enriches them by adding the `Impacts` object, which contains detailed environmental impact data.
+
+```python
+from ecologits import EcoLogits
+from openai import OpenAI
+
+# Initialize EcoLogits
+EcoLogits.init(providers=["openai"])
+
+client = OpenAI(api_key="<OPENAI_API_KEY>")
+
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[
+        {"role": "user", "content": "Tell me a funny joke!"}
+    ]
+)
+
+# Get estimated environmental impacts of the inference
+print(response.impacts)
+```
+
+```python
+import asyncio
+from ecologits import EcoLogits
+from openai import AsyncOpenAI
+
+# Initialize EcoLogits
+EcoLogits.init(providers=["openai"])
+
+client = AsyncOpenAI(api_key="<OPENAI_API_KEY>")
+
+async def main() -> None:
+    response = await client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "user", "content": "Tell me a funny joke!"}
+        ]
+    )
+
+    # Get estimated environmental impacts of the inference
+    print(response.impacts)
+
+
+asyncio.run(main())
+```
+
+### Streaming example
+
+**In streaming mode, the impacts are calculated incrementally**, which means you don't need to sum the impacts from each data chunk. Instead, the impact information in the last chunk reflects the total cumulative environmental impacts for the entire request.
+
+```python
+from ecologits import EcoLogits
+from openai import OpenAI
+
+# Initialize EcoLogits
+EcoLogits.init(providers=["openai"])
+
+client = OpenAI(api_key="<OPENAI_API_KEY>")
+
+stream = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Hello World!"}],
+    stream=True
+)
+
+for chunk in stream:
+    # Get cumulative estimated environmental impacts of the inference
+    print(chunk.impacts)
+```
+
+```python
+import asyncio
+from ecologits import EcoLogits
+from openai import AsyncOpenAI
+
+# Initialize EcoLogits
+EcoLogits.init(providers=["openai"])
+
+client = AsyncOpenAI(api_key="<OPENAI_API_KEY>")
+
+async def main() -> None:
+    stream = await client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "user", "content": "Tell me a funny joke!"}
+        ],
+        stream=True
+    )
+
+    async for chunk in stream:
+        # Get cumulative estimated environmental impacts of the inference
+        print(chunk.impacts)
+
+
+asyncio.run(main())
+```
+
+## Responses
+
+### Example
+
+The Responses API works the same way as Chat Completions. EcoLogits enriches the `Response` object with the `Impacts` object containing environmental impact data.
+
+```python
+from ecologits import EcoLogits
+from openai import OpenAI
+
+# Initialize EcoLogits
+EcoLogits.init(providers=["openai"])
+
+client = OpenAI(api_key="<OPENAI_API_KEY>")
+
+response = client.responses.create(
+    model="gpt-4o-mini",
+    input="Tell me a funny joke!"
+)
+
+# Get estimated environmental impacts of the inference
+print(response.impacts)
+```
+
+```python
+import asyncio
+from ecologits import EcoLogits
+from openai import AsyncOpenAI
+
+# Initialize EcoLogits
+EcoLogits.init(providers=["openai"])
+
+client = AsyncOpenAI(api_key="<OPENAI_API_KEY>")
+
+async def main() -> None:
+    response = await client.responses.create(
+        model="gpt-4o-mini",
+        input="Tell me a funny joke!"
+    )
+
+    # Get estimated environmental impacts of the inference
+    print(response.impacts)
+
+
+asyncio.run(main())
+```
+
+### Streaming example
+
+**In streaming mode, the impacts are only available on the final `response.completed` event.** Non-completed events are yielded as-is without impact data.
+
+```python
+from ecologits import EcoLogits
+from openai import OpenAI
+
+# Initialize EcoLogits
+EcoLogits.init(providers=["openai"])
+
+client = OpenAI(api_key="<OPENAI_API_KEY>")
+
+stream = client.responses.create(
+    model="gpt-4o-mini",
+    input="Tell me a funny joke!",
+    stream=True
+)
+
+for event in stream:
+    if event.type == "response.completed":
+        # Get estimated environmental impacts of the inference
+        print(event.impacts)
+```
+
+```python
+import asyncio
+from ecologits import EcoLogits
+from openai import AsyncOpenAI
+
+# Initialize EcoLogits
+EcoLogits.init(providers=["openai"])
+
+client = AsyncOpenAI(api_key="<OPENAI_API_KEY>")
+
+async def main() -> None:
+    stream = await client.responses.create(
+        model="gpt-4o-mini",
+        input="Tell me a funny joke!",
+        stream=True
+    )
+
+    async for event in stream:
+        if event.type == "response.completed":
+            # Get estimated environmental impacts of the inference
+            print(event.impacts)
+
+
+asyncio.run(main())
+```
+
+## Stream helpers and structured outputs
+
+EcoLogits also tracks `client.chat.completions.stream(...)`, `client.responses.stream(...)` and `client.chat.completions.parse(...)`, in sync and async code. A streaming call returns the SDK stream object, so you can also use it with `with` and `close()`.
+
+**With `client.chat.completions.stream(...)`, the impacts are calculated incrementally on each `chunk` event** (`event.chunk.impacts`), which means the impact information in the last chunk reflects the total cumulative environmental impacts for the entire request.
+
+**With both stream helpers, the final objects from `get_final_completion()` and `get_final_response()` do not contain an `ImpactsOutput` object.** The SDK builds these objects, so their `impacts` field is only a plain `dict`. Use [`EcoLogits.track_impacts()`](<https://ecologits.ai/latest/tutorial/index.md#tracking-impacts-in-a-block>) to get the impacts of these calls:
+
+```python
+from ecologits import EcoLogits
+from openai import OpenAI
+
+client = OpenAI(api_key="<OPENAI_API_KEY>")
+
+with EcoLogits.track_impacts(providers=["openai"]) as tracker, client.chat.completions.stream(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Tell me a funny joke!"}],
+) as stream:
+    stream.get_final_completion()
+
+print(tracker.impacts)
+```
+
+## Compatibility with Azure OpenAI
+
+EcoLogits is also compatible with .
+
+```python
+import os
+from ecologits import EcoLogits
+from openai import AzureOpenAI
+
+# Initialize EcoLogits
+EcoLogits.init(providers=["openai"])
+
+client = AzureOpenAI(
+    azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
+    api_version="2024-02-01"
+)
+
+
+response = client.chat.completions.create(
+    model="gpt-35-turbo",
+    messages=[
+        {"role": "user", "content": "Tell me a funny joke!"}
+    ]
+)
+
+# Get estimated environmental impacts of the inference
+print(response.impacts)
+```
+
+Azure can return a dated model id, such as `gpt-6-luna-2026-09-22`, for a deployment named `gpt-6-luna`. When the model id in the response is not registered in EcoLogits but the requested model (your deployment name) is, EcoLogits uses the requested model. Give your deployment the name of the model it serves, so that this fallback finds the right model. The model id in the response is not changed.
+
+The same fallback applies to any OpenAI client, including a proxy or gateway set with `base_url`. If the gateway answers with a model id that EcoLogits does not know, EcoLogits uses the model name of your request when that name is registered. If the gateway serves a different model under that name, the impacts are those of the registered name.
+
+## Video Generation
+
+Video generation impacts are estimated with the [`video_impacts`](<https://ecologits.ai/latest/reference/ecologits/estimations/video/index.md#ecologits.estimations.video.video_impacts>) function. This is independent from the OpenAI client tracer: call it with the same model, resolution, and duration that you use for the video generation request.
+
+Supported OpenAI video models:
+
+| Model | Identifier |
+| --- | --- |
+| Sora 2 Pro | `openai/sora-2-pro` |
+
+```python
+from ecologits.estimations import video_impacts
+
+model = "openai/sora-2-pro"
+resolution = "1080p"
+duration = 10
+
+# Use these same values in your OpenAI video generation request.
+
+impacts = video_impacts(
+    model_name=model,
+    resolution=resolution,
+    duration=duration,
+)
+
+print(impacts.gwp.value)
+```
+
+You can serialize the impacts object if you want to store it with your video request metadata:
+
+```python
+impact_payload = impacts.model_dump(mode="json")
+```
