@@ -3,6 +3,7 @@ import time
 
 import pytest
 from openai import AsyncOpenAI, OpenAI, Stream
+from openai.resources.chat.completions import Completions
 from openai.types.chat import ParsedChatCompletion
 from pydantic import BaseModel
 
@@ -14,6 +15,11 @@ httpx = sdk_httpx("openai")
 
 MODEL = "gpt-4o-mini"
 MESSAGES = [{"role": "user", "content": "Hello World!"}]
+
+
+def requires_chat_completions(method: str) -> pytest.MarkDecorator:
+    # Older openai 1.x releases only have these helpers under `client.beta.chat.completions`.
+    return pytest.mark.skipif(not hasattr(Completions, method), reason=f"`chat.completions.{method}` is beta-only")
 
 
 class Answer(BaseModel):
@@ -95,6 +101,7 @@ def async_client(server):
                        http_client=httpx.AsyncClient(transport=httpx.MockTransport(server)))
 
 
+@requires_chat_completions("stream")
 def test_chat_stream_helper(tracer_init, client):
     with EcoLogits.track_impacts(providers="openai") as tracker, \
             client.chat.completions.stream(model=MODEL, messages=MESSAGES) as stream:
@@ -153,6 +160,7 @@ def otel_endpoints(monkeypatch):
     return endpoints
 
 
+@requires_chat_completions("parse")
 def test_chat_parse(tracer_init, client, otel_endpoints):
     with EcoLogits.track_impacts(providers="openai") as tracker:
         completion = client.chat.completions.parse(model=MODEL, messages=MESSAGES, response_format=Answer)
@@ -164,6 +172,7 @@ def test_chat_parse(tracer_init, client, otel_endpoints):
     assert otel_endpoints == ["/chat/completions/parse"]
 
 
+@requires_chat_completions("parse")
 @pytest.mark.asyncio
 async def test_async_chat_parse(tracer_init, async_client, otel_endpoints):
     async with EcoLogits.track_impacts(providers="openai") as tracker:

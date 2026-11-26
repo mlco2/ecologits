@@ -625,16 +625,6 @@ class OpenAIInstrumentor:
                 "wrapper": openai_async_chat_wrapper,
             },
             {
-                "module": "openai.resources.chat.completions",
-                "name": "Completions.parse",
-                "wrapper": openai_chat_parse_wrapper,
-            },
-            {
-                "module": "openai.resources.chat.completions",
-                "name": "AsyncCompletions.parse",
-                "wrapper": openai_async_chat_parse_wrapper,
-            },
-            {
                 "module": "openai.resources.responses.responses",
                 "name": "Responses.create",
                 "wrapper": openai_responses_wrapper,
@@ -655,6 +645,20 @@ class OpenAIInstrumentor:
                 "wrapper": openai_async_responses_parse_wrapper
             }
         ]
+        # Older openai 1.x releases only have `client.beta.chat.completions.parse`.
+        if hasattr(Completions, "parse"):
+            self.wrapped_methods += [
+                {
+                    "module": "openai.resources.chat.completions",
+                    "name": "Completions.parse",
+                    "wrapper": openai_chat_parse_wrapper,
+                },
+                {
+                    "module": "openai.resources.chat.completions",
+                    "name": "AsyncCompletions.parse",
+                    "wrapper": openai_async_chat_parse_wrapper,
+                },
+            ]
 
     def instrument(self) -> None:
         for wrapper in self.wrapped_methods:
