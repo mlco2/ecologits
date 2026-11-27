@@ -95,6 +95,7 @@ Community integrations built on EcoLogits (independent projects):
 
 - [ecologits-statusline](https://github.com/DuarteVi/ecologits-statusline) — Claude Code status line ([Vincent Duarte](https://github.com/DuarteVi))
 - [ecologits-vscode](https://github.com/marmelab/ecologits-vscode) — VS Code status bar ([marmelab](https://github.com/marmelab))
+- [tracky](https://github.com/andreagemelli/tracky) — macOS menu bar and desktop companion ([Andrea Gemelli](https://github.com/andreagemelli))
 
 
 ## 💪 Contributing
